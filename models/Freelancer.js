@@ -1,53 +1,84 @@
-/** @module models/Album
-* The Album Model. 
-* Schema:
-* _id            String       required   Unique identifier of the album
-* name           String       required   Name of the album
-* artist         ObjectId     required   Artist who performs in this album. It should be the `_id` of an Artist model document.
-* artwork        String       optional   URL of the artwork picture for the album. Default ''
-* tracks         [ObjectId]   optional   Tracks that this album contains. They should be `_id`s of Track Model documents.
-* dateCreated    Date         required   Date the album was created. Default: Date.now()
-* dateReleased   Date         required   Date the album was released. Default: Date.now()
-* label          String       optional   Record label of this album. Default: 'USI-INF records'
-*/
-
-// Via< numero, citta, cap
-
-//<!-- build:remove -->
+/** @module models/Freelancer
+ * The Freelancer Model.
+ * Schema:
+ * _id            String       required   Unique identifier of the freelancer
+ * firstName      String       required   firstName of the freelancer
+ * lastName       String       required   lastName of the freelancer
+ * workName       String       optional   Name of the freelancer's activity
+ * email          String       required   email of the freelancer
+ * phone          String       optional   phone number of the freelancer
+ * profilePhoto   String       optional   URL of a freelancer's profile photo
+ * photos         String[]     optional   Array of URLs (photos of the freelancer's previous works)
+ * address        Object       optional   Address of the freelancer's activity
+ * tags           Object[]     required   Tags to use in order to find this freelancer (at least 1)
+ * description    String       required   Description of a freelancer
+ * ownerId        ObjectId     optional   Link this freelancer to a user
+ */
 
 'use strict';
 
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-//<!-- /build -->
 
-/** @constructor
-* @augments AbstractSoundCollectionSchemaInstance
-* @param {Object} definition
-*/
-var FreelancerSchema = new mongoose.Schema(
-//<!-- build:remove -->
+var FreelancerSchema = new mongoose.Schema({
 
-{
-  firstName : { type: String, required: true },
-  lastName  : { type: String, required: true },
-  workName : { type: String, required: true },
-  email  : { type: String, required: true },
-  phone : { type: String, required: true },
-  profilePhoto : { type: String, required: true },
-  photos : { type : Array, require: true },
-  address : { type : Object, required: true },
-  tags : { type : Array, required: true },
-  description : { type : Array, required: true },
-  ownerId : { type : ObjectId, ref:"User", required: true }
-}
-//<!-- /build -->
-);
+   firstName: {
+      type: String,
+      required: true
+   },
+   lastName: {
+      type: String,
+      required: true
+   },
+   workName: {
+      type: String,
+      default: ""
+   },
+   email: {
+      type: String,
+      required: true
+   },
+   phone: {
+      type: String
+   },
+   profilePhoto: {
+      type: String
+   },
+   photos: {
+      type: Array,
+      default: []
+   },
+   address: {
+      road: {
+         type: String
+      },
+      number: {
+         type: Number
+      },
+      city: {
+         type: String
+      },
+      cap: {
+         type: Number
+      },
+   },
+   tags: {
+      type: Array,
+      required: true
+   },
+   description: {
+      type: String,
+      required: true
+   },
+   ownerId: {
+      type: ObjectId,
+      ref: "User"
+   }
 
-//<!-- build:remove -->
+});
+
+
 
 //register model
 mongoose.model('Freelancer', FreelancerSchema);
-
-//<!-- /build -->
