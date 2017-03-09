@@ -30,7 +30,7 @@ function(req, res){
 
 // Initialize routers here
 var routers = require('./routes/routers');
-app.use('/', routers.root);
+app.use('/api/', routers.root);
 
 
 module.exports = app;
