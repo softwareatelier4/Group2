@@ -16,8 +16,6 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
-var SALT_WORK_FACTOR = 10;
 
 //<!-- /build -->
 
@@ -28,12 +26,8 @@ var userSchema = new mongoose.Schema(
 //<!-- build:remove -->
 
 {
-  userName : { type: String, required: true },
-  firstName: { type: String },
-  lastName : { type: String },
-  password : { type: String, required: true },
-  email   : { type: String, required: true },
-  dateCreated : { type: Date, required: true, default: Date.now },
+  name : { type: String, required: true },
+  counter: { type: Integer, required: true, default: 0 },
 }
 
 //<!-- /build -->
