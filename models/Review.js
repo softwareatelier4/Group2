@@ -25,7 +25,7 @@ var reviewSchema = new mongoose.Schema({
       default: ""
    },
    score: {
-      type: Integer,
+      type: Number,
       required: true
    },
    photo: {

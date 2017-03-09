@@ -1,4 +1,4 @@
-/** @module routes/routers 
+/** @module routes/routers
 * Exposes all routers
 */
 'use strict';
@@ -32,4 +32,3 @@ try{
 }finally{
   module.exports = routers;
 }
-

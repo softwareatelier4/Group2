@@ -12,34 +12,11 @@ router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 //list users
 router.get('/', function(req, res, next) {
-  var links = [
-  {
-    "rel" : "albums",
-    "href" : rootUrl + "/albums"
-  },
-  {
-    "rel" : "artists",
-    "href" : rootUrl + "/artists"
-  },
-  {
-    "rel" : "playlists",
-    "href" : rootUrl + "/playlists"
-  },
-  {
-    "rel" : "tracks",
-    "href" : rootUrl + "/tracks"
-  },
-  {
-    "rel" : "users",
-    "href" : rootUrl + "/users"
+  const test = {
+    ciao: 'test'
   }
-]
-  if(req.accepts('text/html')){
-    res.render('index', {title:"AtelierBeats API Server", links:links});
-  }else{
-    res.json(links)
-  }
-  
+    res.json(test);
+
 });
 /** router for /users */
 module.exports = router;

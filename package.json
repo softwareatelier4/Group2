@@ -20,7 +20,6 @@
   "author": "Masiar Babazadeh, Vincenzo Ferme, Vasileios Triglianos",
   "license": "MIT",
   "dependencies": {
-    "adaro": "^1.0.0",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.0",
     "body-parser": "^1.14.1",

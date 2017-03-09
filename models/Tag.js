@@ -16,10 +16,10 @@ var tagSchema = new mongoose.Schema({
       required: true
    },
    counter: {
-      type: Integer,
+      type: Number,
       required: true,
       default: 0
    },
 });
 
-mongoose.model('Tag', userSchema);
+mongoose.model('Tag', tagSchema);
