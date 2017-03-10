@@ -29,7 +29,7 @@ function(req, res){
 ));
 
 // Initialize routers here
-var routers = require('./routes/routers');
+var routers = require('./routes/api/routers');
 app.use('/api/', routers.root);
 
 

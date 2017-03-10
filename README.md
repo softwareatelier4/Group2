@@ -8,6 +8,10 @@ Also you need to install redis:
 
     brew install redis
 
+And istanbul:
+
+    npm install -g istanbul
+
 ### Run the server
 To start:
 

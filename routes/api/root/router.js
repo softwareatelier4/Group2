@@ -3,8 +3,8 @@
 
 var express = require('express');
 var router = express.Router();
-var middleware =  require('../middleware');
-var rootUrl = require("../../config").url;
+var middleware =  require('../../middleware');
+var rootUrl = require("../../../config").url;
 
 
 //supported methods
