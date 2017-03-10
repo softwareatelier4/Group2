@@ -3,7 +3,7 @@
  * Schema:
  * _id           ObjectId                    Unique identifier of the tag
  * name          String     required         Name of the tag
- * counter       Integer    required         Number of times this tag is used
+ * Freelancer    Array      required         List of freelancer with that tag
  */
 
 'use strict';
@@ -15,10 +15,9 @@ var tagSchema = new mongoose.Schema({
       type: String,
       required: true
    },
-   counter: {
-      type: Number,
-      required: true,
-      default: 0
+   Freelancer: {
+      type: Array,
+      required: true
    },
 });
 
