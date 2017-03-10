@@ -1,11 +1,11 @@
- {
+{
   "name": "wa-exercise-5-2014-2015",
   "version": "0.0.0",
   "description": "Exercise 5 of Web Atelier@inf.usi.ch. Express.js and Mongoose",
   "main": "app.js",
   "scripts": {
     "install": "chmod -R u+x ./bin/ && ./bin/installSeleniumAndChromeWebDriver",
-    "start": "DEBUG='job-advisor' ./bin/www",
+    "start": "DEBUG='job-advisor' node --inspect ./bin/www",
     "dev": "nodemon --exec npm start",
     "test": "npm run test-mocha && npm start | node seed.js && ./nightwatch",
     "test-mocha": "JUNIT_REPORT_PATH=./jenkins-test-results.xml istanbul cover --report cobertura _mocha -- --timeout 3000 -R spec ./test/ex1 ./test/ex2 ./test/ex3 ./test/ex4 --colors --reporter mocha-jenkins-reporter",
@@ -29,14 +29,15 @@
     "dustjs-linkedin": "^2.7.2",
     "express": "^4.13.3",
     "method-override": "^2.3.5",
+    "mocha-jenkins-reporter": "^0.3.6",
     "mongodb": "^2.2.22",
     "mongoose": "^4.1.11",
     "morgan": "^1.6.1",
-    "supertest": "^1.1.0",
-    "mocha-jenkins-reporter":"^0.3.6"
+    "redis": "^2.6.5",
+    "supertest": "^1.1.0"
   },
   "devDependencies": {
-        "nightwatch": "^0.8.6",
-        "should": "^4.0.4"
+    "nightwatch": "^0.8.6",
+    "should": "^4.0.4"
   }
 }
