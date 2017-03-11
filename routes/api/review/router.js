@@ -13,21 +13,23 @@ router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 
 router.get('/freelancer/:freelancerid', function(req, res, next) {
-	Review.find({freelancher: req.params.freelancerid}).lean().exec(function(err, review){
-		if(err){
-			res.status(400).send(err);
-			return;
-		}
-		if (!review){
-			res.status(404);
-			res.json({
-				statusCode: 404,
-				message: "Not Found"
-			});
-			return;
-		}
-		res.json(review);
-	})
+   Review.find({
+      freelancer: req.params.freelancerid
+   }).populate('user').populate('freelancer').lean().exec(function(err, review) {
+      if (err) {
+         res.status(400).send(err);
+         return;
+      }
+      if (!review) {
+         res.status(404);
+         res.json({
+            statusCode: 404,
+            message: "Not Found"
+         });
+         return;
+      }
+      res.json(review);
+   })
 })
 
 /** router for /users */

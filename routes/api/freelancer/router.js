@@ -12,17 +12,17 @@ const Freelancer = mongoose.model('Freelancer');
 router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 router.get('/:freelancerid', function(req, res, next) {
-   Freelancer.findById(req.params.freelancerid).lean().exec(function(err, freelancer){
-      if(err){
+   Freelancer.findById(req.params.freelancerid).populate('tags').populate('ownerId').lean().exec(function(err, freelancer) {
+      if (err) {
          res.status(400).send(err);
          return;
       }
       if (!freelancer) {
          res.status(404);
          res.json({
-          statusCode: 404,
-          message: "Not Found"
-       });
+            statusCode: 404,
+            message: "Not Found"
+         });
          return;
       }
       res.json(freelancer);
