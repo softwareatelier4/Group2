@@ -9,6 +9,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
 
 var tagSchema = new mongoose.Schema({
    name: {
@@ -16,7 +17,10 @@ var tagSchema = new mongoose.Schema({
       required: true
    },
    Freelancer: {
-      type: Array,
+      type: {
+         type: [ObjectId],
+         ref: "Freelancer"
+      },
       required: true
    },
 });
