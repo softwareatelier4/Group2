@@ -27,5 +27,6 @@ router.get('/', function(req, res, next) {
       res.json(JSON.parse(data));
    })
 });
+
 /** router for /users */
 module.exports = router;

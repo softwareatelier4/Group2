@@ -15,7 +15,7 @@ var tagSchema = new mongoose.Schema({
       type: String,
       required: true
    },
-   Freelancer: {
+   freelancer: {
       type: Array,
       required: true
    },

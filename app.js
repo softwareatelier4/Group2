@@ -32,8 +32,8 @@ app.use(methodOverride(
 
 // Initialize routers here
 var routers = require('./routes/api/routers');
+app.use('/api/freelancer/', routers.freelancer);
 app.use('/api/', routers.root);
-
 
 module.exports = app;
 process.title = 'myapp'

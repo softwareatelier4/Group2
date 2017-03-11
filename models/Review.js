@@ -40,6 +40,10 @@ var reviewSchema = new mongoose.Schema({
       type: String,
       required: true
    },
+   freelancer: {
+      type: ObjectId,
+      required: true,
+   }
 });
 
 mongoose.model('Review', reviewSchema);
