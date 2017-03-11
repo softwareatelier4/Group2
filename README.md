@@ -26,27 +26,20 @@ or, if you want to use nodemon
 
 
 ### Responses
+All the response are in JSON.
 
+List of methods:
+
+    GET /api/freelancer/:id
+    GET /api/review/freelancer/:id
 
 ### Examples
 Note: In the examples we only present the headers of interest.
-#### `GET /`
+
+#### `/api/freelancer/:id`
 
     #Request headers
-    GET / HTTP/1.1
-    Host: localhost:3000
-    Accept: text/html    
-
-    200 OK
-    #Response headers
-    Content-Type: text/html; charset=utf-8
-
-
-
-#### `GET /users`
-
-    #Request headers
-    GET /users HTTP/1.1
+    GET /api/freelancer/5625fc2bd82b84d23d8c7bd0 HTTP/1.1
     Host: localhost:3000
     Accept: application/json
 
@@ -56,92 +49,92 @@ Note: In the examples we only present the headers of interest.
 
 Response body:
 
-    [
-        {
-            "_id": "544571bdb96600d9c97bdfc5",
-            "firstName": "Masiar",
-            "lastName": "Babazadeh",
-            "userName": "masiar",
-            "email": "masiar.babazadeh@usi.ch",
-            "playlists": [
-                {
-                    "_id": "544571bdb96600d9c97bdfbf",
-                    "name": "Thrash Metal favs",
-                    "dateCreated": "2014-10-20T20:34:05.267Z",
-                    "tracks": [
-                        "544571bdb96600d9c97bdfb4",
-                        "544571bdb96600d9c97bdfb5"
-                    ]
-                },
-                {
-                    "_id": "544571bdb96600d9c97bdfc0",
-                    "name": "Thrash Metal favs 2",
-                    "dateCreated": "2014-10-20T20:34:05.269Z",
-                    "tracks": [
-                        "544571bdb96600d9c97bdfb7",
-                        "544571bdb96600d9c97bdfb8"
-                    ]
-                }
-            ],
-            "dateCreated": "2014-10-20T20:34:05.808Z"
-        },
-        {
-            "_id": "544571bdb96600d9c97bdfc6",
-            "firstName": "Robert",
-            "lastName": "Sapolsky",
-            "userName": "rob",
-            "email": "sapolsky@stanford.edu",
-            "playlists": [
-                {
-                    "_id": "544571bdb96600d9c97bdfc1",
-                    "name": "Thrash Metal favs",
-                    "dateCreated": "2014-10-20T20:34:05.269Z",
-                    "tracks": [
-                        "544571bdb96600d9c97bdfb4",
-                        "544571bdb96600d9c97bdfb5"
-                    ]
-                },
-                {
-                    "_id": "544571bdb96600d9c97bdfc2",
-                    "name": "Thrash Metal favs 2",
-                    "dateCreated": "2014-10-20T20:34:05.269Z",
-                    "tracks": [
-                        "544571bdb96600d9c97bdfba",
-                        "544571bdb96600d9c97bdfbb"
-                    ]
-                }
-            ],
-            "dateCreated": "2014-10-20T20:34:05.810Z"
-        },
-        {
-            "_id": "544571bdb96600d9c97bdfc7",
-            "firstName": "Vasileios",
-            "lastName": "Triglianos",
-            "userName": "vassilis",
-            "email": "vasileios.triglianos@usi.ch",
-            "playlists": [
-                {
-                    "_id": "544571bdb96600d9c97bdfc3",
-                    "name": "Iron maiden",
-                    "dateCreated": "2014-10-20T20:34:05.269Z",
-                    "tracks": [
-                        "544571bdb96600d9c97bdfb4",
-                        "544571bdb96600d9c97bdfb5"
-                    ]
-                },
-                {
-                    "_id": "544571bdb96600d9c97bdfc4",
-                    "name": "Thrash Metal favs 3",
-                    "dateCreated": "2014-10-20T20:34:05.269Z",
-                    "tracks": [
-                        "544571bdb96600d9c97bdfb9",
-                        "544571bdb96600d9c97bdfba"
-                    ]
-                }
-            ],
-            "dateCreated": "2014-10-20T20:34:05.812Z"
-        }
-    ]
+    {
+       "_id": "5625fc2bd82b84d23d8c7bd0",
+       "firstName": "Marco",
+       "lastName": "Tollini",
+       "email": "tollim@usi.ch",
+       "phone": "380474747",
+       "profilePhoto": "/uploads/5625fc2bd82b84d23d8c7bd5/profile.jpg",
+       "description": "This is a description",
+       "tags": [{
+          "_id": "4625fc2bd82b84d23d8c7bd0",
+          "name": "Idraulico",
+          "freelancer": ["5625fc2bd82b84d23d8c7bd0"],
+          "__v": 0
+       }, {
+          "_id": "4625fc2bd82b84d23d8c7bd1",
+          "name": "Vetraio",
+          "freelancer": ["5625fc2bd82b84d23d8c7bd0", "5625fc2bd82b84d23d8c7bd1"],
+          "__v": 0
+       }, {
+          "_id": "4625fc2bd82b84d23d8c7bd2",
+          "name": "Carpentiere",
+          "freelancer": ["5625fc2bd82b84d23d8c7bd0"],
+          "__v": 0
+       }],
+       "address": {
+          "road": "Via Zurigo",
+          "number": 10,
+          "city": "Lugano",
+          "cap": 29100
+       },
+       "photos": [],
+       "workName": "BHO",
+       "__v": 0
+    }
+
+
+#### `/api/review/freelancer/:id`
+
+  #Request headers
+  GET /api/review/freelancer/5625fc2bd82b84d23d8c7bd0 HTTP/1.1
+  Host: localhost:3000
+  Accept: application/json
+
+  200 OK
+  #Response headers
+  Content-Type: application/json; charset=utf-8
+
+Response body:
+
+    [{
+       "_id": "3625fc2bd82b84d23d8c7bd1",
+       "title": "R2",
+       "score": 5,
+       "user": {
+          "_id": "1625fc2bd82b84d23d8c7bd2",
+          "firstName": "Super",
+          "lastName": "Man",
+          "password": "$2a$10$JxFkVu2/vEwxDyD6zlltleABuRiioCz5qP498M84HZrgIoxhsp2Lq",
+          "email": "super@man.hero",
+          "__v": 0
+       },
+       "freelancer": {
+          "_id": "5625fc2bd82b84d23d8c7bd0",
+          "firstName": "Marco",
+          "lastName": "Tollini",
+          "email": "tollim@usi.ch",
+          "phone": "380474747",
+          "profilePhoto": "/uploads/5625fc2bd82b84d23d8c7bd5/profile.jpg",
+          "description": "This is a description",
+          "tags": ["4625fc2bd82b84d23d8c7bd0", "4625fc2bd82b84d23d8c7bd1", "4625fc2bd82b84d23d8c7bd2"],
+          "address": {
+             "road": "Via Zurigo",
+             "number": 10,
+             "city": "Lugano",
+             "cap": 29100
+          },
+          "photos": [],
+          "workName": "BHO",
+          "__v": 0
+       },
+       "date": "2017-03-11T18:43:31.420Z",
+       "photo": ["/uploads/review/13432424242.jpg"],
+       "description": "This is some super text",
+       "__v": 0
+    }]
+
 
 
 ## Testing
