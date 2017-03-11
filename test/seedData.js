@@ -51,7 +51,7 @@ var freelancer = {
 }
 
 var tag = {
-   name: 'Freelancer',
+   name: 'Tag',
    data: [{
          '_id': ObjectId("4625fc2bd82b84d23d8c7bd0"),
          'name': 'Idraulico',
@@ -96,16 +96,56 @@ var tag = {
    ]
 }
 
-// var review = {
-//    name: 'Review',
-//    data: [{
-//       '_id': ObjectId("3625fc2bd82b84d23d8c7bd0"),
-//       'title':
-//    }]
-// }
+var user = {
+   name: 'User',
+   data: [{
+         '_id': ObjectId("1625fc2bd82b84d23d8c7bd1"),
+         'firstName': 'Costanza',
+         'lastName': 'Fox',
+         'password': 'a wrong contact',
+         'email': 'volpic@usi.ch'
+      },
+      {
+         '_id': ObjectId("1625fc2bd82b84d23d8c7bd2"),
+         'firstName': 'Super',
+         'lastName': 'Man',
+         'password': 'a wrong contact',
+         'email': 'super@man.hero'
+      }
+   ]
+}
+
+var review = {
+   name: 'Review',
+   data: [{
+         '_id': ObjectId("3625fc2bd82b84d23d8c7bd0"),
+         'title': 'R1',
+         'description': 'This is some text',
+         'score': 1,
+         'photo': [
+            '/uploads/review/134324242342.jpg'
+         ],
+         'user': ObjectId("1625fc2bd82b84d23d8c7bd1"),
+         'freelancer': ObjectId("5625fc2bd82b84d23d8c7bd1")
+      },
+      {
+         '_id': ObjectId("3625fc2bd82b84d23d8c7bd1"),
+         'title': 'R2',
+         'description': 'This is some super text',
+         'score': 5,
+         'photo': [
+            '/uploads/review/13432424242.jpg'
+         ],
+         'user': ObjectId("1625fc2bd82b84d23d8c7bd2"),
+         'freelancer': ObjectId("5625fc2bd82b84d23d8c7bd0")
+      }
+   ]
+}
 
 var seedData = [];
 seedData.push(freelancer);
 seedData.push(tag);
+seedData.push(review);
+seedData.push(user);
 
 module.exports = seedData;

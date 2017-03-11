@@ -7,6 +7,7 @@ To install the dependencies (express.js, mongoose, testing framework, etc.) type
 Also you need to install redis:
 
     brew install redis
+    brew services start redis
 
 And istanbul:
 
