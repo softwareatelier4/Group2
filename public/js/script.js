@@ -9,11 +9,9 @@ let search = function() {
 //the animation that start when you search
 let animateSearch = function() {
 	let searchResult = document.getElementById('search-result');
-	searchResult.style.height = "auto";
 	searchResult.style.visibility = "visible";
 	searchResult.style.flexGrow = 1;
 }
-
 
 // simulate a card insertion
 let insertCard = function() {
