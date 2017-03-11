@@ -11,15 +11,6 @@ const Freelancer = mongoose.model('Freelancer');
 //supported methods
 router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
-//list users
-router.get('/', function(req, res, next) {
-   res.json({
-      id:"oggetewnjeajnnjfa"
-   })
-});
-
-//Examples for next routes
-
 router.get('/:freelancerid', function(req, res, next) {
    Freelancer.findById(req.params.freelancerid).lean().exec(function(err, freelancer){
       if(err){
@@ -37,13 +28,6 @@ router.get('/:freelancerid', function(req, res, next) {
       res.json(freelancer);
    })
 })
-
-// router.get('/:albumid/:albumname', function(req, res, next) {
-//    res.json({
-//       id:req.params.albumid,
-//       name: req.params.albumname
-//    })
-// })
 
 /** router for /users */
 module.exports = router;

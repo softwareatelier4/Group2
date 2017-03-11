@@ -42,7 +42,12 @@ var reviewSchema = new mongoose.Schema({
    },
    freelancer: {
       type: ObjectId,
+      ref: "Freelancer",
       required: true,
+   },
+   date: { 
+      type: Date,
+      default: Date.now
    }
 });
 
