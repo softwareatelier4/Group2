@@ -63,11 +63,10 @@ var FreelancerSchema = new mongoose.Schema({
          type: Number
       },
    },
-   tags: {
-      type: [ObjectId],
-      ref: "Tag",
-      required: true
-   },
+   tags: [{
+      type: ObjectId,
+      ref: "Tag"
+   }],
    description: {
       type: String,
       required: true

@@ -16,11 +16,10 @@ var tagSchema = new mongoose.Schema({
       type: String,
       required: true
    },
-   freelancer: {
-      type: [ObjectId],
-      ref: "Freelancer",
-      required: true
-   },
+   freelancer: [{
+      type: ObjectId,
+      ref: "Freelancer"
+   }]
 });
 
 mongoose.model('Tag', tagSchema);

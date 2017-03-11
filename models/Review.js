@@ -31,7 +31,8 @@ var reviewSchema = new mongoose.Schema({
       required: true
    },
    photo: {
-      type: String
+      type: Array,
+      default: []
    },
    user: {
       type: ObjectId,
@@ -39,15 +40,14 @@ var reviewSchema = new mongoose.Schema({
       required: true
    },
    answer: {
-      type: String,
-      required: true
+      type: String
    },
    freelancer: {
       type: ObjectId,
       ref: "Freelancer",
       required: true,
    },
-   date: { 
+   date: {
       type: Date,
       default: Date.now
    }
