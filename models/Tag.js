@@ -17,10 +17,8 @@ var tagSchema = new mongoose.Schema({
       required: true
    },
    Freelancer: {
-      type: {
-         type: [ObjectId],
-         ref: "Freelancer"
-      },
+      type: [ObjectId],
+      ref: "Freelancer",
       required: true
    },
 });
