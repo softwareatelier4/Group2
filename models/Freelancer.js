@@ -64,7 +64,8 @@ var FreelancerSchema = new mongoose.Schema({
       },
    },
    tags: {
-      type: Array,
+      type: [ObjectId],
+      ref: "Tag",
       required: true
    },
    description: {
