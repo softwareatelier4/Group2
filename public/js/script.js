@@ -4,6 +4,8 @@ let search = function() {
 	let query = document.getElementById('search-text').value;
 	console.log(query);
 	insertCard();
+	let spinner = document.getElementById('spinner');
+	spinner.style.display = "none";
 }
 
 //the animation that start when you search
@@ -24,5 +26,6 @@ let insertCard = function() {
 			<a href='#' class='btn btn-primary'>Go somewhere</a>
 		</div>
 	</div>`;
-	document.getElementById('search-result').innerHTML+=card;
+	let searchResult = document.getElementById('search-result');
+	searchResult.innerHTML+=card;
 }
