@@ -27,7 +27,17 @@ router.get('/:freelancerid', function(req, res, next) {
       }
       res.json(freelancer);
    })
-})
+});
+
+router.get('/', function(req, res, next) {
+   Freelancer.find({}, fieldsFilter).lean().exec(function(err, freelancers){
+    if (err) return next (err);
+    freelancers.forEach(function(freelancer){
+      addLinks(freelancer);
+    });
+    res.json(freelancers);
+  });
+});
 
 /** router for /users */
 module.exports = router;
