@@ -1,0 +1,27 @@
+#imgProfile{
+  height: 100px;
+}
+
+#leftFlex{
+  background-color: yellow;
+}
+
+#rightFlex{
+  background-color: red;
+}
+
+#name{
+  background-color: lightblue;
+}
+
+#location{
+  background-color: violet;
+}
+
+#rankings{
+  background-color: brown;
+}
+
+#profile{
+  background-color: blue;
+}
