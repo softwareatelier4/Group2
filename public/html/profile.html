@@ -1,70 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+
     <link rel="stylesheet" href="../css/profile.css">
-  </head>
-  <body>
-      <div class="d-flex flex-row flex-wrap">
+</head>
+
+<body>
+    <div class="d-flex flex-row flex-wrap">
         <div class="p-3" id="leftFlex">
-          <div class="d-flex flex-column flex-wrap">
-            <div class="p-3">
-              <img class="img-fluid rounded"
-              src="https://3.bp.blogspot.com/-W__wiaHUjwI/Vt3Grd8df0I/AAAAAAAAA78/7xqUNj8ujtY/s1600/image02.png"
-              id="imgProfile">
-            </div>
-            <!-- <div class="p-3">
+            <div class="d-flex flex-column flex-wrap">
+                <div class="p-3">
+                    <img class="img-fluid rounded" src="https://3.bp.blogspot.com/-W__wiaHUjwI/Vt3Grd8df0I/AAAAAAAAA78/7xqUNj8ujtY/s1600/image02.png" id="imgProfile">
+                </div>
+                <!-- <div class="p-3">
               FAVORITES
             </div> -->
-            <div class="p-3">
-                PHOTO
+                <div class="p-3">
+                    <i class="fa fa-camera" aria-hidden="true"></i> WORKS (img)
+                </div>
             </div>
-          </div>
         </div>
         <div class="p-9" id="rightFlex">
-          <div class="d-flex flex-row" >
-            <div class="p-5" id="name">
-              NOME COGNOME <br/>
-              Nome d'Arte
+            <div class="d-flex flex-row">
+                <div class="p-5" id="nameFreelancer">
+                    <p>
+                        NOME COGNOME
+                    </p>
+                    <p class="gray">
+                        Nome d'Arte
+                    </p>
+                </div>
+                <div class="p-4 gray" id="location">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i> Città
+                </div>
             </div>
-            <div class="p-4" id="location">
-              Città
+            <div class="d-flex flex-row">
+                <div class="p-5" id="rankings">
+                    <p>
+                        RANKINGS
+                    </p>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </div>
             </div>
-        </div>
-        <div class="d-flex flex-row">
-          <div class="p-9" id="rankings">
-            RANKINGS
-          </div>
-      </div>
-      <div class="d-flex flex-row flex-wrap">
-        <div class="p-2" id="chat">
-          CHAT
-        </div>
-        <div class="p-2" id="email">
-          EMAIL
-        </div>
-        <div class="p-2" id="phone">
-          PHONE
-        </div>
-        <div class="p-2" id="address">
-          ADDRESS
+            <div class="d-flex flex-row flex-wrap">
+                <div class="p-2" id="chat">
+                    <i class="fa fa-comment" aria-hidden="true"></i> CHAT
+                </div>
+                <div class="p-2" id="email">
+                    <i class="fa fa-envelope" aria-hidden="true"></i> EMAIL
+                </div>
+                <div class="p-2" id="phone">
+                    <i class="fa fa-phone" aria-hidden="true"></i> PHONE
+                </div>
+            </div>
+            <div class="d-flex flex-row">
+                <div class="p-9" id="tab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Nav tabs -->
+                                <div class="card">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#info" aria-controls="info" role="tab" data-toggle="tab">Info</a></li>
+                                        <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">Contact</a></li>
+                                        <li role="presentation"><a href="#review" aria-controls="review" role="tab" data-toggle="tab">Review</a></li>
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="info">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                                            it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                                            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+                                        <div role="tabpanel" class="tab-pane" id="contact">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                                            it to make a type specimen book.</div>
+                                        <div role="tabpanel" class="tab-pane" id="review">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                                            it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                                            sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="d-flex flex-row">
-      <div class="p-9" id="tab">
-        TAB
-      </div>
-    </div>
-        </div>
-      </div>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  </body>
+</body>
+
 </html>
