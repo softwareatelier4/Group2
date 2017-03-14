@@ -1,0 +1,127 @@
+#profile-freelancer{
+  background-color: rgb(231, 231, 231);
+  /*flex-grow: 1;*/
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  max-width: 1200px;
+}
+
+#main-info{
+  /*background-color: red;*/
+  display: flex;
+  flex-wrap: wrap;
+  /*justify-content: center;*/
+  margin-top: 30px;
+  /*max-width: 800px;*/
+  /*margin-left: auto;
+  margin-right: auto;*/
+}
+
+@media screen and (max-width: 750px) {
+  #main-info{
+    justify-content: center;
+  }
+
+  #img-freelancer{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+#profile-pic{
+  background-color: yellow;
+  width: 250px;
+  height: 250px;
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+}
+
+#info-name{
+  display: flex;
+  flex-direction: column;
+}
+
+#main-info-vertical{
+  display: flex;
+  flex-direction: column;
+  /*justify-content: space-between;*/
+}
+
+#rank{
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+#contact-info{
+  display: flex;
+  margin-left: 15px;
+  /*justify-content: space-around;*/
+}
+
+#main-info-bottom{
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+#tab-info{
+  margin-top: 30px;
+  width: 500px;
+  height: 300px;
+  background-color: green;
+}
+
+#thumbnail{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#works{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.thumbnail-element{
+  margin: 10px;
+}
+
+#img-freelancer{
+  margin-top: 30px;
+  width: 250px;
+  height: 300px;
+}
+.contact-info-element{
+    margin-right: 15px;
+}
+
+.info-name-top{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.profile-name{
+  font-size: 40px;
+	font-weight: bold;
+	color: rgb(46, 78, 92);
+  margin-left: 15px;
+  margin-top: 15px;
+  text-align: center
+}
+
+.city-freelancer{
+  font-size: 20px;
+  margin-left: 15px;
+  margin-top: 15px;
+  color: rgb(78, 108, 121);
+}
+.info-name-bottom{
+  font-size: 25px;
+  color: rgb(78, 108, 121);
+  margin-left: 15px;
+  margin-top: -5px;
+}
