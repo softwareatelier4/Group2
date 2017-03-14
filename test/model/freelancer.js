@@ -226,7 +226,7 @@ describe('Model: Freelancer', function(done) {
          }
       );
 
-      it('if photos is empty; null; or undefined, it should get assigned the value ""',
+      it('if photos is empty; null; or undefined, it should get assigned the value []',
          function(done) {
             var freelancer = new Freelancer();
             freelancer.firstName = 'Marco';
@@ -247,6 +247,58 @@ describe('Model: Freelancer', function(done) {
             freelancer.save(function(err, saved) {
                should.not.exist(err, 'No error should occur');
                freelancer.photos.should.have.length(0);
+               done();
+            });
+         }
+      );
+
+      it('if ownerId is empty; null; or undefined, it should not be assigned',
+         function(done) {
+            var freelancer = new Freelancer();
+            freelancer.firstName = 'Marco';
+            freelancer.lastName = 'Valsangiacomo';
+            freelancer.workName = 'Name';
+            freelancer.email = 'mail@valsantollim';
+            freelancer.phone = '+442345345645';
+            freelancer.profilePhoto = '/a.jpg';
+            freelancer.photos = ['/a.jpg', '/b.jpg'];
+            freelancer.address = {
+               road: 'Via Zurigo',
+               number: 10,
+               city: 'Lugano',
+               cap: 29100
+            };
+            freelancer.tags = [tag._id];
+            freelancer.description = 'Blah';
+            freelancer.save(function(err, saved) {
+               should.not.exist(err, 'No error should occur');
+               should.not.exist(freelancer.ownerId);
+               done();
+            });
+         }
+      );
+
+      it('if profilePhoto is empty; null; or undefined, it should not be assigned',
+         function(done) {
+            var freelancer = new Freelancer();
+            freelancer.firstName = 'Marco';
+            freelancer.lastName = 'Valsangiacomo';
+            freelancer.workName = 'Name';
+            freelancer.email = 'mail@valsantollim';
+            freelancer.phone = '+442345345645';
+            freelancer.photos = ['/a.jpg', '/b.jpg'];
+            freelancer.address = {
+               road: 'Via Zurigo',
+               number: 10,
+               city: 'Lugano',
+               cap: 29100
+            };
+            freelancer.tags = [tag._id];
+            freelancer.description = 'Blah';
+            freelancer.ownerId = user._id;
+            freelancer.save(function(err, saved) {
+               should.not.exist(err, 'No error should occur');
+               should.not.exist(freelancer.profilePhoto);
                done();
             });
          }
