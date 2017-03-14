@@ -48,6 +48,10 @@ let searchEngine = function(freelancers, string) {
    let words = string.replace(",", " ").split(" ");
    let fClone = [];
 
+   /*
+    Search for the searchWords in freelancers datas
+   (tags, cities and then other datas)
+   */
    for (let w of words) {
       for (let f of freelancers) {
          let tags = [];
@@ -73,6 +77,9 @@ let searchEngine = function(freelancers, string) {
       }
    }
 
+   /*
+      Put freelancers that satisfy requirements in the result
+   */
    for (let f of fClone) {
       let freelancer = {
          _id: f._id,
@@ -86,16 +93,25 @@ let searchEngine = function(freelancers, string) {
       result.push(freelancer);
    }
 
+   /*
+      Sort the freelancer based on the number of found searchWords in the
+      freelancer's profile
+   */
    result.sort(function(a, b) {
       return b.counter - a.counter
    })
 
-   return removeDuplicatesIds(result);
+   return removeDuplicatesFreelancers(result);
 
 }
 
 
-let removeDuplicatesIds = function(array) {
+/**
+ * Returns an array without duplicates freelancers
+ * @param {array} array - List of freelancers
+ * @return {array} - Array of unique freelancers
+ */
+let removeDuplicatesFreelancers = function(array) {
    let temp = [];
    let found = false;
    for (let f of array) {
