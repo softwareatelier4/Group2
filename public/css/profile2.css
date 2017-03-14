@@ -54,9 +54,14 @@
   margin-bottom: 5px;
 }
 
-#contact-info{
+.contact-info-top{
   display: flex;
   margin-top: 20px;
+}
+
+.contact-info-below{
+  display: flex;
+  flex-direction: column;
 }
 
 #main-info-bottom{
@@ -158,4 +163,8 @@ a{
 
 ul{
   list-style-type: none;
+}
+
+.distantiate-element-top{
+  margin-top: 5px;
 }
