@@ -32,7 +32,7 @@ let search = function() {
 				let searchResult = document.getElementById('search-result');
 				searchResult.innerHTML = "";
 				for(freelancer of res){
-					insertCard(freelancer.firstName + " " + freelancer.lastName ,freelancer.photo ,freelancer.description);
+					insertCard(freelancer._id, freelancer.firstName + " " + freelancer.lastName ,freelancer.photo ,freelancer.description);
 				}
 				if(res.length == 0){
 					searchResult.innerHTML = "<h3 style='margin-top:30px;'> No result </h3>";
@@ -60,9 +60,9 @@ let animateSearch = function() {
 }
 
 // simulate a card insertion
-let insertCard = function(name,img,description) {
+let insertCard = function(id, name,img,description) {
 	let card = `
-	<div class='card result-card'>
+	<div class='card result-card' id='`+ id +`'>
 	<div class='card-img-top' alt='Card image cap' style="background-image: url("`+img+`")"></div>
 	<div class='card-block'>
 	<h4 class='card-title'>`+name+`</h4>
