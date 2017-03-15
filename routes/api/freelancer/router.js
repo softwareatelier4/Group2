@@ -11,6 +11,14 @@ const Freelancer = mongoose.model('Freelancer');
 //supported methods
 router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
+router.get('/search/:search', function(req, res, next) {
+   Freelancer.find({}).populate('tags').lean().exec(function(err, freelancers) {
+      if (err) return next(err);
+
+      res.json(searchEngine(freelancers, req.params.search));
+   });
+});
+
 router.get('/:freelancerid', function(req, res, next) {
    Freelancer.findById(req.params.freelancerid).populate('tags').populate('ownerId').lean().exec(function(err, freelancer) {
       if (err) {
@@ -29,15 +37,126 @@ router.get('/:freelancerid', function(req, res, next) {
    })
 });
 
-router.get('/', function(req, res, next) {
-   Freelancer.find({}, fieldsFilter).lean().exec(function(err, freelancers){
-    if (err) return next (err);
-    freelancers.forEach(function(freelancer){
-      addLinks(freelancer);
-    });
-    res.json(freelancers);
-  });
-});
+/**
+ * Returns an array of Freelancers based on a given string
+ * @param {array} freelancers - List of freelancer to filter
+ * @param {string} string - Search criteria
+ * @return {array} - Array of filtered freelancers
+ */
+let searchEngine = function(freelancers, string) {
+   let result = [];
+   let words = string.replace(",", " ").split(" ");
+   let fClone = [];
 
-/** router for /users */
+   /*
+    Search for the searchWords in freelancers datas
+   (tags, cities and then other datas)
+   */
+   for (let w of words) {
+      for (let f of freelancers) {
+         let tags = [];
+         for (let t of f.tags) {
+            tags.push(t.name);
+         }
+         if (searchForTag(tags, w).length > 0) {
+            fClone.push(f);
+            continue;
+         }
+
+         let city = [f.address.city];
+         if (searchForTag(city, w).length > 0) {
+            fClone.push(f);
+            continue;
+         }
+
+         let filter = [f.firstName, f.lastName, f.description, f.workName];
+         if (searchForTag(filter, w).length > 0) {
+            fClone.push(f);
+            continue;
+         }
+      }
+   }
+
+   /*
+      Put freelancers that satisfy requirements in the result
+   */
+   for (let f of fClone) {
+      let freelancer = {
+         _id: f._id,
+         firstName: f.firstName,
+         lastName: f.lastName,
+         description: f.description,
+         workName: f.workName,
+         photo: f.profilePhoto,
+         counter: countInArray(fClone, f)
+      };
+      result.push(freelancer);
+   }
+
+   /*
+      Sort the freelancer based on the number of found searchWords in the
+      freelancer's profile
+   */
+   result.sort(function(a, b) {
+      return b.counter - a.counter
+   })
+
+   return removeDuplicatesFreelancers(result);
+
+}
+
+
+/**
+ * Returns an array without duplicates freelancers
+ * @param {array} array - List of freelancers
+ * @return {array} - Array of unique freelancers
+ */
+let removeDuplicatesFreelancers = function(array) {
+   let temp = [];
+   let found = false;
+   for (let f of array) {
+      for (let x of temp) {
+         console.log(JSON.stringify(f));
+         if (f._id === x._id)
+            found = true;
+      }
+      if (!found)
+         temp.push(f);
+      found = false;
+   }
+   return temp;
+}
+
+/**
+ * Returns an array of Strings based on a given string and array of Strings
+ * @param {array} array - List to iterate on (tags, cities, ...)
+ * @param {string} string - Search criteria
+ * @return {array} - Array of filtered stuff
+ */
+let searchForTag = function(array, string) {
+   let result = [];
+   for (let s of array) {
+      if (s.includes(string))
+         result.push(s);
+   }
+   return result;
+}
+
+/**
+ * Returns the number of occurencies of an element in an array
+ * @param {array} array - List to iterate on (tags, cities, ...)
+ * @param {string} what - The element
+ * @return {number} - Occurencies of that element in the array
+ */
+function countInArray(array, what) {
+   var count = 0;
+   for (var i = 0; i < array.length; i++) {
+      if (array[i] === what) {
+         count++;
+      }
+   }
+   return count;
+}
+
+
 module.exports = router;
