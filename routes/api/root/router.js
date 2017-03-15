@@ -5,10 +5,6 @@ var express = require('express');
 var router = express.Router();
 var middleware = require('../../middleware');
 var rootUrl = require("../../../config").url;
-// redis
-const redis = require('redis');
-const REDIS_PORT = process.env.REDIS_PORT;
-const client = redis.createClient(REDIS_PORT);
 
 //supported methods
 router.all('/', middleware.supportedMethods('GET, OPTIONS'));
