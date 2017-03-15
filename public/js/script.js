@@ -16,7 +16,10 @@ $input.on('keydown', function () {
 	clearTimeout(typingTimer);
 });
 
-//the function that is called when you search
+/**
+ * Function that is called when searching for freelancers.
+ * @return {void}
+ */
 let search = function() {
 	animateSearch();
 	let query = $input[0].value; //$input is an array so the value is in the first element.
@@ -52,14 +55,24 @@ let search = function() {
 	}
 }
 
-//the animation that start when you search
+/**
+ * Function that animates the search
+ * @return {void}
+ */
 let animateSearch = function() {
 	let searchResult = document.getElementById('search-result');
 	searchResult.style.visibility = "visible";
 	searchResult.style.flexGrow = 1;
 }
 
-// simulate a card insertion
+/**
+ * Function that creates and inserts a new card (visualization of a freelancer after the search)
+ * @param {objectId} id - id of the freelancer
+ * @param {string} name - name of the freelancer
+ * @param {string} img - photo of the freelancer
+ * @param {string} description - description of the freelancer
+ * @return {void}
+ */
 let insertCard = function(id, name,img,description) {
 	let card = `
 	<div class='card result-card' id='`+ id +`'>
