@@ -122,7 +122,7 @@ describe('Testing the search algorithm', function() {
 		});
 		it('with multiple results, the first one should be the one with more correspondencies', function(done) {
 			request(app)
-				.get('/api/freelancer/search/Lugano')
+				.get('/api/freelancer/search/Lugano%20Idraulico')
 				.set('Accept', 'application/json')
 				.expect('Content-Type', /json/, 'it should respond with json')
 				.expect(200)
