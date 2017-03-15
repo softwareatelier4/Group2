@@ -70,7 +70,7 @@ body, html{
 
 .card-img-top{
 	height: 250px;
-	background-image: url("../img/stock.jpg");
+	/*background-image: url("../img/stock.jpg");*/
 }
 
 .logo{
