@@ -224,7 +224,7 @@ describe('Model: Freelancer', function(done) {
                done();
             });
          }
-      );
+         );
 
       it('if photos is empty; null; or undefined, it should get assigned the value []',
          function(done) {
@@ -250,7 +250,7 @@ describe('Model: Freelancer', function(done) {
                done();
             });
          }
-      );
+         );
 
       it('if ownerId is empty; null; or undefined, it should not be assigned',
          function(done) {
@@ -272,11 +272,11 @@ describe('Model: Freelancer', function(done) {
             freelancer.description = 'Blah';
             freelancer.save(function(err, saved) {
                should.not.exist(err, 'No error should occur');
-               should.not.exist(freelancer.ownerId);
+               should.not.exist(saved.ownerId);
                done();
             });
          }
-      );
+         );
 
       it('if profilePhoto is empty; null; or undefined, it should not be assigned',
          function(done) {
@@ -298,10 +298,9 @@ describe('Model: Freelancer', function(done) {
             freelancer.ownerId = user._id;
             freelancer.save(function(err, saved) {
                should.not.exist(err, 'No error should occur');
-               should.not.exist(freelancer.profilePhoto);
+               should.not.exist(saved.profilePhoto);
                done();
             });
-         }
-      );
+         });
    });
 });
