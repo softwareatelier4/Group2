@@ -1,130 +1,134 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/profile.css">
+    <title>Titolo</title>
 </head>
 
 <body>
-    <div class="d-flex flex-row flex-wrap">
-        <div class="p-5" id="leftFlex">
-            <div class="d-flex flex-column flex-wrap">
-                <div class="p-5">
-                    <img class="img-fluid rounded" src="https://3.bp.blogspot.com/-W__wiaHUjwI/Vt3Grd8df0I/AAAAAAAAA78/7xqUNj8ujtY/s1600/image02.png" id="imgProfile">
-                </div>
-                <!-- <div class="p-3">
-              FAVORITES
-            </div> -->
-                <div class="p-5">
-                    <i class="fa fa-camera" aria-hidden="true"></i> WORKS (img)
-                    <div class="row">
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="http://placehold.it/60x60" alt="">
-                        </a>
+    <div id="main">
+        <div id="header">
+            <div id="search">
+                <span class="logo">JobAdvisor</span>
+                <form class="" action="javascript:search();" autocomplete="off">
+                    <div class="input-group">
+                        <input type="text" onkeypress="animateSearch()" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
+                        <span class="input-group-addon search-btn" id="basic-addon1" onclick="search();">Search</span>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="http://placehold.it/60x60" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="http://placehold.it/60x60" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="http://placehold.it/60x60" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="http://placehold.it/60x60" alt="">
-                        </a>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                        <a class="thumbnail" href="#">
-                            <img class="img-responsive" src="http://placehold.it/60x60" alt="">
-                        </a>
-                    </div>
-                </div>
-                </div>
+                </form>
             </div>
         </div>
-        <div class="p-7" id="rightFlex">
-            <div class="d-flex flex-row">
-                <div class="p-4" id="nameFreelancer">
-                    <p>
-                        NOME COGNOME
-                    </p>
-                    <p class="gray">
-                        Nome d'Arte
-                    </p>
-                </div>
-                <div class="p-3 gray" id="location">
-                    <i class="fa fa-map-marker" aria-hidden="true"></i> Città
+        <div id="profile-freelancer">
+            <div id="main-info">
+                <div id="profile-pic" alt="profile photo"></div>
+                <div id="main-info-vertical">
+                    <div id="info-name">
+                        <div class="info-name-top">
+                            <span class="profile-name ml-15">Nome Cognome</span>
+                            <span class="city-freelancer ml-15">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                Lugano
+                            </span>
+                        </div>
+                        <div class="info-name-bottom ml-15 light-blue">
+                            Nome d'arte
+                        </div>
+                    </div>
+                    <div id="rank" class="ml-15">
+                        <i class="fa fa-star-o blue" aria-hidden="true"></i>
+                        <i class="fa fa-star-o blue" aria-hidden="true"></i>
+                        <i class="fa fa-star-o blue" aria-hidden="true"></i>
+                        <i class="fa fa-star-o blue" aria-hidden="true"></i>
+                        <i class="fa fa-star-o blue" aria-hidden="true"></i>
+                    </div>
+                    <div class="contact-info-top ml-15">
+                        <div id="chat" class="contact-info-element blue">
+                            <i class="fa fa-comment" aria-hidden="true"></i> CHAT
+                        </div>
+                        <div id="email" class="contact-info-element blue">
+                            <i class="fa fa-envelope" aria-hidden="true"></i> EMAIL
+                        </div>
+                        <div id="phone" class="contact-info-element blue">
+                            <i class="fa fa-phone" aria-hidden="true"></i> PHONE
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="d-flex flex-row flex-wrap">
-                <div class="p-2" id="chat">
-                    <i class="fa fa-comment" aria-hidden="true"></i> CHAT
-                </div>
-                <div class="p-2" id="email">
-                    <i class="fa fa-envelope" aria-hidden="true"></i> EMAIL
-                </div>
-                <div class="p-2" id="phone">
-                    <i class="fa fa-phone" aria-hidden="true"></i> PHONE
-                </div>
-            </div>
+            <div id="main-info-bottom">
+                <div id="info-review">
+                    <div class="ml-15" id="info">
+                        <h5 class="blue">
+                            INFO
+                        </h5>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eleifend sed augue id gravida. Integer mattis tellus eget mi tristique, sit amet sagittis erat placerat. Duis condimentum at nisl nec commodo. Sed eu tortor sed justo lacinia mollis.
+                            Vestibulum ut cursus enim. Duis id arcu ut tellus mollis finibus eget non purus. In condimentum cursus metus, quis malesuada turpis rutrum in. Maecenas fringilla elit quis convallis pretium. Curabitur urna magna, mollis a augue
+                            ac, auctor lacinia metus. Praesent bibendum libero non est fringilla sagittis. Aliquam ut ligula ullamcorper mi pretium molestie. In at mauris et felis faucibus viverra ut in urna. Cras condimentum et urna eu vulputate. Praesent
+                            ullamcorper sollicitudin viverra. Donec sed ex non urna fringilla malesuada nec nec orci.
+                        </p>
+                    </div>
 
-            <div class="d-flex flex-row" id="description">
-                <div class="p-7">
-                    <div class="jumbotron jumbotron-fluid">
-                        <h1 class="display-3">Fluid jumbotron</h1>
-                        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                    <div id="reviews">
+                        <h5 class="blue ml-15">REVIEW</h5>
+
+                        <div class="card ml-15 review">
+                            <div class="card-block">
+                                <div class="title-author-review">
+                                    <h4 class="card-title">Great Job</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">Jane Red</h6>
+                                </div>
+                                <p class="card-text">I really like blabla.</p>
+                                <div class="card-block reply">
+                                    <h6 class="card-subtitle mb-2 text-muted">Reply:</h6>
+                                    <p class="card-text">Thanks Jane XXX.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card ml-15 review">
+                            <div class="card-block">
+                                <div class="title-author-review">
+                                    <h4 class="card-title">Bad Job</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">R White</h6>
+                                </div>
+                                <p class="card-text">I really hate blabla.</p>
+                                <div class="card-block reply">
+                                    <h6 class="card-subtitle mb-2 text-muted">Reply:</h6>
+                                    <p class="card-text">Sorry R.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="d-flex flex-row">
-                <div class="p-7" id="rankings">
-                    <p>
-                        RANKINGS
-                    </p>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                    <i class="fa fa-star-o" aria-hidden="true"></i>
-                </div>
-            </div>
-            <div class="d-flex flex-row">
-                <div class="card">
-                    <div class="card-block">
-                        <h4 class="card-title">Card title</h4>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="card-link">Card link</a>
-                        <a href="#" class="card-link">Another link</a>
+
+                <div id="img-freelancer">
+                    <div id="works" class="blue">
+                        <i class="fa fa-camera" aria-hidden="true"></i> WORKS
+                    </div>
+                    <div id="thumbnail">
+                        <img class="thumbnail-element" src="http://placehold.it/60x60" alt="">
+                        <img class="thumbnail-element" src="http://placehold.it/60x60" alt="">
+                        <img class="thumbnail-element" src="http://placehold.it/60x60" alt="">
+                        <img class="thumbnail-element" src="http://placehold.it/60x60" alt="">
+                        <img class="thumbnail-element" src="http://placehold.it/60x60" alt="">
+                        <img class="thumbnail-element" src="http://placehold.it/60x60" alt="">
                     </div>
                 </div>
+                <!-- <div id="footer">
+                Atelier Project - Group 2
+            </div> -->
             </div>
         </div>
     </div>
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
