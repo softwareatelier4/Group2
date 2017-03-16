@@ -7,7 +7,7 @@ module.exports = {
       .assert.visible('span[id=basic-addon1]')
       .clearValue('input[id=search-text]')
       .setValue('input[id=search-text]', 'Marco')
-      .jqueryClick('span[id=basic-addon1]')
+      .click('span[id=basic-addon1]')
       .pause(1000)
       .waitForElementVisible('div[id=searchResult]', 1000)
       .pause(1000)

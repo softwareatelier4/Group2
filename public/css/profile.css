@@ -4,135 +4,6 @@
 3 - rgb(222, 229, 232)
 4 - rgb(231, 231, 231)*/
 
-body, html {
-   width: 100%;
-   height: 100%;
-   background-color: rgb(231, 231, 231);
-}
-
-#main {
-   width: 100%;
-   height: 100%;
-   /*display: flex;*/
-   /*flex-direction: column;*/
-   /*justify-content: center;*/
-   background-color: rgb(231, 231, 231);
-   transition: all 0.5s ease;
-}
-
-#header {
-   height: 138px;
-   width: 100%;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   transition: all 0.5s ease;
-   background-color: rgb(46, 78, 92);
-}
-
-#footer {
-   position: absolute;
-   right: 0;
-   bottom: 0;
-   left: 0;
-   padding: 1rem;
-   background-color: rgb(78, 108, 121);
-   text-align: center;
-   color: white;
-}
-
-#search {
-   margin: 20px;
-   width: 600px;
-   min-width: 300px;
-   height: 98px;
-}
-
-#search-result {
-   box-shadow: inset 0px 125px 15px -125px rgba(0, 0, 0, 0.5);
-   background-color: rgb(231, 231, 231);
-   height: 0px !important;
-   visibility: hidden;
-   display: flex;
-   flex-wrap: wrap;
-   flex-direction: row;
-   align-content: flex-start;
-   justify-content: center;
-   overflow: auto;
-   padding-bottom: 60px;
-   transition: all 0.5s ease;
-}
-
-.result-card {
-   width: 350px;
-   height: 420px;
-   margin: 15px;
-   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-   transition: all 2s ease;
-}
-
-.card-img-top {
-   height: 250px;
-   background-image: url("../img/stock.jpg");
-}
-
-.logo {
-   font-size: 40px;
-   font-weight: bold;
-   color: rgb(255, 255, 255);
-}
-
-.search-btn:hover {
-   cursor: pointer;
-   filter: brightness(95%);
-   -webkit-user-select: none;
-   /* Chrome/Safari */
-   -moz-user-select: none;
-   /* Firefox */
-   -ms-user-select: none;
-   /* IE10+ */
-   -o-user-select: none;
-   user-select: none;
-}
-
-
-/*----------------------------------------
-Loading Spinner
-----------------------------------------*/
-
-.circle-loader {
-   margin-top: 10%;
-   background: transparent;
-   fill: transparent;
-   stroke: rgb(78, 108, 121);
-   stroke-width: 5;
-   animation: dash 2s ease infinite, rotate 2s linear infinite;
-}
-
-@keyframes dash {
-   0% {
-      stroke-dasharray: 1, 95;
-      stroke-dashoffset: 0;
-   }
-   50% {
-      stroke-dasharray: 85, 95;
-      stroke-dashoffset: -25;
-   }
-   100% {
-      stroke-dasharray: 85, 95;
-      stroke-dashoffset: -93;
-   }
-}
-
-@keyframes rotate {
-   0% {
-      transform: rotate(0deg);
-   }
-   100% {
-      transform: rotate(360deg);
-   }
-}
-
 #profile-freelancer {
    background-color: rgb(231, 231, 231);
    /*flex-grow: 1;*/
@@ -142,6 +13,7 @@ Loading Spinner
    flex-direction: column;
    align-content: center;
    max-width: 1200px;
+   overflow-y: scroll;
 }
 
 #main-info {
@@ -251,8 +123,8 @@ Loading Spinner
 
 #img-freelancer {
    margin-top: 30px;
-   width: 250px;
-   height: 300px;
+   /*width: 250px;*/
+   /*height: 300px;*/
 }
 
 .contact-info-element {
