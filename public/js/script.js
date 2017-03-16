@@ -89,7 +89,7 @@ let insertCard = function(freelancer) {
 * @return {void}
 */
 let setUpFreelancerProfile = function(idFreelancer) {
-	location.href += idFreelancer;
+	location.href = '#'+idFreelancer;
 	doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(freelancer) {
 		// renderFreelancerProfile(freelancer);
 		let searchResult = document.getElementById('search-result');
