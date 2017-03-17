@@ -11,17 +11,9 @@ router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 //list users
 router.get('/', function(req, res, next) {
-   const test = {
-      ciao: 'test'
-   }
-   client.set('some key', JSON.stringify({
-      ciao: 'come'
-   }));
-
-   client.get('some key', function(err, data) {
-      console.log(data);
-      res.json(JSON.parse(data));
-   })
+	res.sendfile('api_reference.html', {
+		root: __dirname
+	});
 });
 
 /** router for /users */
