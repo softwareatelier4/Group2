@@ -187,10 +187,14 @@ module.exports.matchFreelancerInfoInText = function matchFreelancerInfoInText(te
    });
 }
 
-module.exports.matchArtistInfoInText = function matchArtistInfoInText(text, artist) {
-   text.indexOf(artist.name).should.be.greaterThan(-1, "name should be there");
-   text.indexOf(artist.genre).should.be.greaterThan(-1, "genre should be there");
-   text.indexOf(artist.artwork).should.be.greaterThan(-1, "arwork should be there");
+module.exports.matchReviewInfoInText = function matchArtistInfoInText(text, review) {
+   text.indexOf(review.title).should.be.greaterThan(-1, "title should be there");
+   text.indexOf(review.description).should.be.greaterThan(-1, "description should be there");
+   text.indexOf(review.score).should.be.greaterThan(-1, "score should be there");
+   text.indexOf(review.photo).should.be.greaterThan(-1, "photo should be there");
+   text.indexOf(review.user).should.be.greaterThan(-1, "user id should be there");
+   text.indexOf(review.freelancer).should.be.greaterThan(-1, "freelancer should be there");
+   text.indexOf(review.date).should.be.greaterThan(-1, "date should be there");
 }
 
 var matchPlaylistInfoInText = module.exports.matchPlaylistInfoInText = function(text, playlists) {
