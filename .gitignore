@@ -10,3 +10,5 @@ coverage/
 jenkins-test-results\.xml
 
 test/nightwatch-reports/
+
+phantomjs
