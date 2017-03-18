@@ -15,7 +15,10 @@ router.get('/search/:search', function(req, res, next) {
    Freelancer.find({}).populate('tags').lean().exec(function(err, freelancers) {
       if (err) return next(err);
 
-      res.json(searchEngine(freelancers, req.params.search));
+      if (req.params.search === "")
+         res.status(400);
+      else
+         res.json(searchEngine(freelancers, req.params.search));
    });
 });
 
@@ -69,7 +72,7 @@ let searchEngine = function(freelancers, string) {
             continue;
          }
 
-         let filter = [f.firstName, f.lastName, f.description, f.workName];
+         let filter = [f.firstName, f.lastName, f.workName, f.phone, f.email, f.description];
          if (searchForTag(filter, w).length > 0) {
             fClone.push(f);
             continue;
@@ -116,7 +119,6 @@ let removeDuplicatesFreelancers = function(array) {
    let found = false;
    for (let f of array) {
       for (let x of temp) {
-         console.log(JSON.stringify(f));
          if (f._id === x._id)
             found = true;
       }
@@ -136,7 +138,7 @@ let removeDuplicatesFreelancers = function(array) {
 let searchForTag = function(array, string) {
    let result = [];
    for (let s of array) {
-      if (s.includes(string))
+      if (s.toLowerCase().includes(string.toLowerCase()))
          result.push(s);
    }
    return result;
