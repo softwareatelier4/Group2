@@ -256,16 +256,18 @@ let renderFreelancerProfile = function(freelancer) {
 		}
 	}
 
+
 	return `
 	<div id="profile-freelancer">
 	<div id="main-info">
 	<div id="profile-pic" alt="profile photo" style="background-image:url('${profilePic}');>
+	<div id="profile-pic" alt="profile photo";>
 	</div>
 	<div id="main-info-vertical">
 	<div id="info-name">
 	<div class="info-name-top">
 	<span class="ml-15" id="profile-name">${freelancer.firstName} ${freelancer.lastName}</span>
-	<span class="ml-15" id="city-freelancer">${freelancer.address.city}
+	<span class="ml-15" id="city-freelancer">${city}
 	</span>
 	</div>
 	<div class="ml-15 light-blue" id="info-name-bottom">
