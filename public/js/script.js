@@ -17,6 +17,25 @@ $input.on('keydown', function() {
 });
 
 /**
+* Function that is setup the css for the search mode
+* @return {void}
+*/
+let searchMode = function() {
+	let main = document.getElementById('main');
+	main.style.display = "flex";
+	main.style.backgroundColor = "rgb(46, 78, 92)";
+}
+
+/**
+* Function that setup the css for the visualization of a profile.
+* @return {void}
+*/
+let profileMode = function() {
+	let main = document.getElementById('main');
+	main.style.display = "inherit";
+	main.style.backgroundColor = "rgb(231, 231, 231)";
+}
+/**
 * Function that is called when searching for freelancers.
 * @return {void}
 */
@@ -48,6 +67,8 @@ let search = function() {
 		searchResult.innerHTML = spinner;
 		searchResult.style.visibility = "hidden";
 		searchResult.style.flexGrow = 0;
+		searchResult.style.paddingBottom = 0;
+		searchMode();
 	}
 }
 
@@ -56,9 +77,11 @@ let search = function() {
 * @return {void}
 */
 let animateSearch = function() {
+
 	let searchResult = document.getElementById('search-result');
 	searchResult.style.visibility = "visible";
 	searchResult.style.flexGrow = 1;
+
 }
 
 /**
@@ -90,6 +113,7 @@ let insertCard = function(freelancer) {
 */
 let setUpFreelancerProfile = function(idFreelancer) {
 	location.href = '#'+idFreelancer;
+	profileMode();
 	doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(freelancer) {
 		// renderFreelancerProfile(freelancer);
 		let searchResult = document.getElementById('search-result');

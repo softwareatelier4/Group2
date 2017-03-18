@@ -48,16 +48,17 @@ body, html {
 #search-result {
    box-shadow: inset 0px 125px 15px -125px rgba(0, 0, 0, 0.5);
    background-color: rgb(231, 231, 231);
-   height: 0px !important;
+   /*height: 0px !important;*/
    visibility: hidden;
    display: flex;
    flex-wrap: wrap;
    flex-direction: row;
    align-content: flex-start;
    justify-content: center;
-   overflow: auto;
    padding-bottom: 60px;
+	overflow: hidden;
    transition: all 0.5s ease;
+	box-sizing: border-box;
 }
 
 .result-card {
