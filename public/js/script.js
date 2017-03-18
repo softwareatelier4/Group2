@@ -136,6 +136,12 @@ let setUpReviewFreelancer = function(idFreelancer) {
 			renderReviewFreelancer(review);
 			sumRank += review.score;
 		}
+
+		//case no reviews
+		if (reviews.length == 0) {
+			let cardContainer = document.getElementById("cardReviews");
+			cardContainer.innerHTML = "We haven't received any review yet"
+		}
 		calculateAveragerank(sumRank, reviews.length);
 	});
 }
@@ -179,17 +185,25 @@ let renderReviewFreelancer = function(review) {
 	let score = "";
 	let i;
 
+	//blue star for rank
 	for (i = 0; i != review.score; i++) {
 		score += "<i class='fa fa-star blue' aria-hidden='true'></i>";
 	}
 
+	//empty star for rank
 	for (let j = i; j < 5; j++) {
 		score += "<i class='fa fa-star-o blue' aria-hidden='true'></i>";
 	}
 
+	//display photo of works only if we have at least one
 	let photos = "";
 	for (let i = 0; i != review.photo.length; i++) {
 		photos += "<img class='thumbnail-element' src= " + review.photo[i] + " alt= 'image '" + (i + 1) + ">"
+	}
+
+	let description = "No description"; //case where description is not defined
+	if (review.description) {
+		description = review.description;
 	}
 
 	let cardContainer = document.getElementById("cardReviews");
@@ -201,7 +215,7 @@ let renderReviewFreelancer = function(review) {
 	</div>
 	<h6 id="review-user" class="card-subtitle mb-2 text-muted">` + review.user.firstName + " " + review.user.lastName + `</h6>
 	</div>
-	<p id="review-description" class="card-text">` + review.description + `</p>
+	<p id="review-description" class="card-text">` + description + `</p>
 	<div id="photo-review"> ` + photos + `
 	</div>
 	<div id="reply"></div>
@@ -230,6 +244,7 @@ let renderFreelancerProfile = function(freelancer) {
 	let city = "";
 	let profilePic;
 	let photos = "";
+	let description = "No description";
 
 	if (freelancer.email) {
 		mail = `<i class="fa fa-envelope" aria-hidden="true"></i> ${freelancer.email}`;
@@ -254,6 +269,10 @@ let renderFreelancerProfile = function(freelancer) {
 		for (let i = 0; i != freelancer.photos.length; i++) {
 			photos += "<img class='thumbnail-element' src= " + freelancer.photos[i] + " alt= 'work '" + (i + 1) + ">";
 		}
+	}
+
+	if (freelancer.description) {
+		description = freelancer.description;
 	}
 
 
@@ -296,7 +315,7 @@ let renderFreelancerProfile = function(freelancer) {
 	INFO
 	</h5>
 	<p id="description"></p>
-	${freelancer.description}
+	${description}
 	</div>
 
 	<div id="reviews">
