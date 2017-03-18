@@ -16,10 +16,7 @@ router.get('/search/:search', function(req, res, next) {
 	Freelancer.find({}).populate('tags').lean().exec(function(err, freelancers) {
 		if (err) return next(err);
 
-		if (req.params.search === "")
-			res.status(400);
-		else
-			res.json(searchEngine(freelancers, req.params.search));
+		res.json(searchEngine(freelancers, req.params.search));
 	});
 });
 
