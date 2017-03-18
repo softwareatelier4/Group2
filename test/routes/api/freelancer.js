@@ -31,9 +31,16 @@ describe('Testing Read for api/freelancer/', function() {
 
 		it('should respond with a 404 if the freelancer does not exist', function(done) {
 			request(app)
-				.get('/api/freelancer/abc/' + ObjectId().toString())
+				.get('/api/freelancer/' + ObjectId().toString())
 				.set('Accept', 'application/json')
 				.expect(404, done);
+		});
+
+		it('should respond with a 400 if the id is not correct', function(done) {
+			request(app)
+				.get('/api/freelancer/abc' + ObjectId().toString())
+				.set('Accept', 'application/json')
+				.expect(400, done);
 		});
 	});
 });
@@ -72,6 +79,13 @@ describe('Testing Read for localhost:3000/api/review/freelancer/', function() {
 				.get('/api/review/freelancer/3625fc2bd82b84d23d8c7bd1')
 				.set('Accept', 'application/json')
 				.expect(404, done);
+		});
+
+		it('should respond with a 400 if the id is not correct', function(done) {
+			request(app)
+				.get('/api/review/freelancer/abc' + ObjectId().toString())
+				.set('Accept', 'application/json')
+				.expect(400, done);
 		});
 	});
 });
