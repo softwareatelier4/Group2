@@ -12,7 +12,7 @@ const Freelancer = mongoose.model('Freelancer');
 //supported methods
 router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
-
+router.all('/freelancer/:freelancerid', middleware.supportedMethods('GET, OPTIONS'));
 router.get('/freelancer/:freelancerid', function(req, res, next) {
 	Review.find({
 		freelancer: req.params.freelancerid
