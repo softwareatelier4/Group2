@@ -17,9 +17,9 @@ $input.on('keydown', function() {
 });
 
 /**
-* Function that is setup the css for the search mode
-* @return {void}
-*/
+ * Function that is setup the css for the search mode
+ * @return {void}
+ */
 let searchMode = function() {
 	let main = document.getElementById('main');
 	main.style.display = "flex";
@@ -27,18 +27,18 @@ let searchMode = function() {
 }
 
 /**
-* Function that setup the css for the visualization of a profile.
-* @return {void}
-*/
+ * Function that setup the css for the visualization of a profile.
+ * @return {void}
+ */
 let profileMode = function() {
 	let main = document.getElementById('main');
 	main.style.display = "inherit";
 	main.style.backgroundColor = "rgb(231, 231, 231)";
 }
 /**
-* Function that is called when searching for freelancers.
-* @return {void}
-*/
+ * Function that is called when searching for freelancers.
+ * @return {void}
+ */
 let search = function() {
 	animateSearch();
 	let query = $input[0].value; //$input is an array so the value is in the first element.
@@ -73,9 +73,9 @@ let search = function() {
 }
 
 /**
-* Function that animates the search
-* @return {void}
-*/
+ * Function that animates the search
+ * @return {void}
+ */
 let animateSearch = function() {
 
 	let searchResult = document.getElementById('search-result');
@@ -85,13 +85,13 @@ let animateSearch = function() {
 }
 
 /**
-* Function that creates and inserts a new card (visualization of a freelancer after the search)
-* @param {objectId} id - id of the freelancer
-* @param {string} name - name of the freelancer
-* @param {string} img - photo of the freelancer
-* @param {string} description - description of the freelancer
-* @return {void}
-*/
+ * Function that creates and inserts a new card (visualization of a freelancer after the search)
+ * @param {objectId} id - id of the freelancer
+ * @param {string} name - name of the freelancer
+ * @param {string} img - photo of the freelancer
+ * @param {string} description - description of the freelancer
+ * @return {void}
+ */
 let insertCard = function(freelancer) {
 	let card = `
 	<div class='card result-card' id='` + freelancer._id + `'>
@@ -107,17 +107,17 @@ let insertCard = function(freelancer) {
 };
 
 /**
-* Set up all the freelancer's information profile
-* @param {objectId} idFreelancer - Id of the specific freelancer
-* @return {void}
-*/
+ * Set up all the freelancer's information profile
+ * @param {objectId} idFreelancer - Id of the specific freelancer
+ * @return {void}
+ */
 let setUpFreelancerProfile = function(idFreelancer) {
-	location.href = '#'+idFreelancer;
+	location.href = '#' + idFreelancer;
 	profileMode();
 	doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(freelancer) {
 		// renderFreelancerProfile(freelancer);
 		let searchResult = document.getElementById('search-result');
-		searchResult.innerHTML = createFreelancer(freelancer);
+		searchResult.innerHTML = renderFreelancerProfile(freelancer);
 		setUpReviewFreelancer(idFreelancer);
 	});
 }
@@ -125,10 +125,10 @@ let setUpFreelancerProfile = function(idFreelancer) {
 
 
 /**
-* Set up all reviews of a freelancer
-* @param {objectId} idFreelancer - Id of the specific freelancer
-* @return {void}
-*/
+ * Set up all reviews of a freelancer
+ * @param {objectId} idFreelancer - Id of the specific freelancer
+ * @return {void}
+ */
 let setUpReviewFreelancer = function(idFreelancer) {
 	doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(reviews) {
 		let sumRank = 0;
@@ -141,11 +141,11 @@ let setUpReviewFreelancer = function(idFreelancer) {
 }
 
 /**
-* Calculate average of all freelancer reviews
-* @param {Number} totScore - Sum of all the scores of reviews
-* @param {Number} totalReviews - Total number of reviews
-* @return {void}
-*/
+ * Calculate average of all freelancer reviews
+ * @param {Number} totScore - Sum of all the scores of reviews
+ * @param {Number} totalReviews - Total number of reviews
+ * @return {void}
+ */
 let calculateAveragerank = function(totScore, totalReviews) {
 	let rank = document.getElementById("rank");
 
@@ -171,10 +171,10 @@ let calculateAveragerank = function(totScore, totalReviews) {
 }
 
 /**
-* Render freelancer's reviews into the profile
-* @param {objectId} idFreelancer - Id of the specific freelancer
-* @return {void}
-*/
+ * Render freelancer's reviews into the profile
+ * @param {objectId} idFreelancer - Id of the specific freelancer
+ * @return {void}
+ */
 let renderReviewFreelancer = function(review) {
 	let score = "";
 	let i;
@@ -194,7 +194,7 @@ let renderReviewFreelancer = function(review) {
 
 	let cardContainer = document.getElementById("cardReviews");
 	cardContainer.innerHTML +=
-	`<div class="card ml-15 review">
+		`<div class="card ml-15 review">
 	<div class="card-block">
 	<div class="title-author-review">
 	<div id="score-name"><h5> ` + review.title + `</h5>` + score + `
@@ -211,7 +211,7 @@ let renderReviewFreelancer = function(review) {
 	if (review.answer) {
 		let answer = document.getElementById("reply");
 		answer.innerHTML +=
-		`	<div class="card-block">
+			`	<div class="card-block">
 		<h6 class="card-subtitle mb-2 text-muted">Reply:</h6>
 		<p class="card-text">` + review.answer + `</p>
 		</div>`
@@ -219,50 +219,48 @@ let renderReviewFreelancer = function(review) {
 }
 
 /**
-* Render freelancer's information into the profile
-* @param {Freelancer} freelancer - Object of type Freelancer
-* @return {void}
-*/
-// let renderFreelancerProfile = function(freelancer) {
-// 	let photo = document.getElementById("profile-pic");
-// 	let nameFreelancer = document.getElementById("profile-name");
-// 	let work = document.getElementById("info-name-bottom");
-// 	let mail = document.getElementById("email");
-// 	let phone = document.getElementById("phone");
-// 	let city = document.getElementById("city-freelancer");
-// 	let description = document.getElementById("description");
-//
-// 	nameFreelancer.innerHTML = freelancer.firstName + " " + freelancer.lastName;
-// 	work.innerHTML = freelancer.workName;
-// 	if (freelancer.email) {
-// 		mail.innerHTML = `<i class="fa fa-envelope" aria-hidden="true"></i>` + " " + freelancer.email;
-// 	}
-// 	if (freelancer.phone) {
-// 		phone.innerHTML = `<i class="fa fa-phone" aria-hidden="true"></i>` + " " + freelancer.phone;
-// 	}
-// 	city.innerHTML = `<i class="fa fa-map-marker" aria-hidden="true"></i>` + " " + freelancer.address.city;
-// 	description.innerHTML = freelancer.description;
-// 	if (freelancer.profilePhoto) {
-// 		photo.style.backgroundImage = `url(` + freelancer.profilePhoto + `)`;
-// 	}
-//
-// 	if (freelancer.photos.length > 0) {
-// 		let photos = document.getElementById("thumbnail");
-// 		photos.innerHTML = `<i class="fa fa-camera" aria-hidden="true"></i> WORKS`
-//
-// 		for (let i = 0; i != freelancer.photos.length; i++) {
-// 			photos.innerHTML += "<img class='thumbnail-element' src= " + freelancer.photos[i] + " alt= 'work '" + (i + 1) + ">";
-// 		}
-// 	}
-//
-// }
+ * Render freelancer's information into the profile
+ * @param {Freelancer} freelancer - Object of type Freelancer
+ * @return {void}
+ */
 
+let renderFreelancerProfile = function(freelancer) {
+	let mail = "";
+	let phone = "";
+	let city = "";
+	let profilePic;
+	let photos = "";
 
-let createFreelancer = function(freelancer){
+	if (freelancer.email) {
+		mail = `<i class="fa fa-envelope" aria-hidden="true"></i> ${freelancer.email}`;
+	}
+
+	if (freelancer.phone) {
+		phone = `<i class="fa fa-phone" aria-hidden="true"></i> ${freelancer.phone}`;
+	}
+	if (freelancer.address.city) {
+		city = `<i class="fa fa-map-marker" aria-hidden="true"></i> ${freelancer.address.city}`;
+	}
+
+	if (freelancer.profilePhoto) {
+		profilePic = freelancer.profilePhoto;
+	} else {
+		profilePic = "../img/default_user.jpg";
+	}
+
+	if (freelancer.photos.length > 0) {
+		photos = `<i class="fa fa-camera" aria-hidden="true"></i> WORKS`
+
+		for (let i = 0; i != freelancer.photos.length; i++) {
+			photos += "<img class='thumbnail-element' src= " + freelancer.photos[i] + " alt= 'work '" + (i + 1) + ">";
+		}
+	}
+
 	return `
 	<div id="profile-freelancer">
 	<div id="main-info">
-	<div id="profile-pic" alt="profile photo"></div>
+	<div id="profile-pic" alt="profile photo" style="background-image:url('${profilePic}');>
+	</div>
 	<div id="main-info-vertical">
 	<div id="info-name">
 	<div class="info-name-top">
@@ -281,10 +279,10 @@ let createFreelancer = function(freelancer){
 	<i class="fa fa-comment" aria-hidden="true"></i> chat
 	</div>
 	<div id="email" class="contact-info-element blue">
-	${freelancer.email}
+	${mail}
 	</div>
 	<div id="phone" class="contact-info-element blue">
-	${freelancer.phone}
+	${phone}
 	</div>
 	</div>
 	</div>
@@ -310,6 +308,7 @@ let createFreelancer = function(freelancer){
 	<div id="works" class="blue">
 	</div>
 	<div id="thumbnail">
+	${photos}
 	</div>
 	</div>
 	<!-- <div id="footer">
