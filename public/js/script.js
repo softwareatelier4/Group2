@@ -245,6 +245,7 @@ let renderFreelancerProfile = function(freelancer) {
 	let profilePic;
 	let photos = "";
 	let description = "No description";
+	let workName = "";
 
 	if (freelancer.email) {
 		mail = `<i class="fa fa-envelope" aria-hidden="true"></i> ${freelancer.email}`;
@@ -275,6 +276,10 @@ let renderFreelancerProfile = function(freelancer) {
 		description = freelancer.description;
 	}
 
+	if (freelancer.workName) {
+		workName = freelancer.workName;
+	}
+
 
 	return `
 	<div id="profile-freelancer">
@@ -290,7 +295,7 @@ let renderFreelancerProfile = function(freelancer) {
 	</span>
 	</div>
 	<div class="ml-15 light-blue" id="info-name-bottom">
-	${freelancer.workName}
+	${workName}
 	</div>
 	</div>
 	<div id="rank" class="ml-15">
