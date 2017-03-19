@@ -13,11 +13,7 @@
 				</div>
 			</div>
 			<div id="rank " class="ml-15 ">
-				<i class="fa fa-star-o blue" aria-hidden="true"></i>
-				<i class="fa fa-star-o blue" aria-hidden="true"></i>
-				<i class="fa fa-star-o blue" aria-hidden="true"></i>
-				<i class="fa fa-star-o blue" aria-hidden="true"></i>
-				<i class="fa fa-star-o blue" aria-hidden="true"></i>
+				{f.rank}
 			</div>
 			<div class="contact-info-top ml-15 ">
 				<div id="chat" class="contact-info-element blue">
@@ -27,7 +23,7 @@
 					<i class="fa fa-envelope" aria-hidden="true"></i> {f.mail}
 				</div>
 				<div id="phone" class="contact-info-element blue">
-					<i class="fa fa-phone" aria-hidden="true"></i> {f.phone}
+					{?f.phone}<i class="fa fa-phone" aria-hidden="true"></i> {f.phone}{?f.phone/}
 				</div>
 			</div>
 		</div>
@@ -36,22 +32,25 @@
 		<div id="info-review ">
 			<div class="ml-15 " id="info ">
 				<h5 class="blue ">INFO</h5>
-				<p id="description "></p>
-				{f.description}
+				<div id="tag">{f.tags}</div>
+				<span id="description "></span> {f.description}
 			</div>
 
 			<div id="reviews ">
 				<h5 class="blue ml-15 ">REVIEW</h5>
 				<div id="cardReviews ">
+					{r.review}
 				</div>
 			</div>
 		</div>
 
 		<div id="img-freelancer ">
 			<div id="works " class="blue ">
+				{?f.photos}
+				<h5 class="blue ml-15 ">WORKS</h5>
 			</div>
-			<div id="thumbnail ">
-				{f.photos}
+			<div id="thumbnail">
+				{?f.photos/}
 			</div>
 		</div>
 	</div>
