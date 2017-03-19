@@ -2,13 +2,13 @@
 	<div id="main-info">
 		<div id="profile-pic" alt="profile photo" style="background-image:url('${profilePic}');">
 		</div>
-		<div id="main-info-vertical ">
+		<div id="main-info-vertical">
 			<div id="info-name ">
 				<div class="info-name-top ">
-					<span class="ml-15 " id="profile-name ">{f.firstName} {f.lastName}</span>
-					<span class="ml-15 light-blue" id="city-freelancer "> <i class="fa fa-map-marker" aria-hidden="true"></i> {f.city}</span>
+					<span class="ml-15 " id="profile-name">{f.firstName} {f.lastName}</span>
+					<span class="ml-15 light-blue" id="city-freelancer">{?f.city}<i class="fa fa-map-marker" aria-hidden="true"></i> {f.city} {?f.city/}</span>
 				</div>
-				<div class="ml-15 light-blue " id="info-name-bottom ">
+				<div class="ml-15 light-blue" id="info-name-bottom">
 					{f.workName}
 				</div>
 			</div>
@@ -20,13 +20,13 @@
 				<i class="fa fa-star-o blue" aria-hidden="true"></i>
 			</div>
 			<div class="contact-info-top ml-15 ">
-				<div id="chat " class="contact-info-element blue ">
+				<div id="chat" class="contact-info-element blue">
 					<i class="fa fa-comment " aria-hidden="true "></i> chat
 				</div>
-				<div id="email " class="contact-info-element blue ">
+				<div id="email" class="contact-info-element blue">
 					<i class="fa fa-envelope" aria-hidden="true"></i> {f.mail}
 				</div>
-				<div id="phone " class="contact-info-element blue ">
+				<div id="phone" class="contact-info-element blue">
 					<i class="fa fa-phone" aria-hidden="true"></i> {f.phone}
 				</div>
 			</div>
