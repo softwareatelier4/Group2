@@ -16,25 +16,28 @@
 		<div id="header">
 			<div id="search">
 				<span class="logo">JobAdvisor</span>
-				<form class="" action="javascript:search();" autocomplete="off">
+				<form class="" autocomplete="off">
 					<div class="input-group">
-						<input type="text" onkeypress="animateSearch()" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
-						<span class="input-group-addon search-btn" id="basic-addon1" onclick="search();">Search</span>
+						<input type="text" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
+						<span class="input-group-addon search-btn" id="basic-addon1" onclick="search.search();">Search</span>
 					</div>
 				</form>
 			</div>
 		</div>
-		<div id="search-result">
-		</div>
-			<!-- <div id="footer">
-				Atelier Project - Group 2
-			</div> -->
+		<main id="main-content">
+
+		</main>
 	</div>
-		<!-- jQuery first, then Tether, then Bootstrap JS. -->
-		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-		<script src="js/ajax.js"></script>
-		<script src="js/script.js"></script>
-	</body>
-	</html>
+
+	<!-- jQuery first, then Tether, then Bootstrap JS. -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+	<script src="js/ajax.js"></script>
+
+	<script src="js/app.js"></script>
+	<script src="js/homepage.js"></script>
+	<script src="js/search.js"></script>
+</body>
+</html>
