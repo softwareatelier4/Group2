@@ -117,7 +117,7 @@ const SEARCH = {
 				.replace('{f.name}', freelancer.firstName + " " + freelancer.lastName)
 				.replace('{f.description}', freelancer.description);
 
-			MAIN_JS.innerHTML += card
+			MAIN_JS.insertAdjacentHTML('beforeend', card);
 
 			let link = document.getElementById(freelancer._id).getElementsByTagName('a')[0];
 			link.addEventListener('click', SEARCH.selectProfile);
