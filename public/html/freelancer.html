@@ -5,24 +5,29 @@
 		<div id="main-info-vertical ">
 			<div id="info-name ">
 				<div class="info-name-top ">
-					<span class="ml-15 " id="profile-name ">${freelancer.firstName} ${freelancer.lastName}</span>
-					<span class="ml-15 " id="city-freelancer ">${city}</span>
+					<span class="ml-15 " id="profile-name ">{f.firstName} {f.lastName}</span>
+					<span class="ml-15 light-blue" id="city-freelancer "> <i class="fa fa-map-marker" aria-hidden="true"></i> {f.city}</span>
 				</div>
 				<div class="ml-15 light-blue " id="info-name-bottom ">
-					${workName}
+					{f.workName}
 				</div>
 			</div>
 			<div id="rank " class="ml-15 ">
+				<i class="fa fa-star-o blue" aria-hidden="true"></i>
+				<i class="fa fa-star-o blue" aria-hidden="true"></i>
+				<i class="fa fa-star-o blue" aria-hidden="true"></i>
+				<i class="fa fa-star-o blue" aria-hidden="true"></i>
+				<i class="fa fa-star-o blue" aria-hidden="true"></i>
 			</div>
 			<div class="contact-info-top ml-15 ">
 				<div id="chat " class="contact-info-element blue ">
 					<i class="fa fa-comment " aria-hidden="true "></i> chat
 				</div>
 				<div id="email " class="contact-info-element blue ">
-					${mail}
+					<i class="fa fa-envelope" aria-hidden="true"></i> {f.mail}
 				</div>
 				<div id="phone " class="contact-info-element blue ">
-					${phone}
+					<i class="fa fa-phone" aria-hidden="true"></i> {f.phone}
 				</div>
 			</div>
 		</div>
@@ -32,7 +37,7 @@
 			<div class="ml-15 " id="info ">
 				<h5 class="blue ">INFO</h5>
 				<p id="description "></p>
-				${description}
+				{f.description}
 			</div>
 
 			<div id="reviews ">
@@ -46,7 +51,7 @@
 			<div id="works " class="blue ">
 			</div>
 			<div id="thumbnail ">
-				${photos}
+				{f.photos}
 			</div>
 		</div>
 	</div>
