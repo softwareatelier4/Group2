@@ -1,4 +1,4 @@
-let search = {
+const SEARCH = {
 
 	name: 'search',
 
@@ -11,15 +11,15 @@ let search = {
 
 		// Display the search in fullscreen if nothing in search bar, else display header and search
 		if (searchVal == '') {
-			search.searchFullScreen()
+			SEARCH.searchFullScreen()
 		} else {
-			search.searchHeader();
-			setTimeout(search.search, 0);
+			SEARCH.searchHeader();
+			setTimeout(SEARCH.search, 0);
 		}
 
-		search.hashUpdater();
-		search.hashToValue();
-		search.listenerAdd();
+		SEARCH.hashUpdater();
+		SEARCH.hashToValue();
+		SEARCH.listenerAdd();
 
 	},
 
@@ -49,7 +49,7 @@ let search = {
 		//on keyup, start the countdown
 		SEARCH_TEXT_QUERY.on('keyup', function() {
 			clearTimeout(typingTimer);
-			typingTimer = setTimeout(search.search, search.doneTypingInterval);
+			typingTimer = setTimeout(SEARCH.search, SEARCH.doneTypingInterval);
 		});
 
 		//on keydown, clear the countdown
@@ -65,7 +65,7 @@ let search = {
 		console.log('searching...');
 		let query = SEARCH_TEXT_QUERY.val(); //$input is an array so the value is in the first element.
 		if (query.length > 0) {
-			search.searchHeader();
+			SEARCH.searchHeader();
 
 			doJSONRequest("GET", "/api/freelancer/search/" + query, null, null, function(res) {
 				if (res.error) {
@@ -74,7 +74,7 @@ let search = {
 					let searchResult = document.getElementById('main-content');
 					searchResult.innerHTML = "";
 					for (freelancer of res) {
-						search.insertCard(freelancer);
+						SEARCH.insertCard(freelancer);
 					}
 					if (res.length == 0) {
 						searchResult.innerHTML = "<h3 style='margin-top:30px;'> No result </h3>";
@@ -86,8 +86,8 @@ let search = {
 				}
 			});
 		} else {
-			search.searchFullScreen();
-			MAIN_JS.innerHTML = search.spinner;
+			SEARCH.searchFullScreen();
+			MAIN_JS.innerHTML = SEARCH.spinner;
 
 		}
 	},
@@ -118,11 +118,18 @@ let search = {
 				.replace('{f.description}', freelancer.description);
 
 			MAIN_JS.innerHTML += card
+
+			let link = document.getElementById(freelancer._id).getElementsByTagName('a')[0];
+			link.addEventListener('click', SEARCH.selectProfile);
+
 		}, 'html');
 	},
 
-	selectProfile: function(elem) {
-		console.log(elem);
+	selectProfile: function(ev) {
+		let elem = ev.target;
+		let id = elem.parentNode.parentNode.id;
+
+		window.location.hash = 'freelancer=' + id;
 	},
 
 	spinner: `<svg id="spinner" class="circle-loader" width="40" height="40" version="1.1" xmlns="http://www.w3.org/2000/svg">

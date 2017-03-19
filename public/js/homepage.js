@@ -1,15 +1,15 @@
-let homepage = {
+const HOMEPAGE = {
 
 	name: 'homepage',
 
 	init: function() {
 		console.log('Homepage - initialization');
 
-		search.searchFullScreen();
-		search.hashUpdater();
+		SEARCH.searchFullScreen();
+		SEARCH.hashUpdater();
 	},
 
 	remover: function() {
-		search.remover();
+		SEARCH.remover();
 	}
 }

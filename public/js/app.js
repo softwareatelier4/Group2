@@ -20,15 +20,19 @@ let hashchanged = function hashchanged() {
 		currentPage.remover();
 	}
 
-	console.log('page loaded or change url');
+	console.log('page loaded or change url: ' + hash);
 	switch (hash) {
 		case 'search':
-			currentPage = search;
+			currentPage = SEARCH;
+			break;
+
+		case 'freelancer':
+			currentPage = FREELANCER;
 			break;
 
 		default:
 			// No hash
-			currentPage = homepage;
+			currentPage = HOMEPAGE;
 	}
 
 	currentPage.init();
