@@ -27,7 +27,7 @@ describe('Model: Tag', function(done) {
 		})
 	});
 
-	describe('When creating a new freelancer', function(done) {
+	describe('When creating a new tag', function(done) {
 		var Freelancer = mongoose.model('Freelancer');
 		var Tag = mongoose.model('Tag');
 		var User = mongoose.model('User');

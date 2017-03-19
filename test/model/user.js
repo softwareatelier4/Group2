@@ -27,7 +27,7 @@ describe('Model: User', function(done) {
 		})
 	});
 
-	describe('When creating a new freelancer', function(done) {
+	describe('When creating a new user', function(done) {
 		var Freelancer = mongoose.model('Freelancer');
 		var Tag = mongoose.model('Tag');
 		var User = mongoose.model('User');
@@ -147,10 +147,10 @@ describe('Model: User', function(done) {
       it('if freelancerId is empty; null; or undefined, it should not be assigned',
          function(done) {
             var user = new User();
-         user.firstName = 'Nevio';
-         user.lastName = 'Valsantollim';
-         user.password = 'password';
-         user.email = 'mail@mail.mail';
+            user.firstName = 'Nevio';
+            user.lastName = 'Valsantollim';
+            user.password = 'password';
+            user.email = 'mail@mail.mail';
             freelancer.save(function(err, saved) {
                should.not.exist(err, 'No error should occur');
                should.not.exist(saved.freelancerId);
@@ -158,5 +158,5 @@ describe('Model: User', function(done) {
             });
          });
 
-	});
+   });
 });
