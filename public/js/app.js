@@ -38,3 +38,58 @@ let hashchanged = function hashchanged() {
 	currentPage.init();
 
 }
+
+// returns html
+let renderTemplateString = function(html, string, label) {
+
+	const startTag = "{?" + label + "}";
+	const endTag = "{?" + label + "/}";
+	const startBloc = html.indexOf(startTag);
+	const endBloc = html.indexOf(endTag) + endTag.length;
+
+	if (string && startBloc != -1) {
+		html = html
+			.replace(startTag, '')
+			.replace(endTag, '')
+			.replace('{' + label + '}', string);
+	} else if (!string && startBloc != -1) {
+		html = html.substring(0, startBloc) + html.substring(endBloc, html.length);
+	} else {
+		html = html.replace('{' + label + '}', string);
+	}
+
+	return html;
+}
+
+let renderTemplateArray = function(html, array, label) {
+
+	const startTag = "{?" + label + "}";
+	const endTag = "{?" + label + "/}";
+	const startBloc = html.indexOf(startTag);
+	const endBloc = html.indexOf(endTag) + endTag.length;
+
+	const startArray = "{[" + label + "}";
+	const endArray = "{" + label + "]}";
+	const indexStartArray = html.indexOf(startArray) + startArray.length;
+	const indexEndArray = html.indexOf(endArray);
+	const htmlArray = html.substring(indexStartArray, indexEndArray);
+
+	if (array.length != 0 && startBloc != -1) {
+		let displayHtml = '';
+		for (elem of array) {
+			displayHtml += htmlArray.replace('{' + label + '}', elem);
+		}
+
+		html = html
+			.replace(startTag, '')
+			.replace(endTag, '')
+			.replace(startArray, '')
+			.replace(endArray, '')
+			.replace(htmlArray, displayHtml);
+
+	} else if (array.length == 0 && startBloc != -1) {
+		html = html.substring(0, startBloc) + html.substring(endBloc, html.length);
+	}
+
+	return html;
+}

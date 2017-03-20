@@ -28,8 +28,6 @@ const FREELANCER = {
 			} else {
 				$.get("/html/freelancer.html", function(html) {
 					let templateTag = {
-						'f.photos': res.photos,
-						'f.tags': res.tags,
 						'f.city': res.address.city,
 						'f.profilePic': res.profilePhoto,
 						'f.firstName': res.firstName,
@@ -40,29 +38,14 @@ const FREELANCER = {
 						'f.description': res.description
 					};
 					for (label in templateTag) {
-						let startTag = "{?" + label + "}";
-						let endTag = "{?" + label + "/}";
-						let startBloc = html.indexOf(startTag);
-						let endBloc = html.indexOf(endTag) + endTag.length;
-
-						if (templateTag[label] && startBloc != -1 && !(templateTag[label] instanceof Array)) {
-							html = html
-								.replace(startTag, '')
-								.replace(endTag, '')
-								.replace('{' + label + '}', templateTag[label]);
-						} else if ((!templateTag[label] || templateTag[label].length == 0) && startBloc != -1) {
-							html = html.substring(0, startBloc) + html.substring(endBloc, html.length);
-						} else if (!(templateTag[label] instanceof Array)) {
-							html = html.replace('{' + label + '}', templateTag[label]);
-						}
+						html = renderTemplateString(html, templateTag[label], label);
 					}
 
-					// display the tags
-					let tags = "";
-					for (tag of res.tags) {
-						tags += `<span class ="badge badge-default"> ${tag.name} </span> `;
+					let tags = []
+					for (let tag of res.tags) {
+						tags.push(tag.name);
 					}
-					html = html.replace('{f.tags}', tags);
+					html = renderTemplateArray(html, tags, 'f.tag')
 
 
 					FREELANCER.renderReview(html, idFreelancer);
