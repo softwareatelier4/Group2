@@ -12,3 +12,5 @@ jenkins-test-results\.xml
 test/nightwatch-reports/
 
 phantomjs
+
+selenium-server-standalone-2\.48\.2\.jar
