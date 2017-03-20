@@ -6,7 +6,6 @@
 
 #profile-freelancer {
    background-color: rgb(231, 231, 231);
-   /*flex-grow: 1;*/
    margin-left: auto;
    margin-right: auto;
    display: flex;
@@ -17,14 +16,9 @@
 }
 
 #main-info {
-   /*background-color: red;*/
    display: flex;
    flex-wrap: wrap;
-   /*justify-content: center;*/
    margin-top: 30px;
-   /*max-width: 800px;*/
-   /*margin-left: auto;
-  margin-right: auto;*/
 }
 
 @media screen and (max-width: 750px) {
@@ -42,8 +36,6 @@
    width: 250px;
    height: 250px;
    background-size: cover;
-   /*margin-left: auto;*/
-   /*margin-right: auto;*/
 }
 
 #info-name {
@@ -54,7 +46,6 @@
 #main-info-vertical {
    display: flex;
    flex-direction: column;
-   /*justify-content: space-between;*/
 }
 
 #rank {
@@ -66,12 +57,6 @@
    display: flex;
    margin-top: 20px;
 }
-
-
-/*.contact-info-below{
-  display: flex;
-  flex-direction: column;
-}*/
 
 #main-info-bottom {
    display: flex;
@@ -123,8 +108,6 @@
 
 #img-freelancer {
    margin-top: 30px;
-   /*width: 250px;*/
-   /*height: 300px;*/
 }
 
 .contact-info-element {
@@ -178,13 +161,12 @@ a {
 
 #info {
    text-align: justify;
-   /*flex: 1;*/
    margin-bottom: 15px;
 }
 
 #reviews {
+   margin-top: 10px;
    width: 100%;
-   /*flex:1;*/
 }
 
 h5 {
