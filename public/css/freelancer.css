@@ -183,6 +183,7 @@ a {
 
 h5 {
    margin-bottom: 1px;
+   display: inline;
 }
 
 #photo-review {
