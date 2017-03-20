@@ -129,8 +129,9 @@ describe('Testing the search algorithm', function() {
 				.end(function(err, res) {
 					let resJson = JSON.parse(res.text);
 					resJson[0].firstName.should.equal("Marco");
-					resJson[1].firstName.should.equal("Nevio");
 
+					res.text.indexOf('Tester').should.be.greaterThan(-1, "Freelancer Marco should be there");
+					res.text.indexOf('Nevio').should.be.greaterThan(-1, "Freelancer Nevio should be there");
 					done();
 				});
 		});
@@ -167,9 +168,7 @@ describe('Testing the search algorithm', function() {
 				.expect('Content-Type', /json/, 'it should respond with json')
 				.expect(200)
 				.end(function(err, res) {
-					let resJson = JSON.parse(res.text);
-					resJson[0].firstName.should.equal("Marco");
-
+					res.text.indexOf('Marco').should.be.greaterThan(-1, "Freelancer Marco should be there");
 					done();
 				});
 		});

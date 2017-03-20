@@ -7,10 +7,8 @@
     "install": "chmod -R u+x ./bin/ && ./bin/installSeleniumAndChromeWebDriver",
     "start": "DEBUG='job-advisor' ./bin/www",
     "dev": "nodemon --exec DEBUG='job-advisor' node --inspect ./bin/www",
-    "test": "npm run test-mocha && npm start | node seed.js && ./nightwatch",
-    "test-front": "node seed.js && ./nightwatch",
-    "test-mocha": "JUNIT_REPORT_PATH=./jenkins-test-results.xml istanbul cover --report cobertura _mocha -- --timeout 3000 -R spec ./test/model ./test/function ./test/routes/api ./test/general --colors --reporter mocha-jenkins-reporter",
-    "test-nightwatch": "node seed.js && ./nightwatch"
+    "test": "npm run test-mocha",
+    "test-mocha": "JUNIT_REPORT_PATH=./jenkins-test-results.xml istanbul cover --report cobertura _mocha -- --timeout 3000 -R spec ./test/model ./test/function ./test/routes/api ./test/general ./test/testUI --colors --reporter mocha-jenkins-reporter"
   },
   "keywords": [
     "Node.js",
