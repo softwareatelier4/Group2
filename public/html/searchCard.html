@@ -1,8 +1,8 @@
 <div class='card result-card' id="{f.id}">
-<div class='card-img-top' alt='Card image cap' style="background-image:url('{f.photo}');"></div>
+<div class='card-img-top' alt='Card image cap' {?f.photo} style="background-image:url('{f.photo}');" {?f.photo/}></div>
 <div class='card-block'>
 <h4 class='card-title'>{f.name}</h4>
-<p class='card-text'>{f.description}'s content.</p>
-<a class='btn btn-primary'>Go somewhere</a>
+<p class='card-text'>{?f.description}{f.description}'s content.{?f.description/}</p>
+<a class='btn btn-primary'>More infos</a>
 </div>
 </div>

@@ -137,11 +137,16 @@ const SEARCH = {
 	 */
 	insertCard: function(freelancer) {
 		$.get("/html/searchCard.html", function(card) {
-			card = card
-				.replace('{f.id}', freelancer._id)
-				.replace('{f.photo}', freelancer.photo)
-				.replace('{f.name}', freelancer.firstName + " " + freelancer.lastName)
-				.replace('{f.description}', freelancer.description);
+			let templateTag = {
+				'f.id': freelancer._id,
+				'f.photo': freelancer.photo,
+				'f.name': freelancer.firstName + " " + freelancer.lastName,
+				'f.description': freelancer.description
+			};
+
+			for (label in templateTag) {
+				card = renderTemplateString(card, templateTag[label], label);
+			}
 
 			MAIN_JS.insertAdjacentHTML('beforeend', card);
 
