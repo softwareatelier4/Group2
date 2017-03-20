@@ -11,6 +11,7 @@
    flex-direction: column;
    align-content: center;
    max-width: 1200px;
+   min-width: 1100px;
    overflow-y: scroll;
 }
 
@@ -27,6 +28,12 @@
    #img-freelancer {
       margin-left: auto;
       margin-right: auto;
+   }
+}
+
+@media screen and (max-width: 1110px) {
+   #profile-freelancer {
+      min-width: 0 !important;
    }
 }
 
