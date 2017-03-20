@@ -24,7 +24,7 @@ describe('Testing the search algorithm', function() {
 				.expect(200)
 				.end(function(err, res) {
 					let resJson = JSON.parse(res.text);
-					resJson.should.have.length(3);
+					resJson.should.have.length(2);
 
 					done();
 				});
