@@ -55,7 +55,7 @@ let renderTemplateString = function(html, string, label) {
 	} else if (!string && startBloc != -1) {
 		html = html.substring(0, startBloc) + html.substring(endBloc, html.length);
 	} else {
-		html = html.replace('{' + label + '}', string);
+		html = html.replace(new RegExp('{' + label + '}', 'g'), string);
 	}
 
 	return html;

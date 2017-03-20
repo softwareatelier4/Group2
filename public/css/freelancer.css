@@ -21,18 +21,6 @@
    margin-top: 30px;
 }
 
-
-/*
-@media screen and (max-width: 750px) {
-   #main-info {
-      justify-content: center;
-   }
-   #img-freelancer {
-      margin-left: auto;
-      margin-right: auto;
-   }
-}*/
-
 @media screen and (max-width: 1110px) {
    #profile-freelancer {
       min-width: 0 !important;

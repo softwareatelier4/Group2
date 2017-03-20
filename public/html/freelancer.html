@@ -6,7 +6,7 @@
 			<div id="info-name">
 				<div class="info-name-top">
 					<span class="ml-15" id="profile-name">{f.firstName} {f.lastName}</span>
-					<span class="ml-15 light-blue" id="city-freelancer">{?f.city}<i class="fa fa-map-marker" aria-hidden="true"></i> {f.city} {?f.city/}</span>
+					<span class="ml-15 light-blue" id="city-freelancer">{?f.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{f.city}">{f.city}</a> {?f.city/}</span>
 				</div>
 				<div class="ml-15 light-blue" id="info-name-bottom">
 					{f.workName}
@@ -20,10 +20,10 @@
 					<i class="fa fa-comment " aria-hidden="true"></i> chat
 				</div>
 				<div id="email" class="contact-info-element blue">
-					<i class="fa fa-envelope" aria-hidden="true"></i> {f.mail}
+					<i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{f.mail}">{f.mail}</a>
 				</div>
 				<div id="phone" class="contact-info-element blue">
-					{?f.phone}<i class="fa fa-phone" aria-hidden="true"></i> {f.phone}{?f.phone/}
+					{?f.phone}<i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{f.phone}">{f.phone}</a>{?f.phone/}
 				</div>
 			</div>
 		</div>
