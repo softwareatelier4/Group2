@@ -1,21 +1,18 @@
 /** @module models/index.js
-* Loads all models
-*/
+ * Loads all models
+ */
 'use strict';
 
 var mongoose = require('mongoose');
 
-require('./Album');
-require('./Artist');
-require('./Playlist');
-require('./Track');
+require('./Freelancer');
+require('./Tag');
+require('./Review');
 require('./User');
 
 module.exports = {
-  'Album' : mongoose.model('Album'),
-  'Artist' : mongoose.model('Artist'),
-  'Playlist' : mongoose.model('Playlist'),
-  'Track' : mongoose.model('Track'),
-  'User' : mongoose.model('User')
+   'Freelancer': mongoose.model('Freelancer'),
+   'Tag': mongoose.model('Tag'),
+   'Review': mongoose.model('Review'),
+   'User': mongoose.model('User')
 }
-

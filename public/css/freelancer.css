@@ -1,0 +1,192 @@
+/*Color Palette:
+1 - rgb(46, 78, 92)
+2 - rgb(78, 108, 121)
+3 - rgb(222, 229, 232)
+4 - rgb(231, 231, 231)*/
+
+#profile-freelancer {
+   margin-left: auto;
+   margin-right: auto;
+   display: flex;
+   flex-direction: column;
+   align-content: center;
+   max-width: 1200px;
+   min-width: 1100px;
+   overflow-y: scroll;
+}
+
+#main-info {
+   display: flex;
+   flex-wrap: wrap;
+   margin-top: 30px;
+}
+
+@media screen and (max-width: 1110px) {
+   #profile-freelancer {
+      min-width: 0 !important;
+   }
+   #info-review {
+      margin-left: 10%;
+   }
+   #main-info {
+      margin-left: 10%;
+   }
+   #info-name {
+      margin-left: -15px;
+   }
+   #rank {
+      margin-left: 0px;
+   }
+   #contact-info-top {
+      margin-left: 0px;
+   }
+}
+
+#profile-pic {
+   background-image: url("../img/default_user.jpg");
+   width: 250px;
+   height: 250px;
+   background-size: cover;
+   background-position: center top;
+}
+
+#info-name {
+   display: flex;
+   flex-direction: column;
+}
+
+#main-info-vertical {
+   display: flex;
+   flex-direction: column;
+}
+
+#rank {
+   margin-top: 20px;
+   margin-bottom: 5px;
+}
+
+#contact-info-top {
+   display: flex;
+   margin-top: 20px;
+}
+
+#main-info-bottom {
+   display: flex;
+   flex-direction: row-reverse;
+   flex-wrap: wrap;
+   justify-content: flex-end;
+}
+
+#info-review {
+   display: flex;
+   flex-wrap: wrap;
+   margin-top: 30px;
+   padding-right: 20px;
+   flex-grow: 1;
+}
+
+#reply {
+   background-color: rgb(231, 231, 231)
+}
+
+.card {
+   margin-bottom: 10px;
+}
+
+.title-author-review {
+   display: flex;
+   align-items: baseline;
+   justify-content: space-between;
+}
+
+.card-block {
+   padding: 1rem;
+}
+
+#thumbnail {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+#works {
+   text-align: center;
+   margin-top: 10px;
+}
+
+.thumbnail-element {
+   margin: 10px;
+   max-width: 80px;
+}
+
+#img-freelancer {
+   margin-top: 30px;
+}
+
+.contact-info-element {
+   margin-right: 15px;
+}
+
+.info-name-top {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: baseline;
+}
+
+#profile-name {
+   font-size: 40px;
+   font-weight: bold;
+   color: rgb(46, 78, 92);
+   margin-top: 15px;
+   text-align: center
+}
+
+#city-freelancer {
+   font-size: 20px;
+   margin-top: 15px;
+   color: rgb(78, 108, 121);
+}
+
+#info-name-bottom {
+   font-size: 25px;
+   margin-top: -5px;
+}
+
+.blue {
+   color: rgb(46, 78, 92);
+}
+
+.light-blue {
+   color: rgb(78, 108, 121);
+}
+
+.ml-15 {
+   margin-left: 15px;
+}
+
+a {
+   color: rgb(46, 78, 92);
+}
+
+.card-title {
+   font-size: 1.2rem;
+}
+
+#info {
+   text-align: justify;
+   margin-bottom: 15px;
+}
+
+#reviews {
+   margin-top: 10px;
+   width: 100%;
+}
+
+h5 {
+   margin-bottom: 1px;
+   display: inline;
+}
+
+#photo-review {
+   margin-bottom: 15px;
+   margin-top: -5px;
+}
