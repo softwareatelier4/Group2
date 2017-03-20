@@ -1,6 +1,6 @@
 <div id="profile-freelancer">
 	<div id="main-info">
-		<div id="profile-pic" alt="profile photo" {?f.profilePic} style="background-image:url('{f.profilePic}');"{?f.profilePic/}>
+		<div id="profile-pic" alt="profile photo" {?f.profilePic} style="background-image:url('{f.profilePic}');" {?f.profilePic/}>
 		</div>
 		<div id="main-info-vertical">
 			<div id="info-name">
@@ -29,8 +29,8 @@
 		</div>
 	</div>
 	<div id="main-info-bottom">
-		<div id="info-review">
-			<div class="ml-15" id="info">
+		<div {?f.margin} {f.margin} {?f.margin/} id="info-review">
+			<div id="info">
 				<h5 class="blue">INFO</h5>
 				<div id="tag">
 					{?f.tag} {[f.tag}
@@ -39,7 +39,7 @@
 				<span id="description"></span> {f.description}
 			</div>
 
-			<div class="ml-15" id="reviews">
+			<div id="reviews">
 				<h5 class="blue">REVIEW</h5>
 				<div id="cardReviews">
 					{f.review}
@@ -53,8 +53,8 @@
 				<h5 class="blue ml-15">WORKS</h5>
 			</div>
 			<div id="thumbnail">
-				{[f.photos}<a href="{f.photos}" data-lightbox="review-img"><img class="thumbnail-element" src="{f.photos}" /></a>{f.photos]}
-				{?f.photos/}
+				{[f.photos}
+				<a href="{f.photos}" data-lightbox="review-img"><img class="thumbnail-element" src="{f.photos}" /></a>{f.photos]} {?f.photos/}
 			</div>
 		</div>
 	</div>

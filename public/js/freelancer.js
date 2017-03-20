@@ -36,10 +36,16 @@ const FREELANCER = {
 						'f.workName': res.workName,
 						'f.mail': res.email,
 						'f.phone': res.phone,
-						'f.description': res.description
+						'f.description': res.description,
+						'f.margin': `class="ml-15"`
 					};
+
 					for (label in templateTag) {
-						html = renderTemplateString(html, templateTag[label], label);
+						if (label == 'f.margin' && res.photos.length == 0) {
+							html = renderTemplateString(html, " ", label);
+						} else {
+							html = renderTemplateString(html, templateTag[label], label);
+						}
 					}
 
 					let tags = []
@@ -49,6 +55,7 @@ const FREELANCER = {
 					html = renderTemplateArray(html, tags, 'f.tag');
 
 					html = renderTemplateArray(html, res.photos, 'f.photos');
+
 
 
 					FREELANCER.renderReview(html, idFreelancer);
