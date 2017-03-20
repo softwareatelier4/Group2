@@ -6,6 +6,7 @@ const FREELANCER = {
 		console.log('Freelancer - initialization');
 
 		SEARCH.searchHeader();
+		SEARCH.hashUpdater();
 
 		let main = document.getElementById('main');
 		main.style.display = "inherit";
@@ -45,7 +46,9 @@ const FREELANCER = {
 					for (let tag of res.tags) {
 						tags.push(tag.name);
 					}
-					html = renderTemplateArray(html, tags, 'f.tag')
+					html = renderTemplateArray(html, tags, 'f.tag');
+
+					html = renderTemplateArray(html, res.photos, 'f.photos');
 
 
 					FREELANCER.renderReview(html, idFreelancer);
@@ -57,29 +60,45 @@ const FREELANCER = {
 	renderReview: function(html, idFreelancer) {
 		doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
 
-
 			$.get("/html/review.html", function(reviewHtml) {
-				let htmlReview = '';
+				if (result.length != 0) {
 
-				for (review of result) {
+					let htmlReviews = '';
 
-					htmlReview += reviewHtml
-						.replace('{r.title}', review.title)
-						.replace('{r.firstName}', review.user.firstName)
-						.replace('{r.lastName}', review.user.lastName)
-						.replace('{r.description}', review.description)
+					for (review of result) {
+						let templateTag = {
+							'r.title': review.title,
+							'r.firstName': review.user.firstName,
+							'r.lastName': review.user.lastName,
+							'r.description': review.description,
+							'r.answer': review.answer
+						};
+						let htmlReview = reviewHtml;
+						for (label in templateTag) {
+							htmlReview = renderTemplateString(htmlReview, templateTag[label], label);
+						}
 
-					if (review.answer) {
-						document.getElementById("reply").innerHTML = `<div class="card-block">
-			            <h6 class="card-subtitle mb-2 text-muted">Reply:</h6>
-			            <p class="card-text"> {review.answer} </p>
-			         </div>`;
+						htmlReview = htmlReview.replace('{r.score}', FREELANCER.getHtmlRankStar({
+							full: review.score,
+							empty: 5 - review.score
+						}))
+
+						htmlReview = renderTemplateArray(htmlReview, review.photo, 'r.photos');
+
+						htmlReviews += htmlReview;
 					}
+
+
+					html = html.replace('{f.rank}', FREELANCER.calculateAverageRank(result));
+					html = html.replace('{f.review}', htmlReviews);
+				} else {
+					html = html.replace('{f.review}', 'There aren\'t any reviews at the moment');
+					html = html.replace('{f.rank}', FREELANCER.getHtmlRankStar({
+						empty: 5
+					}));
+
 				}
 
-
-				html = html.replace('{f.rank}', FREELANCER.calculateAverageRank(result));
-				html = html.replace('{r.review}', htmlReview);
 				MAIN_JS.innerHTML = html;
 			});
 
@@ -87,28 +106,44 @@ const FREELANCER = {
 	},
 
 	calculateAverageRank: function(reviews) {
-		let html = '';
+		let starObj = {
+			full: 0,
+			half: 0,
+			empty: 0
+		}
 		let totScore = 0;
 		for (review of reviews) {
 			totScore += review.score;
 		}
 
 		let media = totScore / reviews.length;
-		let floorMedia = Math.floor(media);
+		starObj.full = Math.floor(media);
+		starObj.half = (media - starObj.full >= 0.5) ? 1 : 0;
+		starObj.empty = 5 - starObj.full;
 
-		let i;
-		for (i = 0; i != floorMedia; i++) {
+		return FREELANCER.getHtmlRankStar(starObj);
+	},
+
+	getHtmlRankStar: function(starObj) {
+		// starObj = {full, half, empty}
+		starObj.full = starObj.full | 0;
+		starObj.half = starObj.half | 0;
+		starObj.empty = starObj.empty | 0;
+
+		html = '';
+		for (let i = 0; i < starObj.full; i++) {
 			html += "<i class='fa fa-star blue' aria-hidden='true'></i>";
 		}
 
-		if ((media - floorMedia) >= 0.5) {
+		for (let i = 0; i < starObj.half; i++) {
 			html += "<i class='fa fa-star-half-o blue' aria-hidden='true'></i>";
-			i++;
 		}
 
-		for (let j = i; j < 5; j++) {
+		for (let i = 0; i < starObj.empty; i++) {
 			html += "<i class='fa fa-star-o blue' aria-hidden='true'></i>";
 		}
+
 		return html;
+
 	}
 }
