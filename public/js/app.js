@@ -51,7 +51,7 @@ let renderTemplateString = function(html, string, label) {
 		html = html
 			.replace(startTag, '')
 			.replace(endTag, '')
-			.replace('{' + label + '}', string);
+			.replace(new RegExp('{' + label + '}', 'g'), string);
 	} else if (!string && startBloc != -1) {
 		html = html.substring(0, startBloc) + html.substring(endBloc, html.length);
 	} else {
@@ -77,7 +77,7 @@ let renderTemplateArray = function(html, array, label) {
 	if (array.length != 0 && startBloc != -1) {
 		let displayHtml = '';
 		for (elem of array) {
-			displayHtml += htmlArray.replace('{' + label + '}', elem);
+			displayHtml += htmlArray.replace(new RegExp('{' + label + '}', 'g'), elem);
 		}
 
 		html = html

@@ -9,7 +9,7 @@
       <p id="review-description" class="card-text">{r.description}</p>
       <div id="photo-review">
          {?r.photos}
-         {[r.photos}<img class="thumbnail-element" src= "{r.photos}"/>{r.photos]}
+         {[r.photos}<a href="{r.photos}" data-lightbox="review-img"><img class="thumbnail-element" src= "{r.photos}"/></a>{r.photos]}
          {?r.photos/}
       </div>
       <div id="reply">

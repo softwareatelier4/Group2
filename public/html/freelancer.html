@@ -53,7 +53,8 @@
 				<h5 class="blue ml-15">WORKS</h5>
 			</div>
 			<div id="thumbnail">
-				{[f.photos}<img class="thumbnail-element" src="{f.photos}" />{f.photos]} {?f.photos/}
+				{[f.photos}<a href="{f.photos}" data-lightbox="review-img"><img class="thumbnail-element" src="{f.photos}" /></a>{f.photos]}
+				{?f.photos/}
 			</div>
 		</div>
 	</div>
