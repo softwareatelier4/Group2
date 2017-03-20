@@ -88,6 +88,7 @@ let searchEngine = function(freelancers, string) {
          firstName: f.firstName,
          lastName: f.lastName,
          description: f.description,
+         tags: f.tags,
          workName: f.workName,
          photo: f.profilePhoto,
          counter: countInArray(fClone, f)
