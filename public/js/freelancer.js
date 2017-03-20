@@ -85,7 +85,15 @@ const FREELANCER = {
 						.replace('{r.firstName}', review.user.firstName)
 						.replace('{r.lastName}', review.user.lastName)
 						.replace('{r.description}', review.description)
+
+					if (review.answer) {
+						document.getElementById("reply").innerHTML = `<div class="card-block">
+			            <h6 class="card-subtitle mb-2 text-muted">Reply:</h6>
+			            <p class="card-text"> {review.answer} </p>
+			         </div>`;
+					}
 				}
+
 
 				html = html.replace('{f.rank}', FREELANCER.calculateAverageRank(result));
 				html = html.replace('{r.review}', htmlReview);
