@@ -16,8 +16,6 @@ describe("testing freelancer frontend", function() {
 	});
 
 	describe('Reach using search', function() {
-		it('should have the correct title', function() {
-			browser.assert.text('title', 'JobAdvisor');
-		});
+
 	});
 });
