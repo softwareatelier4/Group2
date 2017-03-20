@@ -126,7 +126,7 @@ const FREELANCER = {
 		let media = totScore / reviews.length;
 		starObj.full = Math.floor(media);
 		starObj.half = (media - starObj.full >= 0.5) ? 1 : 0;
-		starObj.empty = 5 - starObj.full;
+		starObj.empty = 5 - starObj.full - starObj.half;
 
 		return FREELANCER.getHtmlRankStar(starObj);
 	},
