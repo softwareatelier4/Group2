@@ -1,0 +1,61 @@
+<div id="profile-freelancer">
+	<div id="main-info">
+		<div id="profile-pic" alt="profile photo" {?f.profilePic} style="background-image:url('{f.profilePic}');" {?f.profilePic/}>
+		</div>
+		<div id="main-info-vertical">
+			<div id="info-name">
+				<div class="info-name-top">
+					<span class="ml-15" id="profile-name">{f.firstName} {f.lastName}</span>
+					<span class="ml-15 light-blue" id="city-freelancer">{?f.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{f.city}">{f.city}</a> {?f.city/}</span>
+				</div>
+				<div class="ml-15 light-blue" id="info-name-bottom">
+					{f.workName}
+				</div>
+			</div>
+			<div id="rank" class="ml-15">
+				{f.rank}
+			</div>
+			<div id="contact-info-top" class="ml-15">
+				<div id="chat" class="contact-info-element blue">
+					<i class="fa fa-comment " aria-hidden="true"></i> chat
+				</div>
+				<div id="email" class="contact-info-element blue">
+					<i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{f.mail}">{f.mail}</a>
+				</div>
+				<div id="phone" class="contact-info-element blue">
+					{?f.phone}<i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{f.phone}">{f.phone}</a>{?f.phone/}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="main-info-bottom">
+		<div {?f.margin} {f.margin} {?f.margin/} id="info-review">
+			<div id="info">
+				<h5 class="blue">INFO</h5>
+				<div id="tag">
+					{?f.tag} {[f.tag}
+					<span class="badge badge-default"> {f.tag} </span> {f.tag]} {?f.tag/}
+				</div>
+				<span id="description"></span> {f.description}
+			</div>
+
+			<div id="reviews">
+				<h5 class="blue">REVIEW</h5>
+				<div id="cardReviews">
+					{f.review}
+				</div>
+			</div>
+		</div>
+
+		<div id="img-freelancer">
+			<div id="works" class="blue">
+				{?f.photos}
+				<h5 class="blue ml-15">WORKS</h5>
+			</div>
+			<div id="thumbnail">
+				{[f.photos}
+				<a href="{f.photos}" data-lightbox="review-img"><img class="thumbnail-element" src="{f.photos}" /></a>{f.photos]} {?f.photos/}
+			</div>
+		</div>
+	</div>
+</div>

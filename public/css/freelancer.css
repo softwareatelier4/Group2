@@ -5,35 +5,40 @@
 4 - rgb(231, 231, 231)*/
 
 #profile-freelancer {
-   background-color: rgb(231, 231, 231);
-   /*flex-grow: 1;*/
    margin-left: auto;
    margin-right: auto;
    display: flex;
    flex-direction: column;
    align-content: center;
    max-width: 1200px;
+   min-width: 1100px;
    overflow-y: scroll;
 }
 
 #main-info {
-   /*background-color: red;*/
    display: flex;
    flex-wrap: wrap;
-   /*justify-content: center;*/
    margin-top: 30px;
-   /*max-width: 800px;*/
-   /*margin-left: auto;
-  margin-right: auto;*/
 }
 
-@media screen and (max-width: 750px) {
-   #main-info {
-      justify-content: center;
+@media screen and (max-width: 1110px) {
+   #profile-freelancer {
+      min-width: 0 !important;
    }
-   #img-freelancer {
-      margin-left: auto;
-      margin-right: auto;
+   #info-review {
+      margin-left: 10%;
+   }
+   #main-info {
+      margin-left: 10%;
+   }
+   #info-name {
+      margin-left: -15px;
+   }
+   #rank {
+      margin-left: 0px;
+   }
+   #contact-info-top {
+      margin-left: 0px;
    }
 }
 
@@ -42,8 +47,6 @@
    width: 250px;
    height: 250px;
    background-size: cover;
-   /*margin-left: auto;*/
-   /*margin-right: auto;*/
 }
 
 #info-name {
@@ -54,7 +57,6 @@
 #main-info-vertical {
    display: flex;
    flex-direction: column;
-   /*justify-content: space-between;*/
 }
 
 #rank {
@@ -62,16 +64,10 @@
    margin-bottom: 5px;
 }
 
-.contact-info-top {
+#contact-info-top {
    display: flex;
    margin-top: 20px;
 }
-
-
-/*.contact-info-below{
-  display: flex;
-  flex-direction: column;
-}*/
 
 #main-info-bottom {
    display: flex;
@@ -84,7 +80,6 @@
    display: flex;
    flex-wrap: wrap;
    margin-top: 30px;
-   padding: 10px;
    padding-right: 20px;
    flex-grow: 1;
 }
@@ -119,12 +114,11 @@
 
 .thumbnail-element {
    margin: 10px;
+   max-width: 80px;
 }
 
 #img-freelancer {
    margin-top: 30px;
-   /*width: 250px;*/
-   /*height: 300px;*/
 }
 
 .contact-info-element {
@@ -178,13 +172,12 @@ a {
 
 #info {
    text-align: justify;
-   /*flex: 1;*/
    margin-bottom: 15px;
 }
 
 #reviews {
+   margin-top: 10px;
    width: 100%;
-   /*flex:1;*/
 }
 
 h5 {
