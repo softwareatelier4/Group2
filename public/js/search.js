@@ -4,8 +4,11 @@ const SEARCH = {
 
 	doneTypingInterval: 500,
 
+	/**
+	 * Set up the search
+	 * @return {void}
+	 */
 	init: function() {
-		console.log('Search - initialization');
 
 		let searchVal = window.location.hash.split('=')[1];
 
@@ -25,23 +28,28 @@ const SEARCH = {
 
 
 	/**
-	 * searchFullScreen - View the search bar in full screen
+	 * View the search bar in full screen
+	 * @return {void}
 	 */
 	searchFullScreen: function() {
 		MAIN_JS.style.visibility = "hidden";
 		MAIN_JS.style.flexGrow = 0;
 	},
 
+
 	/**
-	 * searchHeader - View the search bar as a header
+	 * View the search bar as a header
+	 * @return {void}
 	 */
 	searchHeader: function() {
 		MAIN_JS.style.visibility = "visible";
 		MAIN_JS.style.flexGrow = 1;
 	},
 
+
 	/**
-	 * listenerAdd - Add the needed event listeners to the search bar
+	 * Add the needed event listeners to the search bar
+	 * @return {void}
 	 */
 	listenerAdd: function() {
 		let typingTimer;
@@ -58,11 +66,12 @@ const SEARCH = {
 		});
 	},
 
+
 	/**
-	 * search - AJAX request and formatting for the search
+	 * AJAX request and formatting for the search
+	 * @return {void}
 	 */
 	search: function() {
-		console.log('searching...');
 		let query = SEARCH_TEXT_QUERY.val(); //$input is an array so the value is in the first element.
 		if (query.length > 0) {
 			SEARCH.searchHeader();
@@ -92,6 +101,10 @@ const SEARCH = {
 		}
 	},
 
+	/**
+	 * Update the current URL adding the searched value
+	 * @return {void}
+	 */
 	hashUpdater: function() {
 		SEARCH_TEXT_QUERY.on('keyup', function() {
 			let searchHash = SEARCH_TEXT_QUERY.val().replace(/ /g, '+');
@@ -99,16 +112,29 @@ const SEARCH = {
 		})
 	},
 
+	/**
+	 * Update the value of the input-search putting the value of the current URL
+	 * @return {void}
+	 */
 	hashToValue: function() {
 		let value = window.location.hash.split('=')[1];
 		value = value.replace('+', ' ');
 		SEARCH_TEXT_QUERY.val(value);
 	},
 
+	/**
+	 * Remove not needed listeners from the input-search
+	 * @return {void}
+	 */
 	remover: function() {
 		SEARCH_TEXT_QUERY.off();
 	},
 
+	/**
+	 * Insert and view Cards as result of the search
+	 * @param {Freelancer} freelancer - Object Freelancer
+	 * @return {void}
+	 */
 	insertCard: function(freelancer) {
 		$.get("/html/searchCard.html", function(card) {
 			card = card
@@ -125,6 +151,11 @@ const SEARCH = {
 		}, 'html');
 	},
 
+	/**
+	 * Change URL putting the id-freelancer in order to open the selected profile
+	 * @param {EventListener} ev - event Listener
+	 * @return {void}
+	 */
 	selectProfile: function(ev) {
 		let elem = ev.target;
 		let id = elem.parentNode.parentNode.id;
