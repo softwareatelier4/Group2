@@ -13,30 +13,30 @@ router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 router.all('/search/:search', middleware.supportedMethods('GET, OPTIONS'));
 router.get('/search/:search', function(req, res, next) {
-	Freelancer.find({}).populate('tags').lean().exec(function(err, freelancers) {
-		if (err) return next(err);
+   Freelancer.find({}).populate('tags').lean().exec(function(err, freelancers) {
+      if (err) return next(err);
 
-		res.json(searchEngine(freelancers, req.params.search));
-	});
+      res.json(searchEngine(freelancers, req.params.search));
+   });
 });
 
 router.all('/:freelancerid', middleware.supportedMethods('GET, OPTIONS'));
 router.get('/:freelancerid', function(req, res, next) {
-	Freelancer.findById(req.params.freelancerid).populate('tags').populate('ownerId').lean().exec(function(err, freelancer) {
-		if (err) {
-			res.status(400).send(err);
-			return;
-		}
-		if (!freelancer) {
-			res.status(404);
-			res.json({
-				statusCode: 404,
-				message: "Not Found"
-			});
-			return;
-		}
-		res.json(freelancer);
-	})
+   Freelancer.findById(req.params.freelancerid).populate('tags').populate('ownerId').lean().exec(function(err, freelancer) {
+      if (err) {
+         res.status(400).send(err);
+         return;
+      }
+      if (!freelancer) {
+         res.status(404);
+         res.json({
+            statusCode: 404,
+            message: "Not Found"
+         });
+         return;
+      }
+      res.json(freelancer);
+   })
 });
 
 /**
@@ -46,64 +46,64 @@ router.get('/:freelancerid', function(req, res, next) {
  * @return {array} - Array of filtered freelancers
  */
 let searchEngine = function(freelancers, string) {
-	let result = [];
-	let words = string.replace(",", " ").split(" ");
-	let fClone = [];
+   let result = [];
+   let words = string.replace(",", " ").split(" ");
+   let fClone = [];
 
-	/*
-	 Search for the searchWords in freelancers datas
-	(tags, cities and then other datas)
-	*/
-	for (let w of words) {
-		for (let f of freelancers) {
-			let tags = [];
-			for (let t of f.tags) {
-				tags.push(t.name);
-			}
-			if (searchForTag(tags, w).length > 0) {
-				fClone.push(f);
-				continue;
-			}
+   /*
+    Search for the searchWords in freelancers datas
+   (tags, cities and then other datas)
+   */
+   for (let w of words) {
+      for (let f of freelancers) {
+         let tags = [];
+         for (let t of f.tags) {
+            tags.push(t.name);
+         }
+         if (searchForTag(tags, w).length > 0) {
+            fClone.push(f);
+            continue;
+         }
 
-			let city = [f.address.city];
-			if (searchForTag(city, w).length > 0) {
-				fClone.push(f);
-				continue;
-			}
+         let city = [f.address.city];
+         if (searchForTag(city, w).length > 0) {
+            fClone.push(f);
+            continue;
+         }
 
-			let filter = [f.firstName, f.lastName, f.workName, f.phone, f.email, f.description];
-			if (searchForTag(filter, w).length > 0) {
-				fClone.push(f);
-				continue;
-			}
-		}
-	}
+         let filter = [f.firstName, f.lastName, f.workName, f.phone, f.email, f.description];
+         if (searchForTag(filter, w).length > 0) {
+            fClone.push(f);
+            continue;
+         }
+      }
+   }
 
-	/*
-	   Put freelancers that satisfy requirements in the result
-	*/
-	for (let f of fClone) {
-		let freelancer = {
-			_id: f._id,
-			firstName: f.firstName,
-			lastName: f.lastName,
-			description: f.description,
-			workName: f.workName,
-			photo: f.profilePhoto,
-			counter: countInArray(fClone, f)
-		};
-		result.push(freelancer);
-	}
+   /*
+      Put freelancers that satisfy requirements in the result
+   */
+   for (let f of fClone) {
+      let freelancer = {
+         _id: f._id,
+         firstName: f.firstName,
+         lastName: f.lastName,
+         description: f.description,
+         workName: f.workName,
+         photo: f.profilePhoto,
+         counter: countInArray(fClone, f)
+      };
+      result.push(freelancer);
+   }
 
-	/*
-	   Sort the freelancer based on the number of found searchWords in the
-	   freelancer's profile
-	*/
-	result.sort(function(a, b) {
-		return b.counter - a.counter
-	})
+   /*
+      Sort the freelancer based on the number of found searchWords in the
+      freelancer's profile
+   */
+   result.sort(function(a, b) {
+      return b.counter - a.counter
+   })
 
-	return removeDuplicatesFreelancers(result);
+   return removeDuplicatesFreelancers(result);
 
 }
 
@@ -114,18 +114,18 @@ let searchEngine = function(freelancers, string) {
  * @return {array} - Array of unique freelancers
  */
 let removeDuplicatesFreelancers = function(array) {
-	let temp = [];
-	let found = false;
-	for (let f of array) {
-		for (let x of temp) {
-			if (f._id === x._id)
-				found = true;
-		}
-		if (!found)
-			temp.push(f);
-		found = false;
-	}
-	return temp;
+   let temp = [];
+   let found = false;
+   for (let f of array) {
+      for (let x of temp) {
+         if (f._id === x._id)
+            found = true;
+      }
+      if (!found)
+         temp.push(f);
+      found = false;
+   }
+   return temp;
 }
 
 /**
@@ -135,12 +135,12 @@ let removeDuplicatesFreelancers = function(array) {
  * @return {array} - Array of filtered stuff
  */
 let searchForTag = function(array, string) {
-	let result = [];
-	for (let s of array) {
-		if (s.toLowerCase().includes(string.toLowerCase()))
-			result.push(s);
-	}
-	return result;
+   let result = [];
+   for (let s of array) {
+      if (s && s.toLowerCase().includes(string.toLowerCase()))
+         result.push(s);
+   }
+   return result;
 }
 
 /**
@@ -150,13 +150,13 @@ let searchForTag = function(array, string) {
  * @return {number} - Occurencies of that element in the array
  */
 function countInArray(array, what) {
-	var count = 0;
-	for (var i = 0; i < array.length; i++) {
-		if (array[i] === what) {
-			count++;
-		}
-	}
-	return count;
+   var count = 0;
+   for (var i = 0; i < array.length; i++) {
+      if (array[i] === what) {
+         count++;
+      }
+   }
+   return count;
 }
 
 
