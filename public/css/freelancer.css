@@ -21,6 +21,8 @@
    margin-top: 30px;
 }
 
+
+/*
 @media screen and (max-width: 750px) {
    #main-info {
       justify-content: center;
@@ -29,11 +31,26 @@
       margin-left: auto;
       margin-right: auto;
    }
-}
+}*/
 
 @media screen and (max-width: 1110px) {
    #profile-freelancer {
       min-width: 0 !important;
+   }
+   #info-review {
+      margin-left: 10%;
+   }
+   #main-info {
+      margin-left: 10%;
+   }
+   #info-name {
+      margin-left: -15px;
+   }
+   #rank {
+      margin-left: 0px;
+   }
+   #contact-info-top {
+      margin-left: 0px;
    }
 }
 
@@ -59,7 +76,7 @@
    margin-bottom: 5px;
 }
 
-.contact-info-top {
+#contact-info-top {
    display: flex;
    margin-top: 20px;
 }
