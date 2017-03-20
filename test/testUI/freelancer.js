@@ -11,6 +11,7 @@ describe("testing freelancer frontend", function() {
 	var browser = new Browser();
 
 	before(function(done) {
+		'use strict'
 		// starting the server
 		app.set('port', 3000);
 		this.server = app.listen(app.get('port'));
