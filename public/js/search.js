@@ -34,6 +34,8 @@ const SEARCH = {
 	searchFullScreen: function() {
 		MAIN_JS.style.visibility = "hidden";
 		MAIN_JS.style.flexGrow = 0;
+		MAIN_DIV.style.display = "flex";
+		MAIN_DIV.style.backgroundColor = "rgb(46, 78, 92)";
 	},
 
 
@@ -44,6 +46,8 @@ const SEARCH = {
 	searchHeader: function() {
 		MAIN_JS.style.visibility = "visible";
 		MAIN_JS.style.flexGrow = 1;
+		MAIN_DIV.style.display = "inherit";
+		MAIN_DIV.style.backgroundColor = "rgb(231, 231, 231)";
 	},
 
 
