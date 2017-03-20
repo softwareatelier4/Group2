@@ -145,7 +145,7 @@ const SEARCH = {
 				'f.id': freelancer._id,
 				'f.photo': freelancer.photo,
 				'f.name': freelancer.firstName + " " + freelancer.lastName,
-				'f.description': freelancer.description
+				'f.description': freelancer.description.length > 230 ? freelancer.description.substring(0,230) + "..." : freelancer.description
 			};
 
 			for (label in templateTag) {
