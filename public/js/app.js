@@ -2,6 +2,7 @@ let currentPage;
 const MAIN_QUERY = $('#main-content');
 const SEARCH_TEXT_QUERY = $('#search-text');
 const MAIN_JS = document.getElementById('main-content');
+const MAIN_DIV = document.getElementById('main');
 
 $(document).ready(function() {
 	window.addEventListener("hashchange", hashchanged);

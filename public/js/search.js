@@ -34,6 +34,8 @@ const SEARCH = {
 	searchFullScreen: function() {
 		MAIN_JS.style.visibility = "hidden";
 		MAIN_JS.style.flexGrow = 0;
+		MAIN_DIV.style.display = "flex";
+		MAIN_DIV.style.backgroundColor = "rgb(46, 78, 92)";
 	},
 
 
@@ -44,6 +46,8 @@ const SEARCH = {
 	searchHeader: function() {
 		MAIN_JS.style.visibility = "visible";
 		MAIN_JS.style.flexGrow = 1;
+		MAIN_DIV.style.display = "inherit";
+		MAIN_DIV.style.backgroundColor = "rgb(231, 231, 231)";
 	},
 
 
@@ -137,11 +141,16 @@ const SEARCH = {
 	 */
 	insertCard: function(freelancer) {
 		$.get("/html/searchCard.html", function(card) {
-			card = card
-				.replace('{f.id}', freelancer._id)
-				.replace('{f.photo}', freelancer.photo)
-				.replace('{f.name}', freelancer.firstName + " " + freelancer.lastName)
-				.replace('{f.description}', freelancer.description);
+			let templateTag = {
+				'f.id': freelancer._id,
+				'f.photo': freelancer.photo,
+				'f.name': freelancer.firstName + " " + freelancer.lastName,
+				'f.description': freelancer.description.length > 230 ? freelancer.description.substring(0,230) + "..." : freelancer.description
+			};
+
+			for (label in templateTag) {
+				card = renderTemplateString(card, templateTag[label], label);
+			}
 
 			MAIN_JS.insertAdjacentHTML('beforeend', card);
 
