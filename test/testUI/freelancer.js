@@ -19,6 +19,10 @@ describe("testing freelancer frontend", function() {
 		browser.visit('', done);
 	});
 
+	after(function(done) {
+		this.server.close(done);
+	});
+
 	describe('Reach using search', function() {
 		it('should have the correct title', function() {
 			browser.assert.text('title', 'JobAdvisor');

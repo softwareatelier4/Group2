@@ -1,19 +1,36 @@
-// 'use strict';
-//
-// var should = require('should');
-// var utils = require('../utils');
-// var request = require('supertest');
-// var app = require('../../app');
-//
-// var Browser = require("zombie");
-// Browser.localhost('127.0.0.1', 3000);
-//
-// describe("Testing index page (initial search bar)", function() {
-// 	var browser = new Browser();
-//
-// 	before(function(done) {
-// 		browser.visit('#', done);
-// 	});
+'use strict';
+
+var should = require('should');
+var utils = require('../utils');
+var request = require('supertest');
+var app = require('../../app');
+
+var Browser = require("zombie");
+Browser.localhost('127.0.0.1', 3000);
+
+describe("Testing index page (initial search bar)", function() {
+	var browser = new Browser();
+
+	before(function(done) {
+		// starting the server
+		app.set('port', 3000);
+		this.server = app.listen(app.get('port'));
+
+		browser.visit('', done);
+	});
+
+	after(function(done) {
+		this.server.close(done);
+	});
+});
+
+
+
+
+
+
+
+
 //
 //     describe("Search for the name \'Marco\'", function() {
 //
