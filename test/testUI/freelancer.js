@@ -6,22 +6,7 @@ var request = require('supertest');
 var app = require('../../app');
 
 var Browser = require("zombie");
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 Browser.localhost('127.0.0.1', 3000);
-
-describe("testing freelancer frontend", function() {
-	var browser = new Browser();
-	
-	before(function(done) {
-		// starting the server
-		// app.set('port', 3000);
-		// this.server = app.listen(app.get('port'));
-
-		browser.visit('#', done);
-=======
->>>>>>> Stashed changes
 
 describe("testing freelancer frontend", function() {
 	var browser = new Browser();
@@ -31,11 +16,11 @@ describe("testing freelancer frontend", function() {
 		app.set('port', 3000);
 		this.server = app.listen(app.get('port'));
 
-		browser.visit('http://localhost:3000/', done);
-<<<<<<< Updated upstream
-=======
->>>>>>> origin/Init
->>>>>>> Stashed changes
+		browser.visit('', done);
+	});
+
+	after(function(done) {
+		this.server.close(done);
 	});
 
 	describe('Reach using search', function() {

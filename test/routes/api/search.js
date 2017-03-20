@@ -24,7 +24,7 @@ describe('Testing the search algorithm', function() {
 				.expect(200)
 				.end(function(err, res) {
 					let resJson = JSON.parse(res.text);
-					resJson.should.have.length(3);
+					resJson.should.have.length(2);
 
 					done();
 				});
@@ -127,23 +127,21 @@ describe('Testing the search algorithm', function() {
 				.expect('Content-Type', /json/, 'it should respond with json')
 				.expect(200)
 				.end(function(err, res) {
-					let resJson = JSON.parse(res.text);
-					resJson[0].firstName.should.equal("Marco");
-
-					res.text.indexOf('Tester').should.be.greaterThan(-1, "Freelancer Marco should be there");
-					res.text.indexOf('Nevio').should.be.greaterThan(-1, "Freelancer Nevio should be there");
+					res.text.indexOf('Marco').should.be.greaterThan(-1, "Freelancer Vanessa should be there");
+					res.text.indexOf('Vanessa').should.be.greaterThan(-1, "Freelancer Vanessa should be there");
+					res.text.indexOf('Samantha').should.be.greaterThan(-1, "Samantha Nevio should be there");
 					done();
 				});
 		});
 		it('should list all the freelancer that have BHO as work name', function(done) {
 			request(app)
-				.get('/api/freelancer/search/BHO')
+				.get('/api/freelancer/search/Cocco')
 				.set('Accept', 'application/json')
 				.expect('Content-Type', /json/, 'it should respond with json')
 				.expect(200)
 				.end(function(err, res) {
 					let resJson = JSON.parse(res.text);
-					resJson[0].workName.should.equal("BHO");
+					resJson[0].workName.should.equal("Cocco");
 
 					done();
 				});
