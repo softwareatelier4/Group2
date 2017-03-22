@@ -24,7 +24,7 @@ module.exports = {
 				"path": ""
 			},
 			"desiredCapabilities": {
-				"browserName": "chrome",
+				"browserName": "phantomjs",
 				"javascriptEnabled": true,
 				"acceptSslCerts": true
 			}

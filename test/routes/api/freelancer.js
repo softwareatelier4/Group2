@@ -18,7 +18,7 @@ describe('Testing Read for api/freelancer/', function() {
 
 		it('Should return the correct freelancer', function(done) {
 			request(app)
-				.get('/api/freelancer/500000000000000000000000/')
+				.get('/api/freelancer/f00000000000000000000000/')
 				.set('Accept', 'application/json')
 				.expect('Content-Type', /json/, 'it should respond with json')
 				.expect(200)
@@ -51,7 +51,7 @@ describe('Testing Read for localhost:3000/api/review/freelancer/', function() {
 		after(utils.dropDb);
 		it('Should return the correct review', function(done) {
 			request(app)
-				.get('/api/review/freelancer/500000000000000000000000')
+				.get('/api/review/freelancer/f00000000000000000000000')
 				.set('Accept', 'application/json')
 				.expect('Content-Type', /json/, 'it should respond with json')
 				.expect(200)
@@ -64,7 +64,7 @@ describe('Testing Read for localhost:3000/api/review/freelancer/', function() {
 
 		it('Should return empty array if the freelancer exists', function(done) {
 			request(app)
-				.get('/api/review/freelancer/500000000000000000000002')
+				.get('/api/review/freelancer/f00000000000000000000002')
 				.set('Accept', 'application/json')
 				.expect('Content-Type', /json/, 'it should respond with json')
 				.expect(200)
