@@ -1,5 +1,5 @@
 module.exports = {
-	"src_folders": [],
+	"src_folders": ['./test/testUI'],
 	"output_folder": "./test/nightwatch-reports",
 	"custom_commands_path": "",
 	"custom_assertions_path": "",
@@ -24,7 +24,7 @@ module.exports = {
 				"path": ""
 			},
 			"desiredCapabilities": {
-				"browserName": "phantomjs",
+				"browserName": "chrome",
 				"javascriptEnabled": true,
 				"acceptSslCerts": true
 			}
