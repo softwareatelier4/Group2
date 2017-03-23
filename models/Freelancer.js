@@ -23,59 +23,64 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var FreelancerSchema = new mongoose.Schema({
 
-   firstName: {
-      type: String,
-      required: true
-   },
-   lastName: {
-      type: String,
-      required: true
-   },
-   workName: {
-      type: String,
-      default: ""
-   },
-   email: {
-      type: String,
-      required: true
-   },
-   phone: {
-      type: String
-   },
-   profilePhoto: {
-      type: String
-   },
-   photos: {
-      type: Array,
-      default: []
-   },
-   address: {
-      road: {
-         type: String
-      },
-      number: {
-         type: Number
-      },
-      city: {
-         type: String
-      },
-      cap: {
-         type: Number
-      },
-   },
-   tags: [{
-      type: ObjectId,
-      ref: "Tag"
-   }],
-   description: {
-      type: String,
-      required: true
-   },
-   ownerId: {
-      type: ObjectId,
-      ref: "User"
-   }
-
+	firstName: {
+		type: String,
+		required: true
+	},
+	lastName: {
+		type: String,
+		required: true
+	},
+	workName: {
+		type: String,
+		default: ""
+	},
+	email: {
+		type: String,
+		required: true
+	},
+	phone: {
+		type: String
+	},
+	profilePhoto: {
+		type: String
+	},
+	photos: {
+		type: Array,
+		default: []
+	},
+	address: {
+		road: {
+			type: String
+		},
+		number: {
+			type: Number
+		},
+		city: {
+			type: String
+		},
+		cap: {
+			type: Number
+		},
+	},
+	tags: [{
+		type: ObjectId,
+		ref: "Tag"
+	}],
+	description: {
+		type: String,
+		required: true
+	},
+	ownerId: {
+		type: ObjectId,
+		ref: "User"
+	},
+	score: {
+		type: Number,
+		min: 0,
+		max: 5,
+		default: 0
+	}
 });
 
 
