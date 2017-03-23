@@ -141,21 +141,22 @@ const SEARCH = {
 	 */
 	insertCard: function(freelancer) {
 		$.get("/html/searchCard.html", function(card) {
-			let templateTag = {
-				'f.id': freelancer._id,
-				'f.photo': freelancer.photo,
-				'f.name': freelancer.firstName + " " + freelancer.lastName,
-				'f.description': freelancer.description.length > 230 ? freelancer.description.substring(0,230) + "..." : freelancer.description
+
+			let data = {
+				'freelancer': {
+					'id': freelancer._id,
+					'photo': freelancer.photo,
+					'name': freelancer.firstName + " " + freelancer.lastName,
+					'description': freelancer.description.length > 230 ? freelancer.description.substring(0, 230) + "..." : freelancer.description
+				}
 			};
 
-			for (label in templateTag) {
-				card = renderTemplateString(card, templateTag[label], label);
-			}
+			dust.renderSource(card, data, function(err, out) {
+				MAIN_JS.insertAdjacentHTML('beforeend', out);
 
-			MAIN_JS.insertAdjacentHTML('beforeend', card);
-
-			let link = document.getElementById(freelancer._id).getElementsByTagName('a')[0];
-			link.addEventListener('click', SEARCH.selectProfile);
+				let link = document.getElementById(freelancer._id).getElementsByTagName('a')[0];
+				link.addEventListener('click', SEARCH.selectProfile);
+			});
 
 		}, 'html');
 	},

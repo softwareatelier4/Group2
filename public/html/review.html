@@ -1,23 +1,25 @@
+{#.}
 <div class="card review">
    <div class="card-block">
       <div class="title-author-review">
          <div id="score-name">
-            <h5>{r.title}</h5> {r.score}
+            <h5>{title}</h5> {score|s}
          </div>
-         <h6 id="review-user" class="card-subtitle mb-2 text-muted">{r.firstName} {r.lastName}</h6>
+         <h6 id="review-user" class="card-subtitle mb-2 text-muted">{user.firstName} {user.lastName}</h6>
       </div>
-      <p id="review-description" class="card-text">{r.description}</p>
+      <p id="review-description" class="card-text">{description}</p>
       <div id="photo-review">
-         {?r.photos} {[r.photos}
-         <a href="{r.photos}" data-lightbox="review-img"><img class="thumbnail-element" src="{r.photos}" /></a>{r.photos]} {?r.photos/}
+         {?photos} {#photos}
+         <a href="{.}" data-lightbox="review-img"><img class="thumbnail-element" src="{.}" /></a>{/photos} {/photos}
       </div>
       <div id="reply">
-         {?r.answer}
+         {?answer}
          <div class="card-block">
             <h6 class="card-subtitle mb-2 text-muted">Reply:</h6>
-            <p class="card-text"> {r.answer} </p>
+            <p class="card-text"> {answer} </p>
          </div>
-         {?r.answer/}
+         {/answer}
       </div>
    </div>
 </div>
+{:else} There aren't any reviews at the moment {/.}

@@ -1,60 +1,58 @@
 <div id="profile-freelancer">
 	<div id="main-info">
-		<div id="profile-pic" alt="profile photo" {?f.profilePic} style="background-image:url('{f.profilePic}');" {?f.profilePic/}>
+		<div id="profile-pic" alt="profile photo" {?freelancer.profilePhoto} style="background-image:url('{freelancer.profilePhoto}');" {/freelancer.profilePhoto}>
 		</div>
 		<div id="main-info-vertical">
 			<div id="info-name">
 				<div class="info-name-top">
-					<span class="ml-15" id="profile-name">{f.firstName} {f.lastName}</span>
-					<span class="ml-15 light-blue" id="city-freelancer">{?f.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{f.city}">{f.city}</a> {?f.city/}</span>
+					<span class="ml-15" id="profile-name">{freelancer.firstName} {freelancer.lastName}</span>
+					<span class="ml-15 light-blue" id="city-freelancer">{?freelancer.address.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a> {/freelancer.address.city}</span>
 				</div>
 				<div class="ml-15 light-blue" id="info-name-bottom">
-					{f.workName}
+					{freelancer.workName}
 				</div>
 			</div>
 			<div id="rank" class="ml-15">
-				{f.rank}
+				{freelancer.score|s}
 			</div>
 			<div id="contact-info-top" class="ml-15">
 				<div id="chat" class="contact-info-element blue">
 					<i class="fa fa-comment " aria-hidden="true"></i> chat
 				</div>
 				<div id="email" class="contact-info-element blue">
-					<i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{f.mail}">{f.mail}</a>
+					<i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{freelancer.email}">{freelancer.email}</a>
 				</div>
 				<div id="phone" class="contact-info-element blue">
-					{?f.phone}<i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{f.phone}">{f.phone}</a>{?f.phone/}
+					{?freelancer.phone}<i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{freelancer.phone}">{freelancer.phone}</a>{/freelancer.phone}
 				</div>
 			</div>
 		</div>
 	</div>
 	<div id="main-info-bottom">
-		<div {?f.margin} {f.margin} {?f.margin/} id="info-review">
+		<div id="info-review">
 			<div id="info">
 				<h5 class="blue">INFO</h5>
 				<div id="tag">
-					{?f.tag} {[f.tag}
-					<span class="badge badge-default"> {f.tag} </span> {f.tag]} {?f.tag/}
+					{#freelancer.tags} <span class="badge badge-default"> {name} </span> {/freelancer.tags}
 				</div>
-				<span id="description"></span> {f.description}
+				<span id="description"></span> {freelancer.description}
 			</div>
 
 			<div id="reviews">
 				<h5 class="blue">REVIEW</h5>
 				<div id="cardReviews">
-					{f.review}
 				</div>
 			</div>
 		</div>
 
 		<div id="img-freelancer">
 			<div id="works" class="blue ml-15">
-				{?f.photos}<i class="fa fa-camera" aria-hidden="true"></i>
+				{?freelancer.photos}<i class="fa fa-camera" aria-hidden="true"></i>
 				<h5>WORKS</h5>
 			</div>
 			<div id="thumbnail">
-				{[f.photos}
-				<a href="{f.photos}" data-lightbox="review-img"><img class="thumbnail-element" src="{f.photos}" /></a>{f.photos]} {?f.photos/}
+				{#freelancer.photos}
+				<a href="{.}" data-lightbox="review-img"><img class="thumbnail-element" src="{.}" /></a>{/freelancer.photos} {/freelancer.photos}
 			</div>
 		</div>
 	</div>
