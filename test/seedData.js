@@ -17,7 +17,9 @@ var freelancer = {
 				road: 'Via Zurigo',
 				number: 10,
 				city: 'Lugano',
-				cap: 69100
+				cap: 69100,
+				lat: 46.0119793,
+				long: 8.9517463,
 			},
 			'tags': [
 				ObjectId("a00000000000000000000003"),
@@ -44,7 +46,9 @@ var freelancer = {
 				road: 'Via Shisha',
 				number: 69,
 				city: 'New York',
-				cap: 29100
+				cap: 29100,
+				lat: 40.705565,
+				long: -74.1180857,
 			},
 			'tags': [
 				ObjectId("a00000000000000000000009"),
@@ -61,10 +65,12 @@ var freelancer = {
 			'phone': '23234234234',
 			'profilePhoto': '/uploads/test/profile2.jpg',
 			'address': {
-				road: 'Via Ciao',
+				road: 'Via Schianno',
 				number: 99,
-				city: 'Lugano',
-				cap: 29100
+				city: 'Varese',
+				cap: 29100,
+				lat: 45.7790629,
+				long: 8.8427876,
 			},
 			'tags': [
 				ObjectId("a00000000000000000000007"),
@@ -80,7 +86,9 @@ var freelancer = {
 			'phone': '+4107362864',
 			'profilePhoto': '/uploads/test/profile3.jpg',
 			'address': {
-				city: 'Florence',
+				city: 'Casinò di lugano',
+				lat: 46.0040767,
+				long: 8.9530366,
 			},
 			'tags': [
 				ObjectId("a00000000000000000000008"),
@@ -96,7 +104,9 @@ var freelancer = {
 			'lastName': 'Ferri',
 			'email': 'sammi@gmail.com',
 			'address': {
-				city: 'Paris',
+				city: 'Mendrisio',
+				lat: 45.8887047,
+				long: 8.9552257,
 			},
 			'tags': [
 				ObjectId("a00000000000000000000005"),
@@ -112,7 +122,9 @@ var freelancer = {
 			'workName': 'Cocco',
 			'email': 'cocco@gmail.com',
 			'address': {
-				city: 'BohCity',
+				city: 'Milano',
+				lat: 45.4627124,
+				long: 9.1076929,
 			},
 			'description': "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
 			score: 3
@@ -124,6 +136,8 @@ var freelancer = {
 			'email': 'zenos@gmail.com',
 			'address': {
 				city: 'Mendrisio',
+				lat: 45.8887047,
+				long: 8.9552257,
 			},
 			'tags': [
 				ObjectId("a00000000000000000000004"),

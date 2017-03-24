@@ -80,7 +80,10 @@ const SEARCH = {
 		if (query.length > 0) {
 			SEARCH.searchHeader();
 
-			doJSONRequest("GET", "/api/freelancer/search/" + query, null, null, function(res) {
+			let lat = 46.005265;
+			let long = 8.947147;
+
+			doJSONRequest("GET", "/api/freelancer/search/" + query + "|" + lat + "," + long, null, null, function(res) {
 				if (res.error) {
 					console.log("error");
 				} else {
