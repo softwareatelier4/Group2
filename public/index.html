@@ -22,16 +22,16 @@
 				<form class="" autocomplete="off">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
-						<span class="input-group-addon search-btn" id="basic-addon1" onclick="search.search();">Search</span>
+						<span class="input-group-addon search-btn" id="basic-addon1" onclick="SEARCH.search();">Search</span>
 					</div>
 				</form>
-			<div  class="input-group">
-				<span class="input-group-addon search-btn" id="basic-addon2" onclick="console.log('aaaa')">Soldi</span>
-				<span class="input-group-addon search-btn" id="basic-addon3" onclick="console.log('bbbb')">Distanza</span>
-				<span class="input-group-addon search-btn" id="basic-addon4" onclick="console.log('cccc')">Tempo</span>
-				<span class="input-group-addon search-btn" id="basic-addon5" onclick="console.log('dddd')">Nome</span>
-				<span class="input-group-addon search-btn" id="basic-addon5" onclick="console.log('eeee')">Valutazione</span>
-			</div>
+				<div class="input-group" id="sorting-buttons">
+					<span class="input-group-addon search-btn" id="btn-score" onclick="SEARCH.orderFreelancers('btn-score');">Score</span>
+					<span class="input-group-addon search-btn" id="btn-distance" onclick="SEARCH.orderFreelancers('btn-distance');">Distanza</span>
+					<span class="input-group-addon search-btn" id="btn-time" onclick="SEARCH.orderFreelancers('btn-distance');">Tempo</span>
+					<span class="input-group-addon search-btn" id="btn-name" onclick="SEARCH.orderFreelancers('btn-name');">Nome</span>
+					<span class="input-group-addon search-btn" id="btn-cost" onclick="SEARCH.orderFreelancers('btn-distance');">Soldi</span>
+				</div>
 			</div>
 		</div>
 		<main id="main-content">

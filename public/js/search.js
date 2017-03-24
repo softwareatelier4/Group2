@@ -1,3 +1,4 @@
+let currentResult = [];
 const SEARCH = {
 
 	name: 'search',
@@ -70,7 +71,6 @@ const SEARCH = {
 		});
 	},
 
-
 	/**
 	 * AJAX request and formatting for the search
 	 * @return {void}
@@ -80,13 +80,14 @@ const SEARCH = {
 		if (query.length > 0) {
 			SEARCH.searchHeader();
 
-			let lat = 46.005265;
-			let long = 8.947147;
+			let lat = 46.005265; //temp lat
+			let long = 8.947147; // temp long
 
 			doJSONRequest("GET", "/api/freelancer/search/" + query + "|" + lat + "," + long, null, null, function(res) {
 				if (res.error) {
 					console.log("error");
 				} else {
+					currentResult = res;
 					let searchResult = document.getElementById('main-content');
 					searchResult.innerHTML = "";
 					for (freelancer of res) {
@@ -95,6 +96,7 @@ const SEARCH = {
 					if (res.length == 0) {
 						searchResult.innerHTML = "<h3 style='margin-top:30px;'> No result </h3>";
 					}
+
 				}
 				let spinner = document.getElementById('spinner');
 				if (spinner) {
@@ -105,6 +107,81 @@ const SEARCH = {
 			SEARCH.searchFullScreen();
 			MAIN_JS.innerHTML = SEARCH.spinner;
 
+		}
+	},
+
+	orderFreelancers: function(buttonId) {
+		if (currentResult === undefined)
+			return;
+
+		let currentButton = document.getElementById(buttonId);
+		let currentOrder = currentButton.textContent || currentButton.innerText;
+
+		let buttons = document.getElementById('sorting-buttons').childNodes;
+
+		let ascending = true;
+
+		for (let i = 0; i < buttons.length; i++) {
+			// skip current clicked button
+			if (buttons[i].id === buttonId)
+				continue;
+
+
+			if (buttons[i].innerText !== undefined) {
+				buttons[i].innerText = buttons[i].innerText.replace(" ↑", "");
+				buttons[i].innerText = buttons[i].innerText.replace(" ↓", "");
+			}
+		}
+
+		if (currentOrder.includes("↑")) {
+			ascending = false;
+			currentButton.innerText = currentOrder.replace("↑", "↓")
+		} else if (currentOrder.includes("↓")) {
+			currentButton.innerText = currentOrder.replace("↓", "↑")
+			ascending = true;
+		} else {
+			currentButton.innerText = currentButton.innerText + " ↑";
+		}
+
+
+		currentResult.sort(function(a, b) {
+			switch (buttonId) {
+				case "btn-score":
+					if (ascending)
+						return b.score - a.score;
+					else {
+						return a.score - b.score;
+					}
+					break;
+				case "btn-distance":
+					if (ascending)
+						return b.distance - a.distance;
+					else {
+						return a.distance - b.distance;
+					}
+					break;
+				case "btn-name":
+					if (ascending) {
+						if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) return -1;
+						if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) return 1;
+						return 0;
+					} else {
+						if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) return -1;
+						if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) return 1;
+						return 0;
+					}
+					break;
+			}
+
+		});
+
+		let searchResult = document.getElementById('main-content');
+		searchResult.innerHTML = "";
+		for (freelancer of currentResult) {
+			SEARCH.insertCard(freelancer);
+		}
+		if (currentResult.length == 0) {
+			searchResult.innerHTML = "<h3 style='margin-top:30px;'> No result </h3>";
 		}
 	},
 

@@ -120,10 +120,10 @@ let searchEngine = function(freelancers, string) {
 			tags: f.tags,
 			workName: f.workName,
 			photo: f.profilePhoto,
+			score: f.score,
 			distance: Number(distanceCalculation(f, lat, long).toFixed(3)),
 			counter: countInArray(fClone, f)
 		};
-		console.log(freelancer.firstName + " " + freelancer.distance);
 		result.push(freelancer);
 	}
 
@@ -132,8 +132,8 @@ let searchEngine = function(freelancers, string) {
 	   freelancer's profile
 	*/
 	result.sort(function(a, b) {
-		return b.counter - a.counter
-	})
+		return b.counter - a.counter;
+	});
 
 	return removeDuplicatesFreelancers(result);
 
