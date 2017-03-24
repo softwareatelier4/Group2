@@ -20,7 +20,7 @@ router.get('/search/:search', function(req, res, next) {
    });
 });
 
-router.all('/:freelancerid', middleware.supportedMethods('GET, OPTIONS'));
+router.all('/:freelancerid', middleware.supportedMethods('GET, PUT, OPTIONS'));
 router.get('/:freelancerid', function(req, res, next) {
    Freelancer.findById(req.params.freelancerid).populate('tags').populate('ownerId').lean().exec(function(err, freelancer) {
       if (err) {
@@ -37,6 +37,33 @@ router.get('/:freelancerid', function(req, res, next) {
       }
       res.json(freelancer);
    })
+});
+
+//function for updating the freelancer profile
+
+router.put('/:freelancerid', function(req, res, next) {
+  const data = req.body;
+
+  Freelancer.findById(req.params.freelancerid, function(err, freelancer){
+    if (err) return next (err);
+
+    if (freelancer){
+      freelancer.firstName = data.firstName;
+      freelancer.lastName = data.lastName;
+      freelancer.workName = data.workName;
+      freelancer.email = data.email;
+      freelancer.phone = data.phone;
+      freelancer.profilePhoto = data.profilePhoto;
+      freelancer.photos = data.photos;
+      freelancer.address = data.address;
+      freelancer.tags = data.tags;
+      freelancer.description = data.description;
+      freelancer.ownerId = data.ownerId;
+      freelancer.score = data.score;
+
+      freelancer.save(onModelSave(res));
+    }
+  });
 });
 
 /**
@@ -160,5 +187,34 @@ function countInArray(array, what) {
    return count;
 }
 
+
+function onModelSave(res, status, sendItAsResponse){
+  const statusCode = status || 204;
+  sendItAsResponse = sendItAsResponse || false;
+  return function(err, saved){
+    if (err) {
+      if (err.name === 'ValidationError' 
+        || err.name === 'TypeError' ) {
+        res.status(400)
+        return res.json({
+          statusCode: 400,
+          message: "Bad Request"
+        });
+      }else{
+        return next (err);
+      }
+    }
+
+    if( sendItAsResponse){
+      const obj = saved.toObject();
+      delete obj.password;
+      delete obj.__v;
+      addLinks(obj);
+      return res.status(statusCode).json(obj);
+    }else{
+      return res.status(statusCode).end();
+    }
+  }
+}
 
 module.exports = router;
