@@ -177,6 +177,7 @@ const SEARCH = {
 						return a.price - b.price;
 					}
 					break;
+				case "btn-time":
 				case "btn-distance":
 					if (ascending)
 						return b.distance - a.distance;
@@ -202,6 +203,26 @@ const SEARCH = {
 			}
 
 		});
+
+		if (buttonId === 'btn-time') {
+
+			let i = 0;
+			for (freelancer of currentResult) {
+				if (i < 5) {
+					freelancer.time = freelancer.distance / 60; // temp, need google api
+				} else {
+					freelancer.time = freelancer.distance / 60;
+				}
+			}
+
+			currentResult.sort(function(a, b) {
+				if (ascending)
+					return b.time - a.time;
+				else {
+					return a.time - b.time;
+				}
+			})
+		}
 
 		let searchResult = document.getElementById('main-content');
 		searchResult.innerHTML = "";
