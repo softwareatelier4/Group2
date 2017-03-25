@@ -171,12 +171,14 @@ router.post('/create/freelancer', function(req, res) {
 	freelancer.phone        = req.body.phone;
 	//freelancer.profilePhoto = req.body.profilePhoto;
 	freelancer.address      = req.body.address;
-	freelancer.description = req.body.description || '';
-	freelancer.tags = req.body.tags || [];
+	freelancer.description = req.body.description || 'asd';
+	freelancer.tags = req.body.tags || [mongoose.Types.ObjectId("4625fc2bd82b84d23d8c7bd0")];
 	console.log(req.body);
+	console.log(freelancer);
 	freelancer.save(function(err) {
 		if (err){
 			res.send(err);
+			console.log(err);
 		} else {
 			res.json(freelancer);
 		}

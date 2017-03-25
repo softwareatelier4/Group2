@@ -62,6 +62,12 @@ var FreelancerSchema = new mongoose.Schema({
 		cap: {
 			type: Number
 		},
+		lat: {
+			type: Number
+		},
+		long: {
+			type: Number
+		},
 	},
 	tags: [{
 		type: ObjectId,
