@@ -32,7 +32,8 @@ var freelancer = {
 				'/uploads/test/2.jpg',
 				'/uploads/test/3.jpg',
 			],
-			'score': 5
+			'score': 5,
+			'price': 20
 		},
 		{
 			'_id': ObjectId("f00000000000000000000001"),
@@ -54,7 +55,8 @@ var freelancer = {
 				ObjectId("a00000000000000000000009"),
 			],
 			'description': "I'm Nevio, an award-winning photographer based in New York, specialising in weddings professionally, I will capture your special day. My passion is capturing the beauty of my city in landscapes.",
-			'score': 3
+			'score': 3,
+			'price': 30
 		},
 		{
 			'_id': ObjectId("f00000000000000000000002"),
@@ -96,7 +98,8 @@ var freelancer = {
 				ObjectId("a00000000000000000000002")
 			],
 			'description': "With over twenty years experience in the international distribution and coproduction business including stints as Head of International Distribution at Mediatoon and Alphanim Paris, I have created indie distributor awol animation in 2004. Significant representations since then include/have included Emmy award winning Little Airplane Productions NYC, The Jim Henson Company, Les Films de l’Arlequin and Supamonks France, Korean based Goldilocks Studio and Funny Flux Entertainment, along with Belfast based BAFTA award winning studio Black North-Enter Yes and multi award winning UK based studio Dot to Dot Productions etc. With over 130 international clients including public service broadcasters, pan-regional and commercial channels, digital platforms, Educational Networks, book publishers and consumer products partners, awol animation offers a one stop shop vertically integrated roll out for new brands.",
-			'score': 4
+			'score': 4,
+			'price': 10
 		},
 		{
 			'_id': ObjectId("f00000000000000000000004"),
@@ -127,7 +130,8 @@ var freelancer = {
 				long: 9.1076929,
 			},
 			'description': "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3
+			score: 3,
+			'price': 200
 		},
 		{
 			'_id': ObjectId("f00000000000000000000006"),
@@ -145,7 +149,8 @@ var freelancer = {
 				ObjectId("a00000000000000000000006")
 			],
 			'description': "Sono dimplomato come informatico presso SAMT. Terminata la scuola ho svolto il servizio militare, dopo ciò mi sono messo in proprio aprendo la mia azienda. Principalmente al momento mi occupo di assistenza ai clienti e di sviluppo di siti web. Sto studiando presso la Xamarin University e la Microsoft Virtual Accademy in maniera da continuare ad accrescermi professionalmente.",
-			'score': 3
+			'score': 3,
+			'price': 100
 		},
 		{
 			'_id': ObjectId("f00000000000000000000007"),

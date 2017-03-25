@@ -110,7 +110,12 @@ const SEARCH = {
 		}
 	},
 
-	orderFreelancers: function(buttonId) {
+	/**
+	 * Redraw freelancers cards in a sorted way based on properties (price, score,ecc)
+	 * @param {String} buttonId - Id of the button which calls this function to set the property
+	 * @return {void}
+	 */
+	sortSearchFreelancers: function(buttonId) {
 		if (currentResult === undefined)
 			return;
 
@@ -153,6 +158,25 @@ const SEARCH = {
 						return a.score - b.score;
 					}
 					break;
+				case "btn-price":
+					if (ascending) {
+						if (a.price === undefined)
+							return 1;
+
+						if (b.price === undefined)
+							return -1;
+
+						return b.price - a.price;
+					} else {
+						if (a.price === undefined)
+							return 1;
+
+						if (a.price === undefined)
+							return -1;
+
+						return a.price - b.price;
+					}
+					break;
 				case "btn-distance":
 					if (ascending)
 						return b.distance - a.distance;
@@ -162,12 +186,16 @@ const SEARCH = {
 					break;
 				case "btn-name":
 					if (ascending) {
-						if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) return -1;
-						if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) return 1;
+						if (a.firstName.toLowerCase() < b.firstName.toLowerCase())
+							return -1;
+						if (a.firstName.toLowerCase() > b.firstName.toLowerCase())
+							return 1;
 						return 0;
 					} else {
-						if (a.firstName.toLowerCase() > b.firstName.toLowerCase()) return -1;
-						if (a.firstName.toLowerCase() < b.firstName.toLowerCase()) return 1;
+						if (a.firstName.toLowerCase() > b.firstName.toLowerCase())
+							return -1;
+						if (a.firstName.toLowerCase() < b.firstName.toLowerCase())
+							return 1;
 						return 0;
 					}
 					break;
@@ -227,7 +255,8 @@ const SEARCH = {
 					'id': freelancer._id,
 					'photo': freelancer.photo,
 					'name': freelancer.firstName + " " + freelancer.lastName,
-					'description': freelancer.description.length > 230 ? freelancer.description.substring(0, 230) + "..." : freelancer.description
+					'description': freelancer.description.length > 230 ? freelancer.description.substring(0, 230) + "..." : freelancer.description,
+					'price': freelancer.price
 				}
 			};
 

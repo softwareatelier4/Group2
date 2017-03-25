@@ -122,7 +122,8 @@ let searchEngine = function(freelancers, string) {
 			photo: f.profilePhoto,
 			score: f.score,
 			distance: Number(distanceCalculation(f, lat, long).toFixed(3)),
-			counter: countInArray(fClone, f)
+			counter: countInArray(fClone, f),
+			price: f.price
 		};
 		result.push(freelancer);
 	}

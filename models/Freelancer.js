@@ -13,6 +13,7 @@
  * tags           Object[]     required   Tags to use in order to find this freelancer (at least 1)
  * description    String       required   Description of a freelancer
  * ownerId        ObjectId     optional   Link this freelancer to a user
+ * price 		   Number       optional   Price per hour which takes a freelancer
  */
 
 'use strict';
@@ -86,6 +87,9 @@ var FreelancerSchema = new mongoose.Schema({
 		min: 0,
 		max: 5,
 		default: 0
+	},
+	price: {
+		type: Number
 	}
 });
 
