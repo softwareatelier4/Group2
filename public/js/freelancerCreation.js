@@ -21,7 +21,7 @@ const FREELANCERCREATION = {
 			'email' : mail.value,
 			'phone' : phoneNumber.value,
 			'description' : description.value,
-			address : {
+			'address' : {
 				'city' : city.value,
 				'street' : street.value,
 				'number' : number.value,
@@ -29,10 +29,11 @@ const FREELANCERCREATION = {
 				'lat' : 0,
 				'long': 0
 
-			}
+			},
+			'tags' : FREELANCERCREATION.addedTags
 		};
 		doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
-			console.log(res);
+
 		});
 	},
 
@@ -51,21 +52,28 @@ const FREELANCERCREATION = {
 				for(let tag of res) {
 					availableTags = availableTags.concat([tag.name]);
 				}
-				console.log(availableTags);
 				$( "#tags" ).autocomplete({
 					source: availableTags
 				});
 			});
 		}
-		console.log("added tags: ", FREELANCERCREATION.addedTags);
 		if(tagText.value.length > 0 && event.key == "Enter" && !FREELANCERCREATION.addedTags.includes(tagText.value)){
 			doJSONRequest("POST", "/api/tag/", null, { 'name' : tagText.value }, function(res) {
-				let badge = `<span class="badge badge-primary">`+ tagText.value +`  <span aria-hidden="true">&times;</span></span>  `;
-				FREELANCERCREATION.addedTags.push(tagText.value);
+				let badge = `<span class="badge badge-primary">`+ res.name +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-id="`+ res._id +`" aria-hidden="true">&times;</span></span>  `;
+				FREELANCERCREATION.addedTags.push(res._id);
 				tagText.value = '';
 				tagsList.innerHTML += badge;
 			});
 		}
+	},
+
+	removeTag: function(span) {
+		let tagId = span.dataset.id;
+		let index = FREELANCERCREATION.addedTags.indexOf(tagId);
+		if(index > - 1) {
+			FREELANCERCREATION.addedTags.splice(index, 1);
+		}
+		span.parentNode.parentNode.removeChild(span.parentNode);
 	}
 
 }

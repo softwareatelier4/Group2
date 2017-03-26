@@ -12,14 +12,13 @@
 
 	<link rel="stylesheet" href="css/freelancer.css">
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/freelancerCreation.css">
 	<link rel="stylesheet" href="css/lightbox.min.css">
 	<title>JobAdvisor</title>
 </head>
 
 <body>
 	<div id="freelancerCreation" style="width: 500px; padding: 30px;" >
-		<form action="javascript:FREELANCERCREATION.submitFreelancer()">
+		<form enctype="multipart/form-data" action="javascript:FREELANCERCREATION.submitFreelancer()">
 			<div class="form-group">
 				<label for="firstName">First name: </label>
 				<input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter first name">

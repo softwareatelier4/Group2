@@ -28,7 +28,6 @@ router.get('/search/:tag', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 	Tag.find({name : req.body.name}, function(err, result) {
-		console.log(result);
 		if(result.length == 0) {
 			var tag = new Tag();
 			tag.name    = req.body.name;
@@ -41,7 +40,7 @@ router.post('/', function(req, res, next) {
 			});
 		}
 		else{
-			res.send("Esiste gia")
+			res.send(result[0]);
 		}
 	});
 });
