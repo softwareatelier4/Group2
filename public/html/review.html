@@ -13,8 +13,8 @@
          <a href="{.}" data-lightbox="review-img"><img class="thumbnail-element" src="{.}" /></a>{/photos} {/photos}
       </div>
       {^answer}
-      <button type="button" class="btn btn-primary pull-right" name="freelacer-replay">Reply Now</button>
-      <div class="replay">
+      <button type="button" class="btn btn-primary pull-right" name="freelancer-reply">Reply Now</button>{/answer}
+      <div class="reply">
          <div class="card-block" {^answer} style="display:none;" {/answer}>
             <h6 class="card-subtitle mb-2 text-muted">Reply:</h6>
             <p class="card-text"> {answer} </p>
@@ -27,7 +27,6 @@
          </div>
          <button type="submit" class="btn btn-primary pull-right">Send</button>
       </form>
-      {/answer}
    </div>
 </div>
 {:else} There aren't any reviews at the moment {/.}

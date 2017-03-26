@@ -60,9 +60,9 @@ const FREELANCER = {
 				dust.renderSource(reviewHtml, result, function(err, out) {
 					document.getElementById('cardReviews').innerHTML = out;
 
-					let freelancerReplayButtons = document.getElementsByName('freelacer-replay');
-					for (let freelancerReplayButton of freelancerReplayButtons) {
-						freelancerReplayButton.addEventListener('click', FREELANCER.showReplayReview);
+					let freelancerReplyButtons = document.getElementsByName('freelancer-reply');
+					for (let freelancerReplyButton of freelancerReplyButtons) {
+						freelancerReplyButton.addEventListener('click', FREELANCER.showReplyReview);
 					}
 				});
 			});
@@ -93,22 +93,22 @@ const FREELANCER = {
 
 	},
 
-	showReplayReview: function(e) {
+	showReplyReview: function(e) {
 		const form = e.target.parentNode.getElementsByTagName('form')[0];
 		const submitButton = form.getElementsByTagName('button')[0];
 
 		$(e.target).fadeOut(100);
 		$(form).fadeIn(400);
 
-		submitButton.addEventListener('click', FREELANCER.senderReplayReview);
+		submitButton.addEventListener('click', FREELANCER.senderReplyReview);
 	},
 
-	senderReplayReview: function(e) {
+	senderReplyReview: function(e) {
 		e.preventDefault();
 
 		const form = e.target.parentNode;
-		const replay = form.parentNode.getElementsByClassName('replay')[0];
-		const cardBlock = replay.getElementsByClassName('card-block')[0];
+		const reply = form.parentNode.getElementsByClassName('reply')[0];
+		const cardBlock = reply.getElementsByClassName('card-block')[0];
 		const reviewId = e.target.parentNode.name;
 		const textArea = e.target.parentNode.getElementsByTagName('textarea')[0];
 		const data = {
@@ -118,7 +118,7 @@ const FREELANCER = {
 		doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
 			$(form).fadeOut(400);
 			$(cardBlock).fadeIn(400);
-			replay.getElementsByTagName('p')[0].innerHTML = textArea.value;
+			reply.getElementsByTagName('p')[0].innerHTML = textArea.value;
 		});
 
 	}
