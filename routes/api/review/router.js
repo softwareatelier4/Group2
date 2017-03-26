@@ -47,5 +47,13 @@ router.get('/freelancer/:freelancerid', function(req, res, next) {
 	})
 })
 
+router.all('/:reviewid', middleware.supportedMethods('POST, OPTIONS'));
+router.post('/:reviewid', function(req, res, next) {
+	res.json({
+		statusCode: 201
+	});
+
+});
+
 /** router for /users */
 module.exports = router;

@@ -59,6 +59,11 @@ const FREELANCER = {
 
 				dust.renderSource(reviewHtml, result, function(err, out) {
 					document.getElementById('cardReviews').innerHTML = out;
+
+					let freelancerReplayButtons = document.getElementsByName('freelacer-replay');
+					for (let freelancerReplayButton of freelancerReplayButtons) {
+						freelancerReplayButton.addEventListener('click', FREELANCER.showReplayReview);
+					}
 				});
 			});
 
@@ -85,6 +90,36 @@ const FREELANCER = {
 		}
 
 		return html;
+
+	},
+
+	showReplayReview: function(e) {
+		const form = e.target.parentNode.getElementsByTagName('form')[0];
+		const submitButton = form.getElementsByTagName('button')[0];
+
+		$(e.target).fadeOut(100);
+		$(form).fadeIn(400);
+
+		submitButton.addEventListener('click', FREELANCER.senderReplayReview);
+	},
+
+	senderReplayReview: function(e) {
+		e.preventDefault();
+
+		const form = e.target.parentNode;
+		const replay = form.parentNode.getElementsByClassName('replay')[0];
+		const cardBlock = replay.getElementsByClassName('card-block')[0];
+		const reviewId = e.target.parentNode.name;
+		const textArea = e.target.parentNode.getElementsByTagName('textarea')[0];
+		const data = {
+			review: textArea.value
+		};
+
+		doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
+			$(form).fadeOut(400);
+			$(cardBlock).fadeIn(400);
+			replay.getElementsByTagName('p')[0].innerHTML = textArea.value;
+		});
 
 	}
 }

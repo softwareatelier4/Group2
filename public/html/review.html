@@ -1,5 +1,5 @@
 {#.}
-<div class="card review">
+<div class="card review" name="{._id}">
    <div class="card-block">
       <div class="title-author-review">
          <div id="score-name">
@@ -12,14 +12,22 @@
          {?photos} {#photos}
          <a href="{.}" data-lightbox="review-img"><img class="thumbnail-element" src="{.}" /></a>{/photos} {/photos}
       </div>
-      <div id="reply">
-         {?answer}
-         <div class="card-block">
+      {^answer}
+      <button type="button" class="btn btn-primary pull-right" name="freelacer-replay">Reply Now</button>
+      <div class="replay">
+         <div class="card-block" {^answer} style="display:none;" {/answer}>
             <h6 class="card-subtitle mb-2 text-muted">Reply:</h6>
             <p class="card-text"> {answer} </p>
          </div>
-         {/answer}
       </div>
+      <form style="display:none;" name="{._id}">
+         <div class="form-group" style="margin-top:5%;">
+            <label for="exampleTextarea">Answer to {user.firstName} {user.lastName}: </label>
+            <textarea class="form-control" id="exampleTextarea" style="background-color: rgb(231, 231, 231);" rows=" 3"></textarea>
+         </div>
+         <button type="submit" class="btn btn-primary pull-right">Send</button>
+      </form>
+      {/answer}
    </div>
 </div>
 {:else} There aren't any reviews at the moment {/.}
