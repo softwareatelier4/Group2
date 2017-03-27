@@ -2,6 +2,10 @@ const FREELANCER = {
 
 	name: 'freelancer',
 
+	/**
+	 * Set up the freelancer
+	 * @return {void}
+	 */
 	init: function() {
 		console.log('Freelancer - initialization');
 
@@ -15,10 +19,12 @@ const FREELANCER = {
 		FREELANCER.renderProfile();
 	},
 
-	remover: function() {
+	remover: function() {},
 
-	},
-
+	/**
+	 * Render the profile of freelancer
+	 * @return {void}
+	 */
 	renderProfile: function() {
 		var url = window.location.href;
 		var idFreelancer = url.split('=')[1];
@@ -45,6 +51,11 @@ const FREELANCER = {
 		});
 	},
 
+	/**
+	 * Render reviews of a freelancer
+	 * @param {idFreelancer} - id of the Freelancer
+	 * @return {void}
+	 */
 	renderReview: function(idFreelancer) {
 		doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
 
@@ -70,8 +81,12 @@ const FREELANCER = {
 		});
 	},
 
+	/**
+	 * Create html code for show the rank of a single review
+	 * @param {Object} - starObj = {full, half, empty}
+	 * @return {string} - return string of html code
+	 */
 	getHtmlRankStar: function(starObj) {
-		// starObj = {full, half, empty}
 		starObj.full = starObj.full | 0;
 		starObj.half = starObj.half | 0;
 		starObj.empty = starObj.empty | 0;
@@ -93,6 +108,11 @@ const FREELANCER = {
 
 	},
 
+	/**
+	 * Show button and form for add a new review's reply
+	 * @param {event} - event
+	 * @return {void}
+	 */
 	showReplyReview: function(e) {
 		const form = e.target.parentNode.getElementsByTagName('form')[0];
 		const submitButton = form.getElementsByTagName('button')[0];
@@ -103,6 +123,11 @@ const FREELANCER = {
 		submitButton.addEventListener('click', FREELANCER.senderReplyReview);
 	},
 
+	/**
+	 * Abilitate button for send the reply
+	 * @param {event} - event
+	 * @return {void}
+	 */
 	senderReplyReview: function(e) {
 		e.preventDefault();
 
