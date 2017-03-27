@@ -49,10 +49,25 @@ router.get('/freelancer/:freelancerid', function(req, res, next) {
 
 router.all('/:reviewid', middleware.supportedMethods('POST, OPTIONS'));
 router.post('/:reviewid', function(req, res, next) {
-	res.json({
-		statusCode: 201
-	});
+	let answer = req.body.review;
+	let reviewId = req.params.reviewid;
 
+	let data = {
+		answer
+	}
+
+	let filter = {
+		_id: reviewId
+	}
+
+	Review.update(filter, data, function(err, save) {
+		if (err) {
+			res.status(400).send(err);
+			return;
+		}
+
+		res.json(save);
+	});
 });
 
 /** router for /users */

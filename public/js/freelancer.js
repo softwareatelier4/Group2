@@ -115,10 +115,13 @@ const FREELANCER = {
 	 */
 	showReplyReview: function(e) {
 		const form = e.target.parentNode.getElementsByTagName('form')[0];
+		const textArea = form.getElementsByTagName('textarea')[0];
 		const submitButton = form.getElementsByTagName('button')[0];
 
 		$(e.target).fadeOut(100);
 		$(form).slideDown(400);
+		$(textArea).focus();
+
 
 		submitButton.addEventListener('click', FREELANCER.senderReplyReview);
 	},
