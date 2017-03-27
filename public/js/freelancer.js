@@ -98,7 +98,7 @@ const FREELANCER = {
 		const submitButton = form.getElementsByTagName('button')[0];
 
 		$(e.target).fadeOut(100);
-		$(form).fadeIn(400);
+		$(form).slideDown(400);
 
 		submitButton.addEventListener('click', FREELANCER.senderReplyReview);
 	},
@@ -116,10 +116,9 @@ const FREELANCER = {
 		};
 
 		doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
-			$(form).fadeOut(400);
-			$(cardBlock).fadeIn(400);
+			$(form).slideUp(400);
+			$(cardBlock).slideDown(400);
 			reply.getElementsByTagName('p')[0].innerHTML = textArea.value;
 		});
-
 	}
 }
