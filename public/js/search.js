@@ -37,6 +37,8 @@ const SEARCH = {
 		MAIN_JS.style.flexGrow = 0;
 		MAIN_DIV.style.display = "flex";
 		MAIN_DIV.style.backgroundColor = "rgb(46, 78, 92)";
+
+		SEARCH.geolocation();
 	},
 
 
@@ -49,6 +51,8 @@ const SEARCH = {
 		MAIN_JS.style.flexGrow = 1;
 		MAIN_DIV.style.display = "inherit";
 		MAIN_DIV.style.backgroundColor = "rgb(231, 231, 231)";
+
+		SEARCH.geolocation();
 	},
 
 
@@ -243,6 +247,23 @@ const SEARCH = {
 			let searchHash = SEARCH_TEXT_QUERY.val().replace(/ /g, '+');
 			window.location.hash = 'search=' + searchHash;
 		})
+	},
+
+	geolocation: function() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(pos) {
+				const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&sensor=true`;
+
+				doJSONRequest("GET", url, null, null, function(res) {
+					const city = res.results[0].address_components[2].long_name;
+					const state = res.results[0].address_components[5].long_name
+
+					$('#position').val(city + ', ' + state);
+				});
+			});
+		} else {
+			x.innerHTML = "Geolocation is not supported by this browser.";
+		}
 	},
 
 	/**
