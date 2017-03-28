@@ -5,6 +5,8 @@ const SEARCH = {
 
 	doneTypingInterval: 500,
 
+	position: null,
+
 	/**
 	 * Set up the search
 	 * @return {void}
@@ -258,6 +260,10 @@ const SEARCH = {
 	},
 
 	gpsLocation: function(pos) {
+		SEARCH.position = {
+			longitude: pos.coords.longitude,
+			latitude: pos.coords.latitude,
+		}
 		const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&sensor=true`;
 		doJSONRequest("GET", url, null, null, function(res) {
 			const city = res.results[0].address_components[2].long_name;
@@ -271,6 +277,10 @@ const SEARCH = {
 		console.log(gpsError);
 		const url = 'https://freegeoip.net/json/?'
 		doJSONRequest("GET", url, null, null, function(res) {
+			SEARCH.position = {
+				longitude: res.longitude,
+				latitude: res.latitude,
+			}
 			$('#position').val(res.city + ', ' + res.country_name);
 		});
 	},
