@@ -38,7 +38,7 @@ const SEARCH = {
 		MAIN_DIV.style.display = "flex";
 		MAIN_DIV.style.backgroundColor = "rgb(46, 78, 92)";
 
-		SEARCH.geolocation();
+		SEARCH.geoLocation();
 	},
 
 
@@ -52,7 +52,7 @@ const SEARCH = {
 		MAIN_DIV.style.display = "inherit";
 		MAIN_DIV.style.backgroundColor = "rgb(231, 231, 231)";
 
-		SEARCH.geolocation();
+		SEARCH.geoLocation();
 	},
 
 
@@ -249,21 +249,30 @@ const SEARCH = {
 		})
 	},
 
-	geolocation: function() {
+	geoLocation: function() {
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(function(pos) {
-				const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&sensor=true`;
-
-				doJSONRequest("GET", url, null, null, function(res) {
-					const city = res.results[0].address_components[2].long_name;
-					const state = res.results[0].address_components[5].long_name
-
-					$('#position').val(city + ', ' + state);
-				});
-			});
+			navigator.geolocation.getCurrentPosition(SEARCH.gpsLocation, SEARCH.ipLocation);
 		} else {
-			x.innerHTML = "Geolocation is not supported by this browser.";
+			SEARCH.ipLocation();
 		}
+	},
+
+	gpsLocation: function(pos) {
+		const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&sensor=true`;
+		doJSONRequest("GET", url, null, null, function(res) {
+			const city = res.results[0].address_components[2].long_name;
+			const state = res.results[0].address_components[4].long_name;
+
+			$('#position').val(city + ', ' + state);
+		});
+	},
+
+	ipLocation: function(gpsError) {
+		console.log(gpsError);
+		const url = 'https://freegeoip.net/json/?'
+		doJSONRequest("GET", url, null, null, function(res) {
+			$('#position').val(res.city + ', ' + res.country_name);
+		});
 	},
 
 	/**
