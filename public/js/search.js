@@ -26,7 +26,14 @@ const SEARCH = {
 		SEARCH.hashUpdater();
 		SEARCH.hashToValue();
 		SEARCH.listenerAdd();
+		SEARCH.addGeolocationListener();
 
+	},
+
+	addon_init: function() {
+		SEARCH.hashUpdater();
+		SEARCH.addGeolocationListener();
+		SEARCH.geoLocation();
 	},
 
 
@@ -39,8 +46,6 @@ const SEARCH = {
 		MAIN_JS.style.flexGrow = 0;
 		MAIN_DIV.style.display = "flex";
 		MAIN_DIV.style.backgroundColor = "rgb(46, 78, 92)";
-
-		SEARCH.geoLocation();
 	},
 
 
@@ -53,8 +58,6 @@ const SEARCH = {
 		MAIN_JS.style.flexGrow = 1;
 		MAIN_DIV.style.display = "inherit";
 		MAIN_DIV.style.backgroundColor = "rgb(231, 231, 231)";
-
-		SEARCH.geoLocation();
 	},
 
 
@@ -252,37 +255,65 @@ const SEARCH = {
 	},
 
 	geoLocation: function() {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(SEARCH.gpsLocation, SEARCH.ipLocation);
+		if (document.activeElement.id == 'position' || $('#position').val() != '') {
+			$('#position').attr('placeholder', 'Insert a city');
 		} else {
-			SEARCH.ipLocation();
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(SEARCH.gpsLocation, SEARCH.ipLocation);
+			} else {
+				SEARCH.ipLocation();
+			}
+			$('#position').attr('placeholder', 'Loading position');
 		}
+
+		setTimeout(SEARCH.geoLocation, 1000);
 	},
 
+	//take position by gps
 	gpsLocation: function(pos) {
-		SEARCH.position = {
-			longitude: pos.coords.longitude,
-			latitude: pos.coords.latitude,
-		}
 		const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&sensor=true`;
 		doJSONRequest("GET", url, null, null, function(res) {
-			const city = res.results[0].address_components[2].long_name;
-			const state = res.results[0].address_components[4].long_name;
 
-			$('#position').val(city + ', ' + state);
+			if (document.activeElement.id != 'position' && $('#position').val() == '') {
+				SEARCH.position = {
+					longitude: pos.coords.longitude,
+					latitude: pos.coords.latitude,
+				}
+
+				const city = res.results[0].address_components[2].long_name;
+				const state = res.results[0].address_components[4].long_name;
+
+				$('#position').val(city + ', ' + state);
+			}
 		});
 	},
 
+	//take position by ip
 	ipLocation: function(gpsError) {
 		console.log(gpsError);
 		const url = 'https://freegeoip.net/json/?'
 		doJSONRequest("GET", url, null, null, function(res) {
-			SEARCH.position = {
-				longitude: res.longitude,
-				latitude: res.latitude,
+
+			if (document.activeElement.id != 'position' && $('#position').val() == '') {
+				SEARCH.position = {
+					longitude: res.longitude,
+					latitude: res.latitude,
+				}
+				$('#position').val(res.city + ', ' + res.country_name);
 			}
-			$('#position').val(res.city + ', ' + res.country_name);
 		});
+	},
+
+	//auto complete geo position
+	addGeolocationListener: function() {
+		$("#position")
+			.geocomplete()
+			.bind("geocode:result", function(event, result) {
+				SEARCH.position = {
+					latitude: result.geometry.location.lat(),
+					longitude: result.geometry.location.lng()
+				}
+			});
 	},
 
 	/**

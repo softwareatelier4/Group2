@@ -6,7 +6,8 @@ const FREELANCER = {
 		console.log('Freelancer - initialization');
 
 		SEARCH.searchHeader();
-		SEARCH.hashUpdater();
+		SEARCH.addon_init();
+
 
 		let main = document.getElementById('main');
 		main.style.display = "inherit";
