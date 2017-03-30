@@ -91,6 +91,7 @@
 #works {
    text-align: center;
    margin-top: 10px;
+   margin-left: -17px;
 }
 
 .thumbnail-element {
@@ -186,9 +187,6 @@ h5 {
    #img-freelancer {
       margin-left: 10%;
    }
-   #works {
-      text-align: left;
-   }
 }
 
 
@@ -198,5 +196,8 @@ h5 {
    }
    #img-freelancer {
       min-width: 650px;
+   }
+   #works {
+      text-align: left;
    }
 }*/
