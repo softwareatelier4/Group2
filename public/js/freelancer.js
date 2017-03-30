@@ -1,91 +1,93 @@
 const FREELANCER = {
 
-	name: 'freelancer',
+   name: 'freelancer',
 
-	init: function() {
-		console.log('Freelancer - initialization');
+   init: function() {
+      console.log('Freelancer - initialization');
 
-		SEARCH.searchHeader();
-		SEARCH.addon_init();
+      SEARCH.searchHeader();
+      SEARCH.addon_init();
 
 
-		let main = document.getElementById('main');
-		main.style.display = "inherit";
-		main.style.backgroundColor = "rgb(231, 231, 231)";
+      let main = document.getElementById('main');
+      main.style.display = "inherit";
+      main.style.backgroundColor = "rgb(231, 231, 231)";
 
-		FREELANCER.renderProfile();
-	},
+      SORTING_OPTIONS.style.visibility = 'hidden';
 
-	remover: function() {
+      FREELANCER.renderProfile();
+   },
 
-	},
+   remover: function() {
 
-	renderProfile: function() {
-		var url = window.location.href;
-		var idFreelancer = url.split('=')[1];
+   },
 
-		doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
-			if (res.error) {
-				console.log("error");
-			} else {
-				$.get("/html/freelancer.html", function(html) {
-					res.score = FREELANCER.getHtmlRankStar({
-						full: res.score,
-						empty: 5 - res.score
-					});
-					let data = {
-						freelancer: res
-					};
+   renderProfile: function() {
+      var url = window.location.href;
+      var idFreelancer = url.split('=')[1];
 
-					dust.renderSource(html, data, function(err, out) {
-						MAIN_JS.innerHTML = out;
-						FREELANCER.renderReview(idFreelancer);
-					});
-				});
-			}
-		});
-	},
+      doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
+         if (res.error) {
+            console.log("error");
+         } else {
+            $.get("/html/freelancer.html", function(html) {
+               res.score = FREELANCER.getHtmlRankStar({
+                  full: res.score,
+                  empty: 5 - res.score
+               });
+               let data = {
+                  freelancer: res
+               };
 
-	renderReview: function(idFreelancer) {
-		doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
+               dust.renderSource(html, data, function(err, out) {
+                  MAIN_JS.innerHTML = out;
+                  FREELANCER.renderReview(idFreelancer);
+               });
+            });
+         }
+      });
+   },
 
-			$.get("/html/review.html", function(reviewHtml) {
+   renderReview: function(idFreelancer) {
+      doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
 
-				for (res of result) {
-					res.score = FREELANCER.getHtmlRankStar({
-						full: res.score,
-						empty: 5 - res.score
-					});
-				}
+         $.get("/html/review.html", function(reviewHtml) {
 
-				dust.renderSource(reviewHtml, result, function(err, out) {
-					document.getElementById('cardReviews').innerHTML = out;
-				});
-			});
+            for (res of result) {
+               res.score = FREELANCER.getHtmlRankStar({
+                  full: res.score,
+                  empty: 5 - res.score
+               });
+            }
 
-		});
-	},
+            dust.renderSource(reviewHtml, result, function(err, out) {
+               document.getElementById('cardReviews').innerHTML = out;
+            });
+         });
 
-	getHtmlRankStar: function(starObj) {
-		// starObj = {full, half, empty}
-		starObj.full = starObj.full | 0;
-		starObj.half = starObj.half | 0;
-		starObj.empty = starObj.empty | 0;
+      });
+   },
 
-		html = '';
-		for (let i = 0; i < starObj.full; i++) {
-			html += "<i class='fa fa-star blue' aria-hidden='true'></i>";
-		}
+   getHtmlRankStar: function(starObj) {
+      // starObj = {full, half, empty}
+      starObj.full = starObj.full | 0;
+      starObj.half = starObj.half | 0;
+      starObj.empty = starObj.empty | 0;
 
-		for (let i = 0; i < starObj.half; i++) {
-			html += "<i class='fa fa-star-half-o blue' aria-hidden='true'></i>";
-		}
+      html = '';
+      for (let i = 0; i < starObj.full; i++) {
+         html += "<i class='fa fa-star blue' aria-hidden='true'></i>";
+      }
 
-		for (let i = 0; i < starObj.empty; i++) {
-			html += "<i class='fa fa-star-o blue' aria-hidden='true'></i>";
-		}
+      for (let i = 0; i < starObj.half; i++) {
+         html += "<i class='fa fa-star-half-o blue' aria-hidden='true'></i>";
+      }
 
-		return html;
+      for (let i = 0; i < starObj.empty; i++) {
+         html += "<i class='fa fa-star-o blue' aria-hidden='true'></i>";
+      }
 
-	}
+      return html;
+
+   }
 }

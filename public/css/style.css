@@ -61,6 +61,13 @@ body, html {
 	box-sizing: border-box;
 }
 
+#sorting-buttons{
+   flex-wrap: wrap !important;
+   align-items: baseline;
+   justify-content: space-around;
+   visibility: hidden;
+}
+
 .result-card {
    width: 350px;
    height: 420px;
@@ -94,7 +101,67 @@ body, html {
    user-select: none;
 }
 
+.filter-btn {
+	color: white;
+   text-align: center;
+	/*width: 85px;*/
+   padding-top: 10px;
+   user-select: none;
+}
 
+.filter-btn:hover {
+   cursor: pointer;
+}
+
+.up-arrow {
+   visibility: hidden;
+}
+
+.down-arrow {
+   display: none;
+}
+
+.filter-txt{
+   height: 100%;
+   width: 60px;
+   color: white;
+   background-color: rgba(0,0,0,0.15);
+   /*padding-top: 10px;*/
+   /*padding-bottom: 10px;*/
+   margin-right: 0px;
+   padding-left: 10px;
+   border: none;
+   /*vertical-align:middle;*/
+   /*border-bottom: 1px solid rgb(220,220,220);*/
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+   border: 0px;
+   outline: none;
+
+}
+.filter-txt-span{
+   color:rgb(210,210,210);
+   background-color: rgba(0,0,0,0.20);
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+   padding-left: 5px;
+   padding-right: 5px;
+   border: 0px;
+   /*width: 40px;*/
+   height: 100%;
+   vertical-align: middle;
+   box-sizing: padding-box;
+   line-height: 35px;
+}
+
+.filter-txt-group{
+   display: flex;
+   /*align-items: baseline;*/
+   /*background-color: red;*/
+   margin-top: 10px;
+   margin-right: 5px;
+   height: 35px;
+}
 /*----------------------------------------
 Loading Spinner
 ----------------------------------------*/

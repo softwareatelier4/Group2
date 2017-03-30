@@ -5,6 +5,7 @@ const FILTER_DISTANCE_QUERY = $('#distance-input');
 const FILTER_PRICE_QUERY = $('#price-input');
 const MAIN_JS = document.getElementById('main-content');
 const MAIN_DIV = document.getElementById('main');
+const SORTING_OPTIONS = document.getElementById('sorting-buttons');
 
 $(document).ready(function() {
    window.addEventListener("hashchange", hashchanged);

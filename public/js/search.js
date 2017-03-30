@@ -67,8 +67,9 @@ const SEARCH = {
    searchHeader: function() {
       MAIN_JS.style.visibility = "visible";
       MAIN_JS.style.flexGrow = 1;
-      MAIN_DIV.style.display = "inherit";
+      MAIN_DIV.style.display = "inline";
       MAIN_DIV.style.backgroundColor = "rgb(231, 231, 231)";
+      SORTING_OPTIONS.style.visibility = 'visible';
    },
 
 
@@ -159,9 +160,12 @@ const SEARCH = {
       if (notSortedResult === undefined)
          notSortedResult = JSON.parse(JSON.stringify(currentResult));
 
-
       let currentButton = document.getElementById(buttonId);
       let currentOrder = currentButton.textContent || currentButton.innerText;
+
+      var arrowUp = currentButton.getElementsByClassName('up-arrow')[0];
+      console.log(currentButton);
+      var arrowDown = currentButton.getElementsByClassName('down-arrow')[0];
 
       let buttons = document.getElementById('sorting-buttons').childNodes;
 
@@ -172,11 +176,14 @@ const SEARCH = {
          if (buttons[i].id === buttonId || buttons[i].tagName != 'SPAN')
             continue;
 
-         buttons[i].style.border = '';
-
+         buttons[i].style.textDecoration = '';
          if (buttons[i].innerText !== undefined) {
-            buttons[i].innerText = buttons[i].innerText.replace(" ↑", "");
-            buttons[i].innerText = buttons[i].innerText.replace(" ↓", "");
+            arrowUp.style.visibility = 'hidden';
+            arrowDown.style.display = 'none';
+            buttons[i].getElementsByClassName('up-arrow')[0].style.visibility = 'hidden';
+            buttons[i].getElementsByClassName('up-arrow')[0].style.display = 'inline';
+            buttons[i].getElementsByClassName('down-arrow')[0].style.display = 'none';
+            buttons[i].getElementsByClassName('down-arrow')[0].style.visibility = 'hidden';
             buttons[i].dataset.sorttype = "neutral";
 
          }
@@ -184,20 +191,27 @@ const SEARCH = {
 
       switch (sortType) {
          case "neutral":
-            currentButton.innerText = currentButton.innerText + " ↑";
+            arrowUp.style.visibility = 'visible';
+            // currentButton.innerText = currentButton.innerText + " ↑";
             sortType = "asc";
-            currentButton.style.border = '3px solid orange';
+            currentButton.style.textDecoration = 'underline';
             SEARCH.cardSort(buttonId, sortType);
             break;
          case "asc":
-            currentButton.innerText = currentButton.innerText.replace(" ↑", " ↓");
+            arrowUp.style.display = 'none';
+            arrowDown.style.display = 'inline';
+            arrowDown.style.visibility = 'visible';
+            // currentButton.innerText = currentButton.innerText.replace(" ↑", " ↓");
             sortType = "desc";
             SEARCH.cardSort(buttonId, sortType);
             break;
          case "desc":
             sortType = "neutral";
-            currentButton.innerText = currentButton.innerText.replace(" ↓", "");
-            currentButton.style.border = '';
+            arrowDown.style.display = 'none';
+            arrowUp.style.display = 'inline';
+            arrowUp.style.visibility = 'hidden';
+            // currentButton.innerText = currentButton.innerText.replace(" ↓", "");
+            currentButton.style.textDecoration = '';
             SEARCH.drawCards(notSortedResult);
             break;
       }
