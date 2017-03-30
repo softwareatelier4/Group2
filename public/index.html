@@ -27,11 +27,13 @@
 					</div>
 				</form>
 				<div class="input-group" id="sorting-buttons">
-					<span class="input-group-addon search-btn" id="btn-score" onclick="SEARCH.sortSearchFreelancers('btn-score');">Score</span>
-					<span class="input-group-addon search-btn" id="btn-distance" onclick="SEARCH.sortSearchFreelancers('btn-distance');">Distanza</span>
-					<span class="input-group-addon search-btn" id="btn-time" onclick="SEARCH.sortSearchFreelancers('btn-time');">Tempo</span>
-					<span class="input-group-addon search-btn" id="btn-name" onclick="SEARCH.sortSearchFreelancers('btn-name');">Nome</span>
-					<span class="input-group-addon search-btn" id="btn-price" onclick="SEARCH.sortSearchFreelancers('btn-price');">Soldi</span>
+					<span class="input-group-addon search-btn" id="btn-score" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-score');">Score</span>
+					<span class="input-group-addon search-btn" id="btn-distance" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-distance');">Distanza</span>
+					<span class="input-group-addon search-btn" id="btn-time" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-time');">Tempo</span>
+					<span class="input-group-addon search-btn" id="btn-name" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-name');">Nome</span>
+					<span class="input-group-addon search-btn" id="btn-price" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-price');">Soldi</span>
+					<input type="text" class="form-control" placeholder="max price" aria-describedby="basic-addon1" id="price-input">
+					<input type="text" class="form-control" placeholder="max distance" aria-describedby="basic-addon1" id="distance-input">
 				</div>
 			</div>
 		</div>
