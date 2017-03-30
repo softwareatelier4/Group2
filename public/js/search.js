@@ -24,7 +24,7 @@ const SEARCH = {
     */
    init: function() {
 
-      let searchVal = window.location.hash.split('=')[1];
+      let searchVal = window.location.hash.split('|')[0].split('=')[1];
 
       // Display the search in fullscreen if nothing in search bar, else display header and search
       if (searchVal == '') {
@@ -375,10 +375,20 @@ const SEARCH = {
     * @return {void}
     */
    hashUpdater: function() {
-      SEARCH_TEXT_QUERY.on('keyup', function() {
-         let searchHash = SEARCH_TEXT_QUERY.val().replace(/ /g, '+');
-         window.location.hash = 'search=' + searchHash;
-      })
+      SEARCH_TEXT_QUERY.on('keyup', SEARCH.setSearchHash);
+      $('#basic-addon1').on('click', SEARCH.setSearchHash);
+   },
+
+   setSearchHash: function() {
+      console.log('setSeatc');
+      let searchHash = SEARCH_TEXT_QUERY.val().replace(/ /g, '+');
+      let hash = window.location.hash.split('|');
+      if (hash[0].split('=')[0] == '#search') {
+         hash[0] = hash[0].split('=')[0] + '=' + searchHash;
+      } else {
+         hash = ['search=' + searchHash];
+      }
+      window.location.hash = hash.join('|');
    },
 
    geoLocation: function() {
@@ -448,7 +458,7 @@ const SEARCH = {
     * @return {void}
     */
    hashToValue: function() {
-      let value = window.location.hash.split('=')[1];
+      let value = window.location.hash.split('|')[0].split('=')[1];
       value = value.replace('+', ' ');
       SEARCH_TEXT_QUERY.val(value);
    },
@@ -459,6 +469,7 @@ const SEARCH = {
     */
    remover: function() {
       SEARCH_TEXT_QUERY.off();
+      $('#basic-addon1').off();
    },
 
    /**

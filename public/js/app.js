@@ -11,7 +11,7 @@ $(document).ready(function() {
    window.addEventListener("hashchange", hashchanged);
 
    // when page load
-   hashchanged()
+   hashchanged();
 });
 
 let hashchanged = function hashchanged() {

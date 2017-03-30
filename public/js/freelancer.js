@@ -19,7 +19,7 @@ const FREELANCER = {
    },
 
    remover: function() {
-
+      SEARCH.remover();
    },
 
    renderProfile: function() {
