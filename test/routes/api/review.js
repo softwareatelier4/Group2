@@ -22,11 +22,20 @@ describe('Testing Read for api/review/', function() {
 				.expect(404, done);
 		});
 
-		it('Should respond with a 200 if the reply is post correctly', function(done) {
+		it('Should respond with a 201 if the reply is post correctly', function(done) {
 			request(app)
 				.post('/api/review/c00000000000000000000002')
 				.set('Accept', 'application/json')
-				.expect(200, done);
+				.expect(201)
+				.end(function(err, res) {
+					res = JSON.parse(res.text);
+
+					should.not.exist(err, 'No error should occur');
+					should.equal(res.nModified, 1);
+					should.equal(res.ok, 1);
+					should.equal(res.n, 1);
+					done();
+				});
 		});
 
 		it('Should respond with a 400 if the id is not correct', function(done) {
