@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="css/freelancer.css">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/lightbox.min.css">
+	<title>JobAdvisor</title>
+</head>
+
+<body>
+	<div id="freelancerCreation" style="width: 500px; padding: 30px;" >
+		<form enctype="multipart/form-data" action="javascript:FREELANCERCREATION.submitFreelancer()">
+			<div class="form-group">
+				<label for="firstName">First name: </label>
+				<input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter first name">
+				<label for="lastName">Last name: </label>
+				<input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name">
+				<label for="workName">Work name: </label>
+				<input type="text" class="form-control" id="workName" aria-describedby="workName" placeholder="Enter work name">
+				<label for="phoneName">Phone number: </label>
+				<input type="text" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter phone number">
+				<label for="city">City: </label>
+				<input type="text" class="form-control" id="city" aria-describedby="city" placeholder="Enter city name">
+				<label for="street">Street: </label>
+				<input type="text" class="form-control" id="street" aria-describedby="street" placeholder="Enter street name">
+				<label for="number">Number: </label>
+				<input type="text" class="form-control" id="number" aria-describedby="number" placeholder="Enter street number">
+				<label for="zip">Zip code: </label>
+				<input type="text" class="form-control" id="zip" aria-describedby="zip" placeholder="Enter zip code">
+			</div>
+			<div class="form-group">
+				<label for="tags">Tags: </label>
+				<input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags" onkeypress="return event.keyCode != 13;" onkeyup="FREELANCERCREATION.tagHinter()" autocomplete="off">
+				<div id="tags-list">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="email">Email address: </label>
+				<input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email">
+			</div>
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea class="form-control" id="description" rows="3"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="profilePicture">Profile picture upload</label>
+				<input type="file" class="form-control-file" id="profilePicture" aria-describedby="profilePicture">
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+</div>
+
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+<script src="js/dust-full.min.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/lightbox.min.js"></script>
+
+<script src="js/freelancerCreation.js"></script>
+</body>
+
+</html>
