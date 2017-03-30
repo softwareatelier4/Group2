@@ -138,7 +138,8 @@ Button
 ----------------------------------------*/
 
 .btn-primary.active, .btn-primary:active, .btn-primary:hover, .btn-primary:visited {
-   background-color: rgb(67, 105, 121) border-color: rgb(67, 105, 121)
+   background-color: rgb(67, 105, 121);
+   border-color: rgb(67, 105, 121);
 }
 
 .btn-primary {
@@ -163,5 +164,9 @@ Button
 }
 
 a:not([href]):not([tabindex]) {
+   color: #fff;
+}
+
+a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
    color: #fff;
 }
