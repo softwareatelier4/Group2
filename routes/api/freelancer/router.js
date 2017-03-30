@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
 
 //supported methods
-router.all('/', middleware.supportedMethods('GET, OPTIONS'));
+router.all('/', middleware.supportedMethods('GET,PUT, OPTIONS'));
 
 router.all('/search/:search', middleware.supportedMethods('GET, OPTIONS'));
 router.get('/search/:search', function(req, res, next) {
@@ -61,7 +61,7 @@ router.put('/:freelancerid', function(req, res, next) {
       freelancer.ownerId = data.ownerId;
       freelancer.score = data.score;
 
-      freelancer.save(onModelSave(res));
+      freelancer.save(onModelSave(res,200,true));
     }
   });
 });
@@ -209,7 +209,7 @@ function onModelSave(res, status, sendItAsResponse){
       const obj = saved.toObject();
       delete obj.password;
       delete obj.__v;
-      addLinks(obj);
+      // addLinks(obj);
       return res.status(statusCode).json(obj);
     }else{
       return res.status(statusCode).end();

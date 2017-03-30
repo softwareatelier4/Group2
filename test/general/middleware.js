@@ -18,12 +18,12 @@ describe('Middleware testing', function() {
 				.expect(405, done);
 		});
 
-		it('should respond with a 405 if using PUT', function(done) {
-			request(app)
-				.put('/api/freelancer/' + ObjectId().toString())
-				.set('Accept', 'application/json')
-				.expect(405, done);
-		});
+		// it('should respond with a 405 if using PUT', function(done) {
+		// 	request(app)
+		// 		.put('/api/freelancer/' + ObjectId().toString())
+		// 		.set('Accept', 'application/json')
+		// 		.expect(405, done);
+		// });
 
 		it('should respond with a 405 if using DELET', function(done) {
 			request(app)
