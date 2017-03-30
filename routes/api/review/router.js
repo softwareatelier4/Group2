@@ -72,12 +72,7 @@ router.post('/:reviewid', function(req, res, next) {
 			return;
 		}
 
-		if (save.nModified == 1) {
-			res.status(201).send(save);
-			return;
-		}
-
-		res.json(save);
+		res.status(201).send(save);
 	});
 });
 
