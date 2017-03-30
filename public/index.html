@@ -32,8 +32,8 @@
 					<span class="input-group-addon search-btn" id="btn-time" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-time');">Tempo</span>
 					<span class="input-group-addon search-btn" id="btn-name" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-name');">Nome</span>
 					<span class="input-group-addon search-btn" id="btn-price" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-price');">Soldi</span>
-					<input type="text" class="form-control" placeholder="max price" aria-describedby="basic-addon1" id="price-input">
-					<input type="text" class="form-control" placeholder="max distance" aria-describedby="basic-addon1" id="distance-input">
+					<input type="text" class="form-control" placeholder="max price" onkeypress='SEARCH.checkInput(event)' aria-describedby="basic-addon1" id="price-input">
+					<input type="text" class="form-control" placeholder="max distance" onkeypress='SEARCH.checkInput(event)' aria-describedby="basic-addon1" id="distance-input">
 				</div>
 			</div>
 		</div>

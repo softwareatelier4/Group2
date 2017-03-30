@@ -91,7 +91,7 @@ const SEARCH = {
       });
 
       //on keyup, start the countdown
-      FILTER_DISTANCE_QUERY.on('keyup', function() {
+      FILTER_DISTANCE_QUERY.on('keyup', function(e) {
          clearTimeout(typingTimer);
          typingTimer = setTimeout(SEARCH.applyFilters, SEARCH.doneTypingInterval);
       });
@@ -102,7 +102,7 @@ const SEARCH = {
       });
 
       //on keyup, start the countdown
-      FILTER_PRICE_QUERY.on('keyup', function() {
+      FILTER_PRICE_QUERY.on('keyup', function(e) {
          clearTimeout(typingTimer);
          typingTimer = setTimeout(SEARCH.applyFilters, SEARCH.doneTypingInterval);
       });
@@ -488,6 +488,17 @@ const SEARCH = {
          });
 
       }, 'html');
+   },
+
+   checkInput: function(evt) {
+      var theEvent = evt || window.event;
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+      var regex = /[0-9]|\./;
+      if (!regex.test(key)) {
+         theEvent.returnValue = false;
+         if (theEvent.preventDefault) theEvent.preventDefault();
+      }
    },
 
    /**
