@@ -94,32 +94,6 @@ body, html {
    user-select: none;
 }
 
-.btn-primary.active, .btn-primary:active, .btn-primary:hover, .btn-primary:visited {
-   background-color: rgb(44, 123, 158);
-   border-color: rgb(44, 123, 158);
-}
-
-.btn-primary {
-   background-color: rgb(46, 78, 92);
-   border-color: rgb(46, 78, 92);
-}
-
-.blue {
-   color: rgb(46, 78, 92);
-}
-
-.light-blue {
-   color: rgb(78, 108, 121);
-}
-
-.blue-background {
-   background-color: rgb(46, 78, 92);
-}
-
-.blue-border {
-   border-color: rgb(46, 78, 92);
-}
-
 
 /*----------------------------------------
 Loading Spinner
@@ -156,4 +130,38 @@ Loading Spinner
    100% {
       transform: rotate(360deg);
    }
+}
+
+
+/*----------------------------------------
+Button
+----------------------------------------*/
+
+.btn-primary.active, .btn-primary:active, .btn-primary:hover, .btn-primary:visited {
+   background-color: rgb(67, 105, 121) border-color: rgb(67, 105, 121)
+}
+
+.btn-primary {
+   background-color: rgb(46, 78, 92);
+   border-color: rgb(46, 78, 92);
+}
+
+.blue {
+   color: rgb(46, 78, 92);
+}
+
+.light-blue {
+   color: rgb(78, 108, 121);
+}
+
+.blue-background {
+   background-color: rgb(46, 78, 92);
+}
+
+.blue-border {
+   border-color: rgb(46, 78, 92);
+}
+
+a:not([href]):not([tabindex]) {
+   color: #fff;
 }
