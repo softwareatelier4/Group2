@@ -4,13 +4,14 @@
    "description": "Exercise 5 of Web Atelier@inf.usi.ch. Express.js and Mongoose",
    "main": "app.js",
    "scripts": {
-      "install": "chmod -R u+x ./bin/ && ./bin/installSeleniumAndChromeWebDriver",
+      "install": "",
+      "install-mac": "chmod -R u+x ./bin/ && ./bin/installSeleniumAndChromeWebDriver",
+      "install-jenkins": "chmod -R u+x ./bin/ && ./bin/installSeleniumAndChromeWebDriverJenkins",
       "start": "DEBUG='job-advisor' ./bin/www",
       "dev": "nodemon --exec DEBUG='job-advisor' node --inspect ./bin/www",
       "test": "npm run test-mocha && npm start | node seed.js && ./nightwatch",
-      "test-front": "node seed.js && ./nightwatch",
       "test-mocha": "JUNIT_REPORT_PATH=./jenkins-test-results.xml istanbul cover --report cobertura _mocha -- --timeout 3000 -R spec ./test/model ./test/function ./test/routes/api ./test/general --colors --reporter mocha-jenkins-reporter",
-      "test-nightwatch": "node seed.js && ./nightwatch"
+      "test-nightwatch": "node seed.js && xvfb-run ./nightwatch"
    },
    "keywords": [
       "Node.js",
