@@ -21,27 +21,6 @@
    margin-top: 30px;
 }
 
-@media screen and (max-width: 1110px) {
-   #profile-freelancer {
-      min-width: 0 !important;
-   }
-   #info-review {
-      margin-left: 10%;
-   }
-   #main-info {
-      margin-left: 10%;
-   }
-   #info-name {
-      margin-left: -15px;
-   }
-   #rank {
-      margin-left: 0px;
-   }
-   #contact-info-top {
-      margin-left: 0px;
-   }
-}
-
 #profile-pic {
    background-image: url("../img/default_user.jpg");
    width: 250px;
@@ -82,7 +61,8 @@
    flex-wrap: wrap;
    margin-top: 30px;
    padding-right: 20px;
-   flex-grow: 1;
+   -webkit-flex: 4 0 0;
+   flex: 4 0 0;
 }
 
 #reply {
@@ -115,11 +95,16 @@
 
 .thumbnail-element {
    margin: 10px;
-   max-width: 80px;
+   width: 50px;
+   height: 50px;
+   object-fit: cover;
 }
 
 #img-freelancer {
    margin-top: 30px;
+   min-width: 250px;
+   -webkit-flex: 1 0 0;
+   flex: 1 0 0;
 }
 
 .contact-info-element {
@@ -190,3 +175,28 @@ h5 {
    margin-bottom: 15px;
    margin-top: -5px;
 }
+
+@media screen and (max-width: 1110px) {
+   #profile-freelancer {
+      min-width: 0 !important;
+   }
+   #main-info {
+      margin-left: 10%;
+   }
+   #img-freelancer {
+      margin-left: 10%;
+   }
+   #works {
+      text-align: left;
+   }
+}
+
+
+/*@media screen and (max-width: 656px) {
+   #main-info-bottom {
+      margin-left: 10%;
+   }
+   #img-freelancer {
+      min-width: 650px;
+   }
+}*/
