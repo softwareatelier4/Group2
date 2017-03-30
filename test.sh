@@ -5,4 +5,4 @@ npm run install-jenkins
 npm run test-mocha
 npm start &
 npm run test-nightwatch
-pkill "myapp"
+pkill "jobadvisor"
