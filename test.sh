@@ -3,4 +3,4 @@ npm run install-jenkins
 npm run test-mocha
 npm start &
 npm run test-nightwatch
-pkill "jobadvisor-group2"
+pkill "jobadvisorGroup2"
