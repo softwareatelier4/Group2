@@ -10,7 +10,10 @@ const SEARCH = {
    position: null,
 
    filters: {
-      sort: "",
+      sort: {
+         idBtn: undefined,
+         type: undefined
+      },
       price: false,
       distance: false
    },
@@ -90,7 +93,7 @@ const SEARCH = {
       //on keyup, start the countdown
       FILTER_DISTANCE_QUERY.on('keyup', function() {
          clearTimeout(typingTimer);
-         typingTimer = setTimeout(SEARCH.filterByDistance, SEARCH.doneTypingInterval);
+         typingTimer = setTimeout(SEARCH.applyFilters, SEARCH.doneTypingInterval);
       });
 
       //on keydown, clear the countdown
@@ -101,7 +104,7 @@ const SEARCH = {
       //on keyup, start the countdown
       FILTER_PRICE_QUERY.on('keyup', function() {
          clearTimeout(typingTimer);
-         typingTimer = setTimeout(SEARCH.filterByPrice, SEARCH.doneTypingInterval);
+         typingTimer = setTimeout(SEARCH.applyFilters, SEARCH.doneTypingInterval);
       });
 
       //on keydown, clear the countdown
@@ -193,12 +196,20 @@ const SEARCH = {
             break;
          case "desc":
             sortType = "neutral";
-            currentButton.innerText = currentButton.innerText.replace(" ↓", "")
+            currentButton.innerText = currentButton.innerText.replace(" ↓", "");
+            currentButton.style.border = '';
             SEARCH.drawCards(notSortedResult);
             break;
       }
 
       currentButton.dataset.sorttype = sortType;
+      if (sortType !== "neutral") {
+         SEARCH.filters.sort.idBtn = buttonId;
+         SEARCH.filters.sort.type = sortType;
+      } else {
+         SEARCH.filters.sort.idBtn = undefined;
+         SEARCH.filters.sort.type = undefined;
+      }
    },
 
    cardSort: function(buttonId, sortType) {
@@ -212,7 +223,7 @@ const SEARCH = {
                }
                break;
             case "btn-price":
-               if (sortType === "asc") {
+               if (sortType === "desc") {
                   if (a.price === undefined)
                      return 1;
 
@@ -234,9 +245,21 @@ const SEARCH = {
                SEARCH.sortCurrentByTime(sortType);
                break;
             case "btn-distance":
-               if (sortType === "asc")
+               if (sortType === "desc") {
+                  if (a.distance === undefined || a.distance === null)
+                     return 1;
+
+                  if (b.distance === undefined || b.distance === null)
+                     return -1;
+
                   return b.distance - a.distance;
-               else {
+               } else {
+                  if (a.distance === undefined || a.distance === null)
+                     return 1;
+
+                  if (a.distance === undefined || b.distance === null)
+                     return -1;
+
                   return a.distance - b.distance;
                }
                break;
@@ -273,9 +296,21 @@ const SEARCH = {
       }
 
       currentResult.sort(function(a, b) {
-         if (sortType === "asc")
+         if (sortType === "desc") {
+            if (a.time === undefined || a.time === 0)
+               return 1;
+
+            if (b.time === undefined || b.time === 0)
+               return -1;
+
             return b.time - a.time;
-         else {
+         } else {
+            if (a.time === undefined || a.time === 0)
+               return 1;
+
+            if (a.time === undefined || b.time === 0)
+               return -1;
+
             return a.time - b.time;
          }
       })
@@ -292,38 +327,33 @@ const SEARCH = {
       }
    },
 
-   filterByPrice: function(event) {
+   applyFilters: function() {
       let priceInput = document.getElementById("price-input");
-
-      let maxPrice = priceInput.value;
-
-      // check if only numbers
-      if (!(!isNaN(maxPrice - 0) && maxPrice !== null && maxPrice !== "" && maxPrice !== false)) {
-         return;
-      }
-
-      currentResult = currentResult.filter(function(freelancer) {
-         if (freelancer.price)
-            return freelancer.price <= maxPrice;
-      });
-      SEARCH.drawCards(currentResult);
-   },
-
-   filterByDistance: function() {
       let distanceInput = document.getElementById("distance-input");
-
+      let maxPrice = priceInput.value;
       let maxDistance = distanceInput.value;
 
-      // check if only numbers
-      if (!(!isNaN(maxDistance - 0) && maxDistance !== null && maxDistance !== "" && maxDistance !== false)) {
-         return;
+      currentResult = originalResponse;
+
+      // apply price filter
+      if (!isNaN(maxPrice - 0) && maxPrice !== null && maxPrice !== "" && maxPrice !== false) {
+         currentResult = currentResult.filter(function(freelancer) {
+            if (freelancer.price)
+               return freelancer.price <= maxPrice;
+         });
       }
 
-      currentResult = currentResult.filter(function(freelancer) {
-         if (freelancer.distance)
-            return freelancer.distance <= maxDistance;
-      });
-      SEARCH.drawCards(currentResult);
+      // apply distance filter
+      if (!isNaN(maxDistance - 0) && maxDistance !== null && maxDistance !== "" && maxDistance !== false) {
+         currentResult = currentResult.filter(function(freelancer) {
+            if (freelancer.distance)
+               return freelancer.distance <= maxDistance;
+         });
+      }
+
+      notSortedResult = currentResult;
+
+      SEARCH.cardSort(SEARCH.filters.sort.idBtn, SEARCH.filters.sort.type);
    },
 
    /**
