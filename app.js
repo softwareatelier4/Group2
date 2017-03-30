@@ -37,4 +37,4 @@ app.use('/api/review/', routers.review);
 app.use('/api/', routers.root);
 
 module.exports = app;
-process.title = 'myapp'
+process.title = 'jobadvisor-group2'
