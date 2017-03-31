@@ -53,6 +53,12 @@
 	<script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 	<script src="js/jquery.geocomplete.min.js"></script>
 
+	<script>
+		jQuery.expr[':'].focus = function( elem ) {
+	  		return elem === document.activeElement && ( elem.type || elem.href );
+		};
+	</script>
+
 	<script src="js/dust-full.min.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/utils.js"></script>
@@ -62,7 +68,7 @@
 	<script src="js/search.js"></script>
 	<script src="js/freelancer.js"></script>
 	<script src="js/app.js"></script>
-	
+
 </body>
 
 </html>

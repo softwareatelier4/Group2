@@ -48,6 +48,8 @@ const SEARCH = {
       SEARCH.listenerAdd();
       SEARCH.addGeolocationListener();
 
+      SEARCH.setPositionHash();
+
    },
 
    addon_init: function() {
@@ -148,6 +150,16 @@ const SEARCH = {
       //on keydown, clear the countdown
       FILTER_DISTANCE_QUERY.on('keydown', function() {
          clearTimeout(typingTimer);
+      });
+
+      $('#position').on('keyup', function() {
+         if ($('#position').val() == '') {
+            $('#position').blur(function() {
+               SEARCH.setPosition('reset');
+            });
+         } else {
+            $('#position').off('blur');
+         }
       });
    },
 
@@ -451,7 +463,7 @@ const SEARCH = {
             method
          };
       } else {
-         if (method == 'empty_location' || SEARCH.position.method != 'user') {
+         if (method == 'empty_location' || SEARCH.position.method != 'user' || method == 'reset') {
             SEARCH.position = {
                city: userPosition.city,
                state: userPosition.state,
@@ -469,10 +481,15 @@ const SEARCH = {
    },
 
    setPositionBox: function() {
+      if ($('#position').is(":focus")) {
+         return;
+      }
       $('#position').val(SEARCH.position.city + ', ' + SEARCH.position.state);
    },
 
    setPositionHash: function() {
+      if (currentPage.name != 'search')
+         return;
       let hashes = window.location.hash.split('|');
 
       let positionHash;
