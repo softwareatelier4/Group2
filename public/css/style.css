@@ -173,6 +173,10 @@ body, html {
    border: none;
 }
 
+.align-right {
+   float: right;
+}
+
 
 /*----------------------------------------
 Loading Spinner
