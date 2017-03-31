@@ -1,6 +1,3 @@
-var currentResult = [];
-var originalResponse = [];
-var notSortedResult = undefined;
 const SEARCH = {
 
    name: 'search',
@@ -8,6 +5,12 @@ const SEARCH = {
    doneTypingInterval: 500,
 
    position: null,
+
+   currentResult: [],
+
+   originalResponse: [],
+
+   notSortedResult: undefined,
 
    filters: {
       sort: {
@@ -130,11 +133,11 @@ const SEARCH = {
             if (res.error) {
                console.log("error");
             } else {
-               currentResult = res;
-               originalResponse = res;
+               SEARCH.currentResult = res;
+               SEARCH.originalResponse = res;
                let searchResult = document.getElementById('main-content');
                searchResult.innerHTML = "";
-               SEARCH.drawCards(currentResult);
+               SEARCH.drawCards(SEARCH.currentResult);
             }
             let spinner = document.getElementById('spinner');
             if (spinner) {
@@ -154,11 +157,11 @@ const SEARCH = {
     * @return {void}
     */
    sortSearchFreelancers: function(buttonId) {
-      if (currentResult === undefined)
+      if (SEARCH.currentResult === undefined)
          return;
 
-      if (notSortedResult === undefined)
-         notSortedResult = JSON.parse(JSON.stringify(currentResult));
+      if (SEARCH.notSortedResult === undefined)
+         SEARCH.notSortedResult = JSON.parse(JSON.stringify(SEARCH.currentResult));
 
       let currentButton = document.getElementById(buttonId);
       let currentOrder = currentButton.textContent || currentButton.innerText;
@@ -212,7 +215,7 @@ const SEARCH = {
             arrowUp.style.visibility = 'hidden';
             // currentButton.innerText = currentButton.innerText.replace(" ↓", "");
             currentButton.style.textDecoration = '';
-            SEARCH.drawCards(notSortedResult);
+            SEARCH.drawCards(SEARCH.notSortedResult);
             break;
       }
 
@@ -227,7 +230,7 @@ const SEARCH = {
    },
 
    cardSort: function(buttonId, sortType) {
-      currentResult.sort(function(a, b) {
+      SEARCH.currentResult.sort(function(a, b) {
          switch (buttonId) {
             case "btn-score":
                if (sortType === "asc")
@@ -296,12 +299,12 @@ const SEARCH = {
 
       });
 
-      SEARCH.drawCards(currentResult);
+      SEARCH.drawCards(SEARCH.currentResult);
    },
 
    sortCurrentByTime: function(sortType) {
       let i = 0;
-      for (freelancer of currentResult) {
+      for (freelancer of SEARCH.currentResult) {
          if (i < 5) {
             freelancer.time = freelancer.distance / 60; // temp, need google api
          } else {
@@ -309,7 +312,7 @@ const SEARCH = {
          }
       }
 
-      currentResult.sort(function(a, b) {
+      SEARCH.currentResult.sort(function(a, b) {
          if (sortType === "desc") {
             if (a.time === undefined || a.time === 0)
                return 1;
@@ -336,7 +339,7 @@ const SEARCH = {
       for (freelancer of freelancers) {
          SEARCH.insertCard(freelancer);
       }
-      if (currentResult.length == 0) {
+      if (SEARCH.currentResult.length == 0) {
          searchResult.innerHTML = "<h3 style='margin-top:30px;'> No result </h3>";
       }
    },
@@ -347,11 +350,11 @@ const SEARCH = {
       let maxPrice = priceInput.value;
       let maxDistance = distanceInput.value;
 
-      currentResult = originalResponse;
+      SEARCH.currentResult = SEARCH.originalResponse;
 
       // apply price filter
       if (!isNaN(maxPrice - 0) && maxPrice !== null && maxPrice !== "" && maxPrice !== false) {
-         currentResult = currentResult.filter(function(freelancer) {
+         SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
             if (freelancer.price)
                return freelancer.price <= maxPrice;
          });
@@ -359,13 +362,13 @@ const SEARCH = {
 
       // apply distance filter
       if (!isNaN(maxDistance - 0) && maxDistance !== null && maxDistance !== "" && maxDistance !== false) {
-         currentResult = currentResult.filter(function(freelancer) {
+         SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
             if (freelancer.distance)
                return freelancer.distance <= maxDistance;
          });
       }
 
-      notSortedResult = currentResult;
+      SEARCH.notSortedResult = SEARCH.currentResult;
 
       SEARCH.cardSort(SEARCH.filters.sort.idBtn, SEARCH.filters.sort.type);
    },
