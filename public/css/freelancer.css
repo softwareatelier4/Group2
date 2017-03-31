@@ -86,6 +86,7 @@
 #thumbnail {
    display: flex;
    flex-wrap: wrap;
+   margin-left: 25px;
 }
 
 #works {
@@ -199,6 +200,9 @@ h5 {
    }
    #works {
       text-align: left;
+      margin-left: 0px;
+   }
+   #thumbnail {
       margin-left: 0px;
    }
 }
