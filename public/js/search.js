@@ -209,10 +209,12 @@ const SEARCH = {
                   if (SEARCH.filters.sort.type === 'asc') {
                      currentSort.getElementsByClassName("up-arrow")[0].style.visibility = 'visible';
                      currentSort.getElementsByClassName("up-arrow")[0].style.display = 'inline';
+                     currentSort.getElementsByClassName("down-arrow")[0].style.display = 'none';
                      currentSort.style.textDecoration = 'underline';
                   } else if (SEARCH.filters.sort.type === 'desc') {
                      currentSort.getElementsByClassName("down-arrow")[0].style.visibility = 'visible';
                      currentSort.getElementsByClassName("down-arrow")[0].style.display = 'inline';
+                     currentSort.getElementsByClassName("up-arrow")[0].style.display = 'none';
                      currentSort.style.textDecoration = 'underline';
                   }
                }
