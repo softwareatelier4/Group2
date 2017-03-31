@@ -169,6 +169,10 @@ body, html {
    color: rgb(78, 108, 121);
 }
 
+.card {
+   border: none;
+}
+
 
 /*----------------------------------------
 Loading Spinner
