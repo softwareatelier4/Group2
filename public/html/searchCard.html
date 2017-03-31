@@ -4,7 +4,7 @@
       <h4 class='card-title'>{freelancer.name}</h4>
       <p class='card-text'>{?freelancer.price}{freelancer.price}{:else}no price available{/freelancer.price}</p>
       <p class='card-text'>{?freelancer.distance}{freelancer.distance}{:else}no distance available{/freelancer.distance}</p>
-      <p class='card-text'>TAGS</p>
+      <p class='card-text'>{#freelancer.tags} <span class="badge badge-default"> {name} </span> {:else} no tags available{/freelancer.tags}</p>
       <a class='btn btn-primary'>More info</a>
    </div>
 </div>
