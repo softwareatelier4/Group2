@@ -166,6 +166,7 @@ body, html {
 .price-km {
    display: flex;
    justify-content: space-between;
+   color: rgb(78, 108, 121);
 }
 
 
