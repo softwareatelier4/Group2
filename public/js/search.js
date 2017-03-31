@@ -26,8 +26,8 @@ const SEARCH = {
          idBtn: undefined,
          type: undefined
       },
-      price: false,
-      distance: false
+      price: undefined,
+      distance: undefined
    },
 
    /**
@@ -37,6 +37,9 @@ const SEARCH = {
    init: function() {
 
       let searchVal = window.location.hash.split('|')[0].split('=')[1];
+
+      SEARCH.getFilterHash();
+      SEARCH.setFilterHash();
 
       // Display the search in fullscreen if nothing in search bar, else display header and search
       if (searchVal == '') {
@@ -80,8 +83,8 @@ const SEARCH = {
             idBtn: undefined,
             type: undefined
          },
-         price: false,
-         distance: false
+         price: undefined,
+         distance: undefined
       };
       SORTING_OPTIONS.style.visibility = 'hidden';
       let btns = document.getElementsByClassName('filter-btn');
@@ -199,6 +202,22 @@ const SEARCH = {
                searchResult.innerHTML = "";
                SEARCH.applyFilters();
 
+               let currentSort = document.getElementById(SEARCH.filters.sort.idBtn);
+
+               if (currentSort !== undefined) {
+                  currentSort.dataset.sorttype = SEARCH.filters.sort.type;
+                  if (SEARCH.filters.sort.type === 'asc') {
+                     currentSort.getElementsByClassName("up-arrow")[0].style.visibility = 'visible';
+                     currentSort.getElementsByClassName("up-arrow")[0].style.display = 'inline';
+                     currentSort.style.textDecoration = 'underline';
+                  } else if (SEARCH.filters.sort.type === 'desc') {
+                     currentSort.getElementsByClassName("down-arrow")[0].style.visibility = 'visible';
+                     currentSort.getElementsByClassName("down-arrow")[0].style.display = 'inline';
+                     currentSort.style.textDecoration = 'underline';
+                  }
+               }
+
+
                SEARCH.freelancerForMarco = JSON.parse(JSON.stringify(SEARCH.currentResult));
                SEARCH.freelancerForMarco.sort(function(a, b) {
                   if (a.distance === undefined || a.distance === null)
@@ -308,7 +327,7 @@ const SEARCH = {
             break;
       }
 
-      currentButton.dataset.sorttype = sortType;
+      //currentButton.dataset.sorttype = sortType;
       if (sortType !== "neutral") {
          SEARCH.filters.sort.idBtn = buttonId;
          SEARCH.filters.sort.type = sortType;
@@ -316,6 +335,7 @@ const SEARCH = {
          SEARCH.filters.sort.idBtn = undefined;
          SEARCH.filters.sort.type = undefined;
       }
+      SEARCH.setFilterHash();
    },
 
    cardSort: function(buttonId, sortType) {
@@ -424,6 +444,8 @@ const SEARCH = {
       let distanceInput = document.getElementById("distance-input");
       let maxPrice = priceInput.value;
       let maxDistance = distanceInput.value;
+      SEARCH.filters.price = maxPrice;
+      SEARCH.filters.distance = maxDistance;
 
       SEARCH.currentResult = JSON.parse(JSON.stringify(SEARCH.originalResponse));
 
@@ -444,6 +466,7 @@ const SEARCH = {
       }
 
       //SEARCH.notSortedResult = SEARCH.currentResult;
+      SEARCH.setFilterHash();
 
       SEARCH.cardSort(SEARCH.filters.sort.idBtn, SEARCH.filters.sort.type);
    },
@@ -707,6 +730,63 @@ const SEARCH = {
       }
 
       window.location.hash = 'freelancer=' + id;
+   },
+
+   setFilterHash: function() {
+      if (currentPage.name != 'search')
+         return;
+
+      let hashes = window.location.hash.split('|');
+
+      let filterHash;
+      for (let i in hashes) {
+         if (hashes[i].split(':')[0] == 'filters') {
+            filterHash = i;
+            break;
+         }
+      }
+
+      let hash = 'filters:type=' + SEARCH.filters.sort.type + '&btn=' + SEARCH.filters.sort.idBtn;
+      hash += '&price=' + SEARCH.filters.price + '&distance=' + SEARCH.filters.distance;
+
+      if (filterHash) {
+         hashes[filterHash] = hash;
+      } else {
+         hashes.push(hash);
+      }
+
+      window.location.hash = hashes.join('|');
+   },
+
+   getFilterHash: function() {
+      let hashes = window.location.hash.split('|');
+
+      let hash;
+      for (let h of hashes) {
+         if (h.split(':')[0] == 'filters') {
+            hash = h.split(':')[1];
+            break;
+         }
+      }
+
+      if (hash) {
+         hash = hash.split('&');
+         let hashObj = {};
+         for (let h of hash) {
+            hashObj[h.split('=')[0]] = h.split('=')[1];
+         }
+
+         let priceInput = document.getElementById("price-input");
+         let distanceInput = document.getElementById("distance-input");
+         if (hashObj.price != undefined)
+            priceInput.value = hashObj.price;
+         if (hashObj.distance != undefined)
+            distanceInput.value = hashObj.distance;
+         SEARCH.filters.sort.idBtn = hashObj.btn;
+         SEARCH.filters.sort.type = hashObj.type;
+      }
+
+
    },
 
    spinner: `<svg id="spinner" class="circle-loader" width="40" height="40" version="1.1" xmlns="http://www.w3.org/2000/svg">
