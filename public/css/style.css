@@ -162,11 +162,3 @@ Button
 .blue-border {
    border-color: rgb(46, 78, 92);
 }
-
-a:not([href]):not([tabindex]) {
-   color: #fff;
-}
-
-a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
-   color: #fff;
-}
