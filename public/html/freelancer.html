@@ -11,6 +11,11 @@
 				<div class="ml-15 light-blue" id="info-name-bottom">
 					{freelancer.workName}
 				</div>
+				<div class="ml-15 light-blue" id="info-name-bottom">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
+						Modify
+					</button>
+				</div>
 			</div>
 			<div id="rank" class="ml-15">
 				{freelancer.score|s}
@@ -57,3 +62,60 @@
 		</div>
 	</div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="update-freelancer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data" action="javascript:FREELANCERMANAGEMENT.submitFreelancer()" id="form-freelancer-management">
+			<div class="form-group">
+				<label for="modal-firstName">First name: </label>
+				<input type="text" class="form-control" id="modal-firstName" aria-describedby="firstName" placeholder="Enter first name">
+				<label for="modal-lastName">Last name: </label>
+				<input type="text" class="form-control" id="modal-lastName" aria-describedby="lastName" placeholder="Enter last name">
+				<label for="modal-workName">Work name: </label>
+				<input type="text" class="form-control" id="modal-workName" aria-describedby="workName" placeholder="Enter work name">
+				<label for="modal-phoneName">Phone number: </label>
+				<input type="text" class="form-control" id="modal-phone" aria-describedby="phone" placeholder="Enter phone number">
+				<label for="modal-city">City: </label>
+				<input type="text" class="form-control" id="modal-city" aria-describedby="city" placeholder="Enter city name">
+				<label for="modal-street">Street: </label>
+				<input type="text" class="form-control" id="modal-street" aria-describedby="street" placeholder="Enter street name">
+				<label for="modal-number">Number: </label>
+				<input type="text" class="form-control" id="modal-number" aria-describedby="number" placeholder="Enter street number">
+				<label for="modal-zip">Zip code: </label>
+				<input type="text" class="form-control" id="modal-zip" aria-describedby="zip" placeholder="Enter zip code">
+			</div>
+			<div class="form-group">
+				<label for="modal-tags">Tags: </label>
+				<input type="text" class="selectize-input items not-full has-options has-items" id="modal-tags">
+			<div class="form-group">
+				<label for="modal-email">Email address: </label>
+				<input type="email" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
+			</div>
+			<div class="form-group">
+				<label for="modal-description">Description</label>
+				<textarea class="form-control" id="modal-description" rows="3"></textarea>
+			</div>
+			<div class="form-group">
+				<label for="modal-profilePicture">Profile picture upload</label>
+				<input type="file" class="form-control-file" id="modal-profilePicture" aria-describedby="profilePicture">
+			</div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
