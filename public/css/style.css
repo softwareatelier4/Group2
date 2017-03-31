@@ -79,7 +79,7 @@ body, html {
    height: 350px;
    width: 350px;
    background-size: cover;
-   /*background-image: url("../img/stock.jpg");*/
+   background-position: center top;
 }
 
 .logo {
