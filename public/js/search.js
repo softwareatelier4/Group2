@@ -19,6 +19,8 @@ const SEARCH = {
 
    notSortedResult: undefined,
 
+   freelancerForMarco: [],
+
    filters: {
       sort: {
          idBtn: undefined,
@@ -58,6 +60,7 @@ const SEARCH = {
       SEARCH.hashUpdater();
       SEARCH.addGeolocationListener();
    },
+
 
    /**
     * View the search bar in full screen
@@ -195,6 +198,32 @@ const SEARCH = {
                let searchResult = document.getElementById('main-content');
                searchResult.innerHTML = "";
                SEARCH.drawCards(SEARCH.currentResult);
+
+               SEARCH.freelancerForMarco = JSON.parse(JSON.stringify(SEARCH.currentResult));
+               SEARCH.freelancerForMarco.sort(function(a, b) {
+                  if (a.distance === undefined || a.distance === null)
+                     return 1;
+
+                  if (a.distance === undefined || b.distance === null)
+                     return -1;
+
+                  return a.distance - b.distance;
+               });
+               let distResult = [];
+               for (let i = 0; i < 10; i++) {
+
+                  if (SEARCH.freelancerForMarco[i] === undefined)
+                     continue;
+
+                  let temp = {
+                     lat: SEARCH.freelancerForMarco[i].latitude,
+                     lng: SEARCH.freelancerForMarco[i].longitude,
+                     id: SEARCH.freelancerForMarco[i]._id
+                  }
+                  distResult.push(temp);
+               }
+               SEARCH.getGmapRealValue(distResult);
+
             }
             let spinner = document.getElementById('spinner');
             if (spinner) {
@@ -318,7 +347,23 @@ const SEARCH = {
                }
                break;
             case "btn-time":
-               SEARCH.sortCurrentByTime(sortType);
+               if (sortType === "desc") {
+                  if (a.time === undefined || a.time === 0)
+                     return 1;
+
+                  if (b.time === undefined || b.time === 0)
+                     return -1;
+
+                  return b.time - a.time;
+               } else {
+                  if (a.time === undefined || a.time === 0)
+                     return 1;
+
+                  if (a.time === undefined || b.time === 0)
+                     return -1;
+
+                  return a.time - b.time;
+               }
                break;
             case "btn-distance":
                if (sortType === "desc") {
@@ -359,37 +404,6 @@ const SEARCH = {
       });
 
       SEARCH.drawCards(SEARCH.currentResult);
-   },
-
-   sortCurrentByTime: function(sortType) {
-      let i = 0;
-      for (freelancer of SEARCH.currentResult) {
-         if (i < 5) {
-            freelancer.time = freelancer.distance / 60; // temp, need google api
-         } else {
-            freelancer.time = freelancer.distance / 60;
-         }
-      }
-
-      SEARCH.currentResult.sort(function(a, b) {
-         if (sortType === "desc") {
-            if (a.time === undefined || a.time === 0)
-               return 1;
-
-            if (b.time === undefined || b.time === 0)
-               return -1;
-
-            return b.time - a.time;
-         } else {
-            if (a.time === undefined || a.time === 0)
-               return 1;
-
-            if (a.time === undefined || b.time === 0)
-               return -1;
-
-            return a.time - b.time;
-         }
-      })
    },
 
    drawCards: function(freelancers) {
@@ -592,7 +606,6 @@ const SEARCH = {
       }
 
    },
-
    /**
     * Update the value of the input-search putting the value of the current URL
     * @return {void}

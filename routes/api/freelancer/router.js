@@ -127,7 +127,10 @@ let searchEngine = function(freelancers, string) {
          workName: f.workName,
          photo: f.profilePhoto,
          score: f.score,
+         latitude: lat,
+         longitude: long,
          distance: Number(distanceCalculation(f, lat, long).toFixed(3)),
+         time: Number(distanceCalculation(f, lat, long).toFixed(3)) / 60,
          counter: countInArray(fClone, f),
          price: f.price
       };
