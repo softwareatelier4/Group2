@@ -48,6 +48,7 @@ const SEARCH = {
       SEARCH.listenerAdd();
       SEARCH.addGeolocationListener();
 
+      SEARCH.getPositionHash();
       SEARCH.setPositionHash();
 
    },
@@ -485,6 +486,29 @@ const SEARCH = {
          return;
       }
       $('#position').val(SEARCH.position.city + ', ' + SEARCH.position.state);
+   },
+
+   getPositionHash: function() {
+      let hashes = window.location.hash.split('|');
+
+      let hash;
+      for (let h of hashes) {
+         if (h.split(':')[0] == 'position') {
+            hash = h.split(':')[1];
+            break;
+         }
+      }
+
+      if (hash) {
+         hash = hash.split('&');
+         let hashObj = {};
+         for (let h of hash) {
+            hashObj[h.split('=')[0]] = h.split('=')[1];
+         }
+
+         SEARCH.setPosition('user', hashObj.latitude, hashObj.longitude, hashObj.city, hashObj.state);
+      }
+
    },
 
    setPositionHash: function() {
