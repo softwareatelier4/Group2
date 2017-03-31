@@ -57,6 +57,17 @@ const SEARCH = {
     */
    searchFullScreen: function() {
       MAIN_JS.style.visibility = "hidden";
+      FILTER_DISTANCE_QUERY[0].value = "";
+      FILTER_PRICE_QUERY[0].value = "";
+      SEARCH.filters = {
+         sort: {
+            idBtn: undefined,
+            type: undefined
+         },
+         price: false,
+         distance: false
+      };
+      SORTING_OPTIONS.style.visibility = 'hidden';
       MAIN_JS.style.flexGrow = 0;
       MAIN_DIV.style.display = "flex";
       MAIN_DIV.style.backgroundColor = "rgb(46, 78, 92)";
@@ -167,7 +178,6 @@ const SEARCH = {
       let currentOrder = currentButton.textContent || currentButton.innerText;
 
       var arrowUp = currentButton.getElementsByClassName('up-arrow')[0];
-      console.log(currentButton);
       var arrowDown = currentButton.getElementsByClassName('down-arrow')[0];
 
       let buttons = document.getElementById('sorting-buttons').childNodes;
