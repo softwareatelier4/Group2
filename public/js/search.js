@@ -214,7 +214,6 @@ const SEARCH = {
 
                   if (SEARCH.freelancerForMarco[i] === undefined)
                      continue;
-
                   let temp = {
                      lat: SEARCH.freelancerForMarco[i].latitude,
                      lng: SEARCH.freelancerForMarco[i].longitude,
