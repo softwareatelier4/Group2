@@ -59,7 +59,6 @@ const SEARCH = {
       SEARCH.addGeolocationListener();
    },
 
-
    /**
     * View the search bar in full screen
     * @return {void}
@@ -557,6 +556,41 @@ const SEARCH = {
             const lng = result.geometry.location.lng();
             SEARCH.setPosition('user', lat, lng, city, state);
          });
+   },
+
+   getGmapRealValue: function(data) {
+
+      const origin = new google.maps.LatLng(SEARCH.position.latitude, SEARCH.position.longitude);
+
+      let destinations = [];
+
+      for (freelancer of data) {
+         let destination = new google.maps.LatLng(freelancer.lat, freelancer.lng);
+         destinations.push(destination);
+      }
+
+      var service = new google.maps.DistanceMatrixService();
+      service.getDistanceMatrix({
+         origins: [origin],
+         destinations: destinations,
+         travelMode: 'DRIVING',
+         avoidHighways: false,
+         avoidTolls: false,
+      }, gmapsResults);
+
+      function gmapsResults(response, status) {
+         console.log(response);
+
+         if (status == 'OK') {
+            for (elem of response.rows[0].elements) {
+               const distance = elem.distance.text;
+               const duration = elem.duration.text;
+               console.log(distance, duration);
+            }
+
+         }
+      }
+
    },
 
    /**
