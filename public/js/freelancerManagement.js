@@ -1,20 +1,11 @@
-$('#modal-tags').selectize({
-    delimiter: ',',
-    persist: false,
-    create: function(input) {
-        return {
-            value: input,
-            text: input
-        }
-    }
-});
+
 
 
 const FREELANCERMANAGEMENT = {
 
     name: 'FREELANCERMANAGEMENT',
-
     getFreelancerInfo: function() {
+
         var url = window.location.href;
         var idFreelancer = url.split('=')[1];
 
@@ -31,7 +22,7 @@ const FREELANCERMANAGEMENT = {
                         freelancer: res
                     };
 
-                    console.log(data.freelancer);
+                    //console.log(data.freelancer);
                     $("#modal-firstName").val(data.freelancer.firstName);
                     $("#modal-lastName").val(data.freelancer.lastName);
                     $("#modal-workName").val(data.freelancer.workName);
@@ -43,15 +34,31 @@ const FREELANCERMANAGEMENT = {
                     $("#modal-number").val(data.freelancer.address.number);
                     $("#modal-description").val(data.freelancer.description);
 
-                    // dust.renderSource(html, data, function(err, out) {
-                    //  MAIN_JS.innerHTML = out;
-                    //  FREELANCER.renderReview(idFreelancer);
-                    // });
-                    
-                });
-            }
-        });
-    },
+					var tagsTemp = data.freelancer.tags.map(function(el) {
+						return el['name'];
+					});
+
+					var $tags = $('#modal-tags').selectize({
+						delimiter: ',',
+						persist: false,
+						create: true
+					});
+
+					var selectize_tags = $("#modal-tags")[0].selectize
+					for (let i = 0; i < tagsTemp.length; i++) {
+						// console.log(tagsTemp[i]);
+						selectize_tags.addOption({
+							text: tagsTemp[i],
+							value:  tagsTemp[i]
+						});
+						selectize_tags.addItem(tagsTemp[i]);
+					}
+					// let test = document.getElementById('modal-tags').value;
+					// console.log(test);
+				});
+			}
+		});
+	},
 
     checkData: function(){
         // console.log(document.getElementById("modal-firstName").value);
