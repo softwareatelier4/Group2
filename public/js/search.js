@@ -9,7 +9,8 @@ const SEARCH = {
       state: null,
       latitude: null,
       longitude: null,
-      method: null
+      method: null,
+      observers: []
    },
 
    currentResult: [],
@@ -40,7 +41,7 @@ const SEARCH = {
          SEARCH.searchFullScreen()
       } else {
          SEARCH.searchHeader();
-         setTimeout(SEARCH.search, 0);
+         // setTimeout(SEARCH.search, 0);
       }
 
       SEARCH.hashUpdater();
@@ -162,6 +163,8 @@ const SEARCH = {
             $('#position').off('blur');
          }
       });
+
+      SEARCH.position.observers.push(SEARCH.search);
    },
 
    /**
@@ -461,7 +464,8 @@ const SEARCH = {
             state,
             latitude,
             longitude,
-            method
+            method,
+            observers: SEARCH.position.observers
          };
       } else {
          if (method == 'empty_location' || SEARCH.position.method != 'user' || method == 'reset') {
@@ -470,11 +474,16 @@ const SEARCH = {
                state: userPosition.state,
                latitude: userPosition.latitude,
                longitude: userPosition.longitude,
-               method: method
+               method: method,
+               observers: SEARCH.position.observers
             };
          } else {
             return;
          }
+      }
+
+      for (cb of SEARCH.position.observers) {
+         cb();
       }
 
       SEARCH.setPositionBox();
