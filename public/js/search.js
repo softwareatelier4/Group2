@@ -4,7 +4,13 @@ const SEARCH = {
 
    doneTypingInterval: 500,
 
-   position: null,
+   position: {
+      city: null,
+      state: null,
+      latitude: null,
+      longitude: null,
+      method: null
+   },
 
    currentResult: [],
 
@@ -47,7 +53,6 @@ const SEARCH = {
    addon_init: function() {
       SEARCH.hashUpdater();
       SEARCH.addGeolocationListener();
-      SEARCH.geoLocation();
    },
 
 
@@ -424,8 +429,7 @@ const SEARCH = {
    },
 
    setSearchHash: function() {
-      console.log('setSeatc');
-      let searchHash = SEARCH_TEXT_QUERY.val().replace(/ /g, '+');
+      let searchHash = SEARCH_TEXT_QUERY.val().replace(/ /g, '+').replace(/|/g, '');
       let hash = window.location.hash.split('|');
       if (hash[0].split('=')[0] == '#search') {
          hash[0] = hash[0].split('=')[0] + '=' + searchHash;
@@ -435,54 +439,60 @@ const SEARCH = {
       window.location.hash = hash.join('|');
    },
 
-   geoLocation: function() {
-      if (document.activeElement.id == 'position' || $('#position').val() != '') {
-         $('#position').attr('placeholder', 'Insert a city');
+   setPosition: function(method, latitude, longitude, city, state) {
+      method = method || '';
+
+      if (method == 'user') {
+         SEARCH.position = {
+            city,
+            state,
+            latitude,
+            longitude,
+            method
+         };
       } else {
-         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(SEARCH.gpsLocation, SEARCH.ipLocation);
+         if (method == 'empty_location' || SEARCH.position.method != 'user') {
+            SEARCH.position = {
+               city: userPosition.city,
+               state: userPosition.state,
+               latitude: userPosition.latitude,
+               longitude: userPosition.longitude,
+               method: method
+            };
          } else {
-            SEARCH.ipLocation();
+            return;
          }
-         $('#position').attr('placeholder', 'Loading position');
       }
 
-      setTimeout(SEARCH.geoLocation, 1000);
+      SEARCH.setPositionBox();
+      SEARCH.setPositionHash();
    },
 
-   //take position by gps
-   gpsLocation: function(pos) {
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&sensor=true`;
-      doJSONRequest("GET", url, null, null, function(res) {
-
-         if (document.activeElement.id != 'position' && $('#position').val() == '') {
-            SEARCH.position = {
-               longitude: pos.coords.longitude,
-               latitude: pos.coords.latitude,
-            }
-
-            const city = res.results[0].address_components[2].long_name;
-            const state = res.results[0].address_components[4].long_name;
-
-            $('#position').val(city + ', ' + state);
-         }
-      });
+   setPositionBox: function() {
+      $('#position').val(SEARCH.position.city + ', ' + SEARCH.position.state);
    },
 
-   //take position by ip
-   ipLocation: function(gpsError) {
-      console.log(gpsError);
-      const url = 'https://freegeoip.net/json/?'
-      doJSONRequest("GET", url, null, null, function(res) {
+   setPositionHash: function() {
+      let hashes = window.location.hash.split('|');
 
-         if (document.activeElement.id != 'position' && $('#position').val() == '') {
-            SEARCH.position = {
-               longitude: res.longitude,
-               latitude: res.latitude,
-            }
-            $('#position').val(res.city + ', ' + res.country_name);
+      let positionHash;
+      for (let i in hashes) {
+         if (hashes[i].split(':')[0] == 'position') {
+            positionHash = i;
+            break;
          }
-      });
+      }
+
+      let hash = 'position:city=' + SEARCH.position.city + '&state=' + SEARCH.position.state;
+      hash += '&latitude=' + SEARCH.position.latitude + '&longitude=' + SEARCH.position.longitude;
+
+      if (positionHash) {
+         hashes[positionHash] = hash;
+      } else {
+         hashes.push(hash);
+      }
+
+      window.location.hash = hashes.join('|');
    },
 
    //auto complete geo position
@@ -490,10 +500,14 @@ const SEARCH = {
       $("#position")
          .geocomplete()
          .bind("geocode:result", function(event, result) {
-            SEARCH.position = {
-               latitude: result.geometry.location.lat(),
-               longitude: result.geometry.location.lng()
-            }
+            const city = result.address_components[0].long_name;
+
+            const addressLen = result.address_components.length;
+            const state = result.address_components[addressLen - 1].long_name;
+
+            const lat = result.geometry.location.lat();
+            const lng = result.geometry.location.lng();
+            SEARCH.setPosition('user', lat, lng, city, state);
          });
    },
 
@@ -514,6 +528,7 @@ const SEARCH = {
    remover: function() {
       SEARCH_TEXT_QUERY.off();
       $('#basic-addon1').off();
+      $("#position").off();
    },
 
    /**
