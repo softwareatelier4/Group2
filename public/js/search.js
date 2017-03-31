@@ -302,7 +302,9 @@ const SEARCH = {
             // currentButton.innerText = currentButton.innerText.replace(" ↓", "");
             currentButton.style.textDecoration = '';
             currentButton.dataset.sorttype = 'neutral';
-            SEARCH.drawCards(SEARCH.notSortedResult);
+            SEARCH.filters.sort.type = 'neutral';
+            SEARCH.filters.sort.idBtn = undefined;
+            SEARCH.applyFilters();
             break;
       }
 
@@ -317,6 +319,7 @@ const SEARCH = {
    },
 
    cardSort: function(buttonId, sortType) {
+
       SEARCH.currentResult.sort(function(a, b) {
          switch (buttonId) {
             case "btn-score":
@@ -422,7 +425,7 @@ const SEARCH = {
       let maxPrice = priceInput.value;
       let maxDistance = distanceInput.value;
 
-      SEARCH.currentResult = SEARCH.originalResponse;
+      SEARCH.currentResult = JSON.parse(JSON.stringify(SEARCH.originalResponse));
 
       // apply price filter
       if (!isNaN(maxPrice - 0) && maxPrice !== null && maxPrice !== "" && maxPrice !== false) {
