@@ -179,17 +179,15 @@ const SEARCH = {
          let lat;
          let long;
 
-         // if (SEARCH.position) {
-         //    lat = SEARCH.position.lat;
-         //    long = SEARCH.position.long;
-         // } else if (){
-         //
-         // }
+         if (SEARCH.position) {
+            lat = SEARCH.position.latitude;
+            long = SEARCH.position.longitude;
+         } else {
+            lat = 46.005265; //temp lat
+            long = 8.947147; // temp long
+         }
 
-         lat = 46.005265; //temp lat
-         long = 8.947147; // temp long
-
-         doJSONRequest("GET", "/api/freelancer/search/" + query + "|" + lat + "," + long, null, null, function(res) {
+         doJSONRequest("GET", "/api/freelancer/search/" + query + "|" + lat + "," + long + "|" + SEARCH.position.city, null, null, function(res) {
             if (res.error) {
                console.log("error");
             } else {

@@ -83,6 +83,7 @@ let searchEngine = function(freelancers, string) {
    let lat = params[1].split(",")[0];
    let long = params[1].split(",")[1];
    let words = params[0].replace(",", " ").split(" ");
+   let cityParam = params[2];
    let fClone = [];
 
    /*
@@ -96,12 +97,17 @@ let searchEngine = function(freelancers, string) {
             tags.push(t.name);
          }
          if (searchForTag(tags, w).length > 0) {
+            let city = [f.address.city];
+            if (searchForTag(city, cityParam).length > 0) {
+               fClone.push(f);
+            }
             fClone.push(f);
             continue;
          }
 
          let filter = [f.firstName, f.lastName, f.workName, f.phone, f.email];
          if (searchForTag(filter, w).length > 0) {
+
             fClone.push(f);
             continue;
          }
@@ -136,9 +142,19 @@ let searchEngine = function(freelancers, string) {
       return b.counter - a.counter;
    });
 
+   console.log(result);
    return removeDuplicatesFreelancers(result);
 
 }
+
+// function in_array(valore_da_esaminare, array_di_riferimento) {
+//     for(i = 0; i &lt; array_di_riferimento.length; i++) {
+// 	if(valore_da_esaminare == array_di_riferimento[i]) {
+// 	    return true;
+// 	}
+//     }
+//     return false;
+// }
 
 
 /**
