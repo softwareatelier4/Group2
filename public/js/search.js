@@ -658,9 +658,9 @@ const SEARCH = {
                'id': freelancer._id,
                'photo': freelancer.photo,
                'name': freelancer.firstName + " " + freelancer.lastName,
-               'description': freelancer.description.length > 230 ? freelancer.description.substring(0, 230) + "..." : freelancer.description,
                'price': price,
-               'distance': distance
+               'distance': distance,
+               'tags': freelancer.tags
             }
          };
 
