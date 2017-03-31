@@ -131,7 +131,12 @@ var freelancer = {
 			},
 			'description': "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
 			score: 3,
-			'price': 200
+			'price': 200,
+			'tags': [
+				ObjectId("a00000000000000000000005"),
+				ObjectId("a00000000000000000000000"),
+				ObjectId("a00000000000000000000006")
+			],
 		},
 		{
 			'_id': ObjectId("f00000000000000000000006"),

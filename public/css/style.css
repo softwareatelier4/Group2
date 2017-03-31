@@ -163,6 +163,11 @@ body, html {
    height: 35px;
 }
 
+.price-km {
+   display: flex;
+   justify-content: space-between;
+}
+
 
 /*----------------------------------------
 Loading Spinner
