@@ -1,10 +1,10 @@
 <div class='card result-card' id="{freelancer.id}">
-   <div class='card-img-top' alt='Card image cap' {?freelancer.photo} style="background-image:url('{freelancer.photo}');" {/freelancer.photo}></div>
+   <div class='card-img-top' alt='Card image cap' {?freelancer.photo} style="background-image:url('{freelancer.photo}');" {:else} style="background-image:url('../img/default_user.jpg');" {/freelancer.photo}></div>
    <div class='card-block'>
       <h4 class='card-title'>{freelancer.name}</h4>
-      <p class='card-text'>{freelancer.price}</p>
-		<p class='card-text'>{freelancer.distance}</p>
-		<p class='card-text'>TAGS</p>
+      <p class='card-text'>{?freelancer.price}{freelancer.price}{:else}no price available{/freelancer.price}</p>
+      <p class='card-text'>{?freelancer.distance}{freelancer.distance}{:else}no distance available{/freelancer.distance}</p>
+      <p class='card-text'>TAGS</p>
       <a class='btn btn-primary'>More info</a>
    </div>
 </div>
