@@ -55,7 +55,7 @@ const FREELANCERMANAGEMENT = {
 
     checkData: function(){
         // console.log(document.getElementById("modal-firstName").value);
-        var patt = /^([A-Za-z_ _-_è_ü_é_ö_à_ä_á_'])+$/;
+        var patt = /^([A-Za-z_ _-_è_ü_é_ö_à_ä_á_']{3,15})+$/;
         let flag = true;
         // console.log(patt.test(document.getElementById("modal-firstName").value));
 
@@ -63,13 +63,25 @@ const FREELANCERMANAGEMENT = {
         if(!patt.test(document.getElementById("modal-firstName").value)){
             flag = false;
             document.getElementById("modal-firstName-label").className = 'error-red';
-            document.getElementById("modal-firstName-label").innerHTML = "firstname can only contain letters(a-z,A-Z) and spaces";
+            document.getElementById("modal-firstName-label").innerHTML = "Firstname can only contain letters(a-z,A-Z) and spaces";
+        }
+        else if(patt.test(document.getElementById("modal-firstName").value) &&
+           document.getElementById("modal-firstName-label").className == 'error-red'){
+            document.getElementById("modal-firstName-label").className = 'error-green';
+            document.getElementById("modal-firstName-label").innerHTML = "First name input was corrected";
+
         }
 
         if(!patt.test(document.getElementById("modal-lastName").value)){
             flag = false;
             document.getElementById("modal-lastName-label").className = 'error-red';
-            document.getElementById("modal-lastName-label").innerHTML = "lastname can only contain letters(a-z,A-Z) and spaces";
+            document.getElementById("modal-lastName-label").innerHTML = "Lastname can only contain letters(a-z,A-Z) and spaces";
+        }
+
+        if(!patt.test(document.getElementById("modal-workName").value)){
+            flag = false;
+            document.getElementById("modal-workName-label").className = 'error-red';
+            document.getElementById("modal-workName-label").innerHTML = "Workame can only contain letters(a-z,A-Z) and spaces";
         }
 
         if(flag){
