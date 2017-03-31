@@ -197,7 +197,7 @@ const SEARCH = {
                SEARCH.originalResponse = res;
                let searchResult = document.getElementById('main-content');
                searchResult.innerHTML = "";
-               SEARCH.drawCards(SEARCH.currentResult);
+               SEARCH.applyFilters();
 
                SEARCH.freelancerForMarco = JSON.parse(JSON.stringify(SEARCH.currentResult));
                SEARCH.freelancerForMarco.sort(function(a, b) {
@@ -440,7 +440,7 @@ const SEARCH = {
          });
       }
 
-      SEARCH.notSortedResult = SEARCH.currentResult;
+      //SEARCH.notSortedResult = SEARCH.currentResult;
 
       SEARCH.cardSort(SEARCH.filters.sort.idBtn, SEARCH.filters.sort.type);
    },
