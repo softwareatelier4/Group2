@@ -572,7 +572,7 @@ const SEARCH = {
    },
 
    getGmapRealValue: function(data) {
-
+      console.log(data);
       const origin = new google.maps.LatLng(SEARCH.position.latitude, SEARCH.position.longitude);
 
       let destinations = [];
@@ -592,13 +592,19 @@ const SEARCH = {
       }, gmapsResults);
 
       function gmapsResults(response, status) {
-         console.log(response);
-
          if (status == 'OK') {
-            for (elem of response.rows[0].elements) {
-               const distance = elem.distance.text;
-               const duration = elem.duration.text;
-               console.log(distance, duration);
+            for (let i in response.rows[0].elements) {
+               let elem = response.rows[0].elements[i];
+               if (elem.status == 'OK') {
+
+                  const freelancerId = data[i].id;
+                  const latitude = data[i].lat;
+                  const longitude = data[i].lng;
+                  const distance = elem.distance.text;
+                  const duration = elem.duration.text;
+
+
+               }
             }
 
          }
