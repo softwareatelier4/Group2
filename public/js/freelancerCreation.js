@@ -58,18 +58,22 @@ const FREELANCERCREATION = {
 			});
 		}
 		if(tagText.value.length > 0 && event.key == "Enter" && !FREELANCERCREATION.addedTags.includes(tagText.value)){
-			doJSONRequest("POST", "/api/tag/", null, { 'name' : tagText.value }, function(res) {
-				let badge = `<span class="badge badge-primary">`+ res.name +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-id="`+ res._id +`" aria-hidden="true">&times;</span></span>  `;
-				FREELANCERCREATION.addedTags.push(res._id);
+			// doJSONRequest("POST", "/api/tag/", null, { 'name' : tagText.value }, function(res) {
+			// 	let badge = `<span class="badge badge-primary">`+ res.name +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-id="`+ res._id +`" aria-hidden="true">&times;</span></span>  `;
+			// 	FREELANCERCREATION.addedTags.push(res._id);
+			// 	tagText.value = '';
+			// 	tagsList.innerHTML += badge;
+			// });
+				let badge = `<span class="badge badge-primary">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
+				FREELANCERCREATION.addedTags.push(tagText.value);
 				tagText.value = '';
 				tagsList.innerHTML += badge;
-			});
 		}
 	},
 
 	removeTag: function(span) {
-		let tagId = span.dataset.id;
-		let index = FREELANCERCREATION.addedTags.indexOf(tagId);
+		let tagName = span.dataset.tag;
+		let index = FREELANCERCREATION.addedTags.indexOf(tagName);
 		if(index > - 1) {
 			FREELANCERCREATION.addedTags.splice(index, 1);
 		}

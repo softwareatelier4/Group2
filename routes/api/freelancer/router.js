@@ -8,6 +8,7 @@ var middleware = require('../../middleware');
 var rootUrl = require("../../../config").url;
 const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
+const Tag = mongoose.model('Tag');
 
 //supported methods
 
@@ -182,18 +183,31 @@ router.post('/create/freelancer', function(req, res) {
 	freelancer.address      = req.body.address;
 	freelancer.description = req.body.description;
 	freelancer.profilePhoto = '';
-	freelancer.tags = [];
-	for(let tag of req.body.tags) {
-		freelancer.tags.push(mongoose.Types.ObjectId(tag));
-	}
+	let tags = req.body.tags;
 	freelancer.save(function(err, newfreelancer) {
 		if (err){
 			res.send(err);
 		} else {
-
-			Freelancer.update({ _id : newfreelancer._id }, { $set: { profilePhoto : '/uploads/' + newfreelancer._id + '/profile.jpg' }}, function(err, res) {
-
-			});
+			Freelancer.update({ _id : newfreelancer._id }, { $set: { profilePhoto : '/uploads/' + newfreelancer._id + '/profile.jpg' }}, function(err, res){});
+			for(let tag of tags){
+				Freelancer.findById(newfreelancer._id, function(err,updatedFreelancer) {
+					Tag.findOne({name: tag},function (err, docs) {
+						if(docs){
+							updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
+							updatedFreelancer.save(function() {});
+						}
+						else{
+							let newTag = new Tag();
+							newTag._id = mongoose.Types.ObjectId();
+							newTag.name = tag;
+							newTag.save(function(err, newTagRes) {
+								updatedFreelancer.tags.push(newTagRes._id);
+								updatedFreelancer.save(function() {});
+							});
+						}
+					});
+				});
+			}
 			res.json(freelancer);
 		}
 	});
