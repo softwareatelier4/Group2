@@ -579,6 +579,15 @@ const SEARCH = {
       let elem = ev.target;
       let id = elem.parentNode.parentNode.id;
 
+      let arrowsup = document.getElementsByClassName('up-arrow');
+      for (arrow of arrowsup) {
+         arrow.style.visibility = 'hidden';
+      }
+      let arrowsdown = document.getElementsByClassName('down-arrow');
+      for (arrow of arrowsdown) {
+         arrow.style.visibility = 'hidden';
+      }
+
       window.location.hash = 'freelancer=' + id;
    },
 
