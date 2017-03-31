@@ -140,11 +140,13 @@ Button
 .btn-primary.active, .btn-primary:active, .btn-primary:hover, .btn-primary:visited {
    background-color: rgb(67, 105, 121);
    border-color: rgb(67, 105, 121);
+   color: #fff;
 }
 
 .btn-primary {
    background-color: rgb(46, 78, 92);
    border-color: rgb(46, 78, 92);
+   color: #fff;
 }
 
 .blue {
