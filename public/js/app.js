@@ -7,11 +7,25 @@ const MAIN_JS = document.getElementById('main-content');
 const MAIN_DIV = document.getElementById('main');
 const SORTING_OPTIONS = document.getElementById('sorting-buttons');
 
+let userPosition = {
+   method: null,
+   city: null,
+   state: null,
+   longitude: null,
+   latitude: null,
+   time: null,
+   onChangeCall: [
+      SEARCH.setPosition
+   ]
+}
+
 $(document).ready(function() {
    window.addEventListener("hashchange", hashchanged);
 
    // when page load
    hashchanged();
+
+   UTILS.geoLocation();
 });
 
 let hashchanged = function hashchanged() {
@@ -40,5 +54,4 @@ let hashchanged = function hashchanged() {
    }
 
    currentPage.init();
-
 }
