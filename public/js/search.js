@@ -57,6 +57,11 @@ const SEARCH = {
     */
    searchFullScreen: function() {
       MAIN_JS.style.visibility = "hidden";
+      MAIN_JS.style.flexGrow = 0;
+      MAIN_DIV.style.display = "flex";
+      MAIN_DIV.style.backgroundColor = "rgb(46, 78, 92)";
+
+      /* CLEANING ALL THE FILTERS AND SORTING BUTTONS */
       FILTER_DISTANCE_QUERY[0].value = "";
       FILTER_PRICE_QUERY[0].value = "";
       SEARCH.filters = {
@@ -68,9 +73,22 @@ const SEARCH = {
          distance: false
       };
       SORTING_OPTIONS.style.visibility = 'hidden';
-      MAIN_JS.style.flexGrow = 0;
-      MAIN_DIV.style.display = "flex";
-      MAIN_DIV.style.backgroundColor = "rgb(46, 78, 92)";
+      let btns = document.getElementsByClassName('filter-btn');
+      for (let elem of btns) {
+         elem.style.textDecoration = '';
+         elem.dataset.sorttype = 'neutral';
+      }
+      let arrowsup = document.getElementsByClassName('up-arrow');
+      for (arrow of arrowsup) {
+         arrow.style.display = 'inline';
+         arrow.style.visibility = 'hidden';
+      }
+      let arrowsdown = document.getElementsByClassName('down-arrow');
+      for (arrow of arrowsdown) {
+         arrow.style.display = 'none';
+         arrow.style.visibility = 'hidden';
+      }
+      //////////////////////////////////////////////////////////////////
    },
 
 
@@ -137,8 +155,18 @@ const SEARCH = {
       if (query.length > 0) {
          SEARCH.searchHeader();
 
-         let lat = 46.005265; //temp lat
-         let long = 8.947147; // temp long
+         let lat;
+         let long;
+
+         // if (SEARCH.position) {
+         //    lat = SEARCH.position.lat;
+         //    long = SEARCH.position.long;
+         // } else if (){
+         //
+         // }
+
+         lat = 46.005265; //temp lat
+         long = 8.947147; // temp long
 
          doJSONRequest("GET", "/api/freelancer/search/" + query + "|" + lat + "," + long, null, null, function(res) {
             if (res.error) {
@@ -208,12 +236,14 @@ const SEARCH = {
             // currentButton.innerText = currentButton.innerText + " ↑";
             sortType = "asc";
             currentButton.style.textDecoration = 'underline';
+            currentButton.dataset.sorttype = 'asc';
             SEARCH.cardSort(buttonId, sortType);
             break;
          case "asc":
             arrowUp.style.display = 'none';
             arrowDown.style.display = 'inline';
             arrowDown.style.visibility = 'visible';
+            currentButton.dataset.sorttype = 'desc';
             // currentButton.innerText = currentButton.innerText.replace(" ↑", " ↓");
             sortType = "desc";
             SEARCH.cardSort(buttonId, sortType);
@@ -225,6 +255,7 @@ const SEARCH = {
             arrowUp.style.visibility = 'hidden';
             // currentButton.innerText = currentButton.innerText.replace(" ↓", "");
             currentButton.style.textDecoration = '';
+            currentButton.dataset.sorttype = 'neutral';
             SEARCH.drawCards(SEARCH.notSortedResult);
             break;
       }
