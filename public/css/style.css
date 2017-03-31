@@ -131,3 +131,7 @@ Loading Spinner
       transform: rotate(360deg);
    }
 }
+
+.error-red{
+   color:red;
+}

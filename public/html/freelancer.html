@@ -1,66 +1,66 @@
 <div id="profile-freelancer">
-	<div id="main-info">
-		<div id="profile-pic" alt="profile photo" {?freelancer.profilePhoto} style="background-image:url('{freelancer.profilePhoto}');" {/freelancer.profilePhoto}>
-		</div>
-		<div id="main-info-vertical">
-			<div id="info-name">
-				<div class="info-name-top">
-					<span class="ml-15" id="profile-name">{freelancer.firstName} {freelancer.lastName}</span>
-					<span class="ml-15 light-blue" id="city-freelancer">{?freelancer.address.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a> {/freelancer.address.city}</span>
-				</div>
-				<div class="ml-15 light-blue" id="info-name-bottom">
-					{freelancer.workName}
-				</div>
-				<div class="ml-15 light-blue" id="info-name-bottom">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
-						Modify
-					</button>
-				</div>
-			</div>
-			<div id="rank" class="ml-15">
-				{freelancer.score|s}
-			</div>
-			<div id="contact-info-top" class="ml-15">
-				<div id="chat" class="contact-info-element blue">
-					<i class="fa fa-comment " aria-hidden="true"></i> chat
-				</div>
-				<div id="email" class="contact-info-element blue">
-					<i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{freelancer.email}">{freelancer.email}</a>
-				</div>
-				<div id="phone" class="contact-info-element blue">
-					{?freelancer.phone}<i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{freelancer.phone}">{freelancer.phone}</a>{/freelancer.phone}
-				</div>
-			</div>
-		</div>
-	</div>
-	<div id="main-info-bottom">
-		<div id="info-review">
-			<div id="info">
-				<h5 class="blue">INFO</h5>
-				<div id="tag">
-					{#freelancer.tags} <span class="badge badge-default"> {name} </span> {/freelancer.tags}
-				</div>
-				<span id="description"></span> {freelancer.description}
-			</div>
+    <div id="main-info">
+        <div id="profile-pic" alt="profile photo" {?freelancer.profilePhoto} style="background-image:url('{freelancer.profilePhoto}');" {/freelancer.profilePhoto}>
+        </div>
+        <div id="main-info-vertical">
+            <div id="info-name">
+                <div class="info-name-top">
+                    <span class="ml-15" id="profile-name">{freelancer.firstName} {freelancer.lastName}</span>
+                    <span class="ml-15 light-blue" id="city-freelancer">{?freelancer.address.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a> {/freelancer.address.city}</span>
+                </div>
+                <div class="ml-15 light-blue" id="info-name-bottom">
+                    {freelancer.workName}
+                </div>
+                <div class="ml-15 light-blue" id="info-name-bottom">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
+                        Modify
+                    </button>
+                </div>
+            </div>
+            <div id="rank" class="ml-15">
+                {freelancer.score|s}
+            </div>
+            <div id="contact-info-top" class="ml-15">
+                <div id="chat" class="contact-info-element blue">
+                    <i class="fa fa-comment " aria-hidden="true"></i> chat
+                </div>
+                <div id="email" class="contact-info-element blue">
+                    <i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{freelancer.email}">{freelancer.email}</a>
+                </div>
+                <div id="phone" class="contact-info-element blue">
+                    {?freelancer.phone}<i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{freelancer.phone}">{freelancer.phone}</a>{/freelancer.phone}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main-info-bottom">
+        <div id="info-review">
+            <div id="info">
+                <h5 class="blue">INFO</h5>
+                <div id="tag">
+                    {#freelancer.tags} <span class="badge badge-default"> {name} </span> {/freelancer.tags}
+                </div>
+                <span id="description"></span> {freelancer.description}
+            </div>
 
-			<div id="reviews">
-				<h5 class="blue">REVIEW</h5>
-				<div id="cardReviews">
-				</div>
-			</div>
-		</div>
+            <div id="reviews">
+                <h5 class="blue">REVIEW</h5>
+                <div id="cardReviews">
+                </div>
+            </div>
+        </div>
 
-		<div id="img-freelancer">
-			<div id="works" class="blue ml-15">
-				{?freelancer.photos}<i class="fa fa-camera" aria-hidden="true"></i>
-				<h5>WORKS</h5>
-			</div>
-			<div id="thumbnail">
-				{#freelancer.photos}
-				<a href="{.}" data-lightbox="review-img"><img class="thumbnail-element" src="{.}" /></a>{/freelancer.photos} {/freelancer.photos}
-			</div>
-		</div>
-	</div>
+        <div id="img-freelancer">
+            <div id="works" class="blue ml-15">
+                {?freelancer.photos}<i class="fa fa-camera" aria-hidden="true"></i>
+                <h5>WORKS</h5>
+            </div>
+            <div id="thumbnail">
+                {#freelancer.photos}
+                <a href="{.}" data-lightbox="review-img"><img class="thumbnail-element" src="{.}" /></a>{/freelancer.photos} {/freelancer.photos}
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -76,40 +76,40 @@
       </div>
       <div class="modal-body">
         <form enctype="multipart/form-data" action="javascript:FREELANCERMANAGEMENT.submitFreelancer()" id="form-freelancer-management">
-			<div class="form-group">
-				<label for="modal-firstName">First name: </label>
-				<input type="text" class="form-control" id="modal-firstName" aria-describedby="firstName" placeholder="Enter first name">
-				<label for="modal-lastName">Last name: </label>
-				<input type="text" class="form-control" id="modal-lastName" aria-describedby="lastName" placeholder="Enter last name">
-				<label for="modal-workName">Work name: </label>
-				<input type="text" class="form-control" id="modal-workName" aria-describedby="workName" placeholder="Enter work name">
-				<label for="modal-phoneName">Phone number: </label>
-				<input type="text" class="form-control" id="modal-phone" aria-describedby="phone" placeholder="Enter phone number">
-				<label for="modal-city">City: </label>
-				<input type="text" class="form-control" id="modal-city" aria-describedby="city" placeholder="Enter city name">
-				<label for="modal-street">Street: </label>
-				<input type="text" class="form-control" id="modal-street" aria-describedby="street" placeholder="Enter street name">
-				<label for="modal-number">Number: </label>
-				<input type="text" class="form-control" id="modal-number" aria-describedby="number" placeholder="Enter street number">
-				<label for="modal-zip">Zip code: </label>
-				<input type="text" class="form-control" id="modal-zip" aria-describedby="zip" placeholder="Enter zip code">
-			</div>
-			<div class="form-group">
-				<label for="modal-tags">Tags: </label>
-				<input type="text" class="selectize-input items not-full has-options has-items" id="modal-tags">
-			<div class="form-group">
-				<label for="modal-email">Email address: </label>
-				<input type="email" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
-			</div>
-			<div class="form-group">
-				<label for="modal-description">Description</label>
-				<textarea class="form-control" id="modal-description" rows="3"></textarea>
-			</div>
-			<div class="form-group">
-				<label for="modal-profilePicture">Profile picture upload</label>
-				<input type="file" class="form-control-file" id="modal-profilePicture" aria-describedby="profilePicture">
-			</div>
-		</form>
+            <div class="form-group">
+                <label for="modal-firstName" id="modal-firstName-label">First name: </label>
+                <input type="text" class="form-control" id="modal-firstName" aria-describedby="firstName" placeholder="Enter first name">
+                <label for="modal-lastName" id="modal-lastName-label">Last name: </label>
+                <input type="text" class="form-control" id="modal-lastName" aria-describedby="lastName" placeholder="Enter last name">
+                <label for="modal-workName">Work name: </label>
+                <input type="text" class="form-control" id="modal-workName" aria-describedby="workName" placeholder="Enter work name">
+                <label for="modal-phoneName">Phone number: </label>
+                <input type="text" class="form-control" id="modal-phone" aria-describedby="phone" placeholder="Enter phone number">
+                <label for="modal-city">City: </label>
+                <input type="text" class="form-control" id="modal-city" aria-describedby="city" placeholder="Enter city name">
+                <label for="modal-street">Street: </label>
+                <input type="text" class="form-control" id="modal-street" aria-describedby="street" placeholder="Enter street name">
+                <label for="modal-number">Number: </label>
+                <input type="text" class="form-control" id="modal-number" aria-describedby="number" placeholder="Enter street number">
+                <label for="modal-zip">Zip code: </label>
+                <input type="text" class="form-control" id="modal-zip" aria-describedby="zip" placeholder="Enter zip code">
+            </div>
+            <div class="form-group">
+                <label for="modal-tags">Tags: </label>
+                <input type="text" class="selectize-input items not-full has-options has-items" id="modal-tags">
+            <div class="form-group">
+                <label for="modal-email">Email address: </label>
+                <input type="email" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="modal-description">Description</label>
+                <textarea class="form-control" id="modal-description" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="modal-profilePicture">Profile picture upload</label>
+                <input type="file" class="form-control-file" id="modal-profilePicture" aria-describedby="profilePicture">
+            </div>
+        </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
