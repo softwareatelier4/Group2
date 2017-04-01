@@ -11,8 +11,8 @@
                 <div class="ml-15 light-blue" id="info-name-bottom">
                     {freelancer.workName}
                 </div>
-                <div class="ml-15 light-blue" id="info-name-bottom">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
+                <div class="ml-15 light-blue" id="info-name-button">
+                    <button type="button" id="modify-button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
                         Modify
                     </button>
                 </div>
@@ -66,7 +66,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="update-freelancer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog" role="document" id="modal-ext">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -115,7 +115,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
+        <button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
       </div>
     </div>
   </div>
