@@ -253,8 +253,8 @@ describe('Testing the search algorithm', function() {
             .expect(200)
             .end(function(err, res) {
                let resJson = JSON.parse(res.text);
-               resJson[0].distance.should.equal('0.636');
-               resJson[1].distance.should.equal('13.145');
+               resJson[0].distance.should.equal('0.6');
+               resJson[1].distance.should.equal('13.1');
 
                done();
             });
