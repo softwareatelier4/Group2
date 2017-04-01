@@ -207,8 +207,8 @@ const FREELANCERMANAGEMENT = {
         let temp_tags = document.getElementById("modal-tags").value.split(",");
         let tags = [];
         for(let j = 0; j<temp_tags.length; j++){
-            alert("booby"+temp_tags[j]);
-            tags = tags.concat([temp_tags[j]]);
+            //alert("booby"+temp_tags[j]);
+            tags.push(temp_tags[j]);
         }
         alert(tags);
         //console.log(tags);
@@ -221,7 +221,7 @@ const FREELANCERMANAGEMENT = {
 			'description' : description.value,
 			'address' : {
 				'city' : city.value,
-				'street' : street.value,
+				'road' : street.value,
 				'number' : number.value,
 				'cap' : zip.value,
 				'lat' : 0,

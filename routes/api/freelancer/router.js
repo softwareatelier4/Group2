@@ -59,7 +59,7 @@ router.put('/:freelancerid', function(req, res, next) {
       freelancer.profilePhoto = data.profilePhoto;
       freelancer.photos = data.photos;
       freelancer.address = data.address;
-      freelancer.tags = data.tags;
+      freelancer.tags = freelancer.tags;
       freelancer.description = data.description;
       freelancer.ownerId = data.ownerId;
 	  if(data.score != null){
@@ -70,24 +70,24 @@ router.put('/:freelancerid', function(req, res, next) {
 
 	  let tags = req.body.tags;
 	  console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
-		// for(let tag of tags){
-		// 	Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
-		// 		Tag.findOne({name: tag},function (err, docs) {
-		// 			if(docs){
-		// 				updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
-		// 				updatedFreelancer.save(function() {});
-		// 			} else {
-		// 				let newTag = new Tag();
-		// 				newTag._id = mongoose.Types.ObjectId();
-		// 				newTag.name = tag;
-		// 				newTag.save(function(err, newTagRes) {
-		// 						updatedFreelancer.tags.push(newTagRes._id);
-		// 						updatedFreelancer.save(function() {});
-		// 				});
-		// 			}
-		// 		});
-		// 	});
-		// }
+		for(let tag of tags){
+			Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
+				Tag.findOne({name: tag},function (err, docs) {
+					if(docs){
+						updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
+						updatedFreelancer.save(function() {});
+					} else {
+						let newTag = new Tag();
+						newTag._id = mongoose.Types.ObjectId();
+						newTag.name = tag;
+						newTag.save(function(err, newTagRes) {
+								updatedFreelancer.tags.push(newTagRes._id);
+								updatedFreelancer.save(function() {});
+						});
+					}
+				});
+			});
+		}
     }
   });
 });
