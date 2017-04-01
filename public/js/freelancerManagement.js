@@ -53,8 +53,6 @@ const FREELANCERMANAGEMENT = {
 						});
 						selectize_tags.addItem(tagsTemp[i]);
 					}
-					// let test = document.getElementById('modal-tags').value;
-					// console.log(test);
 				});
 			}
 		});
@@ -98,6 +96,7 @@ const FREELANCERMANAGEMENT = {
     },
 
     submitFreelancer: function(){
+        
         console.log("works");
         //PUT
     },
