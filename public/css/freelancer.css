@@ -65,7 +65,7 @@
    flex: 4 0 0;
 }
 
-#reply {
+.reply {
    background-color: rgb(231, 231, 231)
 }
 
@@ -137,14 +137,6 @@
 #info-name-bottom {
    font-size: 25px;
    margin-top: -5px;
-}
-
-.blue {
-   color: rgb(46, 78, 92);
-}
-
-.light-blue {
-   color: rgb(78, 108, 121);
 }
 
 .ml-15 {
