@@ -307,7 +307,8 @@ var review = {
 				'/uploads/test/6.jpg'
 			],
 			'user': ObjectId("b00000000000000000000002"),
-			'freelancer': ObjectId("f00000000000000000000001")
+			'freelancer': ObjectId("f00000000000000000000001"),
+			'answer': 'This is just an example. But I think you are right.'
 		},
 		{
 			'_id': ObjectId("c00000000000000000000003"),
