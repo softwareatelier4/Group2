@@ -20,6 +20,7 @@ const FREELANCERMANAGEMENT = {
                         freelancer: res
                     };
                     
+                    console.log(data.freelancer.tags);
                     $("#modal-firstName").val(data.freelancer.firstName);
                     $("#modal-lastName").val(data.freelancer.lastName);
                     $("#modal-workName").val(data.freelancer.workName);
@@ -202,6 +203,9 @@ const FREELANCERMANAGEMENT = {
         let photos = data.freelancer.photos;
 		let description = document.getElementById('modal-description');
 
+        //console.log(document.getElementById("modal-tags").value);
+        let tags = document.getElementById("modal-tags").value.split(",");
+        console.log(tags);
         let freelancer_update = {
 			'firstName' : firstName.value,
 			'lastName' : lastName.value,
@@ -219,7 +223,8 @@ const FREELANCERMANAGEMENT = {
 			},
             'photos' : photos,
             'profilePhoto' : profilePic,
-			'tags' : data.freelancer.tags,
+			//'tags' : data.freelancer.tags,
+            'tags' : tags,
             'score' : null
 		};
 

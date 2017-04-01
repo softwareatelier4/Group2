@@ -67,6 +67,27 @@ router.put('/:freelancerid', function(req, res, next) {
 	  }
 
       freelancer.save(onModelSave(res,200,true));
+
+	  let tags = req.body.tags;
+	  //console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
+		// for(let tag of tags){
+		// 	Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
+		// 		Tag.findOne({name: tag},function (err, docs) {
+		// 			if(docs){
+		// 				updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
+		// 				updatedFreelancer.save(function() {});
+		// 			} else {
+		// 				let newTag = new Tag();
+		// 				newTag._id = mongoose.Types.ObjectId();
+		// 				newTag.name = tag;
+		// 				newTag.save(function(err, newTagRes) {
+		// 						updatedFreelancer.tags.push(newTagRes._id);
+		// 						updatedFreelancer.save(function() {});
+		// 				});
+		// 			}
+		// 		});
+		// 	});
+		// }
     }
   });
 });
