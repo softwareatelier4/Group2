@@ -48,6 +48,9 @@ router.get('/:freelancerid', function(req, res, next) {
  * @return {number} - Distance
  */
 let distanceCalculation = function(freelancer, lat, long) {
+   if (!freelancer || !lat || !long)
+      return undefined;
+
    let R = 6371;
    let pigreco = Math.PI;
    let lat_alfa;
@@ -80,8 +83,11 @@ let distanceCalculation = function(freelancer, lat, long) {
 let searchEngine = function(freelancers, string) {
    let result = [];
    let params = string.split("|");
-   let lat = params[1].split(",")[0];
-   let long = params[1].split(",")[1];
+   let lat, long;
+   if (params[1] !== undefined) {
+      lat = params[1].split(",")[0];
+      long = params[1].split(",")[1];
+   }
    let words = params[0].replace(",", " ").split(" ");
    let cityParam = params[2];
    let fClone = [];
@@ -118,6 +124,12 @@ let searchEngine = function(freelancers, string) {
       Put freelancers that satisfy requirements in the result
    */
    for (let f of fClone) {
+      let dist = Number(distanceCalculation(f, lat, long));
+      let timez = undefined;
+      if (dist !== undefined) {
+         dist = dist.toFixed(3);
+         timez = dist / 60;
+      }
       let freelancer = {
          _id: f._id,
          firstName: f.firstName,
@@ -129,8 +141,8 @@ let searchEngine = function(freelancers, string) {
          score: f.score,
          latitude: f.address.lat,
          longitude: f.address.long,
-         distance: Number(distanceCalculation(f, lat, long).toFixed(3)),
-         time: Number(distanceCalculation(f, lat, long).toFixed(3)) / 60,
+         distance: dist,
+         time: timez,
          counter: countInArray(fClone, f),
          price: f.price
       };
@@ -189,7 +201,7 @@ let removeDuplicatesFreelancers = function(array) {
 let searchForTag = function(array, string) {
    let result = [];
    for (let s of array) {
-      if (s && s.toLowerCase().includes(string.toLowerCase()))
+      if (s && string && s.toLowerCase().includes(string.toLowerCase()))
          result.push(s);
    }
    return result;
