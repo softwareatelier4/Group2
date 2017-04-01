@@ -223,14 +223,14 @@ const FREELANCERMANAGEMENT = {
             'photos' : photos,
             'profilePhoto' : profilePic,
 			'tags' : data.freelancer.tags,
-            'score' : 1
+            'score' : null
 		};
 
         doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
             location.reload();
 		});
     },
-    
+
     result : {},
     addedTags : [],
 

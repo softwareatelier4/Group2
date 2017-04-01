@@ -62,7 +62,9 @@ router.put('/:freelancerid', function(req, res, next) {
       freelancer.tags = data.tags;
       freelancer.description = data.description;
       freelancer.ownerId = data.ownerId;
-      freelancer.score = data.score;
+	  if(data.score != null){
+		freelancer.score = data.score;
+	  }
 
       freelancer.save(onModelSave(res,200,true));
     }
