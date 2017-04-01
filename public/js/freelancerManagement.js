@@ -213,10 +213,7 @@ const FREELANCERMANAGEMENT = {
         let temp_tags = document.getElementById("modal-tags").value.split(",");
         let tags = [];
         for(let j = 0; j<temp_tags.length; j++){
-            if(!($.inArray(temp_tags[j], tagsTemp) > -1)){
-                tags.push(temp_tags[j]);
-            }
-            
+            tags.push(temp_tags[j]);  
         }
         //console.log(tags);
         let freelancer_update = {

@@ -59,7 +59,7 @@ router.put('/:freelancerid', function(req, res, next) {
       freelancer.profilePhoto = data.profilePhoto;
       freelancer.photos = data.photos;
       freelancer.address = data.address;
-      freelancer.tags = freelancer.tags;
+      freelancer.tags = null;
       freelancer.description = data.description;
       freelancer.ownerId = data.ownerId;
 	  if(data.score != null){
@@ -68,8 +68,9 @@ router.put('/:freelancerid', function(req, res, next) {
 
       freelancer.save(onModelSave(res,200,true));
 
+	  freelancer.tags = [];
 	  let tags = req.body.tags;
-	  console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
+	  //console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
 		for(let tag of tags){
 			Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
 				console.log("\n\n\n\n"+tag+"\n\n\n");
