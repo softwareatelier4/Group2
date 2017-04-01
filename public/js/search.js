@@ -204,7 +204,7 @@ const SEARCH = {
 
                let currentSort = document.getElementById(SEARCH.filters.sort.idBtn);
 
-               if (currentSort !== undefined) {
+               if (currentSort !== undefined && currentSort !== null) {
                   currentSort.dataset.sorttype = SEARCH.filters.sort.type;
                   if (SEARCH.filters.sort.type === 'asc') {
                      currentSort.getElementsByClassName("up-arrow")[0].style.visibility = 'visible';
