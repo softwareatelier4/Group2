@@ -463,7 +463,7 @@ const SEARCH = {
       if (!isNaN(maxDistance - 0) && maxDistance !== null && maxDistance !== "" && maxDistance !== false) {
          SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
             if (freelancer.distance)
-               return freelancer.distance <= maxDistance;
+               return Number(freelancer.distance) <= Number(maxDistance);
          });
       }
 

@@ -127,7 +127,7 @@ let searchEngine = function(freelancers, string) {
       let dist = Number(distanceCalculation(f, lat, long));
       let timez = undefined;
       if (dist !== undefined) {
-         dist = dist.toFixed(3);
+         dist = dist.toFixed(1);
          timez = dist / 60;
       }
       let freelancer = {
