@@ -60,33 +60,128 @@ const FREELANCERMANAGEMENT = {
 
     checkData: function(){
         // console.log(document.getElementById("modal-firstName").value);
-        var patt = /^([A-Za-z_ _-_è_ü_é_ö_à_ä_á_']{3,15})+$/;
+        var pattStrings = /^([A-Za-z_ _-_è_ü_é_ö_à_ä_á_']{3,15})+$/;
+        var pattPhone = /^[0-9_+_ _(_)]*(?:\.\d{1,2})?$/;
+        var pattNumbers = /^[0-9]*(?:\.\d{1,2})?$/;
+        var pattEmail = /[A-Za-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}/;
+
         let flag = true;
         // console.log(patt.test(document.getElementById("modal-firstName").value));
 
 
-        if(!patt.test(document.getElementById("modal-firstName").value)){
+        if(!pattStrings.test(document.getElementById("modal-firstName").value)){
             flag = false;
             document.getElementById("modal-firstName-label").className = 'error-red';
             document.getElementById("modal-firstName-label").innerHTML = "Firstname can only contain letters(a-z,A-Z) and spaces";
         }
-        else if(patt.test(document.getElementById("modal-firstName").value) &&
+        else if(pattStrings.test(document.getElementById("modal-firstName").value) &&
            document.getElementById("modal-firstName-label").className == 'error-red'){
             document.getElementById("modal-firstName-label").className = 'error-green';
-            document.getElementById("modal-firstName-label").innerHTML = "First name input was corrected";
+            document.getElementById("modal-firstName-label").innerHTML = "Firstname input was corrected";
 
         }
 
-        if(!patt.test(document.getElementById("modal-lastName").value)){
+        if(!pattStrings.test(document.getElementById("modal-lastName").value)){
             flag = false;
             document.getElementById("modal-lastName-label").className = 'error-red';
             document.getElementById("modal-lastName-label").innerHTML = "Lastname can only contain letters(a-z,A-Z) and spaces";
         }
+        else if(pattStrings.test(document.getElementById("modal-lastName").value) &&
+           document.getElementById("modal-lastName-label").className == 'error-red'){
+            document.getElementById("modal-lastName-label").className = 'error-green';
+            document.getElementById("modal-lastName-label").innerHTML = "Lastname input was corrected";
 
-        if(!patt.test(document.getElementById("modal-workName").value)){
+        }
+
+        if(!pattStrings.test(document.getElementById("modal-workName").value)){
             flag = false;
             document.getElementById("modal-workName-label").className = 'error-red';
             document.getElementById("modal-workName-label").innerHTML = "Workame can only contain letters(a-z,A-Z) and spaces";
+        }
+
+        else if(pattStrings.test(document.getElementById("modal-workName").value) &&
+           document.getElementById("modal-workName-label").className == 'error-red'){
+            document.getElementById("modal-workName-label").className = 'error-green';
+            document.getElementById("modal-workName-label").innerHTML = "Workname input was corrected";
+
+        }
+
+        if(!pattPhone.test(document.getElementById("modal-phone").value)){
+            flag = false;
+            document.getElementById("modal-phone-label").className = 'error-red';
+            document.getElementById("modal-phone-label").innerHTML = "Phone number can only contain numbers and '+'";
+        }
+
+        else if(pattPhone.test(document.getElementById("modal-phone").value) &&
+           document.getElementById("modal-phone-label").className == 'error-red'){
+            document.getElementById("modal-phone-label").className = 'error-green';
+            document.getElementById("modal-phone-label").innerHTML = "Phone input was corrected";
+
+        }
+
+        if(!pattStrings.test(document.getElementById("modal-city").value)){
+            flag = false;
+            document.getElementById("modal-city-label").className = 'error-red';
+            document.getElementById("modal-city-label").innerHTML = "City can only contain letters(a-z,A-Z) and spaces";
+        }
+
+        else if(pattStrings.test(document.getElementById("modal-city").value) &&
+           document.getElementById("modal-city-label").className == 'error-red'){
+            document.getElementById("modal-city-label").className = 'error-green';
+            document.getElementById("modal-city-label").innerHTML = "City input was corrected";
+
+        }
+
+        if(!pattStrings.test(document.getElementById("modal-street").value)){
+            flag = false;
+            document.getElementById("modal-street-label").className = 'error-red';
+            document.getElementById("modal-street-label").innerHTML = "Street can only contain letters(a-z,A-Z) and spaces";
+        }
+
+        else if(pattStrings.test(document.getElementById("modal-street").value) &&
+           document.getElementById("modal-street-label").className == 'error-red'){
+            document.getElementById("modal-street-label").className = 'error-green';
+            document.getElementById("modal-street-label").innerHTML = "Street input was corrected";
+
+        }
+
+        if(!pattNumbers.test(document.getElementById("modal-number").value)){
+            flag = false;
+            document.getElementById("modal-number-label").className = 'error-red';
+            document.getElementById("modal-number-label").innerHTML = "Number can only contain letters(a-z,A-Z) and spaces";
+        }
+
+        else if(pattNumbers.test(document.getElementById("modal-number").value) &&
+           document.getElementById("modal-number-label").className == 'error-red'){
+            document.getElementById("modal-number-label").className = 'error-green';
+            document.getElementById("modal-number-label").innerHTML = "Number input was corrected";
+
+        }
+
+        if(!pattNumbers.test(document.getElementById("modal-zip").value)){
+            flag = false;
+            document.getElementById("modal-zip-label").className = 'error-red';
+            document.getElementById("modal-zip-label").innerHTML = "Zip code can only contain letters(a-z,A-Z) and spaces";
+        }
+
+        else if(pattNumbers.test(document.getElementById("modal-zip").value) &&
+           document.getElementById("modal-zip-label").className == 'error-red'){
+            document.getElementById("modal-zip-label").className = 'error-green';
+            document.getElementById("modal-zip-label").innerHTML = "Zip code input was corrected";
+
+        }
+
+        if(!pattEmail.test(document.getElementById("modal-email").value)){
+            flag = false;
+            document.getElementById("modal-email-label").className = 'error-red';
+            document.getElementById("modal-email-label").innerHTML = "Email must be of form name@mail.dom";
+        }
+
+        else if(pattEmail.test(document.getElementById("modal-email").value) &&
+           document.getElementById("modal-email-label").className == 'error-red'){
+            document.getElementById("modal-email-label").className = 'error-green';
+            document.getElementById("modal-email-label").innerHTML = "Email code input was corrected";
+
         }
 
         if(flag){
