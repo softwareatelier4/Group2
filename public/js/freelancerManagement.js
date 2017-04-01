@@ -19,10 +19,7 @@ const FREELANCERMANAGEMENT = {
                     data = {
                         freelancer: res
                     };
-
-                    console.log(data);
-
-                    //console.log(data.freelancer);
+                    
                     $("#modal-firstName").val(data.freelancer.firstName);
                     $("#modal-lastName").val(data.freelancer.lastName);
                     $("#modal-workName").val(data.freelancer.workName);
