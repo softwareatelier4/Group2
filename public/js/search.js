@@ -626,14 +626,28 @@ const SEARCH = {
                if (elem.status == 'OK') {
 
                   const freelancerId = data[i].id;
-                  const latitude = data[i].lat;
-                  const longitude = data[i].lng;
-                  const distance = elem.distance.text;
-                  const duration = elem.duration.text;
+                  const distance = elem.distance.value / 1000;
+                  const duration = elem.duration.value / 60 / 60;
 
+                  for (let i in SEARCH.currentResult) {
+                     let c = SEARCH.currentResult;
+                     if (c[i]._id == freelancerId) {
+                        c[i].distance = distance;
+                        c[i].time = duration;
+                     }
+                  }
 
+                  for (let i in SEARCH.originalResponse) {
+                     let c = SEARCH.originalResponse;
+                     if (c[i]._id == freelancerId) {
+                        c[i].distance = distance;
+                        c[i].time = duration;
+                     }
+                  }
                }
             }
+
+            SEARCH.drawCards(SEARCH.currentResult);
 
          }
       }
@@ -668,7 +682,7 @@ const SEARCH = {
       $.get("/html/searchCard.html", function(card) {
 
          let distance;
-         if (freelancer.distance) {
+         if (!isNaN(freelancer.distance)) {
             distance = freelancer.distance + "km";
          } else {
             distance = "";
