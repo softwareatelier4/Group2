@@ -8,7 +8,7 @@ var middleware = require('../../middleware');
 var rootUrl = require("../../../config").url;
 const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
-
+const Tag = mongoose.model('Tag');
 //supported methods
 
 router.all('/', middleware.supportedMethods('GET,PUT, OPTIONS'));
@@ -72,6 +72,7 @@ router.put('/:freelancerid', function(req, res, next) {
 	  console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
 		for(let tag of tags){
 			Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
+				console.log("\n\n\n\n"+tag+"\n\n\n");
 				Tag.findOne({name: tag},function (err, docs) {
 					if(docs){
 						updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
