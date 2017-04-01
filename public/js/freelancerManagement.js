@@ -1,13 +1,11 @@
-
-
-
 const FREELANCERMANAGEMENT = {
-
+    data: null,
+    idFreelancer : null,
     name: 'FREELANCERMANAGEMENT',
     getFreelancerInfo: function() {
 
         var url = window.location.href;
-        var idFreelancer = url.split('=')[1];
+        idFreelancer = url.split('=')[1];
 
         doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
             if (res.error) {
@@ -18,9 +16,11 @@ const FREELANCERMANAGEMENT = {
                         full: res.score,
                         empty: 5 - res.score
                     });
-                    let data = {
+                    data = {
                         freelancer: res
                     };
+
+                    console.log(data);
 
                     //console.log(data.freelancer);
                     $("#modal-firstName").val(data.freelancer.firstName);
@@ -96,10 +96,46 @@ const FREELANCERMANAGEMENT = {
     },
 
     submitFreelancer: function(){
-        
-        console.log("works");
-        //PUT
+        let id = idFreelancer;
+        let firstName = document.getElementById('modal-firstName');
+		let lastName = document.getElementById('modal-lastName');
+		let workName = document.getElementById('modal-workName');
+		let phoneNumber = document.getElementById('modal-phone');
+		let city = document.getElementById('modal-city');
+		let street = document.getElementById('modal-street');
+		let number = document.getElementById('modal-number');
+		let zip = document.getElementById('modal-zip');
+		let mail = document.getElementById('modal-email');
+		let profilePic = data.freelancer.profilePhoto;
+        let photos = data.freelancer.photos;
+		let description = document.getElementById('modal-description');
+
+        let freelancer_update = {
+			'firstName' : firstName.value,
+			'lastName' : lastName.value,
+			'workName' : workName.value,
+			'email' : mail.value,
+			'phone' : phoneNumber.value,
+			'description' : description.value,
+			'address' : {
+				'city' : city.value,
+				'street' : street.value,
+				'number' : number.value,
+				'cap' : zip.value,
+				'lat' : 0,
+				'long': 0
+			},
+            'photos' : photos,
+            'profilePhoto' : profilePic,
+			'tags' : data.freelancer.tags,
+            'score' : 1
+		};
+
+        doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
+            location.reload();
+		});
     },
+    
     result : {},
     addedTags : [],
 
