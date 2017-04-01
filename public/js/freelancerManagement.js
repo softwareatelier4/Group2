@@ -204,8 +204,14 @@ const FREELANCERMANAGEMENT = {
 		let description = document.getElementById('modal-description');
 
         //console.log(document.getElementById("modal-tags").value);
-        let tags = document.getElementById("modal-tags").value.split(",");
-        console.log(tags);
+        let temp_tags = document.getElementById("modal-tags").value.split(",");
+        let tags = [];
+        for(let j = 0; j<temp_tags.length; j++){
+            alert("booby"+temp_tags[j]);
+            tags = tags.concat([temp_tags[j]]);
+        }
+        alert(tags);
+        //console.log(tags);
         let freelancer_update = {
 			'firstName' : firstName.value,
 			'lastName' : lastName.value,

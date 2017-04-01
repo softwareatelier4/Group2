@@ -69,7 +69,7 @@ router.put('/:freelancerid', function(req, res, next) {
       freelancer.save(onModelSave(res,200,true));
 
 	  let tags = req.body.tags;
-	  //console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
+	  console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
 		// for(let tag of tags){
 		// 	Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
 		// 		Tag.findOne({name: tag},function (err, docs) {
