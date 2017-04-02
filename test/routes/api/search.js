@@ -286,6 +286,20 @@ describe('Testing the search algorithm', function() {
                done();
             });
       });
+      it('should return the correct Time', function(done) {
+         request(app)
+            .get('/api/freelancer/search/Developer|46.006923099999995,8.9555978|Lugano')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/, 'it should respond with json')
+            .expect(200)
+            .end(function(err, res) {
+               let resJson = JSON.parse(res.text);
+               resJson[0].time.should.equal(0.01);
+               resJson[1].time.should.equal(0.21833333333333332);
+
+               done();
+            });
+      });
    });
 });
 
