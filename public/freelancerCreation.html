@@ -17,25 +17,25 @@
 </head>
 
 <body>
-	<div id="freelancerCreation" style="width: 500px; padding: 30px;" >
+	<div id="freelancerCreation" style="width: 500px; padding: 30px; margin-left:auto; margin-right:auto;" >
 		<form enctype="multipart/form-data" action="javascript:FREELANCERCREATION.submitFreelancer()">
 			<div class="form-group">
 				<label for="firstName">First name: </label>
-				<input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter first name">
+				<input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter first name" required>
 				<label for="lastName">Last name: </label>
-				<input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name">
+				<input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name" required>
 				<label for="workName">Work name: </label>
 				<input type="text" class="form-control" id="workName" aria-describedby="workName" placeholder="Enter work name">
 				<label for="phoneName">Phone number: </label>
-				<input type="text" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter phone number">
+				<input type="text" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter phone number" required>
 				<label for="city">City: </label>
-				<input type="text" class="form-control" id="city" aria-describedby="city" placeholder="Enter city name">
+				<input type="text" class="form-control" id="city" aria-describedby="city" placeholder="Enter city name" required>
 				<label for="street">Street: </label>
-				<input type="text" class="form-control" id="street" aria-describedby="street" placeholder="Enter street name">
+				<input type="text" class="form-control" id="street" aria-describedby="street" placeholder="Enter street name" required>
 				<label for="number">Number: </label>
-				<input type="text" class="form-control" id="number" aria-describedby="number" placeholder="Enter street number">
+				<input type="text" class="form-control" id="number" aria-describedby="number" placeholder="Enter street number" required>
 				<label for="zip">Zip code: </label>
-				<input type="text" class="form-control" id="zip" aria-describedby="zip" placeholder="Enter zip code">
+				<input type="text" class="form-control" id="zip" aria-describedby="zip" placeholder="Enter zip code" required>
 			</div>
 			<div class="form-group">
 				<label for="tags">Tags: </label>
@@ -45,11 +45,11 @@
 			</div>
 			<div class="form-group">
 				<label for="email">Email address: </label>
-				<input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email">
+				<input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email" required>
 			</div>
 			<div class="form-group">
 				<label for="description">Description</label>
-				<textarea class="form-control" id="description" rows="3"></textarea>
+				<textarea class="form-control" id="description" rows="3" required></textarea>
 			</div>
 			<div class="form-group">
 				<label for="profilePicture">Profile picture upload</label>

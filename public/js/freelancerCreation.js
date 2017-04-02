@@ -2,6 +2,9 @@ const FREELANCERCREATION = {
 
 	name: 'freelancerCreation',
 
+	/**
+	* Create and send the freelancer trought the json request
+	*/
 	submitFreelancer: function() {
 		let firstName = document.getElementById('firstName');
 		let lastName = document.getElementById('lastName');
@@ -33,13 +36,18 @@ const FREELANCERCREATION = {
 			'tags' : FREELANCERCREATION.addedTags
 		};
 		doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
-
+			if(!res.errors){
+				window.location.href ='/#freelancer=' + res._id;
+			}
 		});
 	},
 
 	result : {},
 	addedTags : [],
 
+	/**
+	* Do the json request for hinting the tags
+	*/
 	tagHinter: function() {
 		let tagText = document.getElementById('tags');
 		let tagsList = document.getElementById('tags-list');
@@ -58,12 +66,6 @@ const FREELANCERCREATION = {
 			});
 		}
 		if(tagText.value.length > 0 && event.key == "Enter" && !FREELANCERCREATION.addedTags.includes(tagText.value)){
-			// doJSONRequest("POST", "/api/tag/", null, { 'name' : tagText.value }, function(res) {
-			// 	let badge = `<span class="badge badge-primary">`+ res.name +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-id="`+ res._id +`" aria-hidden="true">&times;</span></span>  `;
-			// 	FREELANCERCREATION.addedTags.push(res._id);
-			// 	tagText.value = '';
-			// 	tagsList.innerHTML += badge;
-			// });
 				let badge = `<span class="badge badge-primary">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
 				FREELANCERCREATION.addedTags.push(tagText.value);
 				tagText.value = '';
@@ -71,6 +73,9 @@ const FREELANCERCREATION = {
 		}
 	},
 
+	/**
+	* Function called when clicking on the "x" of a tag
+	*/
 	removeTag: function(span) {
 		let tagName = span.dataset.tag;
 		let index = FREELANCERCREATION.addedTags.indexOf(tagName);

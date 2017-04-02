@@ -208,7 +208,7 @@ router.post('/create/freelancer', function(req, res) {
 					});
 				});
 			}
-			res.json(freelancer);
+			res.json(newfreelancer);
 		}
 	});
 });
