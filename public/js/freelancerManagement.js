@@ -32,6 +32,7 @@ const FREELANCERMANAGEMENT = {
                     $("#modal-zip").val(data.freelancer.address.cap);
                     $("#modal-number").val(data.freelancer.address.number);
                     $("#modal-description").val(data.freelancer.description);
+                    $("#modal-price").val(data.freelancer.price);
 
                     tagsTemp = [];
 
@@ -208,6 +209,7 @@ const FREELANCERMANAGEMENT = {
 		let profilePic = data.freelancer.profilePhoto;
         let photos = data.freelancer.photos;
 		let description = document.getElementById('modal-description');
+        let price = document.getElementById('modal-price');
 
         //console.log(document.getElementById("modal-tags").value);
         let temp_tags = document.getElementById("modal-tags").value.split(",");
@@ -235,7 +237,8 @@ const FREELANCERMANAGEMENT = {
             'profilePhoto' : profilePic,
 			//'tags' : data.freelancer.tags,
             'tags' : tags,
-            'score' : null
+            'score' : null,
+            'price' : price.value
 		};
 
         doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {

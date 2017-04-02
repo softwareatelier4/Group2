@@ -109,9 +109,8 @@ describe('Testing put for freelancer', function() {
 							cap: 69100
 						},
 						'tags': [
-							ObjectId("a00000000000000000000003"),
-							ObjectId("a00000000000000000000004"),
-							ObjectId("a00000000000000000000006")
+							ObjectId("a00000000000000000000000"),
+							ObjectId("a00000000000000000000001")
 						],
 						'description': 'Hello guys! I am an amazing developer. ',
 						'photos': [
@@ -119,7 +118,8 @@ describe('Testing put for freelancer', function() {
 							'/uploads/test/2.jpg',
 							'/uploads/test/3.jpg',
 						],
-						'score': 5
+						'score': 5,
+						price : 10
 					}
 		var temp = put_freelancer;
 		temp.firstName = "Francesco";

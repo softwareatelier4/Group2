@@ -7,9 +7,10 @@ var middleware = require('../../middleware');
 var rootUrl = require("../../../config").url;
 const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
+const Tag = mongoose.model('Tag');
 
 //supported methods
-router.all('/', middleware.supportedMethods('GET,PUT, OPTIONS'));
+router.all('/', middleware.supportedMethods('GET, PUT, OPTIONS'));
 
 router.all('/search/:search', middleware.supportedMethods('GET, OPTIONS'));
 router.get('/search/:search', function(req, res, next) {
@@ -20,7 +21,7 @@ router.get('/search/:search', function(req, res, next) {
    });
 });
 
-router.all('/:freelancerid', middleware.supportedMethods('GET,PUT, OPTIONS'));
+router.all('/:freelancerid', middleware.supportedMethods('GET, PUT, OPTIONS'));
 router.get('/:freelancerid', function(req, res, next) {
    Freelancer.findById(req.params.freelancerid).populate('tags').populate('ownerId').lean().exec(function(err, freelancer) {
       if (err) {
@@ -57,6 +58,8 @@ router.put('/:freelancerid', function(req, res, next) {
       freelancer.tags = null;
       freelancer.description = data.description;
       freelancer.ownerId = data.ownerId;
+      freelancer.price = data.price;
+
 	  if(data.score != null){
 		freelancer.score = data.score;
 	  }
