@@ -179,7 +179,7 @@ module.exports = {
          .assert.visible('input[id=distance-input]')
          .clearValue('input[id=price-input]')
          .setValue('input[id=price-input]', '120')
-         .pause(500)
+         .pause(5000)
          .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
             this.assert.equal(result.value, 'f00000000000000000000000');
          })
@@ -188,7 +188,7 @@ module.exports = {
          })
          .clearValue('input[id=distance-input]')
          .setValue('input[id=distance-input]', '140')
-         .pause(500)
+         .pause(5000)
          .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
             this.assert.equal(result.value, 'f00000000000000000000006');
          })
