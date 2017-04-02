@@ -620,13 +620,14 @@ const SEARCH = {
       }, gmapsResults);
 
       function gmapsResults(response, status) {
+         console.log(response);
          if (status == 'OK') {
             for (let i in response.rows[0].elements) {
                let elem = response.rows[0].elements[i];
                if (elem.status == 'OK') {
 
                   const freelancerId = data[i].id;
-                  const distance = elem.distance.value / 1000;
+                  const distance = (elem.distance.value / 1000).toFixed(2);;
                   const duration = elem.duration.value / 60 / 60;
 
                   for (let i in SEARCH.currentResult) {
@@ -644,11 +645,14 @@ const SEARCH = {
                         c[i].time = duration;
                      }
                   }
+
+                  const freelancerDom = $('#' + freelancerId);
+                  if (freelancerDom) {
+                     const dom = $('#' + freelancerId + ' .price-km .card-text')[1];
+                     dom.innerHTML = distance + ' km';
+                  }
                }
             }
-
-            SEARCH.drawCards(SEARCH.currentResult);
-
          }
       }
 
