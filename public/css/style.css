@@ -214,3 +214,36 @@ Loading Spinner
       transform: rotate(360deg);
    }
 }
+
+
+/*----------------------------------------
+Button
+----------------------------------------*/
+
+.btn-primary.active, .btn-primary:active, .btn-primary:hover, .btn-primary:visited {
+   background-color: rgb(67, 105, 121);
+   border-color: rgb(67, 105, 121);
+   color: #fff;
+}
+
+.btn-primary {
+   background-color: rgb(46, 78, 92);
+   border-color: rgb(46, 78, 92);
+   color: #fff;
+}
+
+.blue {
+   color: rgb(46, 78, 92);
+}
+
+.light-blue {
+   color: rgb(78, 108, 121);
+}
+
+.blue-background {
+   background-color: rgb(46, 78, 92);
+}
+
+.blue-border {
+   border-color: rgb(46, 78, 92);
+}

@@ -28,6 +28,10 @@ $(document).ready(function() {
    UTILS.geoLocation();
 });
 
+/**
+ * Called each time the hash changes and when a user open the page
+ * @return {void}
+ */
 let hashchanged = function hashchanged() {
    let hash = (window.location.hash != '') ? window.location.hash.split('#')[1].split('=')[0] : '';
 
