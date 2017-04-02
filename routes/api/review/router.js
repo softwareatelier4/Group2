@@ -47,5 +47,34 @@ router.get('/freelancer/:freelancerid', function(req, res, next) {
 	})
 })
 
+//reply to review
+router.all('/:reviewid', middleware.supportedMethods('POST, OPTIONS'));
+router.post('/:reviewid', function(req, res, next) {
+	let answer = req.body.review;
+	let reviewId = req.params.reviewid;
+
+	let data = {
+		answer
+	}
+
+	let filter = {
+		_id: reviewId
+	}
+
+	Review.update(filter, data, function(err, save) {
+		if (err) {
+			res.status(400).send(err);
+			return;
+		}
+
+		if (save.nModified == 0) {
+			res.status(404).send(save);
+			return;
+		}
+
+		res.status(201).send(save);
+	});
+});
+
 /** router for /users */
 module.exports = router;

@@ -24,9 +24,23 @@
 				<form class="" autocomplete="off">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
-						<span class="input-group-addon search-btn" id="basic-addon1" onclick="search.search();">Search</span>
+						<span class="input-group-addon search-btn" id="basic-addon1">Search</span>
+						<input type="text" class="form-control" aria-describedby="basic-addon1" id="position" placeholder="Loading position...">
 					</div>
 				</form>
+				<div class="input-group" id="sorting-buttons">
+					<span class="filter-btn" id="btn-score" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-score');">Score <span class="up-arrow">↑</span><span class="down-arrow">↓</span></span>
+					<span class="filter-btn" id="btn-distance" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-distance');">Distance <span class="up-arrow">↑</span><span class="down-arrow">↓</span></span>
+					<span class="filter-btn" id="btn-time" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-time');">Time <span class="up-arrow">↑</span><span class="down-arrow">↓</span></span>
+					<span class="filter-btn" id="btn-name" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-name');">Name <span class="up-arrow">↑</span><span class="down-arrow">↓</span></span>
+					<span class="filter-btn" id="btn-price" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-price');">Price <span class="up-arrow">↑</span><span class="down-arrow">↓</span></span>
+					<div class="filter-txt-group">
+						<input type="text" class="filter-txt" placeholder="Max" onkeypress='SEARCH.checkInput(event)' aria-describedby="basic-addon1" id="price-input"><span class="filter-txt-span">€&nbsp;</span>
+					</div>
+					<div class="filter-txt-group">
+						<input type="text" class="filter-txt" placeholder="Max" onkeypress='SEARCH.checkInput(event)' aria-describedby="basic-addon1" id="distance-input"><span class="filter-txt-span">Km&nbsp;</span>
+					</div>
+				</div>
 			</div>
 		</div>
 		<main id="main-content">
@@ -38,18 +52,26 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+	<script src="js/jquery.geocomplete.min.js"></script>
+
+	<script>
+		jQuery.expr[':'].focus = function( elem ) {
+	  		return elem === document.activeElement && ( elem.type || elem.href );
+		};
+	</script>
 
 	<script src="js/dust-full.min.js"></script>
 	<script src="js/ajax.js"></script>
+	<script src="js/utils.js"></script>
 	<script src="js/lightbox.min.js"></script>
 
-	<script src="js/app.js"></script>
 	<script src="js/homepage.js"></script>
 	<script src="js/search.js"></script>
 	<script src="js/freelancer.js"></script>
 	<script src="js/selectize.js"></script>
 	<script src="js/freelancerManagement.js"></script>
-	
+	<script src="js/app.js"></script>
 </body>
 
 </html>
