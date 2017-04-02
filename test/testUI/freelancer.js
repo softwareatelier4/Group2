@@ -15,7 +15,7 @@ module.exports = {
 
          .click('#f00000000000000000000000 .card-block button')
          .waitForElementVisible('#profile-freelancer', 1000)
-         .pause(1000)
+         .pause(100)
 
          .waitForElementVisible('#main-info', 1000)
          .assert.visible('#main-info')

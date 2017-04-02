@@ -520,12 +520,17 @@ const SEARCH = {
          }
       }
 
+      SEARCH.setPositionBox();
+      SEARCH.setPositionHash();
+
+      if (currentPage.name != 'search') {
+         console.log('diverso');
+         return;
+      }
+
       for (cb of SEARCH.position.observers) {
          cb();
       }
-
-      SEARCH.setPositionBox();
-      SEARCH.setPositionHash();
    },
 
    setPositionBox: function() {
