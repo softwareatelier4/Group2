@@ -5,7 +5,7 @@ module.exports = {
          .waitForElementVisible('body', 1000)
          .assert.visible('input[id=search-text]')
          .assert.visible('span[id=basic-addon1]')
-         .pause(300)
+         .pause(1000)
          .clearValue('input[id=search-text]')
          .clearValue('input[id=position]')
          .setValue('input[id=position]', 'Piacenza')
