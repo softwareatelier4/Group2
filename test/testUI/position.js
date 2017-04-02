@@ -9,7 +9,7 @@ module.exports = {
          .clearValue('input[id=search-text]')
          .clearValue('input[id=position]')
          .setValue('input[id=position]', 'Piacenza')
-         .waitForElementVisible('.pac-container.pac-logo.hdpi', 10000)
+         .waitForElementVisible('.pac-container.pac-logo.hdpi', 60000)
          .pause(500)
          .setValue('input[id=position]', client.Keys.ENTER)
          .click('span[id=basic-addon1]')
