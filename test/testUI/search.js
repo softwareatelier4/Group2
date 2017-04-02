@@ -183,7 +183,7 @@ module.exports = {
             this.assert.equal(result.value, 'f00000000000000000000006');
          })
          .clearValue('input[id=distance-input]')
-         .setValue('input[id=distance-input]', '113')
+         .setValue('input[id=distance-input]', '140')
          .pause(5000)
          .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
             this.assert.equal(result.value, 'f00000000000000000000006');
