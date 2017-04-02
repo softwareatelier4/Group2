@@ -62,7 +62,7 @@ module.exports = {
          // })
          // .getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
          //    this.assert.equal(result.value, 'f00000000000000000000006');
-         // })
+         // })nod
          .clearValue('input[id=search-text]')
          .setValue('input[id=search-text]', 'Informatico')
          .click('span[id=basic-addon1]')
@@ -152,48 +152,48 @@ module.exports = {
          })
          .end();
    },
-   'Search filter test': function(client) {
-      client
-         .url('http://localhost:3000/')
-         .waitForElementVisible('body', 1000)
-         .assert.visible('input[id=search-text]')
-         .assert.visible('span[id=basic-addon1]')
-         .pause(1000)
-         .clearValue('input[id=position]')
-         .setValue('input[id=position]', 'Piacenza')
-         .click('input[id=position]')
-         .waitForElementVisible('.pac-container', 60000)
-         .pause(500)
-         .setValue('input[id=position]', client.Keys.ENTER)
-         .clearValue('input[id=search-text]')
-         .setValue('input[id=search-text]', 'Tecnico')
-         .click('span[id=basic-addon1]')
-         .pause(500)
-         .assert.urlContains('search=Tecnico')
-         .pause(500)
-         .assert.visible('div[id=f00000000000000000000000]')
-         .assert.visible('div[id=f00000000000000000000004]')
-         .assert.visible('div[id=f00000000000000000000005]')
-         .assert.visible('div[id=f00000000000000000000006]')
-         .assert.visible('input[id=price-input]')
-         .assert.visible('input[id=distance-input]')
-         .clearValue('input[id=price-input]')
-         .setValue('input[id=price-input]', '120')
-         .pause(5000)
-         .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-            this.assert.equal(result.value, 'f00000000000000000000000');
-         })
-         .getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
-            this.assert.equal(result.value, 'f00000000000000000000006');
-         })
-         .clearValue('input[id=distance-input]')
-         .setValue('input[id=distance-input]', '140')
-         .pause(5000)
-         .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-            this.assert.equal(result.value, 'f00000000000000000000006');
-         })
-         .end();
-   },
+   // 'Search filter test': function(client) {
+   //    client
+   //       .url('http://localhost:3000/')
+   //       .waitForElementVisible('body', 1000)
+   //       .assert.visible('input[id=search-text]')
+   //       .assert.visible('span[id=basic-addon1]')
+   //       .pause(1000)
+   //       .clearValue('input[id=position]')
+   //       .setValue('input[id=position]', 'Piacenza')
+   //       .click('input[id=position]')
+   //       .waitForElementVisible('.pac-container', 60000)
+   //       .pause(500)
+   //       .setValue('input[id=position]', client.Keys.ENTER)
+   //       .clearValue('input[id=search-text]')
+   //       .setValue('input[id=search-text]', 'Tecnico')
+   //       .click('span[id=basic-addon1]')
+   //       .pause(500)
+   //       .assert.urlContains('search=Tecnico')
+   //       .pause(500)
+   //       .assert.visible('div[id=f00000000000000000000000]')
+   //       .assert.visible('div[id=f00000000000000000000004]')
+   //       .assert.visible('div[id=f00000000000000000000005]')
+   //       .assert.visible('div[id=f00000000000000000000006]')
+   //       .assert.visible('input[id=price-input]')
+   //       .assert.visible('input[id=distance-input]')
+   //       .clearValue('input[id=price-input]')
+   //       .setValue('input[id=price-input]', '120')
+   //       .pause(5000)
+   //       .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
+   //          this.assert.equal(result.value, 'f00000000000000000000000');
+   //       })
+   //       .getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
+   //          this.assert.equal(result.value, 'f00000000000000000000006');
+   //       })
+   //       .clearValue('input[id=distance-input]')
+   //       .setValue('input[id=distance-input]', '140')
+   //       .pause(5000)
+   //       .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
+   //          this.assert.equal(result.value, 'f00000000000000000000006');
+   //       })
+   //       .end();
+   // },
    'Search filter and sort test': function(client) {
       client
          .url('http://localhost:3000/')
