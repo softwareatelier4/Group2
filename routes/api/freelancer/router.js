@@ -39,6 +39,41 @@ router.get('/:freelancerid', function(req, res, next) {
    })
 });
 
+
+/**
+ * Returns a distance from a freelancer and a user's coordinates
+ * @param {object} freelancer - A freelancer
+ * @param {number} lat - User's latitude
+ * @param {number} long - User's longitude
+ * @return {number} - Distance
+ */
+let distanceCalculation = function(freelancer, lat, long) {
+   if (!freelancer || !lat || !long)
+      return undefined;
+
+   let R = 6371;
+   let pigreco = Math.PI;
+   let lat_alfa;
+   let lat_beta;
+   let lon_alfa;
+   let lon_beta;
+   let fi;
+   let p;
+   let d;
+   /* Degree to radiants */
+   lat_alfa = pigreco * lat / 180;
+   lat_beta = pigreco * freelancer.address.lat / 180;
+   lon_alfa = pigreco * long / 180;
+   lon_beta = pigreco * freelancer.address.long / 180;
+   /* Calculate the angle in between fi */
+   fi = Math.abs(lon_alfa - lon_beta);
+   /* Calculate the third side of the spherical triangle */
+   p = Math.acos(Math.sin(lat_beta) * Math.sin(lat_alfa) + Math.cos(lat_beta) * Math.cos(lat_alfa) * Math.cos(fi));
+   /* Calculate the distance */
+   d = p * R;
+   return d;
+}
+
 /**
  * Returns an array of Freelancers based on a given string
  * @param {array} freelancers - List of freelancer to filter
@@ -47,7 +82,14 @@ router.get('/:freelancerid', function(req, res, next) {
  */
 let searchEngine = function(freelancers, string) {
    let result = [];
-   let words = string.replace(",", " ").split(" ");
+   let params = string.split("|");
+   let lat, long;
+   if (params[1] !== undefined) {
+      lat = params[1].split(",")[0];
+      long = params[1].split(",")[1];
+   }
+   let words = params[0].replace(",", " ").split(" ");
+   let cityParam = params[2];
    let fClone = [];
 
    /*
@@ -61,18 +103,17 @@ let searchEngine = function(freelancers, string) {
             tags.push(t.name);
          }
          if (searchForTag(tags, w).length > 0) {
+            let city = [f.address.city];
+            if (searchForTag(city, cityParam).length > 0) {
+               fClone.push(f);
+            }
             fClone.push(f);
             continue;
          }
 
-         let city = [f.address.city];
-         if (searchForTag(city, w).length > 0) {
-            fClone.push(f);
-            continue;
-         }
-
-         let filter = [f.firstName, f.lastName, f.workName, f.phone, f.email, f.description];
+         let filter = [f.firstName, f.lastName, f.workName, f.phone, f.email];
          if (searchForTag(filter, w).length > 0) {
+
             fClone.push(f);
             continue;
          }
@@ -83,6 +124,12 @@ let searchEngine = function(freelancers, string) {
       Put freelancers that satisfy requirements in the result
    */
    for (let f of fClone) {
+      let dist = Number(distanceCalculation(f, lat, long));
+      let timez = undefined;
+      if (dist !== undefined) {
+         dist = dist.toFixed(1);
+         timez = dist / 60;
+      }
       let freelancer = {
          _id: f._id,
          firstName: f.firstName,
@@ -91,7 +138,13 @@ let searchEngine = function(freelancers, string) {
          tags: f.tags,
          workName: f.workName,
          photo: f.profilePhoto,
-         counter: countInArray(fClone, f)
+         score: f.score,
+         latitude: f.address.lat,
+         longitude: f.address.long,
+         distance: dist,
+         time: timez,
+         counter: countInArray(fClone, f),
+         price: f.price
       };
       result.push(freelancer);
    }
@@ -101,12 +154,22 @@ let searchEngine = function(freelancers, string) {
       freelancer's profile
    */
    result.sort(function(a, b) {
-      return b.counter - a.counter
-   })
+      return b.counter - a.counter;
+   });
 
+   console.log(result);
    return removeDuplicatesFreelancers(result);
 
 }
+
+// function in_array(valore_da_esaminare, array_di_riferimento) {
+//     for(i = 0; i &lt; array_di_riferimento.length; i++) {
+// 	if(valore_da_esaminare == array_di_riferimento[i]) {
+// 	    return true;
+// 	}
+//     }
+//     return false;
+// }
 
 
 /**
@@ -138,7 +201,7 @@ let removeDuplicatesFreelancers = function(array) {
 let searchForTag = function(array, string) {
    let result = [];
    for (let s of array) {
-      if (s && s.toLowerCase().includes(string.toLowerCase()))
+      if (s && string && s.toLowerCase().includes(string.toLowerCase()))
          result.push(s);
    }
    return result;

@@ -13,9 +13,9 @@ module.exports = {
          .waitForElementVisible('div[id=f00000000000000000000000]', 1000)
          .waitForElementVisible('#f00000000000000000000000', 1000)
 
-         .click('#f00000000000000000000000 .card-block a')
+         .click('#f00000000000000000000000 .card-block button')
          .waitForElementVisible('#profile-freelancer', 1000)
-         .pause(500)
+         .pause(100)
 
          .waitForElementVisible('#main-info', 1000)
          .assert.visible('#main-info')
