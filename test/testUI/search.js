@@ -48,21 +48,21 @@ module.exports = {
          // .getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
          //    this.assert.equal(result.value, 'f00000000000000000000000');
          // })
-         .assert.visible('span[id=btn-time]')
-         .click('span[id=btn-time]')
-         .pause(500)
-         .assert.attributeContains('#btn-distance', 'data-sorttype', 'neutral')
-         .assert.attributeContains('#btn-time', 'data-sorttype', 'asc')
-         .click('span[id=btn-time]')
-         .pause(500)
-         .assert.attributeContains('#btn-time', 'data-sorttype', 'desc')
-         .pause(500)
-         .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-            this.assert.equal(result.value, 'f00000000000000000000000');
-         })
-         .getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
-            this.assert.equal(result.value, 'f00000000000000000000006');
-         })
+         // .assert.visible('span[id=btn-time]')
+         // .click('span[id=btn-time]')
+         // .pause(500)
+         // // .assert.attributeContains('#btn-distance', 'data-sorttype', 'neutral')
+         // .assert.attributeContains('#btn-time', 'data-sorttype', 'asc')
+         // .click('span[id=btn-time]')
+         // .pause(500)
+         // .assert.attributeContains('#btn-time', 'data-sorttype', 'desc')
+         // .pause(500)
+         // .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
+         //    this.assert.equal(result.value, 'f00000000000000000000000');
+         // })
+         // .getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
+         //    this.assert.equal(result.value, 'f00000000000000000000006');
+         // })
          .clearValue('input[id=search-text]')
          .setValue('input[id=search-text]', 'Informatico')
          .click('span[id=basic-addon1]')
