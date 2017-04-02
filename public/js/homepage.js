@@ -9,7 +9,7 @@ const HOMEPAGE = {
 	init: function() {
 
 		SEARCH.searchFullScreen();
-		SEARCH.hashUpdater();
+		SEARCH.addon_init();
 	},
 
 	/**

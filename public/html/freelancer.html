@@ -15,6 +15,9 @@
 			<div id="rank" class="ml-15">
 				{freelancer.score|s}
 			</div>
+			<div id="price" class="ml-15 blue">
+				{?freelancer.price}€{freelancer.price} price/hour{/freelancer.price}
+			</div>
 			<div id="contact-info-top" class="ml-15">
 				<div id="chat" class="contact-info-element blue">
 					<i class="fa fa-comment " aria-hidden="true"></i> chat
@@ -29,13 +32,13 @@
 		</div>
 	</div>
 	<div id="main-info-bottom">
-		<div id="info-review">
+		<div id="info-review" class="ml-15">
 			<div id="info">
 				<h5 class="blue">INFO</h5>
 				<div id="tag">
 					{#freelancer.tags} <span class="badge badge-default"> {name} </span> {/freelancer.tags}
 				</div>
-				<span id="description"></span> {freelancer.description}
+				<span id="description">{freelancer.description}</span>
 			</div>
 
 			<div id="reviews">
@@ -46,13 +49,13 @@
 		</div>
 
 		<div id="img-freelancer">
-			<div id="works" class="blue ml-15">
+			<div id="works" class="blue">
 				{?freelancer.photos}<i class="fa fa-camera" aria-hidden="true"></i>
 				<h5>WORKS</h5>
 			</div>
 			<div id="thumbnail">
 				{#freelancer.photos}
-				<a href="{.}" data-lightbox="review-img"><img class="thumbnail-element" src="{.}" /></a>{/freelancer.photos} {/freelancer.photos}
+				<a href="{.}" data-lightbox="work-img"><img class="thumbnail-element" src="{.}" /></a>{/freelancer.photos} {/freelancer.photos}
 			</div>
 		</div>
 	</div>
