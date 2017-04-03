@@ -35,10 +35,29 @@ const FREELANCERCREATION = {
 			},
 			'tags' : FREELANCERCREATION.addedTags
 		};
-		doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
-			if(!res.errors){
-				window.location.href ='/#freelancer=' + res._id;
+		// $("#position")
+		// .geocomplete()
+		// .bind("geocode:result", function(event, result) {
+		// 	const city = result.address_components[0].long_name;
+		//
+		// 	const addressLen = result.address_components.length;
+		// 	const state = result.address_components[addressLen - 1].long_name;
+		//
+		// 	const lat = result.geometry.location.lat();
+		// 	const lng = result.geometry.location.lng();
+		// 	SEARCH.setPosition('user', lat, lng, city, state);
+		// });
+
+		doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+freelancer.address.city+"+"+freelancer.address.street+"+"+freelancer.address.number,null,null,function(res){
+			if(res.status == "OK"){
+				freelancer.address.lat = res.results[0].geometry.location.lat;
+				freelancer.address.long = res.results[0].geometry.location.lng;
 			}
+			doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
+				if(!res.errors){
+					window.location.href ='/#freelancer=' + res._id;
+				}
+			});
 		});
 	},
 
@@ -66,10 +85,10 @@ const FREELANCERCREATION = {
 			});
 		}
 		if(tagText.value.length > 0 && event.key == "Enter" && !FREELANCERCREATION.addedTags.includes(tagText.value)){
-				let badge = `<span class="badge badge-primary">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
-				FREELANCERCREATION.addedTags.push(tagText.value);
-				tagText.value = '';
-				tagsList.innerHTML += badge;
+			let badge = `<span class="badge badge-primary">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
+			FREELANCERCREATION.addedTags.push(tagText.value);
+			tagText.value = '';
+			tagsList.innerHTML += badge;
 		}
 	},
 
