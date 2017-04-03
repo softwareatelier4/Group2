@@ -230,6 +230,24 @@ describe('Testing put for freelancer', function() {
 					done();
 				});
 		});
+
+		temp = put_freelancer;
+		temp.tags = ["Tecnico", "Developer", "Informatico", "NEW", "TAGS"];
+		it('Should modify the tags of the freelancer', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.tags.should.not.equal(["Tecnico", "Developer", "Informatico"]);
+					done();
+				});
+		});
 	});
 });
 

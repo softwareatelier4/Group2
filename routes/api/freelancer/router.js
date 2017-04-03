@@ -71,7 +71,7 @@ router.put('/:freelancerid', function(req, res, next) {
 	  //console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
 		for(let tag of tags){
 			Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
-				console.log("\n\n\n\n"+tag+"\n\n\n");
+				//console.log("\n\n\n\n"+tag+"\n\n\n");
 				Tag.findOne({name: tag},function (err, docs) {
 					if(docs){
 						updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
