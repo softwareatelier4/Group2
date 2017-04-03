@@ -29,8 +29,8 @@ const FREELANCERCREATION = {
 				'street' : street.value,
 				'number' : number.value,
 				'cap' : zip.value,
-				'lat' : 0,
-				'long': 0
+				'lat' : undefined,
+				'long': undefined
 
 			},
 			'tags' : FREELANCERCREATION.addedTags
