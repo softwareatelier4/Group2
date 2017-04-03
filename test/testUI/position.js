@@ -1,3 +1,6 @@
+'use strict';
+var seedDb = require('../seedDb');
+
 module.exports = {
    'Check insertion of city-state search test': function(client) {
       client
@@ -19,5 +22,6 @@ module.exports = {
          .assert.urlContains('state=Italy')
          .assert.urlContains('latitude=45.0526206&longitude=9.692984499999966')
          .end();
+
    }
 };

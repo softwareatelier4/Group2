@@ -7,9 +7,10 @@ var middleware = require('../../middleware');
 var rootUrl = require("../../../config").url;
 const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
+const Tag = mongoose.model('Tag');
 
 //supported methods
-router.all('/', middleware.supportedMethods('GET, OPTIONS'));
+router.all('/', middleware.supportedMethods('GET, PUT, OPTIONS'));
 
 router.all('/search/:search', middleware.supportedMethods('GET, OPTIONS'));
 router.get('/search/:search', function(req, res, next) {
@@ -20,7 +21,7 @@ router.get('/search/:search', function(req, res, next) {
    });
 });
 
-router.all('/:freelancerid', middleware.supportedMethods('GET, OPTIONS'));
+router.all('/:freelancerid', middleware.supportedMethods('GET, PUT, OPTIONS'));
 router.get('/:freelancerid', function(req, res, next) {
    Freelancer.findById(req.params.freelancerid).populate('tags').populate('ownerId').lean().exec(function(err, freelancer) {
       if (err) {
@@ -37,6 +38,58 @@ router.get('/:freelancerid', function(req, res, next) {
       }
       res.json(freelancer);
    })
+});
+
+router.put('/:freelancerid', function(req, res, next) {
+  const data = req.body;
+
+  Freelancer.findById(req.params.freelancerid, function(err, freelancer){
+    if (err) return next (err);
+
+    if (freelancer){
+      freelancer.firstName = data.firstName;
+      freelancer.lastName = data.lastName;
+      freelancer.workName = data.workName;
+      freelancer.email = data.email;
+      freelancer.phone = data.phone;
+      freelancer.profilePhoto = data.profilePhoto;
+      freelancer.photos = data.photos;
+      freelancer.address = data.address;
+      freelancer.tags = null;
+      freelancer.description = data.description;
+      freelancer.ownerId = data.ownerId;
+      freelancer.price = data.price;
+
+	  if(data.score != null){
+		freelancer.score = data.score;
+	  }
+
+      freelancer.save(onModelSave(res,200,true));
+
+	  freelancer.tags = [];
+	  let tags = req.body.tags;
+	  //console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
+		for(let tag of tags){
+			Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
+				//console.log("\n\n\n\n"+tag+"\n\n\n");
+				Tag.findOne({name: tag},function (err, docs) {
+					if(docs){
+						updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
+						updatedFreelancer.save(function() {});
+					} else {
+						let newTag = new Tag();
+						newTag._id = mongoose.Types.ObjectId();
+						newTag.name = tag;
+						newTag.save(function(err, newTagRes) {
+								updatedFreelancer.tags.push(newTagRes._id);
+								updatedFreelancer.save(function() {});
+						});
+					}
+				});
+			});
+		}
+    }
+  });
 });
 
 
@@ -221,6 +274,35 @@ function countInArray(array, what) {
       }
    }
    return count;
+}
+
+function onModelSave(res, status, sendItAsResponse){
+  const statusCode = status || 204;
+  sendItAsResponse = sendItAsResponse || false;
+  return function(err, saved){
+    if (err) {
+      if (err.name === 'ValidationError' 
+        || err.name === 'TypeError' ) {
+        res.status(400)
+        return res.json({
+          statusCode: 400,
+          message: "Bad Request"
+        });
+      }else{
+        return next (err);
+      }
+    }
+
+    if( sendItAsResponse){
+      const obj = saved.toObject();
+      delete obj.password;
+      delete obj.__v;
+      // addLinks(obj);
+      return res.status(statusCode).json(obj);
+    }else{
+      return res.status(statusCode).end();
+    }
+  }
 }
 
 

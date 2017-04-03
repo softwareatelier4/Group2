@@ -1,3 +1,6 @@
+'use strict';
+var seedDb = require('../seedDb');
+
 module.exports = {
    'Review from homepage': function(client) {
       client

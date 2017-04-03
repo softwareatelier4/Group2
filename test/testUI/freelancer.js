@@ -1,3 +1,6 @@
+'use strict';
+var seedDb = require('../seedDb');
+
 module.exports = {
    'Freelancer profile test': function(client) {
       client
