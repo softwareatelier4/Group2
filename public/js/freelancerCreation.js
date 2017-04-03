@@ -2,6 +2,9 @@ const FREELANCERCREATION = {
 
 	name: 'freelancerCreation',
 
+	/**
+	* Create and send the freelancer trought the json request
+	*/
 	submitFreelancer: function() {
 		let firstName = document.getElementById('firstName');
 		let lastName = document.getElementById('lastName');
@@ -26,20 +29,44 @@ const FREELANCERCREATION = {
 				'street' : street.value,
 				'number' : number.value,
 				'cap' : zip.value,
-				'lat' : 0,
-				'long': 0
+				'lat' : undefined,
+				'long': undefined
 
 			},
 			'tags' : FREELANCERCREATION.addedTags
 		};
-		doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
+		// $("#position")
+		// .geocomplete()
+		// .bind("geocode:result", function(event, result) {
+		// 	const city = result.address_components[0].long_name;
+		//
+		// 	const addressLen = result.address_components.length;
+		// 	const state = result.address_components[addressLen - 1].long_name;
+		//
+		// 	const lat = result.geometry.location.lat();
+		// 	const lng = result.geometry.location.lng();
+		// 	SEARCH.setPosition('user', lat, lng, city, state);
+		// });
 
+		doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+freelancer.address.city+"+"+freelancer.address.street+"+"+freelancer.address.number,null,null,function(res){
+			if(res.status == "OK"){
+				freelancer.address.lat = res.results[0].geometry.location.lat;
+				freelancer.address.long = res.results[0].geometry.location.lng;
+			}
+			doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
+				if(!res.errors){
+					window.location.href ='/#freelancer=' + res._id;
+				}
+			});
 		});
 	},
 
 	result : {},
 	addedTags : [],
 
+	/**
+	* Do the json request for hinting the tags
+	*/
 	tagHinter: function() {
 		let tagText = document.getElementById('tags');
 		let tagsList = document.getElementById('tags-list');
@@ -58,18 +85,19 @@ const FREELANCERCREATION = {
 			});
 		}
 		if(tagText.value.length > 0 && event.key == "Enter" && !FREELANCERCREATION.addedTags.includes(tagText.value)){
-			doJSONRequest("POST", "/api/tag/", null, { 'name' : tagText.value }, function(res) {
-				let badge = `<span class="badge badge-primary">`+ res.name +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-id="`+ res._id +`" aria-hidden="true">&times;</span></span>  `;
-				FREELANCERCREATION.addedTags.push(res._id);
-				tagText.value = '';
-				tagsList.innerHTML += badge;
-			});
+			let badge = `<span class="badge badge-primary">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
+			FREELANCERCREATION.addedTags.push(tagText.value);
+			tagText.value = '';
+			tagsList.innerHTML += badge;
 		}
 	},
 
+	/**
+	* Function called when clicking on the "x" of a tag
+	*/
 	removeTag: function(span) {
-		let tagId = span.dataset.id;
-		let index = FREELANCERCREATION.addedTags.indexOf(tagId);
+		let tagName = span.dataset.tag;
+		let index = FREELANCERCREATION.addedTags.indexOf(tagName);
 		if(index > - 1) {
 			FREELANCERCREATION.addedTags.splice(index, 1);
 		}

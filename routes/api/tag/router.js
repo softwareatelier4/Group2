@@ -10,11 +10,7 @@ const Tag = mongoose.model('Tag');
 
 //supported methods
 
-router.all('/', middleware.supportedMethods('GET, POST, OPTIONS'));
-
-router.get('/', function(req,res) {
-
-});
+router.all('/', middleware.supportedMethods('GET, OPTIONS'));
 
 router.get('/search/:tag', function(req, res, next) {
 	Tag.find({name : new RegExp('^'+ req.params.tag, 'i')}, 'id name', function(err, result) {
@@ -22,25 +18,6 @@ router.get('/search/:tag', function(req, res, next) {
 			res.send(err);
 		} else {
 			res.send(result);
-		}
-	});
-});
-
-router.post('/', function(req, res, next) {
-	Tag.find({name : req.body.name}, function(err, result) {
-		if(result.length == 0) {
-			var tag = new Tag();
-			tag.name    = req.body.name;
-			tag.save(function(err, result) {
-				if (err){
-					res.send(err);
-				} else {
-					res.send(result);
-				}
-			});
-		}
-		else{
-			res.send(result[0]);
 		}
 	});
 });

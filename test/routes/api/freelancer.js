@@ -251,6 +251,40 @@ describe('Testing put for freelancer', function() {
 	});
 });
 
+describe('Testing Post for localhost:3000/api/freelancer/create/freelancer', function() {
+	describe('POST /api/freelancer/create/freelancer', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('should respond with redirect on post', function(done) {
+			request(app)
+			.post('/api/freelancer/create/freelancer')
+			.send({
+				"firstName": "Lorenzo",
+				"lastName": "Ferri",
+				"workName": "Lollo",
+				"email": "lorenzo.ferri@usi.ch",
+				"phone": "3330003330",
+				"address": {
+					"city": "Lugano",
+					"street": "via Zurigo",
+					"number": 23,
+					"cap": 6900
+				},
+				"tags" : ["Informatico", "Photographer"],
+				"description" : "AAA"
+			})
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function(err, res) {
+				if (err) done(err);
+				res.body.should.have.property('firstName','Lorenzo');
+				res.body.should.have.property('lastName','Ferri');
+				done();
+			});
+		});
+	});
+});
+
 function seed(done) {
 	//seed the db
 	seedDb.seed(function(err, seedData) {
