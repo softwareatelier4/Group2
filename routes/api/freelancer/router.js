@@ -276,9 +276,8 @@ function countInArray(array, what) {
    return count;
 }
 
-	form.on('file', function (name, file){
-		console.log('Uploaded ' + file);
-	});
+router.all('/create/freelancer', middleware.supportedMethods('POST, GET, OPTIONS'));
+router.post('/create/freelancer', function(req, res) {
 	var freelancer = new Freelancer();
 	freelancer.firstName    = req.body.firstName;
 	freelancer.lastName     = req.body.lastName;
@@ -322,7 +321,7 @@ function onModelSave(res, status, sendItAsResponse){
   sendItAsResponse = sendItAsResponse || false;
   return function(err, saved){
     if (err) {
-      if (err.name === 'ValidationError' 
+      if (err.name === 'ValidationError'
         || err.name === 'TypeError' ) {
         res.status(400)
         return res.json({
