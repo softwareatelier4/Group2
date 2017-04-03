@@ -1,7 +1,6 @@
 /** @module users/router */
 'use strict';
 
-var formidable = require('formidable');
 var express = require('express');
 var router = express.Router();
 var middleware = require('../../middleware');
@@ -11,35 +10,86 @@ const Freelancer = mongoose.model('Freelancer');
 const Tag = mongoose.model('Tag');
 
 //supported methods
-
-router.all('/', middleware.supportedMethods('GET, OPTIONS'));
+router.all('/', middleware.supportedMethods('GET, PUT, OPTIONS'));
 
 router.all('/search/:search', middleware.supportedMethods('GET, OPTIONS'));
 router.get('/search/:search', function(req, res, next) {
-	Freelancer.find({}).populate('tags').lean().exec(function(err, freelancers) {
-		if (err) return next(err);
+   Freelancer.find({}).populate('tags').lean().exec(function(err, freelancers) {
+      if (err) return next(err);
 
-		res.json(searchEngine(freelancers, req.params.search));
-	});
+      res.json(searchEngine(freelancers, req.params.search));
+   });
 });
 
-router.all('/:freelancerid', middleware.supportedMethods('GET, OPTIONS'));
+router.all('/:freelancerid', middleware.supportedMethods('GET, PUT, OPTIONS'));
 router.get('/:freelancerid', function(req, res, next) {
-	Freelancer.findById(req.params.freelancerid).populate('tags').populate('ownerId').lean().exec(function(err, freelancer) {
-		if (err) {
-			res.status(400).send(err);
-			return;
-		}
-		if (!freelancer) {
-			res.status(404);
-			res.json({
-				statusCode: 404,
-				message: "Not Found"
+   Freelancer.findById(req.params.freelancerid).populate('tags').populate('ownerId').lean().exec(function(err, freelancer) {
+      if (err) {
+         res.status(400).send(err);
+         return;
+      }
+      if (!freelancer) {
+         res.status(404);
+         res.json({
+            statusCode: 404,
+            message: "Not Found"
+         });
+         return;
+      }
+      res.json(freelancer);
+   })
+});
+
+router.put('/:freelancerid', function(req, res, next) {
+  const data = req.body;
+
+  Freelancer.findById(req.params.freelancerid, function(err, freelancer){
+    if (err) return next (err);
+
+    if (freelancer){
+      freelancer.firstName = data.firstName;
+      freelancer.lastName = data.lastName;
+      freelancer.workName = data.workName;
+      freelancer.email = data.email;
+      freelancer.phone = data.phone;
+      freelancer.profilePhoto = data.profilePhoto;
+      freelancer.photos = data.photos;
+      freelancer.address = data.address;
+      freelancer.tags = null;
+      freelancer.description = data.description;
+      freelancer.ownerId = data.ownerId;
+      freelancer.price = data.price;
+
+	  if(data.score != null){
+		freelancer.score = data.score;
+	  }
+
+      freelancer.save(onModelSave(res,200,true));
+
+	  freelancer.tags = [];
+	  let tags = req.body.tags;
+	  //console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
+		for(let tag of tags){
+			Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
+				//console.log("\n\n\n\n"+tag+"\n\n\n");
+				Tag.findOne({name: tag},function (err, docs) {
+					if(docs){
+						updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
+						updatedFreelancer.save(function() {});
+					} else {
+						let newTag = new Tag();
+						newTag._id = mongoose.Types.ObjectId();
+						newTag.name = tag;
+						newTag.save(function(err, newTagRes) {
+								updatedFreelancer.tags.push(newTagRes._id);
+								updatedFreelancer.save(function() {});
+						});
+					}
+				});
 			});
-			return;
 		}
-		res.json(freelancer);
-	})
+    }
+  });
 });
 
 
@@ -176,31 +226,31 @@ let searchEngine = function(freelancers, string) {
 
 
 /**
-* Returns an array without duplicates freelancers
-* @param {array} array - List of freelancers
-* @return {array} - Array of unique freelancers
-*/
+ * Returns an array without duplicates freelancers
+ * @param {array} array - List of freelancers
+ * @return {array} - Array of unique freelancers
+ */
 let removeDuplicatesFreelancers = function(array) {
-	let temp = [];
-	let found = false;
-	for (let f of array) {
-		for (let x of temp) {
-			if (f._id === x._id)
-			found = true;
-		}
-		if (!found)
-		temp.push(f);
-		found = false;
-	}
-	return temp;
+   let temp = [];
+   let found = false;
+   for (let f of array) {
+      for (let x of temp) {
+         if (f._id === x._id)
+            found = true;
+      }
+      if (!found)
+         temp.push(f);
+      found = false;
+   }
+   return temp;
 }
 
 /**
-* Returns an array of Strings based on a given string and array of Strings
-* @param {array} array - List to iterate on (tags, cities, ...)
-* @param {string} string - Search criteria
-* @return {array} - Array of filtered stuff
-*/
+ * Returns an array of Strings based on a given string and array of Strings
+ * @param {array} array - List to iterate on (tags, cities, ...)
+ * @param {string} string - Search criteria
+ * @return {array} - Array of filtered stuff
+ */
 let searchForTag = function(array, string) {
    let result = [];
    for (let s of array) {
@@ -211,28 +261,20 @@ let searchForTag = function(array, string) {
 }
 
 /**
-* Returns the number of occurencies of an element in an array
-* @param {array} array - List to iterate on (tags, cities, ...)
-* @param {string} what - The element
-* @return {number} - Occurencies of that element in the array
-*/
+ * Returns the number of occurencies of an element in an array
+ * @param {array} array - List to iterate on (tags, cities, ...)
+ * @param {string} what - The element
+ * @return {number} - Occurencies of that element in the array
+ */
 function countInArray(array, what) {
-	var count = 0;
-	for (var i = 0; i < array.length; i++) {
-		if (array[i] === what) {
-			count++;
-		}
-	}
-	return count;
+   var count = 0;
+   for (var i = 0; i < array.length; i++) {
+      if (array[i] === what) {
+         count++;
+      }
+   }
+   return count;
 }
-router.all('/create/freelancer', middleware.supportedMethods('POST, GET, OPTIONS'));
-router.post('/create/freelancer', function(req, res) {
-	var form = new formidable.IncomingForm();
-	form.parse(req);
-	form.on('fileBegin', function (name, file){
-		console.log("File: ", file);
-		file.path = __dirname + '/../../../uploads/123/profile.jpg';
-	});
 
 	form.on('file', function (name, file){
 		console.log('Uploaded ' + file);
@@ -275,5 +317,34 @@ router.post('/create/freelancer', function(req, res) {
 		}
 	});
 });
+function onModelSave(res, status, sendItAsResponse){
+  const statusCode = status || 204;
+  sendItAsResponse = sendItAsResponse || false;
+  return function(err, saved){
+    if (err) {
+      if (err.name === 'ValidationError' 
+        || err.name === 'TypeError' ) {
+        res.status(400)
+        return res.json({
+          statusCode: 400,
+          message: "Bad Request"
+        });
+      }else{
+        return next (err);
+      }
+    }
+
+    if( sendItAsResponse){
+      const obj = saved.toObject();
+      delete obj.password;
+      delete obj.__v;
+      // addLinks(obj);
+      return res.status(statusCode).json(obj);
+    }else{
+      return res.status(statusCode).end();
+    }
+  }
+}
+
 
 module.exports = router;

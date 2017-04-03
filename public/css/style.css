@@ -216,6 +216,14 @@ Loading Spinner
 }
 
 
+.error-red{
+   color:red;
+}
+
+.error-green{
+   color:green;
+}
+
 /*----------------------------------------
 Button
 ----------------------------------------*/
@@ -246,4 +254,15 @@ Button
 
 .blue-border {
    border-color: rgb(46, 78, 92);
+}
+
+/*----------------------------------------
+Error color's for freelancer update
+----------------------------------------*/
+.error-red{
+   color:red;
+}
+
+.error-green{
+   color:green;
 }

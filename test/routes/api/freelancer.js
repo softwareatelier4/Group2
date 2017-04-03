@@ -90,6 +90,167 @@ describe('Testing Read for localhost:3000/api/review/freelancer/', function() {
 	});
 });
 
+describe('Testing put for freelancer', function() {
+	describe('PUT /api/freelancer/:freelancerID', function() {
+		before(seed);
+		after(utils.dropDb);
+		var put_freelancer = 	{
+						'_id': ObjectId("f00000000000000000000000"),
+						'firstName': 'Marco',
+						'lastName': 'Tollini',
+						'workName': 'Il Tollo',
+						'email': 'tollim@usi.ch',
+						'phone': '+39 380474747',
+						'profilePhoto': '/uploads/test/profile0.jpg',
+						'address': {
+							road: 'Via Zurigo',
+							number: 10,
+							city: 'Lugano',
+							cap: 69100
+						},
+						'tags': [
+							ObjectId("a00000000000000000000000"),
+							ObjectId("a00000000000000000000001")
+						],
+						'description': 'Hello guys! I am an amazing developer. ',
+						'photos': [
+							'/uploads/test/1.jpg',
+							'/uploads/test/2.jpg',
+							'/uploads/test/3.jpg',
+						],
+						'score': 5,
+						price : 10
+					}
+
+		var temp = put_freelancer;
+		temp.firstName = "Francesco";
+
+		it('Should modify the first name of the freelancer', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.firstName.should.not.equal("Marco");
+					done();
+				});
+		});
+
+		temp = put_freelancer;
+		temp.lastName = "Mocciolo";
+		it('Should modify the last name of the freelancer', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.lastName.should.not.equal("Tollini");
+					done();
+				});
+		});
+
+		temp = put_freelancer;
+		temp.workName = "Nokia";
+		it('Should modify the work name of the freelancer', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.workName.should.not.equal("Il Tollo");
+					done();
+				});
+		});
+
+		temp = put_freelancer;
+		temp.email = "123@gmail.com";
+		it('Should modify the work name of the freelancer', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.email.should.not.equal("tollim@usi.ch");
+					done();
+				});
+		});
+
+		temp = put_freelancer;
+		temp.phone = "+41797805942";
+		it('Should modify the phone of the freelancer', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.phone.should.not.equal("+39 380474747");
+					done();
+				});
+		});
+
+		temp = put_freelancer;
+		temp.profilePhoto = "/uploads/test/profile1.jpg";
+		it('Should modify the phone of the freelancer', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.profilePhoto.should.not.equal("/uploads/test/profile0.jpg");
+					done();
+				});
+		});
+
+		temp = put_freelancer;
+		temp.tags = ["Tecnico", "Developer", "Informatico", "NEW", "TAGS"];
+		it('Should modify the tags of the freelancer', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.tags.should.not.equal(["Tecnico", "Developer", "Informatico"]);
+					done();
+				});
+		});
+	});
+});
+
 describe('Testing Post for localhost:3000/api/freelancer/create/freelancer', function() {
 	describe('POST /api/freelancer/create/freelancer', function() {
 		before(seed);

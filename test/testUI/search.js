@@ -1,3 +1,6 @@
+'use strict';
+var seedDb = require('../seedDb');
+
 module.exports = {
    'Search no-filter test': function(client) {
       client
@@ -14,6 +17,7 @@ module.exports = {
          .assert.visible('div[id=f00000000000000000000000]')
          .assert.visible('div[id=f00000000000000000000006]')
          .end();
+
    },
    'Search sorting test': function(client) {
       client
