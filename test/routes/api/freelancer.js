@@ -121,8 +121,10 @@ describe('Testing put for freelancer', function() {
 						'score': 5,
 						price : 10
 					}
+
 		var temp = put_freelancer;
 		temp.firstName = "Francesco";
+
 		it('Should modify the first name of the freelancer', function(done) {
 			request(app)
 				.put('/api/freelancer/f00000000000000000000000')
