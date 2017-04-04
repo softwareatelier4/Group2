@@ -426,7 +426,6 @@ const SEARCH = {
          }
 
       });
-
       SEARCH.drawCards(SEARCH.currentResult);
    },
 
@@ -680,6 +679,8 @@ const SEARCH = {
       SEARCH_TEXT_QUERY.off();
       $('#basic-addon1').off();
       $("#position").off();
+      FILTER_DISTANCE_QUERY.off();
+      FILTER_PRICE_QUERY.off();
    },
 
    /**
