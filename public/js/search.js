@@ -667,7 +667,7 @@ const SEARCH = {
     */
    hashToValue: function() {
       let value = window.location.hash.split('|')[0].split('=')[1];
-      value = value.replace('+', ' ');
+      value = value.replace(/\+/g, ' ');
       SEARCH_TEXT_QUERY.val(value);
    },
 
