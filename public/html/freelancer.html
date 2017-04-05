@@ -55,12 +55,15 @@
 
 		<div id="img-freelancer">
 			<div id="works" class="blue">
-				{?freelancer.photos}<i class="fa fa-camera" aria-hidden="true"></i>
+				{?freelancer.photosThumbnail}<i class="fa fa-camera" aria-hidden="true"></i>
 				<h5>WORKS</h5>
 			</div>
 			<div id="thumbnail">
-				{#freelancer.photos}
-				<a href="{.}" data-lightbox="work-img"><img class="thumbnail-element" src="{.}" /></a>{/freelancer.photos} {/freelancer.photos}
+				{#freelancer.photosThumbnail}
+				<a href="{.}" data-lightbox="work-img"><img class="thumbnail-element" src="{.}" /></a>
+				{/freelancer.photosThumbnail} {#freelancer.photos}
+				<a href="{.}" data-lightbox="work-img"></a>
+				{/freelancer.photos}{/freelancer.photosThumbnail}
 			</div>
 		</div>
 	</div>
