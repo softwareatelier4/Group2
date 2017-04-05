@@ -433,6 +433,7 @@ const SEARCH = {
       let searchResult = document.getElementById('main-content');
       searchResult.innerHTML = "";
       for (freelancer of freelancers) {
+
          SEARCH.insertCard(freelancer);
       }
       if (SEARCH.currentResult.length == 0) {
@@ -652,14 +653,32 @@ const SEARCH = {
 
                   const freelancerDom = $('#' + freelancerId);
                   if (freelancerDom) {
-                     const dom = $('#' + freelancerId + ' .price-km .card-text')[1];
+                     const dom = $('#' + freelancerId + ' .km-time .card-text')[0];
                      dom.innerHTML = distance + ' km';
+                     const dom1 = $('#' + freelancerId + ' .km-time .card-text')[1];
+                     dom1.innerHTML = SEARCH.writeTimeBetter(duration);
                   }
                }
             }
          }
       }
 
+   },
+
+   /**
+    * Return the time written like tot h tot min
+    * @param {Number} - Time to convert
+    * @return {String} - Time rewritten
+    */
+   writeTimeBetter: function(time) {
+      console.log(time);
+      if (time < 1) {
+         return (time * 60).toFixed(0) + "min";
+      } else {
+         let minutes = ((time - parseInt(time, 10)) * 60).toFixed(0);
+         let hours = parseInt(time, 10);
+         return hours + " h   " + minutes + " min";
+      }
    },
    /**
     * Update the value of the input-search putting the value of the current URL
@@ -712,7 +731,11 @@ const SEARCH = {
                'name': freelancer.firstName + " " + freelancer.lastName,
                'price': price,
                'distance': distance,
-               'tags': freelancer.tags
+               'tags': freelancer.tags,
+               'score': freelancer.score = FREELANCER.getHtmlRankStar({
+                  full: freelancer.score,
+                  empty: 5 - freelancer.score
+               })
             }
          };
 

@@ -164,10 +164,14 @@ body, html {
    height: 35px;
 }
 
-.price-km {
+.km-time {
    display: flex;
    justify-content: space-between;
    color: rgb(78, 108, 121);
+}
+
+.price {
+	margin-left: 8px;
 }
 
 .card {
