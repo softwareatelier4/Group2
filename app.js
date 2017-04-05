@@ -4,7 +4,9 @@ var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var app = express();
-var methodOverride = require('method-override')
+var methodOverride = require('method-override');
+var flash = require('connect-flash');
+var passport = require('passport');
 
 // Connect to MongoDB here
 var mongoose = require('mongoose');
@@ -30,9 +32,13 @@ app.use(methodOverride(
 	}
 ));
 
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 // Initialize routers here
 var routers = require('./routes/api/routers');
 app.use('/api/freelancer/', routers.freelancer);
+app.use('/api/passport/', routers.passport);
 app.use('/api/review/', routers.review);
 app.use('/api/tag/', routers.tag);
 app.use('/api/', routers.root);

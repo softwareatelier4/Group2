@@ -22,12 +22,12 @@ var userSchema = new mongoose.Schema({
       ref: "Freelancer"
    },
    firstName: {
-      type: String,
-      required: true
+      type: String
+      //required: true
    },
    lastName: {
-      type: String,
-      required: true
+      type: String
+      //required: true
    },
    password: {
       type: String,
@@ -39,30 +39,14 @@ var userSchema = new mongoose.Schema({
    }
 });
 
-userSchema.pre('save', function(next) {
-   var user = this;
+userSchema.methods.generateHash = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+};
 
-   // return if the password was not modified.
-   if (!user.isModified('password')) {
-      return next();
-   }
-
-   bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-      if (err) {
-         return next(err);
-      }
-
-      bcrypt.hash(user.password, salt, function(err, hash) {
-         if (err) {
-            return next(err);
-         }
-
-         user.password = hash;
-         next();
-      });
-   });
-});
-
+// checking if password is valid
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+};
 /*
 userSchema.methods.isValidPassword = function isValidPassword(candidate, callback) {
    bcrypt.compare(candidate, this.password, function onPwdCompare(err, isMatch) {
