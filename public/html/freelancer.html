@@ -15,6 +15,9 @@
                     <button type="button" id="modify-button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
                         Modify
                     </button>
+						  <button type="button" id="claim-button" class="btn btn-primary" data-toggle="modal" data-target="#claim-freelancer-modal" onclick="FREELANCERCLAIM.claimProfile()" style="margin-left: 5px; visibility: hidden;">
+                        Claim this profile
+                    </button>
                 </div>
 			</div>
 			<div id="rank" class="ml-15">
@@ -122,3 +125,33 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="claim-freelancer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" id="modal-ext">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Claim this freelancer</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data" action="javascript:FREELANCERCLAIM.sendClaimingRequest()" id="form-freelancer-claim">
+
+            <div class="form-group">
+					 <label for="modal-photos" id="modal-photos-label">Please, upload your identity card.</label><br>
+					 <button class="btn btn-primary btn-upload" type="button" aria-describedby="photos">Upload your ID</button>
+            </div>
+            <div class="form-group">
+                <label for="modal-description">Description</label>
+                <textarea class="form-control" id="modal-description" rows="6"></textarea>
+            </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERCLAIM.checkData()">Send request</button>
+      </div>
+    </div>
+  </div>
+</div>
