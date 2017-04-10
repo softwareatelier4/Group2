@@ -7,6 +7,7 @@ var app = express();
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
 var passport = require('passport');
+var session  = require('express-session');
 
 // Connect to MongoDB here
 var mongoose = require('mongoose');
@@ -32,6 +33,7 @@ app.use(methodOverride(
 	}
 ));
 
+app.use(session({ secret: 'jobadvisorsession' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
