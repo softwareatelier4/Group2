@@ -171,6 +171,41 @@ h5 {
    margin-top: -5px;
 }
 
+.btn.btn-primary.active.edit, .btn.btn-primary:active.edit, .btn.btn-primary:hover.edit, .btn.btn-primary:visited.edit {
+   background-color: rgb(140, 146, 148);
+   border-color: rgb(140, 146, 148);
+   color: #fff;
+   padding: .2rem 1rem;
+   margin-right: 8px;
+}
+
+.btn.btn-primary.edit {
+   background-color: rgb(154, 157, 158);
+   border-color: rgb(154, 157, 158);
+   color: #fff;
+   padding: .2rem 1rem;
+   margin-right: 8px;
+}
+
+.custom-text-card {
+   margin-bottom: 4px;
+}
+
+
+/*button circle*/
+
+.btn.btn-primary.active.btn-circle.delete, .btn.btn-primary:active.btn-circle.delete, .btn.btn-primary:hover.btn-circle.delete, .btn.btn-primary:visited.btn-circle.delete {
+   background-color: rgb(140, 146, 148);
+   border-color: rgb(140, 146, 148);
+   color: #fff;
+}
+
+.btn.btn-primary.btn-circle.delete {
+   background-color: rgb(231, 231, 231);
+   border-color: rgb(154, 157, 158);
+   color: rgb(154, 157, 158);
+}
+
 @media screen and (max-width: 1110px) {
    #profile-freelancer {
       min-width: 0 !important;
@@ -197,4 +232,9 @@ h5 {
    #thumbnail {
       margin-left: 0px;
    }
+}
+
+
+}
+
 }

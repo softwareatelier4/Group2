@@ -17,7 +17,14 @@
       <div class="reply">
          <div class="card-block" {^answer} style="display:none;" {/answer}>
             <h6 class="card-subtitle mb-2 text-muted">Reply:</h6>
-            <p class="card-text"> {answer} </p>
+            <div class="card-text">
+               <p class="custom-text-card">{answer}</p>
+               <textarea class="form-control" style="background-color: rgb(231, 231, 231); display: none;" rows=" 3"></textarea>
+               <span>
+               <button type="button" class="btn btn-primary edit" name="freelancer-reply-edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+               <button type="button" class="btn btn-primary btn-circle delete"><i class="fa fa-trash" aria-hidden="true"></i></button>
+               </span>
+            </div>
          </div>
       </div>
       <form style="display:none;" name="{._id}">
