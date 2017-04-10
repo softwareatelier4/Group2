@@ -21,10 +21,10 @@ passport.use('local-login', new LocalStrategy({
 function(email, password, done){
 	User.findOne({ email: email }, function (err, user) {
 		if (err) { return done(err); }
-		if (!user) { 
-			return done(null, false); 
+		if (!user) {
+			return done(null, false);
 		}
-		if (!user.validPassword(password)) { 
+		if (!user.validPassword(password)) {
 			return done(null, false);
 		}
 		return done(null, user);
@@ -124,9 +124,9 @@ function isLoggedIn(req, res, next) {
 
 router.get('/islogged', function(req, res) {
 	if(req.isAuthenticated()){
-		res.send({logged: true});
+		res.send({result: req.user});
 	} else{
-		res.send({logged: false});
+		res.send({result: false});
 	}
 });
 

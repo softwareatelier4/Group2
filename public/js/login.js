@@ -4,7 +4,7 @@ const LOGIN = {
          document.getElementById("form-login").submit();
      },
      submitLogin: function(){
-        console.log("dentro");
+      //   console.log("dentro");
         let email = document.getElementById('modal-email');
 		let password = document.getElementById('modal-password');
 
@@ -13,7 +13,7 @@ const LOGIN = {
 			'password' : password.value
         }
         doJSONRequest("POST", "/api/passport/login", null, login, function(res) {
-            console.log("Logged");
+            console.log(res);
 		});
      }
 }

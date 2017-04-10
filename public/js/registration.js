@@ -8,6 +8,7 @@ const REGISTRATION = {
 		let password = document.getElementById('password');
 		let repeatPassword = document.getElementById('repeatPassword');
 		let repeatPasswordLabel = document.getElementById("repeatPassword-label");
+		let emailLabel = document.getElementById("email-label");
 		if(password.value !== repeatPassword.value) {
 			repeatPasswordLabel.style.display = "block";
 			password.value = "";
@@ -21,10 +22,13 @@ const REGISTRATION = {
 			}
 			doJSONRequest("POST", "/api/passport/signup", null, user, function(res) {
 				if(res.error){
-					console.log(res.error);
+					emailLabel.style.display = "block";
+					email.value = "";
+					password.value = "";
+					repeatPassword.value = "";
 				}
 				else if(res.success){
-					console.log("non lo so");
+					window.location.href ='/';
 				}
 			});
 		}
