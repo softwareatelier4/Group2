@@ -20,7 +20,12 @@ const REGISTRATION = {
 				'password' : password.value
 			}
 			doJSONRequest("POST", "/api/passport/signup", null, user, function(res) {
-				console.log(res);
+				if(res.error){
+					console.log(res.error);
+				}
+				else if(res.success){
+					console.log("non lo so");
+				}
 			});
 		}
 	}

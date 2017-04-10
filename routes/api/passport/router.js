@@ -53,7 +53,7 @@ function(req, email, password, done) {
 
 			// check to see if theres already a user with that email
 			if (user) {
-				return done(null, false);
+				return done(null, false,{error: "email already taken"});
 			} else {
 
 				// if there is no user with that email
@@ -98,10 +98,16 @@ router.post('/login',function(req, res, next) {
   })(req, res, next);
 });
 
-router.post('/signup', passport.authenticate('local-signup', {
-	successRedirect : '/',
-	failureRedirect : '/signup'
-}));
+router.post('/signup', function(req,res,next){
+	passport.authenticate('local-signup', function(err,user,info){
+		if (err) { return next(err); }
+    	if (!user) { return res.send(info); }
+		req.logIn(user, function(err){
+			if (err) { return next(err); }
+      		return res.send({success: true});
+		});
+	})(req, res, next);
+});
 
 router.get('/logout', function(req, res) {
 	req.logout();
