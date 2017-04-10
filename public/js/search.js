@@ -6,7 +6,7 @@ const SEARCH = {
 
    position: {
       city: null,
-      state: null,
+      formatted_address: null,
       latitude: null,
       longitude: null,
       method: null,
@@ -493,13 +493,14 @@ const SEARCH = {
       window.location.hash = hash.join('|');
    },
 
-   setPosition: function(method, latitude, longitude, city, state) {
+   setPosition: function(method, latitude, longitude, city, formatted_address) {
+      console.log('setPosition: ', method, latitude, longitude, city, formatted_address);
       method = method || '';
 
       if (method == 'user') {
          SEARCH.position = {
             city,
-            state,
+            formatted_address,
             latitude,
             longitude,
             method,
@@ -509,7 +510,7 @@ const SEARCH = {
          if (method == 'empty_location' || SEARCH.position.method != 'user' || method == 'reset') {
             SEARCH.position = {
                city: userPosition.city,
-               state: userPosition.state,
+               formatted_address: userPosition.formatted_address,
                latitude: userPosition.latitude,
                longitude: userPosition.longitude,
                method: method,
@@ -537,7 +538,7 @@ const SEARCH = {
       if ($('#position').is(":focus")) {
          return;
       }
-      $('#position').val(SEARCH.position.city + ', ' + SEARCH.position.state);
+      $('#position').val(SEARCH.position.formatted_address);
    },
 
    getPositionHash: function() {
@@ -558,7 +559,7 @@ const SEARCH = {
             hashObj[h.split('=')[0]] = h.split('=')[1];
          }
 
-         SEARCH.setPosition('user', hashObj.latitude, hashObj.longitude, hashObj.city, hashObj.state);
+         SEARCH.setPosition('user', hashObj.latitude, hashObj.longitude, hashObj.city, hashObj.formatted_address.replace(/\$/g, ' '));
       }
 
    },
@@ -576,7 +577,7 @@ const SEARCH = {
          }
       }
 
-      let hash = 'position:city=' + SEARCH.position.city + '&state=' + SEARCH.position.state;
+      let hash = 'position:city=' + SEARCH.position.city + '&formatted_address=' + SEARCH.position.formatted_address.replace(/ /g, '$');
       hash += '&latitude=' + SEARCH.position.latitude + '&longitude=' + SEARCH.position.longitude;
 
       if (positionHash) {
@@ -593,14 +594,13 @@ const SEARCH = {
       $("#position")
          .geocomplete()
          .bind("geocode:result", function(event, result) {
-            const city = result.address_components[0].long_name;
+            const city = UTILS.googleFindType(result.address_components, 'locality').long_name;
 
-            const addressLen = result.address_components.length;
-            const state = result.address_components[addressLen - 1].long_name;
+            const formatted_address = result.formatted_address;
 
             const lat = result.geometry.location.lat();
             const lng = result.geometry.location.lng();
-            SEARCH.setPosition('user', lat, lng, city, state);
+            SEARCH.setPosition('user', lat, lng, city, formatted_address);
          });
    },
 
@@ -625,7 +625,6 @@ const SEARCH = {
       }, gmapsResults);
 
       function gmapsResults(response, status) {
-         console.log(response);
          if (status == 'OK') {
             for (let i in response.rows[0].elements) {
                let elem = response.rows[0].elements[i];
@@ -671,13 +670,12 @@ const SEARCH = {
     * @return {String} - Time rewritten
     */
    writeTimeBetter: function(time) {
-      console.log(time);
       if (time < 1) {
          return (time * 60).toFixed(0) + "min";
       } else {
          let minutes = ((time - parseInt(time, 10)) * 60).toFixed(0);
          let hours = parseInt(time, 10);
-         return hours + " h   " + minutes + " min";
+         return hours + "h   " + minutes + "min";
       }
    },
    /**
