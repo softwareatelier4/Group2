@@ -12,16 +12,67 @@ const ClaimRequest = mongoose.model('ClaimRequest');
 
 router.all('/', middleware.supportedMethods('GET, POST, PUT, OPTIONS'));
 
-router.put('/', function(req, res, next) {
-	console.log("Hello, world!");
-	res.status(200);
-	res.json({});
+router.get('/', function(req, res, next) {
+	ClaimRequest.find({}).populate('user').populate('freelancer').lean().exec(function(err, requests) {
+		if (err) return next(err);
+
+		for (let request of requests) {
+			delete request.freelancer.description;
+			delete request.freelancer.profilePhoto;
+			delete request.freelancer.price;
+			delete request.freelancer.score;
+			delete request.freelancer.tags;
+			delete request.freelancer.address;
+			delete request.freelancer.photos;
+			delete request.freelancer.workName;
+			delete request.freelancer.phone;
+			delete request.user.password;
+		}
+
+		res.json(requests);
+	});
 });
 
-router.get('/', function(req, res, next) {
-	console.log("Hello, GET!");
-	res.status(200);
-	res.json({});
+
+router.put('/', function(req, res, next) {
+	const data = req.body;
+
+	let claimRequest = new ClaimRequest();
+	claimRequest.user = data.userId;
+	claimRequest.freelancer = data.freelancerId;
+	claimRequest.status = 0;
+	claimRequest.notes = data.description;
+
+	claimRequest.save(onModelSave(res, 200, true));
 });
+
+function onModelSave(res, status, sendItAsResponse) {
+	const statusCode = status || 204;
+	sendItAsResponse = sendItAsResponse || false;
+	return function(err, saved) {
+		if (err) {
+			if (err.name === 'ValidationError' ||
+				err.name === 'TypeError') {
+				res.status(400)
+				return res.json({
+					statusCode: 400,
+					message: "Bad Request"
+				});
+			} else {
+				return next(err);
+			}
+		}
+
+		if (sendItAsResponse) {
+			const obj = saved.toObject();
+			delete obj.password;
+			delete obj.__v;
+			// addLinks(obj);
+			return res.status(statusCode).json(obj);
+		} else {
+			return res.status(statusCode).end();
+		}
+	}
+}
 
 module.exports = router;
