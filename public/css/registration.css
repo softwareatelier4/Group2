@@ -2,12 +2,7 @@
 	border: 1px solid rgba(122, 122, 122, 0.5);
 }
 
-#repeatPassword-label {
-	color: rgb(255, 0, 0);
-	display: none;
-}
-
-#email-label {
+label {
 	color: rgb(255, 0, 0);
 	display: none;
 }

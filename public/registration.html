@@ -21,9 +21,13 @@
 				<div class="card-block">
 					<form id="registrationForm" action="javascript:REGISTRATION.submitUser()">
 						<div class="form-group">
+							<label for="firstName" id="firstName-label">First name cannot contain numbers or special characters!</label>
+							<label for="firstName" id="firstName-label2">First name has to have at least 8 characters!</label>
 							<input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter first name" required>
 						</div>
 						<div class="form-group mt-2">
+							<label for="lastName" id="lastName-label">Last name cannot contain numbers or special characters!</label>
+							<label for="lastName" id="lastName-label2">Last name has to have at least 8 characters!</label>
 							<input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name" required>
 						</div>
 						<div class="form-group mt-2">
@@ -37,7 +41,7 @@
 							<label for="repeatPassword" id="repeatPassword-label">The passwords are different!</label>
 							<input type="password" class="form-control" id="repeatPassword" aria-describedby="repeatPassword" placeholder="Re-enter password" required>
 						</div>
-						<button type="submit" class="float-right btn btn-primary" >Submit</button>
+						<button id="formButton" type="submit" class="float-right btn btn-primary" >Submit</button>
 					</form>
 				</div>
 			</div>
