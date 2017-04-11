@@ -26,13 +26,14 @@ var claimSchema = new mongoose.Schema({
 		required: true
 	},
 	status: {
-		type: Number,
-		default: 0
+		type: String,
+		enum: ['Pending', 'Accepted', 'Refused'],
+		default: 'Pending'
 	},
 	photos: {
 		type: Array,
 		// required: true
-		default: ["../public/uploads/claimRequests/osama.jpg"]
+		default: ["/uploads/claimRequests/osama.jpg"]
 	},
 	notes: {
 		type: String,

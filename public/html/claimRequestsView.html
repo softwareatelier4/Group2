@@ -7,10 +7,35 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" crossorigin="anonymous">
-
+	<link rel="stylesheet" href="../css/style.css">
 	<title>JobAdvisor</title>
 </head>
 <body>
+	<!-- <div id="main">
+		<div class="row justify-content-center">
+			<span class="logo">JobAdvisor</span>
+		</div>
+		<div class="row justify-content-center mt-5">
+			<div class="col-md-10">
+				<div class="card">
+					<div class="card-header">Pending Requests</div>
+					<div class="card-block">
+						<div style="width: 100%;">
+							<table class="table table-bordered" style="background-color: white;">
+								{#request}
+								<tr>
+									<td> {.}</td>
+									<td>{.}{.}<br><a href="mailto:{.}">{.}</a></td>
+									<td><a href="{.}"></a></td>
+								</tr>
+								<a href="{.}" data-lightbox="work-img"><img class="thumbnail-element" src="{.}" /></a>{/freelancer.photos} {/freelancer.photos}
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
 </body>
 </html>
 
@@ -20,25 +45,24 @@ getHtml();
 
 function getHtml()
 {
-	let result = '<div style="width: 100%;"><table class="table table-bordered">';
+	let result = '<div id="main"><div class="row justify-content-center"><span class="logo">JobAdvisor</span></div><div class="row justify-content-center mt-5"><div class="col-md-10"><div class="card"><div class="card-header">Pending Requests</div><div class="card-block"><div style="width: 100%;"><table class="table table-bordered" style="background-color: white;">';
 
 	doJSONRequest("GET", "/api/claimrequest/", null, null, function(res) {
-		result+='<tr><td>ID Request</td><td>Info</td>' +
-		'<td>Name</td><td>Email</td><td>ID Photo</td>' +
-		'<td>Notes</td><td>Status</td>' +'</tr>'
+		result+='<thead><tr><th>ID Request</th><th>User Informations</th>' +
+		'<th>Freelancer Informations</th><th>ID Photo</th>' +
+		'<th>Request</th><th>Status</th>' +'</tr></thead><tbody>'
 		for (let req of res) {
 			result+='<tr><td>' + req._id + '</td>' +
-			'<td>' + 'Information' + '</td>' +
-			'<td>' + req.user.firstName + ' ' + req.user.lastName + '</td>' +
-			'<td>' + req.user.email + '</td>' +
-			'<td>' + 'photo' + '</td>' +
+			'<td>' + req.user.firstName +" "+ req.user.lastName +"<br>" + '<a href="mailto:'+req.user.email+'">'+req.user.email+'</a>'+ '</td>' +
+			'<td>' + req.freelancer.firstName +" "+ req.freelancer.lastName +"<br>" + '<a href="mailto:'+req.freelancer.email+'">'+req.freelancer.email+'</a>'+ '</td>' +
+			'<td>' + '<a href="'+ req.photos+'" data-lightbox="work-img"><img class="thumbnail-element" width="60px" src="'+ req.photos+'" /></a>' + '</td>' +
 			'<td>' + req.notes + '</td>' +
 			'<td>' + req.status + '</td>' + '</tr>';
 		}
-
+		result+='</tbody>';
 
 		console.log(result)
-		document.body.innerHTML = result + "</table></div>";
+		document.body.innerHTML += result + "</table></div></div></div></div></div></div>";
 	});
 }
 </script>

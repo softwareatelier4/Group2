@@ -29,6 +29,11 @@ router.get('/', function(req, res, next) {
 			delete request.user.password;
 		}
 
+		// let result = {
+		// 	request: requests
+		// }
+		// console.log(result);
+		// res.json(result);
 		res.json(requests);
 	});
 });
@@ -40,7 +45,7 @@ router.put('/', function(req, res, next) {
 	let claimRequest = new ClaimRequest();
 	claimRequest.user = data.userId;
 	claimRequest.freelancer = data.freelancerId;
-	claimRequest.status = 0;
+	claimRequest.status = 'Pending';
 	claimRequest.notes = data.description;
 
 	claimRequest.save(onModelSave(res, 200, true));
