@@ -130,5 +130,9 @@ router.get('/islogged', function(req, res) {
 	}
 });
 
+router.get('/logout', function (req, res){
+  req.logOut();
+  res.send({result:'logout'});
+});
 
 module.exports = router;
