@@ -8,10 +8,12 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" crossorigin="anonymous">
 	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/lightbox.min.css">
+
 	<title>JobAdvisor</title>
 </head>
 <body>
-	<!-- <div id="main">
+	<div id="main">
 		<div class="row justify-content-center">
 			<span class="logo">JobAdvisor</span>
 		</div>
@@ -21,53 +23,67 @@
 					<div class="card-header">Pending Requests</div>
 					<div class="card-block">
 						<div style="width: 100%;">
-							<table class="table table-bordered" style="background-color: white;">
-								{#request}
-								<tr>
-									<td> {.}</td>
-									<td>{.}{.}<br><a href="mailto:{.}">{.}</a></td>
-									<td><a href="{.}"></a></td>
-								</tr>
-								<a href="{.}" data-lightbox="work-img"><img class="thumbnail-element" src="{.}" /></a>{/freelancer.photos} {/freelancer.photos}
+							<table class="table table-bordered" style="background-color: white;" id="table-pending-req">
+								<thead>
+									<tr>
+										<th>ID Request</th>
+										<th>User Informations</th>
+										<th>Freelancer Informations</th>
+										<th>ID Photo</th>
+										<th>Request</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+					<div class="card-header">Accepted Requests</div>
+					<div class="card-block">
+						<div style="width: 100%;">
+							<table class="table table-bordered" style="background-color: white;" id="table-accepted-req">
+								<thead>
+									<tr>
+										<th>ID Request</th>
+										<th>User Informations</th>
+										<th>Freelancer Informations</th>
+										<th>ID Photo</th>
+										<th>Request</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+					</div>
+					<div class="card-header">Refused Requests</div>
+					<div class="card-block">
+						<div style="width: 100%;">
+							<table class="table table-bordered" style="background-color: white;" id="table-refused-req">
+								<thead>
+									<tr>
+										<th>ID Request</th>
+										<th>User Informations</th>
+										<th>Freelancer Informations</th>
+										<th>ID Photo</th>
+										<th>Request</th>
+										<th>Status</th>
+									</tr>
+								</thead>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 </body>
 </html>
 
-<script src="../js/ajax.js"></script>
-<script>
-getHtml();
-
-function getHtml()
-{
-	let result = '<div id="main"><div class="row justify-content-center"><span class="logo">JobAdvisor</span></div><div class="row justify-content-center mt-5"><div class="col-md-10"><div class="card"><div class="card-header">Pending Requests</div><div class="card-block"><div style="width: 100%;"><table class="table table-bordered" style="background-color: white;">';
-
-	doJSONRequest("GET", "/api/claimrequest/", null, null, function(res) {
-		result+='<thead><tr><th>ID Request</th><th>User Informations</th>' +
-		'<th>Freelancer Informations</th><th>ID Photo</th>' +
-		'<th>Request</th><th>Status</th>' +'</tr></thead><tbody>'
-		for (let req of res) {
-			result+='<tr><td>' + req._id + '</td>' +
-			'<td>' + req.user.firstName +" "+ req.user.lastName +"<br>" + '<a href="mailto:'+req.user.email+'">'+req.user.email+'</a>'+ '</td>' +
-			'<td>' + req.freelancer.firstName +" "+ req.freelancer.lastName +"<br>" + '<a href="mailto:'+req.freelancer.email+'">'+req.freelancer.email+'</a>'+ '</td>' +
-			'<td>' + '<a href="'+ req.photos+'" data-lightbox="work-img"><img class="thumbnail-element" width="60px" src="'+ req.photos+'" /></a>' + '</td>' +
-			'<td>' + req.notes + '</td>' +
-			'<td>' + req.status + '</td>' + '</tr>';
-		}
-		result+='</tbody>';
-
-		console.log(result)
-		document.body.innerHTML += result + "</table></div></div></div></div></div></div>";
-	});
-}
-</script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-<script src="../js/dust-full.min.js"></script> -->
+<script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+
+<script src="../js/ajax.js"></script>
+<script src="../js/freelancerClaiming.js"></script>
+<script src="../js/dust-full.min.js"></script>
+<script src="../js/lightbox.min.js"></script>

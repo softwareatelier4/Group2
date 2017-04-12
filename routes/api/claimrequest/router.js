@@ -29,11 +29,6 @@ router.get('/', function(req, res, next) {
 			delete request.user.password;
 		}
 
-		// let result = {
-		// 	request: requests
-		// }
-		// console.log(result);
-		// res.json(result);
 		res.json(requests);
 	});
 });

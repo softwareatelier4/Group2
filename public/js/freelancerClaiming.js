@@ -36,38 +36,43 @@ const FREELANCERCLAIM = {
 	},
 	renderTables: function() {
 		doJSONRequest("GET", "/api/claimrequest/", null, null, function(res) {
-			$.get("/html/claimRequestsView.html", function(claimHtml) {
-				dust.renderSource(reviewHtml, result, function(err, out) {});
+			let acceptedRequests = [];
+			let refusedRequests = [];
+			let pendingRequests = [];
+			for (let req of res) {
+				if (req.status == 'Pending') {
+					req.check = true;
+					pendingRequests.push(req);
+				} else if (req.status == 'Accepted') {
+					acceptedRequests.push(req);
+				} else if (req.status == 'Refused') {
+					refusedRequests.push(req);
+				}
+			}
+
+			$.get("/html/claimRequestsTable.html", function(claimHtml) {
+				dust.renderSource(claimHtml, {
+					request: pendingRequests
+				}, function(err, out) {
+					document.getElementById('table-pending-req').innerHTML += out;
+				});
+				dust.renderSource(claimHtml, {
+					request: acceptedRequests
+				}, function(err, out) {
+					document.getElementById('table-accepted-req').innerHTML += out;
+				});
+				dust.renderSource(claimHtml, {
+					request: refusedRequests
+				}, function(err, out) {
+					document.getElementById('table-refused-req').innerHTML += out;
+				});
 			});
 		});
-		// doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
-		//
-		// 	$.get("/html/review.html", function(reviewHtml) {
-		//
-		// 		for (res of result) {
-		// 			res.score = FREELANCER.getHtmlRankStar({
-		// 				full: res.score,
-		// 				empty: 5 - res.score
-		// 			});
-		// 		}
-		// 		dust.renderSource(reviewHtml, result, function(err, out) {
-		// 			document.getElementById('cardReviews').innerHTML = out;
-		//
-		// 			let freelancerReplyButtons = document.getElementsByName('freelancer-reply');
-		// 			for (let freelancerReplyButton of freelancerReplyButtons) {
-		// 				freelancerReplyButton.addEventListener('click', FREELANCER.showReplyReview);
-		// 			}
-		// 		});
-		// 	});
-		// });
 
 	},
 }
-Listener('click', FREELANCER.showReplyReview);
-}
-});
-});
-});
 
-},
-}
+
+$(document).ready(function() {
+	FREELANCERCLAIM.renderTables();
+});
