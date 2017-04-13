@@ -471,10 +471,12 @@ const SEARCH = {
    drawCards: function(freelancers) {
       let searchResult = document.getElementById('main-content');
       searchResult.innerHTML = "";
-      for (freelancer of freelancers) {
+      $.get("/html/searchCard.html", function(cardHtml) {
+         for (freelancer of freelancers) {
 
-         SEARCH.insertCard(freelancer);
-      }
+            SEARCH.insertCard(freelancer, cardHtml);
+         }
+      }, 'html');
       if (SEARCH.currentResult.length == 0) {
          searchResult.innerHTML = "<h3 style='margin-top:30px;'> No result </h3>";
       }
@@ -752,52 +754,48 @@ const SEARCH = {
       value = value.replace(/\+/g, ' ');
       SEARCH_TEXT_QUERY.val(value);
    },
-
    /**
     * Insert and view Cards as result of the search
     * @param {Freelancer} freelancer - Object Freelancer
+    * @param {String} card - HTML card string for DustJS
     * @return {void}
     */
-   insertCard: function(freelancer) {
-      $.get("/html/searchCard.html", function(card) {
+   insertCard: function(freelancer, card) {
+      let distance;
+      if (!isNaN(freelancer.distance)) {
+         distance = freelancer.distance + "km";
+      } else {
+         distance = "";
+      }
 
-         let distance;
-         if (!isNaN(freelancer.distance)) {
-            distance = freelancer.distance + "km";
-         } else {
-            distance = "";
+      let price;
+      if (freelancer.price) {
+         price = freelancer.price + "€";
+      } else {
+         price = "";
+      }
+
+      let data = {
+         'freelancer': {
+            'id': freelancer._id,
+            'photo': freelancer.photo,
+            'name': freelancer.firstName + " " + freelancer.lastName,
+            'price': price,
+            'distance': distance,
+            'tags': freelancer.tags,
+            'score': freelancer.score = FREELANCER.getHtmlRankStar({
+               full: freelancer.score,
+               empty: 5 - freelancer.score
+            })
          }
+      };
 
-         let price;
-         if (freelancer.price) {
-            price = freelancer.price + "€";
-         } else {
-            price = "";
-         }
+      dust.renderSource(card, data, function(err, out) {
+         MAIN_JS.insertAdjacentHTML('beforeend', out);
 
-         let data = {
-            'freelancer': {
-               'id': freelancer._id,
-               'photo': freelancer.photo,
-               'name': freelancer.firstName + " " + freelancer.lastName,
-               'price': price,
-               'distance': distance,
-               'tags': freelancer.tags,
-               'score': freelancer.score = FREELANCER.getHtmlRankStar({
-                  full: freelancer.score,
-                  empty: 5 - freelancer.score
-               })
-            }
-         };
-
-         dust.renderSource(card, data, function(err, out) {
-            MAIN_JS.insertAdjacentHTML('beforeend', out);
-
-            let link = document.getElementById(freelancer._id).getElementsByTagName('button')[0];
-            link.addEventListener('click', SEARCH.selectProfile);
-         });
-
-      }, 'html');
+         let link = document.getElementById(freelancer._id).getElementsByTagName('button')[0];
+         link.addEventListener('click', SEARCH.selectProfile);
+      });
    },
 
    checkInput: function(evt) {
