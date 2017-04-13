@@ -63,6 +63,11 @@ const SEARCH = {
 
       SEARCH.addon_init();
 
+      // if there is a search, make the search!
+      if (SEARCH_TEXT_QUERY.val() != '') {
+         SEARCH.search();
+      }
+
    },
 
    /**
@@ -91,6 +96,17 @@ const SEARCH = {
       });
    },
 
+   /**
+    * Remove not needed listeners from the input-search
+    * @return {void}
+    */
+   remover: function() {
+      SEARCH_TEXT_QUERY.off();
+      $('#basic-addon1').off();
+      $("#position").off();
+      FILTER_DISTANCE_QUERY.off();
+      FILTER_PRICE_QUERY.off();
+   },
 
    /**
     * View the search bar in full screen
@@ -194,6 +210,7 @@ const SEARCH = {
     * @return {void}
     */
    search: function() {
+      console.log('search');
       let query = SEARCH_TEXT_QUERY.val(); //$input is an array so the value is in the first element.
       if (query.length > 0) {
          SEARCH.searchHeader();
@@ -734,18 +751,6 @@ const SEARCH = {
       let value = window.location.hash.split('|')[0].split('=')[1];
       value = value.replace(/\+/g, ' ');
       SEARCH_TEXT_QUERY.val(value);
-   },
-
-   /**
-    * Remove not needed listeners from the input-search
-    * @return {void}
-    */
-   remover: function() {
-      SEARCH_TEXT_QUERY.off();
-      $('#basic-addon1').off();
-      $("#position").off();
-      FILTER_DISTANCE_QUERY.off();
-      FILTER_PRICE_QUERY.off();
    },
 
    /**
