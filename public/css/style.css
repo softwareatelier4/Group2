@@ -193,6 +193,16 @@ body, html {
    color: rgb(255, 255, 255);
 }
 
+@media(max-width: 1000px) {
+   .navbar-toggler {
+      background-color: #253a44;
+   }
+}
+
+a.nav-link {
+   margin-top: 10px;
+}
+
 
 /*----------------------------------------
 Loading Spinner

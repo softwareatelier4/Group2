@@ -1,6 +1,6 @@
 const FREELANCER = {
 
-   name: 'freelancer',
+	name: 'freelancer',
 
 	/**
 	 * Set up the freelancer
@@ -9,69 +9,69 @@ const FREELANCER = {
 	init: function() {
 		console.log('Freelancer - initialization');
 
-      SEARCH.searchHeader();
-      SEARCH.addon_init();
+		SEARCH.searchHeader();
+		SEARCH.addon_init();
 
 
-      let main = document.getElementById('main');
-      main.style.display = "inherit";
-      main.style.backgroundColor = "rgb(231, 231, 231)";
+		let main = document.getElementById('main');
+		main.style.display = "inherit";
+		main.style.backgroundColor = "rgb(231, 231, 231)";
 
-      SORTING_OPTIONS.style.visibility = 'hidden';
+		SORTING_OPTIONS.style.visibility = 'hidden';
 
-      FREELANCER.renderProfile();
-   },
+		FREELANCER.renderProfile();
+	},
 
-   remover: function() {
-      SEARCH.remover();
-   },
+	remover: function() {
+		SEARCH.remover();
+	},
 	/**
 	 * Render the profile of freelancer
 	 * @return {void}
 	 */
 
-   renderProfile: function() {
-      var url = window.location.href;
-      var idFreelancer = url.split('=')[1];
+	renderProfile: function() {
+		var url = window.location.href;
+		var idFreelancer = url.split('=')[1];
 
-      doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
-         if (res.error) {
-            console.log("error");
-         } else {
-            $.get("/html/freelancer.html", function(html) {
-               res.score = FREELANCER.getHtmlRankStar({
-                  full: res.score,
-                  empty: 5 - res.score
-               });
-               let data = {
-                  freelancer: res
-               };
+		doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
+			if (res.error) {
+				console.log("error");
+			} else {
+				$.get("/html/freelancer.html", function(html) {
+					res.score = FREELANCER.getHtmlRankStar({
+						full: res.score,
+						empty: 5 - res.score
+					});
+					let data = {
+						freelancer: res
+					};
 
-               dust.renderSource(html, data, function(err, out) {
-                  MAIN_JS.innerHTML = out;
-                  FREELANCER.renderReview(idFreelancer);
-               });
-            });
-         }
-      });
-   },
-   
+					dust.renderSource(html, data, function(err, out) {
+						MAIN_JS.innerHTML = out;
+						FREELANCER.renderReview(idFreelancer);
+					});
+				});
+			}
+		});
+	},
+
 	/**
 	 * Render reviews of a freelancer
 	 * @param {idFreelancer} - id of the Freelancer
 	 * @return {void}
 	 */
-   renderReview: function(idFreelancer) {
-      doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
+	renderReview: function(idFreelancer) {
+		doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
 
-         $.get("/html/review.html", function(reviewHtml) {
+			$.get("/html/review.html", function(reviewHtml) {
 
-            for (res of result) {
-               res.score = FREELANCER.getHtmlRankStar({
-                  full: res.score,
-                  empty: 5 - res.score
-               });
-            }
+				for (res of result) {
+					res.score = FREELANCER.getHtmlRankStar({
+						full: res.score,
+						empty: 5 - res.score
+					});
+				}
 				dust.renderSource(reviewHtml, result, function(err, out) {
 					document.getElementById('cardReviews').innerHTML = out;
 
@@ -81,35 +81,35 @@ const FREELANCER = {
 					}
 				});
 			});
-         });
+		});
 
-   },
+	},
 	/**
 	 * Create html code for show the rank of a single review
 	 * @param {Object} - starObj = {full, half, empty}
 	 * @return {string} - return string of html code
 	 */
 
-   getHtmlRankStar: function(starObj) {
-      // starObj = {full, half, empty}
-      starObj.full = starObj.full | 0;
-      starObj.half = starObj.half | 0;
-      starObj.empty = starObj.empty | 0;
+	getHtmlRankStar: function(starObj) {
+		// starObj = {full, half, empty}
+		starObj.full = starObj.full | 0;
+		starObj.half = starObj.half | 0;
+		starObj.empty = starObj.empty | 0;
 
-      html = '';
-      for (let i = 0; i < starObj.full; i++) {
-         html += "<i class='fa fa-star blue' aria-hidden='true'></i>";
-      }
+		html = '';
+		for (let i = 0; i < starObj.full; i++) {
+			html += "<i class='fa fa-star blue' aria-hidden='true'></i>";
+		}
 
-      for (let i = 0; i < starObj.half; i++) {
-         html += "<i class='fa fa-star-half-o blue' aria-hidden='true'></i>";
-      }
+		for (let i = 0; i < starObj.half; i++) {
+			html += "<i class='fa fa-star-half-o blue' aria-hidden='true'></i>";
+		}
 
-      for (let i = 0; i < starObj.empty; i++) {
-         html += "<i class='fa fa-star-o blue' aria-hidden='true'></i>";
-      }
+		for (let i = 0; i < starObj.empty; i++) {
+			html += "<i class='fa fa-star-o blue' aria-hidden='true'></i>";
+		}
 
-      return html;
+		return html;
 	},
 
 	/**
