@@ -50,12 +50,14 @@ const SEARCH = {
          SEARCH.searchHeader();
       }
 
+      // given the hash, set the search box
       SEARCH.hashToValue();
-      SEARCH.listenerAdd();
 
+      // set the filters
       SEARCH.getFilterHash();
       SEARCH.setFilterHash();
 
+      // set the position
       SEARCH.getPositionHash();
       SEARCH.setPositionHash();
 
@@ -63,10 +65,21 @@ const SEARCH = {
 
    },
 
+   /**
+    * Called from external page to initialize the search bar
+    * @return {void}
+    */
    addon_init: function() {
+      // add the necessary listeners
+      SEARCH.listenerAdd();
+
+      // update the hash when someone search something
       SEARCH.hashUpdater();
+
+      // find the geolocalization of a person
       SEARCH.addGeolocationListener();
 
+      // set the position when the user input it
       $('#position').on('keyup', function() {
          if ($('#position').val() == '') {
             $('#position').blur(function() {
@@ -433,6 +446,11 @@ const SEARCH = {
       SEARCH.drawCards(SEARCH.currentResult);
    },
 
+   /**
+    * Draw the card usign DUST JS
+    * @param {array} freelancers -
+    * @return {void}
+    */
    drawCards: function(freelancers) {
       let searchResult = document.getElementById('main-content');
       searchResult.innerHTML = "";
@@ -478,7 +496,7 @@ const SEARCH = {
    },
 
    /**
-    * Update the current URL adding the searched value
+    * Listener to update the current URL adding the searched value
     * @return {void}
     */
    hashUpdater: function() {
@@ -486,6 +504,10 @@ const SEARCH = {
       $('#basic-addon1').on('click', SEARCH.setSearchHash);
    },
 
+   /**
+    * Update the current URL adding the searched value
+    * @return {void}
+    */
    setSearchHash: function() {
       let searchHash = SEARCH_TEXT_QUERY.val().replace(/ /g, '+').replace(/|/g, '');
       let hash = window.location.hash.split('|');
@@ -497,8 +519,11 @@ const SEARCH = {
       window.location.hash = hash.join('|');
    },
 
+   /**
+    * Update the SEARCH.position object.
+    * @return {void}
+    */
    setPosition: function(method, latitude, longitude, city, formatted_address) {
-      console.log('setPosition: ', method, latitude, longitude, city, formatted_address);
       method = method || '';
 
       if (method == 'user') {
@@ -538,6 +563,10 @@ const SEARCH = {
       }
    },
 
+   /**
+    * Update the position box but only if it is not in focus
+    * @return {void}
+    */
    setPositionBox: function() {
       if ($('#position').is(":focus")) {
          return;
@@ -545,6 +574,10 @@ const SEARCH = {
       $('#position').val(SEARCH.position.formatted_address);
    },
 
+   /**
+    * Get the position values from the hash
+    * @return {void}
+    */
    getPositionHash: function() {
       let hashes = window.location.hash.split('|');
 
@@ -568,6 +601,10 @@ const SEARCH = {
 
    },
 
+   /**
+    * Set the position hash from the position box
+    * @return {void}
+    */
    setPositionHash: function() {
       if (currentPage.name != 'search')
          return;
@@ -611,6 +648,10 @@ const SEARCH = {
          });
    },
 
+   /**
+    * Google API - calculate the distance
+    * @return {void}
+    */
    getGmapRealValue: function(data) {
 
       const origin = new google.maps.LatLng(SEARCH.position.latitude, SEARCH.position.longitude);
