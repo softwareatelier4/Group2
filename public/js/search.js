@@ -1,9 +1,13 @@
+/*jshint esversion: 6 */
+
 const SEARCH = {
 
    name: 'search',
 
+   // after n milliseconds the search starts
    doneTypingInterval: 500,
 
+   // Search box position
    position: {
       city: null,
       formatted_address: null,
@@ -31,37 +35,47 @@ const SEARCH = {
    },
 
    /**
-    * Set up the search
+    * Search initializer
     * @return {void}
     */
    init: function() {
 
+      // #search=value, take the value
       let searchVal = window.location.hash.split('|')[0].split('=')[1];
-
-      SEARCH.getFilterHash();
-      SEARCH.setFilterHash();
 
       // Display the search in fullscreen if nothing in search bar, else display header and search
       if (searchVal == '') {
          SEARCH.searchFullScreen()
       } else {
          SEARCH.searchHeader();
-         // setTimeout(SEARCH.search, 0);
       }
 
-      SEARCH.hashUpdater();
       SEARCH.hashToValue();
       SEARCH.listenerAdd();
-      SEARCH.addGeolocationListener();
+
+      SEARCH.getFilterHash();
+      SEARCH.setFilterHash();
 
       SEARCH.getPositionHash();
       SEARCH.setPositionHash();
+
+      SEARCH.addon_init();
 
    },
 
    addon_init: function() {
       SEARCH.hashUpdater();
       SEARCH.addGeolocationListener();
+
+      $('#position').on('keyup', function() {
+         if ($('#position').val() == '') {
+            $('#position').blur(function() {
+               SEARCH.setPosition('reset');
+            });
+         } else {
+            $('#position').off('blur');
+         }
+      });
    },
 
 
@@ -157,16 +171,6 @@ const SEARCH = {
       //on keydown, clear the countdown
       FILTER_DISTANCE_QUERY.on('keydown', function() {
          clearTimeout(typingTimer);
-      });
-
-      $('#position').on('keyup', function() {
-         if ($('#position').val() == '') {
-            $('#position').blur(function() {
-               SEARCH.setPosition('reset');
-            });
-         } else {
-            $('#position').off('blur');
-         }
       });
 
       SEARCH.position.observers = [SEARCH.search];
@@ -576,6 +580,9 @@ const SEARCH = {
             break;
          }
       }
+
+      if (!SEARCH.position.city)
+         return;
 
       let hash = 'position:city=' + SEARCH.position.city + '&formatted_address=' + SEARCH.position.formatted_address.replace(/ /g, '$');
       hash += '&latitude=' + SEARCH.position.latitude + '&longitude=' + SEARCH.position.longitude;
