@@ -121,7 +121,6 @@ const FREELANCER = {
 		const data = {
 			review: textArea.value
 		};
-		console.log(reviewId);
 		doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
 			text.innerHTML = $(textArea).val();
 			FREELANCER.timesReview(e);
@@ -176,13 +175,18 @@ const FREELANCER = {
 			const replyBtn = reviewBox.parentNode.parentNode.querySelector('button[name=freelancer-reply]');
 			const textArea = cardBlock.getElementsByTagName('textarea')[0];
 			const text = cardBlock.getElementsByTagName('p')[0];
+			const reviewId = cardBlock.parentNode.parentNode.getElementsByTagName('form')[0].name;
 
-			FREELANCER.timesReview(e);
-			$(reviewBox).slideUp(500);
-			$(replyBtn).show();
-			$(textArea).val('');
-			text.innerHTML = '';
-			// do the json request to delete
+			const data = {
+				review: ''
+			};
+			doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
+				FREELANCER.timesReview(e);
+				$(reviewBox).slideUp(500);
+				$(replyBtn).show();
+				$(textArea).val('');
+				text.innerHTML = '';
+			});
 
 		} else {
 			// DO NOT delete the reply
@@ -252,6 +256,7 @@ const FREELANCER = {
 
 		const form = e.target.parentNode;
 		const reply = form.parentNode.getElementsByClassName('reply')[0];
+		const cardBlock = reply.querySelector('.card-block');
 		const reviewId = e.target.parentNode.name;
 		const textArea = e.target.parentNode.getElementsByTagName('textarea')[0];
 		const data = {
@@ -259,6 +264,7 @@ const FREELANCER = {
 		};
 
 		doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
+
 			$(form).slideUp(400);
 			$(cardBlock).slideDown(400);
 			reply.getElementsByTagName('p')[0].innerHTML = textArea.value;
