@@ -117,12 +117,15 @@ const FREELANCER = {
 		const cardBlock = this.parentNode.parentNode.parentNode;
 		const textArea = cardBlock.getElementsByTagName('textarea')[0];
 		const text = cardBlock.getElementsByTagName('p')[0];
-
-		text.innerHTML = $(textArea).val();
-
-		FREELANCER.timesReview(e);
-
-		// JSON request to save the modifications
+		const reviewId = cardBlock.parentNode.parentNode.getElementsByTagName('form')[0].name;
+		const data = {
+			review: textArea.value
+		};
+		console.log(reviewId);
+		doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
+			text.innerHTML = $(textArea).val();
+			FREELANCER.timesReview(e);
+		});
 	},
 
 	eraserReview: function(w) {
@@ -177,7 +180,6 @@ const FREELANCER = {
 			FREELANCER.timesReview(e);
 			$(reviewBox).slideUp(500);
 			$(replyBtn).show();
-			console.log('deleting');
 			$(textArea).val('');
 			text.innerHTML = '';
 			// do the json request to delete
@@ -250,7 +252,6 @@ const FREELANCER = {
 
 		const form = e.target.parentNode;
 		const reply = form.parentNode.getElementsByClassName('reply')[0];
-		const cardBlock = reply.getElementsByClassName('card-block')[0];
 		const reviewId = e.target.parentNode.name;
 		const textArea = e.target.parentNode.getElementsByTagName('textarea')[0];
 		const data = {
