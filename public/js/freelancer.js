@@ -7,8 +7,6 @@ const FREELANCER = {
 	 * @return {void}
 	 */
 	init: function() {
-		console.log('Freelancer - initialization');
-
 		SEARCH.searchHeader();
 		SEARCH.addon_init();
 
@@ -63,7 +61,6 @@ const FREELANCER = {
 	 */
 	renderReview: function(idFreelancer) {
 		doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
-
 			$.get("/html/review.html", function(reviewHtml) {
 
 				for (res of result) {
@@ -72,20 +69,22 @@ const FREELANCER = {
 						empty: 5 - res.score
 					});
 				}
+
 				dust.renderSource(reviewHtml, result, function(err, out) {
 					document.getElementById('cardReviews').innerHTML = out;
+					const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
 
-					let freelancerReplyButtons = document.getElementsByName('freelancer-reply');
-					for (let freelancerReplyButton of freelancerReplyButtons) {
-						freelancerReplyButton.addEventListener('click', FREELANCER.showReplyReview);
-					}
-					let freelancerReplyButtonsEdit = document.getElementsByName('freelancer-reply-edit');
-					for (let freelancerReplyButtonEdit of freelancerReplyButtonsEdit) {
-						freelancerReplyButtonEdit.addEventListener('click', FREELANCER.editableReview);
-					}
-					let freelancerReplyButtonsDel = document.getElementsByName('freelancer-reply-delete');
-					for (let freelancerReplyButtonDel of freelancerReplyButtonsDel) {
-						freelancerReplyButtonDel.addEventListener('click', FREELANCER.deletableReview);
+					console.log('hello');
+
+					for (let i = 0; i < replyNum; i++) {
+						$('.reply button[name=freelancer-reply-edit]')[i].addEventListener('click', FREELANCER.editReview);
+						$('.reply button[name=freelancer-reply-save]')[i].addEventListener('click', FREELANCER.saveReview);
+						$('.reply button[name=freelancer-reply-delete]')[i].addEventListener('click', FREELANCER.deleteReview);
+						$('.reply button[name=freelancer-reply-eraser]')[i].addEventListener('click', FREELANCER.eraserReview);
+						$('.reply button[name=freelancer-reply-times]')[i].addEventListener('click', FREELANCER.timesReview);
+						const replyButton = $('button[name=freelancer-reply]')[i];
+						if (replyButton)
+							replyButton.addEventListener('click', FREELANCER.showReplyReview);
 					}
 				});
 			});
@@ -93,52 +92,9 @@ const FREELANCER = {
 
 	},
 
-	/**
-	 * Review editable
-	 * @param {e} - event target
-	 * @return {string} - return string of html code
-	 */
-	editableReview: function(e) {
-		//e.target.innerHTML = `<i class="fa fa-check" aria-hidden="true"></i>`;
-		const replyBox = $(e.target.parentNode.parentNode);
-		const replyText = $(replyBox.find('p')[0]);
-		const replyTextArea = $(replyBox.find('textArea')[0]);
-		const replyContent = replyText.text();
-		replyTextArea.val(replyContent);
-
-		replyText.hide();
-		replyTextArea.show();
-		replyTextArea.focus();
-		this.innerHTML = "<i class='fa fa-check' aria-hidden='true'></i> Save";
-		const circleButtonCancel = this.parentNode.childNodes[1];
-		circleButtonCancel.innerHTML = `<i class="fa fa-eraser" aria-hidden="true"></i>`;
-		circleButtonCancel.addEventListener('click', function() {
-			replyTextArea.val(replyContent); //show old review
-		});
-		this.addEventListener('click', FREELANCER.saveEditReview(e, replyTextArea.val()));
+	editReview: function(e) {
+		console.log(e);
 	},
-
-	/**
-	 * Review editable
-	 * @param {e} - event target
-	 * @return {string} - return string of html code
-	 */
-	saveEditReview: function(e, newText) {
-		if (newText != "") {
-			//delete review
-		}
-		//PUT new text
-	},
-
-	/**
-	 * Review editable
-	 * @param {e} - event target
-	 * @return {void}
-	 */
-	deletableReview: function(e) {
-
-	},
-
 
 	/**
 	 * Create html code for show the rank of a single review
