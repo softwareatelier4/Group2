@@ -203,6 +203,10 @@ a.nav-link {
    margin-top: 10px;
 }
 
+.white {
+   color: rgb(231, 231, 231);
+}
+
 
 /*----------------------------------------
 Loading Spinner
