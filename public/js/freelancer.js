@@ -141,6 +141,8 @@ const FREELANCER = {
 		const saveBtn = cardBlock.querySelector('button[name=freelancer-reply-save]');
 		const eraserBtn = cardBlock.querySelector('button[name=freelancer-reply-eraser]');
 		const timesBtn = cardBlock.querySelector('button[name=freelancer-reply-times]');
+		const confirmYesBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-yes]');
+		const confirmNoBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-no]');
 
 		$(text).slideDown(400);
 		$(textArea).slideUp(100);
@@ -148,6 +150,8 @@ const FREELANCER = {
 		$(editBtn).show();
 		$(eraserBtn).hide();
 		$(timesBtn).hide();
+		$(confirmYesBtn).hide();
+		$(confirmNoBtn).hide();
 	},
 
 	deleteReview: function(e) {
@@ -164,12 +168,18 @@ const FREELANCER = {
 
 		if (this.classList.contains('delete-yes')) {
 			// delete the reply
+			const cardBlock = this.parentNode.parentNode.parentNode;
 			const reviewBox = this.parentNode.parentNode.parentNode;
 			const replyBtn = reviewBox.parentNode.parentNode.querySelector('button[name=freelancer-reply]');
+			const textArea = cardBlock.getElementsByTagName('textarea')[0];
+			const text = cardBlock.getElementsByTagName('p')[0];
 
+			FREELANCER.timesReview(e);
 			$(reviewBox).slideUp(500);
 			$(replyBtn).show();
-
+			console.log('deleting');
+			$(textArea).val('');
+			text.innerHTML = '';
 			// do the json request to delete
 
 		} else {
