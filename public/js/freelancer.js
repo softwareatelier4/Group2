@@ -82,6 +82,8 @@ const FREELANCER = {
 						$('.reply button[name=freelancer-reply-delete]')[i].addEventListener('click', FREELANCER.deleteReview);
 						$('.reply button[name=freelancer-reply-eraser]')[i].addEventListener('click', FREELANCER.eraserReview);
 						$('.reply button[name=freelancer-reply-times]')[i].addEventListener('click', FREELANCER.timesReview);
+						$('.reply button[name=freelancer-reply-delete-no]')[i].addEventListener('click', FREELANCER.deleteConfirm);
+						$('.reply button[name=freelancer-reply-delete-yes]')[i].addEventListener('click', FREELANCER.deleteConfirm);
 						const replyButton = $('button[name=freelancer-reply]')[i];
 						if (replyButton)
 							replyButton.addEventListener('click', FREELANCER.showReplyReview);
@@ -93,7 +95,92 @@ const FREELANCER = {
 	},
 
 	editReview: function(e) {
-		console.log(e);
+		const cardBlock = this.parentNode.parentNode.parentNode;
+		const textArea = cardBlock.getElementsByTagName('textarea')[0];
+		const text = cardBlock.getElementsByTagName('p')[0];
+		const editBtn = cardBlock.querySelector('button[name=freelancer-reply-edit]');
+		const saveBtn = cardBlock.querySelector('button[name=freelancer-reply-save]');
+		const deleteBtn = cardBlock.querySelector('button[name=freelancer-reply-delete]');
+		const eraserBtn = cardBlock.querySelector('button[name=freelancer-reply-eraser]');
+		const timesBtn = cardBlock.querySelector('button[name=freelancer-reply-times]');
+
+		$(textArea).val(text.innerHTML)
+		$(text).slideUp(100);
+		$(textArea).slideDown(400);
+		$(textArea).focus();
+
+		$(editBtn).hide();
+		$(saveBtn).show();
+		$(eraserBtn).show();
+		$(timesBtn).show();
+	},
+
+	saveReview: function(e) {
+		const cardBlock = this.parentNode.parentNode.parentNode;
+		const textArea = cardBlock.getElementsByTagName('textarea')[0];
+		const text = cardBlock.getElementsByTagName('p')[0];
+
+		text.innerHTML = $(textArea).val();
+
+		FREELANCER.timesReview(e);
+
+		// JSON request to save the modifications
+	},
+
+	eraserReview: function(w) {
+		const cardBlock = this.parentNode.parentNode.parentNode;
+		const textArea = cardBlock.getElementsByTagName('textarea')[0];
+		const text = cardBlock.getElementsByTagName('p')[0];
+
+		$(textArea).val(text.innerHTML);
+	},
+
+	timesReview: function(e) {
+		const cardBlock = e.target.parentNode.parentNode.parentNode;
+		const textArea = cardBlock.getElementsByTagName('textarea')[0];
+		const text = cardBlock.getElementsByTagName('p')[0];
+		const editBtn = cardBlock.querySelector('button[name=freelancer-reply-edit]');
+		const saveBtn = cardBlock.querySelector('button[name=freelancer-reply-save]');
+		const eraserBtn = cardBlock.querySelector('button[name=freelancer-reply-eraser]');
+		const timesBtn = cardBlock.querySelector('button[name=freelancer-reply-times]');
+
+		$(text).slideDown(400);
+		$(textArea).slideUp(100);
+		$(saveBtn).hide();
+		$(editBtn).show();
+		$(eraserBtn).hide();
+		$(timesBtn).hide();
+	},
+
+	deleteReview: function(e) {
+		const cardBlock = e.target.parentNode.parentNode.parentNode;
+		const confirmYesBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-yes]');
+		const confirmNoBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-no]');
+
+
+		$(confirmYesBtn).show();
+		$(confirmNoBtn).show();
+	},
+
+	deleteConfirm: function(e) {
+
+		if (this.classList.contains('delete-yes')) {
+			// delete the reply
+			const reviewBox = this.parentNode.parentNode.parentNode.parentNode.parentNode;
+			$(reviewBox).slideUp(500);
+
+			// do the json request to delete
+
+		} else {
+			// DO NOT delete the reply
+			const cardBlock = this.parentNode.parentNode.parentNode;
+			const confirmYesBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-yes]');
+			const confirmNoBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-no]');
+
+			$(confirmYesBtn).hide();
+			$(confirmNoBtn).hide();
+		}
+
 	},
 
 	/**
