@@ -74,8 +74,6 @@ const FREELANCER = {
 					document.getElementById('cardReviews').innerHTML = out;
 					const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
 
-					console.log('hello');
-
 					for (let i = 0; i < replyNum; i++) {
 						$('.reply button[name=freelancer-reply-edit]')[i].addEventListener('click', FREELANCER.editReview);
 						$('.reply button[name=freelancer-reply-save]')[i].addEventListener('click', FREELANCER.saveReview);
@@ -166,8 +164,11 @@ const FREELANCER = {
 
 		if (this.classList.contains('delete-yes')) {
 			// delete the reply
-			const reviewBox = this.parentNode.parentNode.parentNode.parentNode.parentNode;
+			const reviewBox = this.parentNode.parentNode.parentNode;
+			const replyBtn = reviewBox.parentNode.parentNode.querySelector('button[name=freelancer-reply]');
+
 			$(reviewBox).slideUp(500);
+			$(replyBtn).show();
 
 			// do the json request to delete
 
