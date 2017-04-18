@@ -17,14 +17,13 @@ module.exports = {
 			.waitForElementVisible('body', 1000)
 			.assert.visible('input[id=search-text]')
 			.assert.visible('span[id=basic-addon1]')
-			.pause(1000)
+			.pause(100)
 			.clearValue('input[id=search-text]')
-			.clearValue('input[id=position]')
-			.setValue('input[id=position]', 'Piacenza')
-			.click('input[id=position]')
-			.waitForElementVisible('.pac-container', 60000)
-			.pause(500)
-			.setValue('input[id=position]', client.Keys.ENTER)
+
+		utils.setPositionBox(client, 'Piacenza');
+
+
+		client
 			.click('span[id=basic-addon1]')
 			.pause(1000)
 			.assert.urlContains('city=Piacenza')
