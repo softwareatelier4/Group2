@@ -33,10 +33,9 @@ $(document).ready(function() {
  * Called to check if a user is logged
  * @return {freelancer}
  */
-let isLogged = function() {
-	doJSONRequest("GET", "/api/passport/islogged",null,null,function(res) {
-		console.log(res);
-		return res;
+let isLogged = function(cb) {
+	doJSONRequest("GET", "/api/passport/islogged", null, null, function(res) {
+		cb(res);
 	});
 }
 
