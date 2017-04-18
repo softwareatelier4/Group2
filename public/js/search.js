@@ -103,7 +103,6 @@ const SEARCH = {
 			arrow.style.display = 'none';
 			arrow.style.visibility = 'hidden';
 		}
-		//////////////////////////////////////////////////////////////////
 	},
 
 
@@ -117,13 +116,6 @@ const SEARCH = {
 		MAIN_DIV.style.display = "inline";
 		MAIN_DIV.style.backgroundColor = "rgb(231, 231, 231)";
 		SORTING_OPTIONS.style.visibility = 'visible';
-
-		//menu setting
-		$.get("/index.html", function(html) {
-			document.getElementById("navbar-main").style.display = "none";
-			document.getElementById("logo-JobAdvisor").style.display = "none";
-			document.getElementById("navbar-top").style.display = "";
-		});
 	},
 
 

@@ -18,15 +18,15 @@
 
 <body>
 	<nav class="navbar navbar-toggleable-md navbar-light bg-faded" id="navbar-main">
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-top-desktop" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  		</button>
 		<!-- <a class="navbar-brand" href="#">JobAdvisor</a> -->
 
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav ml-auto">
+		<div class="collapse navbar-collapse" id="navbar-top-desktop">
+			<ul class="navbar-nav ml-auto hidden-lg-up">
 				<li class="nav-item active">
-					<a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">Login</a>
@@ -40,15 +40,14 @@
 	<div id="main">
 		<div id="header">
 			<div id="search">
-				<span class="logo" id="logo-JobAdvisor">JobAdvisor</span>
+				<span class="logo hidden-lg-up" id="logo-JobAdvisor">JobAdvisor</span>
 				<div>
-					<nav class="navbar navbar-toggleable-md navbar-light bg-faded" id="navbar-top" style="display: none;">
-						<a class="nav-link navbar-toggler navbar-toggler-right" href="#"><i class="fa fa-home white" aria-hidden="true"></i></a>
+					<nav class="navbar navbar-toggleable-md navbar-light bg-faded hidden-md-down" id="navbar-top">
 						<span class="logo">JobAdvisor</span>
 						<div class="collapse navbar-collapse" id="navbarSupportedContent">
 							<ul class="navbar-nav ml-auto">
 								<li class="nav-item active">
-									<a class="nav-link" href="#"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
+									<a class="nav-link" href="/"><i class="fa fa-home" aria-hidden="true"></i> Home <span class="sr-only">(current)</span></a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" href="#">Login</a>
@@ -104,6 +103,8 @@
 	<script src="js/ajax.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/lightbox.min.js"></script>
+
+	<script src="js/menu.js"></script>
 
 	<script src="js/homepage.js"></script>
 	<script src="js/search.js"></script>
