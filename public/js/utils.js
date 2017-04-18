@@ -1,7 +1,6 @@
 const UTILS = {
    geoLocation: function() {
       if (userPosition && userPosition.time + 10000 > Date.now()) {
-         console.log('avoiding gps');
          return;
       }
 
@@ -9,7 +8,7 @@ const UTILS = {
       if (localStorage) {
          if (localStorage.position) {
             let p = JSON.parse(localStorage.position);
-            UTILS.setLocation(p.latitude, p.longitude, p.city, p.state, p.method);
+            UTILS.setLocation(p.latitude, p.longitude, p.city, p.formatted_address, p.method);
          }
       }
 
@@ -20,11 +19,11 @@ const UTILS = {
       UTILS.ipLocation();
    },
 
-   setLocation: function(latitude, longitude, city, state, method) {
+   setLocation: function(latitude, longitude, city, formatted_address, method) {
       if (UTILS.getMethodValue(userPosition.method) >= UTILS.getMethodValue(method)) {
          userPosition.method = method;
          userPosition.city = city;
-         userPosition.state = state;
+         userPosition.formatted_address = formatted_address;
          userPosition.latitude = latitude;
          userPosition.longitude = longitude;
          userPosition.time = Date.now();
@@ -33,7 +32,7 @@ const UTILS = {
          if (method.split('-')[0] != 'localstorage') {
             let position = {};
             position.city = city;
-            position.state = state;
+            position.formatted_address = formatted_address;
             position.latitude = latitude;
             position.longitude = longitude;
             position.time = Date.now();
@@ -69,14 +68,14 @@ const UTILS = {
    gpsLocation: function(pos) {
       const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${pos.coords.latitude},${pos.coords.longitude}&sensor=true`;
       doJSONRequest("GET", url, null, null, function(res) {
-
+         if (res.status != 'OK')
+            return;
          const longitude = pos.coords.longitude;
          const latitude = pos.coords.latitude;
-         const city = res.results[0].address_components[2].long_name;
-         const state = res.results[0].address_components[4].long_name;
+         const formatted_address = res.results[0].formatted_address;
+         const city = UTILS.googleFindType(res.results[0].address_components, 'locality').long_name;
          const method = 'gps';
-
-         UTILS.setLocation(latitude, longitude, city, state, method);
+         UTILS.setLocation(latitude, longitude, city, formatted_address, method);
       });
    },
 
@@ -88,10 +87,21 @@ const UTILS = {
          const longitude = res.longitude;
          const latitude = res.latitude;
          const city = res.city;
-         const state = res.country_name;
+         const formatted_address = res.city + ', ' + res.country_name;
          const method = 'ip';
 
-         UTILS.setLocation(latitude, longitude, city, state, method);
+         UTILS.setLocation(latitude, longitude, city, formatted_address, method);
       });
+   },
+
+   googleFindType: function(address, searchType) {
+      for (let a of address) {
+         let types = a.types;
+
+         for (let type of types) {
+            if (type == searchType)
+               return a;
+         }
+      }
    }
 }

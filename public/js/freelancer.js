@@ -228,31 +228,31 @@ const FREELANCER = {
 		return html;
 	},
 
-	/**
-	 * Show button and form for add a new review's reply
-	 * @param {event} - event
-	 * @return {void}
-	 */
-	showReplyReview: function(e) {
-		const form = e.target.parentNode.getElementsByTagName('form')[0];
-		const textArea = form.getElementsByTagName('textarea')[0];
-		const submitButton = form.getElementsByTagName('button')[0];
+   /**
+    * Show button and form for add a new review's reply
+    * @param {event} - event
+    * @return {void}
+    */
+   showReplyReview: function(e) {
+      const form = e.target.parentNode.getElementsByTagName('form')[0];
+      const textArea = form.getElementsByTagName('textarea')[0];
+      const submitButton = form.getElementsByTagName('button')[0];
 
-		$(e.target).fadeOut(100);
-		$(form).slideDown(400);
-		$(textArea).focus();
+      $(e.target).fadeOut(100);
+      $(form).slideDown(400);
+      $(textArea).focus();
 
 
-		submitButton.addEventListener('click', FREELANCER.senderReplyReview);
-	},
+      submitButton.addEventListener('click', FREELANCER.senderReplyReview);
+   },
 
-	/**
-	 * Abilitate button for send the reply
-	 * @param {event} - event
-	 * @return {void}
-	 */
-	senderReplyReview: function(e) {
-		e.preventDefault();
+   /**
+    * Abilitate button for send the reply
+    * @param {event} - event
+    * @return {void}
+    */
+   senderReplyReview: function(e) {
+      e.preventDefault();
 
 		const form = e.target.parentNode;
 		const reply = form.parentNode.getElementsByClassName('reply')[0];
