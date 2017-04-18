@@ -7,6 +7,7 @@
 body, html {
    width: 100%;
    height: 100%;
+   background-color: rgb(231, 231, 231);
 }
 
 #main {
@@ -163,10 +164,14 @@ body, html {
    height: 35px;
 }
 
-.price-km {
+.km-time {
    display: flex;
    justify-content: space-between;
    color: rgb(78, 108, 121);
+}
+
+.price {
+	margin-left: 8px;
 }
 
 .card {
