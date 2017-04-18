@@ -34,16 +34,13 @@ module.exports = {
 			.waitForElementVisible('body', 1000)
 			.assert.visible('input[id=search-text]')
 			.assert.visible('span[id=basic-addon1]')
-			.pause(500)
-			.clearValue('input[id=position]')
-			.setValue('input[id=position]', 'Piacenza')
-			.click('input[id=position]')
-			.waitForElementVisible('.pac-container', 60000)
-			.pause(500)
-			.setValue('input[id=position]', client.Keys.ENTER)
+
+		utils.setPositionBox(client, 'Piacenza');
+
+		client
 			.clearValue('input[id=search-text]')
 			.setValue('input[id=search-text]', 'Developer')
-			.pause(500)
+			.pause(100)
 			.click('span[id=basic-addon1]')
 			.pause(500)
 			.assert.urlContains('search=Developer')
@@ -55,27 +52,26 @@ module.exports = {
 			.pause(500)
 			.assert.attributeContains('#btn-distance', 'data-sorttype', 'asc')
 			.pause(500)
-			// .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-			//    this.assert.equal(result.value, 'f00000000000000000000006');
-			// })
-			// .getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
-			//    this.assert.equal(result.value, 'f00000000000000000000000');
-			// })
-			// .assert.visible('span[id=btn-time]')
-			// .click('span[id=btn-time]')
-			// .pause(500)
-			// // .assert.attributeContains('#btn-distance', 'data-sorttype', 'neutral')
-			// .assert.attributeContains('#btn-time', 'data-sorttype', 'asc')
-			// .click('span[id=btn-time]')
-			// .pause(500)
-			// .assert.attributeContains('#btn-time', 'data-sorttype', 'desc')
-			// .pause(500)
-			// .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-			//    this.assert.equal(result.value, 'f00000000000000000000000');
-			// })
-			// .getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
-			//    this.assert.equal(result.value, 'f00000000000000000000006');
-			// })nod
+			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
+				this.assert.equal(result.value, 'f00000000000000000000006');
+			})
+			.getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
+				this.assert.equal(result.value, 'f00000000000000000000000');
+			})
+			.assert.visible('span[id=btn-time]')
+			.click('span[id=btn-time]')
+			.pause(500)
+			.assert.attributeContains('#btn-time', 'data-sorttype', 'asc')
+			.click('span[id=btn-time]')
+			.pause(500)
+			.assert.attributeContains('#btn-time', 'data-sorttype', 'desc')
+			.pause(500)
+			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
+				this.assert.equal(result.value, 'f00000000000000000000000');
+			})
+			.getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
+				this.assert.equal(result.value, 'f00000000000000000000006');
+			})
 			.clearValue('input[id=search-text]')
 			.setValue('input[id=search-text]', 'Informatico')
 			.click('span[id=basic-addon1]')
@@ -94,16 +90,16 @@ module.exports = {
 			.getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
 				this.assert.equal(result.value, 'f00000000000000000000006');
 			})
-			.click('span[id=btn-score]')
-			.pause(500)
-			.assert.attributeContains('#btn-score', 'data-sorttype', 'desc')
-			.pause(500)
-			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000006');
-			})
-			.getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000000');
-			})
+			// .click('span[id=btn-score]')
+			// .pause(500)
+			// .assert.attributeContains('#btn-score', 'data-sorttype', 'desc')
+			// .pause(500)
+			// .getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
+			// 	this.assert.equal(result.value, 'f00000000000000000000006');
+			// })
+			// .getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
+			// 	this.assert.equal(result.value, 'f00000000000000000000000');
+			// })
 			.assert.visible('span[id=btn-name]')
 			.click('span[id=btn-name]')
 			.pause(500)
