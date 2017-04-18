@@ -15,20 +15,19 @@ module.exports = {
 		client
 			.url('http://localhost:3000/')
 			.waitForElementVisible('body', 1000)
+			.pause(100)
 			.assert.visible('input[id=search-text]')
 			.assert.visible('span[id=basic-addon1]')
 			.clearValue('input[id=search-text]')
 			.setValue('input[id=search-text]', 'Marco Tollini')
-			.click('span[id=basic-addon1]')
-			.pause(500)
+			.pause(100)
 			.waitForElementVisible('main[id=main-content]', 1000)
 			.waitForElementVisible('div[id=f00000000000000000000000]', 1000)
 			.waitForElementVisible('#f00000000000000000000000', 1000)
-
+			.pause(200)
 			.click('#f00000000000000000000000 .card-block button')
 			.waitForElementVisible('#profile-freelancer', 1000)
 			.pause(100)
-
 			.waitForElementVisible('#main-info', 1000)
 			.assert.visible('#main-info')
 			.assert.visible('#main-info-vertical')
@@ -103,6 +102,9 @@ module.exports = {
 			.assert.visible('p[id=review-description]')
 			.getText("p[id=review-description]", function(result) {
 				this.assert.equal(result.value, "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).");
+			})
+			.getText("div[id=price]", function(result) {
+				this.assert.equal(result.value, "€20 price/hour");
 			})
 			.assert.hidden('div[id=photo-review]')
 
