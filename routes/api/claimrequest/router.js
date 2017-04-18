@@ -7,6 +7,8 @@ var middleware = require('../../middleware');
 var rootUrl = require("../../../config").url;
 const mongoose = require('mongoose');
 const ClaimRequest = mongoose.model('ClaimRequest');
+const Freelancer = mongoose.model('Freelancer');
+const User = mongoose.model('User');
 
 //supported methods
 
@@ -44,6 +46,48 @@ router.put('/', function(req, res, next) {
 	claimRequest.notes = data.description;
 
 	claimRequest.save(onModelSave(res, 200, true));
+});
+
+router.post('/:id', function(req, res, next) {
+	let claimId = req.params.id;
+	let newStatus = req.body.status;
+
+	ClaimRequest.findById(claimId, function(err, claim) {
+		if (err) return next(err);
+
+		if (claim) {
+			claim.status = newStatus;
+
+			if (newStatus === "Accepted") {
+				let fId = claim.freelancer;
+				let uId = claim.user;
+
+				Freelancer.findById(fId, function(err, freelancer) {
+					if (err) return next(err);
+
+					if (freelancer) {
+						freelancer.ownerId = uId;
+
+						freelancer.save(onModelSave(res, 200, false));
+					}
+				});
+
+				User.findById(uId, function(err, user) {
+					if (err) return next(err);
+
+					if (user) {
+						user.freeLancerId = fId;
+
+						user.save(onModelSave(res, 200, false));
+					}
+				});
+			}
+			claim.save(onModelSave(res, 200, true));
+		}
+	});
+
+
+	//claimRequest.save(onModelSave(res, 200, true));
 });
 
 function onModelSave(res, status, sendItAsResponse) {

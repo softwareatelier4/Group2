@@ -70,6 +70,24 @@ const FREELANCERCLAIM = {
 		});
 
 	},
+	acceptRequest: function(e) {
+		let claimId = e.target.value;
+		doJSONRequest("POST", "/api/claimrequest/" + claimId, null, {
+			status: "Accepted"
+		}, function(res) {
+			location.reload(true);
+		});
+
+	},
+	refuseRequest: function(e) {
+		let claimId = e.target.value;
+		doJSONRequest("POST", "/api/claimrequest/" + claimId, null, {
+			status: "Refused"
+		}, function(res) {
+			location.reload(true);
+		});
+
+	}
 }
 
 
