@@ -716,6 +716,7 @@ const SEARCH = {
 							if (c[i]._id == freelancerId) {
 								c[i].distance = distance;
 								c[i].time = duration;
+								c[i].googleMaps = true;
 							}
 						}
 
@@ -724,6 +725,7 @@ const SEARCH = {
 							if (c[i]._id == freelancerId) {
 								c[i].distance = distance;
 								c[i].time = duration;
+								c[i].googleMaps = true;
 							}
 						}
 
