@@ -293,7 +293,6 @@ const SEARCH = {
 	 * @return {void}
 	 */
 	sortSearchFreelancers: function(buttonId) {
-		console.log(SEARCH.currentResult);
 		if (SEARCH.currentResult === undefined)
 			return;
 
@@ -773,7 +772,12 @@ const SEARCH = {
 		} else {
 			distance = "";
 		}
-
+		let time;
+		if (freelancer.time) {
+			time = SEARCH.writeTimeBetter(freelancer.time);
+		} else {
+			time = "";
+		}
 		let price;
 		if (freelancer.price) {
 			price = freelancer.price + "€";
@@ -788,6 +792,7 @@ const SEARCH = {
 				'name': freelancer.firstName + " " + freelancer.lastName,
 				'price': price,
 				'distance': distance,
+				'time': time,
 				'tags': freelancer.tags,
 				'score': FREELANCER.getHtmlRankStar({
 					full: freelancer.score,
