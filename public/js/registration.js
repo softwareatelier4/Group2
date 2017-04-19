@@ -2,27 +2,13 @@ const REGISTRATION = {
 	name: 'registration',
 
 	clearForm: function() {
-		console.log("calling clear!");
-		let passwordError = document.getElementById("repeatPassword-label"); //different passwords
-		let firstNameError = document.getElementById("firstName-label"); //firstname contains special characters
-		let firstNameErrorLength = document.getElementById("firstName-label2"); //firstname length error
-		let lastNameError = document.getElementById("lastName-label"); //lastname contains special characters
-		let lastNameErrorLength = document.getElementById("lastName-label2"); //lastname length error
 		let password = document.getElementById('password');
 		let repeatPassword = document.getElementById('repeatPassword');
-
-		passwordError.style.display = "none";
-		firstNameError.style.display = "none";
-		lastNameError.style.display = "none";
-		firstNameErrorLength.style.display = "none";
-		lastNameErrorLength.style.display = "none";
 		password.value = "";
 		repeatPassword.value = "";
 	},
 
 	checkData: function(){
-		console.log("calling this function!");
-		REGISTRATION.clearForm();
 		let firstName = document.getElementById('firstName');
 		let lastName = document.getElementById('lastName');
 		let email = document.getElementById('email');
@@ -38,22 +24,39 @@ const REGISTRATION = {
 		if(password.value !== repeatPassword.value) {
 			flag = false;
 			passwordError.style.display = "block";
+		} else {
+			passwordError.style.display = "none";
 		}
 		if(!pattStrings.test(firstName.value)){
 			flag = false;
 			firstNameError.style.display = "block";
 		}
+		else {
+			firstNameError.style.display = "none";
+		}
 		if(!pattStrings.test(lastName.value)){
 			flag = false;
 			lastNameError.style.display = "block";
+		}
+		else {
+			lastNameError.style.display = "none";
 		}
 		if(firstName.value.length < 4 || firstName.value.length > 18) {
 			flag = false;
 			firstNameErrorLength.style.display = "block";
 		}
+		else {
+			firstNameErrorLength.style.display = "none";
+		}
 		if(lastName.value.length < 4 || lastName.value.length > 18) {
 			flag = false;
 			lastNameErrorLength.style.display = "block";
+		}
+		else {
+			lastNameErrorLength.style.display = "none";
+		}
+		if(!flag) {
+			REGISTRATION.clearForm();
 		}
 		if(flag){
 			REGISTRATION.submitUser();
