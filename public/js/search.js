@@ -293,6 +293,7 @@ const SEARCH = {
 	 * @return {void}
 	 */
 	sortSearchFreelancers: function(buttonId) {
+		console.log(SEARCH.currentResult);
 		if (SEARCH.currentResult === undefined)
 			return;
 
