@@ -789,10 +789,11 @@ const SEARCH = {
 				'price': price,
 				'distance': distance,
 				'tags': freelancer.tags,
-				'score': freelancer.score = FREELANCER.getHtmlRankStar({
+				'score': FREELANCER.getHtmlRankStar({
 					full: freelancer.score,
 					empty: 5 - freelancer.score
-				})
+				}),
+				'googleMaps': freelancer.googleMaps
 			}
 		};
 

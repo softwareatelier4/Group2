@@ -199,8 +199,7 @@ let searchEngine = function(freelancers, string) {
 			distance: dist,
 			time: timez,
 			counter: countInArray(fClone, f),
-			price: f.price,
-			googleMaps: false
+			price: f.price
 		};
 		result.push(freelancer);
 	}

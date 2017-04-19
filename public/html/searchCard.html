@@ -8,7 +8,7 @@
         <div style="clear:both;"></div>
         <div class="km-time">
             <span class='card-text'>{?freelancer.distance}{^freelancer.googleMaps}~{/freelancer.googleMaps}{freelancer.distance}{:else} -- km{/freelancer.distance}</span>
-            <span class='card-text'>{^freelancer.googleMaps}~{freelancer.time}{/freelancer.googleMaps}</span>
+            <span class='card-text'>{?freelancer.time}{^freelancer.googleMaps}~{/freelancer.googleMaps}{freelancer.time}{/freelancer.time}</span>
         </div>
         <p class='card-text'>{#freelancer.tags} <span class="badge badge-default"> {name} </span>{/freelancer.tags}</p>
         <img src="/html/moneyicon.png" width="24px"></img>
