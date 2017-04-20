@@ -57,10 +57,12 @@ const FREELANCER = {
 						MAIN_JS.innerHTML = out;
 						FREELANCER.renderReview(idFreelancer);
 					});
-					if (res.ownerId === undefined) { // need or to check if a user is logged in
-						document.getElementById("claim-button").style.visibility = "visible";
-					} // need else if for the text "pending request..." if a request has already been made by this user
-
+					isLogged(function(res) {
+						userId = res.result;
+						if (res.ownerId === undefined && userId !== false) { // need or to check if a user is logged in
+							document.getElementById("claim-button").style.visibility = "visible";
+						} // need else if for the text "pending request..." if a request has already been made by this user
+					});
 					// FREELANCER.addListeners();
 				});
 			}
@@ -173,24 +175,32 @@ const FREELANCER = {
 
 		let descriptionDom = document.getElementById('modal-descriptionClaim');
 
-		let userId = 'b00000000000000000000000'; //temp; need to take this from the login
-		let freelancerId = idfrlc;
-		let description = descriptionDom.value;
+		let userId;
 
-		data = new FormData();
-		data.append('file', $('#uploadPicture')[0].files[0]);
-		data.append('userid', userId);
-		data.append('freelancerid', freelancerId);
-		data.append('description', description);
+		isLogged(function(res) {
+			userId = res.result;
+			// console.log("USERRRRRR");
+			// console.log(res);
+			// userId = 'b00000000000000000000000'; //temp; need to take this from the login
+			let freelancerId = idfrlc;
+			let description = descriptionDom.value;
 
-		xhr = new XMLHttpRequest();
+			data = new FormData();
+			data.append('file', $('#uploadPicture')[0].files[0]);
+			data.append('userid', userId);
+			data.append('freelancerid', freelancerId);
+			data.append('description', description);
 
-		xhr.open('PUT', '/api/claimrequest/', true);
-		xhr.onreadystatechange = function(response) {
-			console.log(response);
-		};
-		xhr.send(data);
+			xhr = new XMLHttpRequest();
 
+			xhr.open('PUT', '/api/claimrequest/', true);
+			xhr.onreadystatechange = function(response) {
+				console.log(response);
+			};
+			xhr.send(data);
+
+			location.reload();
+		});
 	},
 	checkData: function() {
 		let description = document.getElementById('modal-descriptionClaim').value;
