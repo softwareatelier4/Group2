@@ -171,6 +171,10 @@ h5 {
    margin-top: -5px;
 }
 
+.btn-upload {
+   z-index: 1000;
+}
+
 @media screen and (max-width: 1110px) {
    #profile-freelancer {
       min-width: 0 !important;
