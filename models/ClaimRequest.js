@@ -33,7 +33,7 @@ var claimSchema = new mongoose.Schema({
 	photos: {
 		type: Array,
 		// required: true
-		default: ["/uploads/claimRequests/osama.jpg"]
+		default: []
 	},
 	notes: {
 		type: String,

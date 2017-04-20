@@ -20,10 +20,16 @@ const FREELANCER = {
 		SORTING_OPTIONS.style.visibility = 'hidden';
 
 		FREELANCER.renderProfile();
+
 	},
 
 	remover: function() {
 		SEARCH.remover();
+		$('#form-freelancer-claim').off();
+	},
+
+	addListeners: function() {
+		$('#form-freelancer-claim').submit(FREELANCER.sendClaimingRequest);
 	},
 	/**
 	 * Render the profile of freelancer
@@ -51,12 +57,11 @@ const FREELANCER = {
 						MAIN_JS.innerHTML = out;
 						FREELANCER.renderReview(idFreelancer);
 					});
-<<<<<<< HEAD
 					if (res.ownerId === undefined) { // need or to check if a user is logged in
 						document.getElementById("claim-button").style.visibility = "visible";
 					} // need else if for the text "pending request..." if a request has already been made by this user
-=======
->>>>>>> origin/menu
+
+					FREELANCER.addListeners();
 				});
 			}
 		});
@@ -158,5 +163,43 @@ const FREELANCER = {
 			$(cardBlock).slideDown(400);
 			reply.getElementsByTagName('p')[0].innerHTML = textArea.value;
 		});
-	}
+	},
+
+	sendClaimingRequest: function(e) {
+		e.preventDefault();
+		console.log('sending');
+		let data, xhr;
+
+		let descriptionDom = document.getElementById('modal-descriptionClaim');
+
+		let userId = 'b00000000000000000000000'; //temp; need to take this from the login
+		let freelancerId = 'temp';
+		let description = descriptionDom.value;
+
+		data = new FormData();
+		data.append('file', $('#uploadPicture')[0].files[0]);
+		data.append('userid', userId);
+		data.append('freelancerid', freelancerId);
+		data.append('description', description);
+
+		xhr = new XMLHttpRequest();
+
+		xhr.open('PUT', '/api/claimrequest/', true);
+		xhr.onreadystatechange = function(response) {
+			console.log(response);
+		};
+		xhr.send(data);
+
+	},
+	checkData: function() {
+
+		if (false) {
+			document.getElementById("modal-photos-label").className = 'error-red';
+			document.getElementById("modal-photos-label").innerHTML = "You need to upload your identity card!";
+		} else {
+			document.getElementById("form-freelancer-claim").submit();
+		}
+
+
+	},
 }

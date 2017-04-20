@@ -9,6 +9,8 @@ const mongoose = require('mongoose');
 const ClaimRequest = mongoose.model('ClaimRequest');
 const Freelancer = mongoose.model('Freelancer');
 const User = mongoose.model('User');
+const formidable = require('formidable');
+const fs = require('fs');
 
 //supported methods
 
@@ -37,15 +39,29 @@ router.get('/', function(req, res, next) {
 
 
 router.put('/', function(req, res, next) {
-	const data = req.body;
+	console.log('ciao');
+	let form = new formidable.IncomingForm({
+		uploadDir: __dirname + '/../../../public/uploads/claimRequests/',
+		keepExtensions: true
+	});
 
-	let claimRequest = new ClaimRequest();
-	claimRequest.user = data.userId;
-	claimRequest.freelancer = data.freelancerId;
-	claimRequest.status = 'Pending';
-	claimRequest.notes = data.description;
+	form.parse(req, function(err, fields, files) {
+		console.log(fields);
+		console.log(files);
+		let savePath = files.file.path;
+		let i = savePath.lastIndexOf('/');
 
-	claimRequest.save(onModelSave(res, 200, true));
+		let fileName = savePath.substring(i + 1, savePath.length);
+
+		let claimRequest = new ClaimRequest();
+		claimRequest.user = fields.userid;
+		claimRequest.freelancer = fields.freelancerid;
+		claimRequest.status = 'Pending';
+		claimRequest.notes = fields.description;
+		claimRequest.photos = ['/uploads/claimRequests/' + fileName];
+
+		claimRequest.save(onModelSave(res, 200, true));
+	});
 });
 
 router.post('/:id', function(req, res, next) {
