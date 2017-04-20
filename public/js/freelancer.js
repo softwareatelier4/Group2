@@ -2,12 +2,12 @@ const FREELANCER = {
 
 	name: 'freelancer',
 
-   /**
-    * Set up the freelancer
-    * @return {void}
-    */
-   init: function() {
-      console.log('Freelancer - initialization');
+	/**
+	 * Set up the freelancer
+	 * @return {void}
+	 */
+	init: function() {
+		console.log('Freelancer - initialization');
 
 		SEARCH.searchHeader();
 		SEARCH.addon_init();
@@ -46,22 +46,22 @@ const FREELANCER = {
 						full: res.score,
 						empty: 5 - res.score
 					});
-					
-               //display photos of work, if more than 9, display only in the lightbox
-               res.photosThumbnail = [];
-               for (var i in res.photos) {
-                  if (i == 9) {
-                     break;
-                  }
 
-                  res.photosThumbnail.push(res.photos[i]);
-               }
-               if (i == 9) {
-                  res.photos = res.photos.splice(i, res.photos.length);
-               } else {
-                  res.photos = [];
-               }
-               let data = {
+					//display photos of work, if more than 9, display only in the lightbox
+					res.photosThumbnail = [];
+					for (var i in res.photos) {
+						if (i == 9) {
+							break;
+						}
+
+						res.photosThumbnail.push(res.photos[i]);
+					}
+					if (i == 9) {
+						res.photos = res.photos.splice(i, res.photos.length);
+					} else {
+						res.photos = [];
+					}
+					let data = {
 						freelancer: res
 					};
 
@@ -84,9 +84,9 @@ const FREELANCER = {
 							if (hasReqPending === true) {
 								document.getElementById("pending-claim-button").style.visibility = "visible";
 							}
-							console.log(owner._id);
+
 							console.log(userId._id);
-							if (owner._id === userId._id) {
+							if (owner && owner._id === userId._id) {
 								document.getElementById("modify-button").style.visibility = "visible";
 							}
 						})
@@ -270,40 +270,40 @@ const FREELANCER = {
 		return html;
 	},
 
-   /**
-    * Show button and form for add a new review's reply
-    * @param {event} - event
-    * @return {void}
-    */
-   showReplyReview: function(e) {
-      const form = e.target.parentNode.getElementsByTagName('form')[0];
-      const textArea = form.getElementsByTagName('textarea')[0];
-      const submitButton = form.getElementsByTagName('button')[0];
+	/**
+	 * Show button and form for add a new review's reply
+	 * @param {event} - event
+	 * @return {void}
+	 */
+	showReplyReview: function(e) {
+		const form = e.target.parentNode.getElementsByTagName('form')[0];
+		const textArea = form.getElementsByTagName('textarea')[0];
+		const submitButton = form.getElementsByTagName('button')[0];
 
-      $(e.target).fadeOut(100);
-      $(form).slideDown(400);
-      $(textArea).focus();
+		$(e.target).fadeOut(100);
+		$(form).slideDown(400);
+		$(textArea).focus();
 
 
-      submitButton.addEventListener('click', FREELANCER.senderReplyReview);
-   },
+		submitButton.addEventListener('click', FREELANCER.senderReplyReview);
+	},
 
-   /**
-    * Abilitate button for send the reply
-    * @param {event} - event
-    * @return {void}
-    */
-   senderReplyReview: function(e) {
-      e.preventDefault();
+	/**
+	 * Abilitate button for send the reply
+	 * @param {event} - event
+	 * @return {void}
+	 */
+	senderReplyReview: function(e) {
+		e.preventDefault();
 
-      const form = e.target.parentNode;
-      const reply = form.parentNode.getElementsByClassName('reply')[0];
-      const cardBlock = reply.getElementsByClassName('card-block')[0];
-      const reviewId = e.target.parentNode.name;
-      const textArea = e.target.parentNode.getElementsByTagName('textarea')[0];
-      const data = {
-         review: textArea.value
-      };
+		const form = e.target.parentNode;
+		const reply = form.parentNode.getElementsByClassName('reply')[0];
+		const cardBlock = reply.getElementsByClassName('card-block')[0];
+		const reviewId = e.target.parentNode.name;
+		const textArea = e.target.parentNode.getElementsByTagName('textarea')[0];
+		const data = {
+			review: textArea.value
+		};
 
 		doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
 			$(form).slideUp(400);
