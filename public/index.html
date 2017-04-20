@@ -17,19 +17,35 @@
 </head>
 
 <body>
+	<nav class="navbar navbar-toggleable-md navbar-light bg-faded" id="navbar-top-mobile">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-top-m-elements" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span>
+  		</button>
+		<!-- <a class="navbar-brand" href="#">JobAdvisor</a> -->
+
+		<div class="collapse navbar-collapse" id="navbar-top-m-elements">
+			<ul class="navbar-nav ml-auto hidden-lg-up">
+			</ul>
+		</div>
+	</nav>
 	<div id="main">
 		<div id="header">
 			<div id="search">
-				<span class="logo">JobAdvisor</span>
+				<span class="logo hidden-lg-up" id="logo-JobAdvisor">JobAdvisor</span>
+				<div>
+					<nav class="navbar navbar-toggleable-md navbar-light bg-faded hidden-md-down" id="navbar-top-desktop">
+						<span class="logo">JobAdvisor</span>
+						<div class="collapse navbar-collapse" id="navbarSupportedContent">
+							<ul class="navbar-nav ml-auto">
+							</ul>
+						</div>
+					</nav>
+				</div>
 				<form class="" autocomplete="off">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
 						<span class="input-group-addon search-btn" id="basic-addon1">Search</span>
 						<input type="text" class="form-control" aria-describedby="basic-addon1" id="position" placeholder="Loading position...">
-						<span class="input-group-addon search-btn" id="login" data-toggle="modal" data-target="#modal-login">Login</span>
-					<!--<button type="button" id="modify-button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
-                        Modify
-                    </button>-->
 					</div>
 				</form>
 				<div class="input-group" id="sorting-buttons">
@@ -60,8 +76,8 @@
 	<script src="js/jquery.geocomplete.min.js"></script>
 
 	<script>
-		jQuery.expr[':'].focus = function( elem ) {
-	  		return elem === document.activeElement && ( elem.type || elem.href );
+		jQuery.expr[':'].focus = function(elem) {
+			return elem === document.activeElement && (elem.type || elem.href);
 		};
 	</script>
 
@@ -69,6 +85,8 @@
 	<script src="js/ajax.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/lightbox.min.js"></script>
+
+	<script src="js/menu.js"></script>
 
 	<script src="js/login.js"></script>
 	<script src="js/homepage.js"></script>
@@ -84,28 +102,28 @@
 
 <!-- Modal Login -->
 <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" id="modal-ext">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modal-title">Login</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	<div class="modal-dialog" role="document" id="modal-ext">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-title">Login</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-        <form enctype="multipart/form-data" action="javascript:LOGIN.submitLogin()" id="form-login">
-            <div class="form-group">
-                <label for="modal-email" id="modal-email-label">Email: </label>
-                <input type="text" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
-                <label for="modal-password" id="modal-password-label">Password: </label>
-                <input type="password" class="form-control" id="modal-password" aria-describedby="password" placeholder="Enter password">
-                </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="save-button" class="btn btn-primary" onclick="LOGIN.checkData()">Login</button>
-      </div>
-    </div>
-  </div>
+			</div>
+			<div class="modal-body">
+				<form enctype="multipart/form-data" action="javascript:LOGIN.submitLogin()" id="form-login">
+					<div class="form-group">
+						<label for="modal-email" id="modal-email-label">Email: </label>
+						<input type="text" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
+						<label for="modal-password" id="modal-password-label">Password: </label>
+						<input type="password" class="form-control" id="modal-password" aria-describedby="password" placeholder="Enter password">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" id="save-button" class="btn btn-primary" onclick="LOGIN.checkData()">Login</button>
+			</div>
+		</div>
+	</div>
 </div>

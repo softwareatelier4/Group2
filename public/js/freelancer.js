@@ -51,9 +51,12 @@ const FREELANCER = {
 						MAIN_JS.innerHTML = out;
 						FREELANCER.renderReview(idFreelancer);
 					});
+<<<<<<< HEAD
 					if (res.ownerId === undefined) { // need or to check if a user is logged in
 						document.getElementById("claim-button").style.visibility = "visible";
 					} // need else if for the text "pending request..." if a request has already been made by this user
+=======
+>>>>>>> origin/menu
 				});
 			}
 		});
