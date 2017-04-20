@@ -39,6 +39,7 @@ app.use(passport.session());
 app.use(flash());
 // Initialize routers here
 var routers = require('./routes/api/routers');
+app.use('/api/claimrequest', routers.claimrequest);
 app.use('/api/freelancer/', routers.freelancer);
 app.use('/api/passport/', routers.passport);
 app.use('/api/review/', routers.review);

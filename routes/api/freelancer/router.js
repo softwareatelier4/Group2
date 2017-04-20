@@ -41,55 +41,57 @@ router.get('/:freelancerid', function(req, res, next) {
 });
 
 router.put('/:freelancerid', function(req, res, next) {
-  const data = req.body;
+   const data = req.body;
 
-  Freelancer.findById(req.params.freelancerid, function(err, freelancer){
-    if (err) return next (err);
+   Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
+      if (err) return next(err);
 
-    if (freelancer){
-      freelancer.firstName = data.firstName;
-      freelancer.lastName = data.lastName;
-      freelancer.workName = data.workName;
-      freelancer.email = data.email;
-      freelancer.phone = data.phone;
-      freelancer.profilePhoto = data.profilePhoto;
-      freelancer.photos = data.photos;
-      freelancer.address = data.address;
-      freelancer.tags = null;
-      freelancer.description = data.description;
-      freelancer.ownerId = data.ownerId;
-      freelancer.price = data.price;
+      if (freelancer) {
+         freelancer.firstName = data.firstName;
+         freelancer.lastName = data.lastName;
+         freelancer.workName = data.workName;
+         freelancer.email = data.email;
+         freelancer.phone = data.phone;
+         freelancer.profilePhoto = data.profilePhoto;
+         freelancer.photos = data.photos;
+         freelancer.address = data.address;
+         freelancer.tags = null;
+         freelancer.description = data.description;
+         freelancer.ownerId = data.ownerId;
+         freelancer.price = data.price;
 
-	  if(data.score != null){
-		freelancer.score = data.score;
-	  }
+         if (data.score != null) {
+            freelancer.score = data.score;
+         }
 
-      freelancer.save(onModelSave(res,200,true));
+         freelancer.save(onModelSave(res, 200, true));
 
-	  freelancer.tags = [];
-	  let tags = req.body.tags;
-	  //console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
-		for(let tag of tags){
-			Freelancer.findById(req.params.freelancerid, function(err,updatedFreelancer) {
-				//console.log("\n\n\n\n"+tag+"\n\n\n");
-				Tag.findOne({name: tag},function (err, docs) {
-					if(docs){
-						updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
-						updatedFreelancer.save(function() {});
-					} else {
-						let newTag = new Tag();
-						newTag._id = mongoose.Types.ObjectId();
-						newTag.name = tag;
-						newTag.save(function(err, newTagRes) {
-								updatedFreelancer.tags.push(newTagRes._id);
-								updatedFreelancer.save(function() {});
-						});
-					}
-				});
-			});
-		}
-    }
-  });
+         freelancer.tags = [];
+         let tags = req.body.tags;
+         //console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
+         for (let tag of tags) {
+            Freelancer.findById(req.params.freelancerid, function(err, updatedFreelancer) {
+               //console.log("\n\n\n\n"+tag+"\n\n\n");
+               Tag.findOne({
+                  name: tag
+               }, function(err, docs) {
+                  if (docs) {
+                     updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
+                     updatedFreelancer.save(function() {});
+                  } else {
+                     let newTag = new Tag();
+                     newTag._id = mongoose.Types.ObjectId();
+                     newTag.name = tag;
+                     newTag.save(function(err, newTagRes) {
+                        updatedFreelancer.tags.push(newTagRes._id);
+                        updatedFreelancer.save(function() {});
+                     });
+                  }
+               });
+            });
+         }
+      }
+   });
 });
 
 
@@ -194,6 +196,7 @@ let searchEngine = function(freelancers, string) {
          score: f.score,
          latitude: f.address.lat,
          longitude: f.address.long,
+         ownerId: f.ownerId,
          distance: dist,
          time: timez,
          counter: countInArray(fClone, f),
@@ -278,71 +281,79 @@ function countInArray(array, what) {
 
 router.all('/create/freelancer', middleware.supportedMethods('POST, GET, OPTIONS'));
 router.post('/create/freelancer', function(req, res) {
-	var freelancer = new Freelancer();
-	freelancer.firstName    = req.body.firstName;
-	freelancer.lastName     = req.body.lastName;
-	freelancer.workName     = req.body.workName;
-	freelancer.email        = req.body.email;
-	freelancer.phone        = req.body.phone;
-	freelancer.address      = req.body.address;
-	freelancer.description = req.body.description;
-	freelancer.profilePhoto = '';
-	let tags = req.body.tags;
-	freelancer.save(function(err, newfreelancer) {
-		if (err){
-			res.send(err);
-		} else {
-			Freelancer.update({ _id : newfreelancer._id }, { $set: { profilePhoto : '/uploads/' + newfreelancer._id + '/profile.jpg' }}, function(err, res){});
-			for(let tag of tags){
-				Freelancer.findById(newfreelancer._id, function(err,updatedFreelancer) {
-					Tag.findOne({name: tag},function (err, docs) {
-						if(docs){
-							updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
-							updatedFreelancer.save(function() {});
-						}
-						else{
-							let newTag = new Tag();
-							newTag._id = mongoose.Types.ObjectId();
-							newTag.name = tag;
-							newTag.save(function(err, newTagRes) {
-								updatedFreelancer.tags.push(newTagRes._id);
-								updatedFreelancer.save(function() {});
-							});
-						}
-					});
-				});
-			}
-			res.json(newfreelancer);
-		}
-	});
-});
-function onModelSave(res, status, sendItAsResponse){
-  const statusCode = status || 204;
-  sendItAsResponse = sendItAsResponse || false;
-  return function(err, saved){
-    if (err) {
-      if (err.name === 'ValidationError'
-        || err.name === 'TypeError' ) {
-        res.status(400)
-        return res.json({
-          statusCode: 400,
-          message: "Bad Request"
-        });
-      }else{
-        return next (err);
+   var freelancer = new Freelancer();
+   freelancer.firstName = req.body.firstName;
+   freelancer.lastName = req.body.lastName;
+   freelancer.workName = req.body.workName;
+   freelancer.email = req.body.email;
+   freelancer.phone = req.body.phone;
+   freelancer.address = req.body.address;
+   freelancer.description = req.body.description;
+   freelancer.profilePhoto = '';
+   let tags = req.body.tags;
+   freelancer.save(function(err, newfreelancer) {
+      if (err) {
+         res.send(err);
+      } else {
+         Freelancer.update({
+            _id: newfreelancer._id
+         }, {
+            $set: {
+               profilePhoto: '/uploads/' + newfreelancer._id + '/profile.jpg'
+            }
+         }, function(err, res) {});
+         for (let tag of tags) {
+            Freelancer.findById(newfreelancer._id, function(err, updatedFreelancer) {
+               Tag.findOne({
+                  name: tag
+               }, function(err, docs) {
+                  if (docs) {
+                     updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
+                     updatedFreelancer.save(function() {});
+                  } else {
+                     let newTag = new Tag();
+                     newTag._id = mongoose.Types.ObjectId();
+                     newTag.name = tag;
+                     newTag.save(function(err, newTagRes) {
+                        updatedFreelancer.tags.push(newTagRes._id);
+                        updatedFreelancer.save(function() {});
+                     });
+                  }
+               });
+            });
+         }
+         res.json(newfreelancer);
       }
-    }
+   });
+});
 
-    if( sendItAsResponse){
-      const obj = saved.toObject();
-      delete obj.password;
-      delete obj.__v;
-      // addLinks(obj);
-      return res.status(statusCode).json(obj);
-    }else{
-      return res.status(statusCode).end();
-    }
-  }
+function onModelSave(res, status, sendItAsResponse) {
+   const statusCode = status || 204;
+   sendItAsResponse = sendItAsResponse || false;
+   return function(err, saved) {
+      if (err) {
+         if (err.name === 'ValidationError' ||
+            err.name === 'TypeError') {
+            res.status(400)
+            return res.json({
+               statusCode: 400,
+               message: "Bad Request"
+            });
+         } else {
+            return next(err);
+         }
+      }
+
+      if (sendItAsResponse) {
+         const obj = saved.toObject();
+         delete obj.password;
+         delete obj.__v;
+         // addLinks(obj);
+         return res.status(statusCode).json(obj);
+      } else {
+         return res.status(statusCode).end();
+      }
+   }
 }
 
 

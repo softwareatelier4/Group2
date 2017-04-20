@@ -32,6 +32,7 @@
     "dustjs-linkedin": "^2.7.2",
     "express": "^4.13.3",
     "express-session": "^1.15.2",
+    "formidable": "^1.1.1",
     "method-override": "^2.3.5",
     "mocha-jenkins-reporter": "^0.3.6",
     "mongodb": "^2.2.22",

@@ -20,11 +20,14 @@ const FREELANCER = {
 		SORTING_OPTIONS.style.visibility = 'hidden';
 
 		FREELANCER.renderProfile();
+
 	},
 
 	remover: function() {
 		SEARCH.remover();
+		$('#form-freelancer-claim').off();
 	},
+
 	/**
 	 * Render the profile of freelancer
 	 * @return {void}
@@ -35,6 +38,7 @@ const FREELANCER = {
 		var idFreelancer = url.split('=')[1];
 
 		doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
+			let owner = res.ownerId;
 			if (res.error) {
 				console.log("error");
 			} else {
@@ -50,6 +54,28 @@ const FREELANCER = {
 					dust.renderSource(html, data, function(err, out) {
 						MAIN_JS.innerHTML = out;
 						FREELANCER.renderReview(idFreelancer);
+					});
+					isLogged(function(ress) {
+						userId = ress.result;
+						doJSONRequest("GET", "/api/claimrequest", null, null, function(response) {
+							let hasReqPending = false;
+							for (let r of response) {
+								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
+									hasReqPending = true;
+								}
+							}
+							if (owner === undefined && userId !== false && hasReqPending === false) {
+								document.getElementById("claim-button").style.visibility = "visible";
+							}
+							if (hasReqPending === true) {
+								document.getElementById("pending-claim-button").style.visibility = "visible";
+							}
+							console.log(owner._id);
+							console.log(userId._id);
+							if (owner._id === userId._id) {
+								document.getElementById("modify-button").style.visibility = "visible";
+							}
+						})
 					});
 				});
 			}
@@ -152,5 +178,55 @@ const FREELANCER = {
 			$(cardBlock).slideDown(400);
 			reply.getElementsByTagName('p')[0].innerHTML = textArea.value;
 		});
-	}
+	},
+
+	sendClaimingRequest: function(e) {
+		e.preventDefault();
+		let idfrlc = window.location.href.split("=")[1];
+		// console.log(idfrlc);
+		let data, xhr;
+
+		let descriptionDom = document.getElementById('modal-descriptionClaim');
+
+		isLogged(function(res) {
+			let userId = res.result._id;
+			let freelancerId = idfrlc;
+			let description = descriptionDom.value;
+
+			data = new FormData();
+			data.append('file', $('#uploadPicture')[0].files[0]);
+			data.append('userid', userId);
+			data.append('freelancerid', freelancerId);
+			data.append('description', description);
+
+			xhr = new XMLHttpRequest();
+
+			xhr.open('PUT', '/api/claimrequest/', true);
+			xhr.onreadystatechange = function(response) {
+				console.log(response);
+			};
+			xhr.send(data);
+
+			location.reload();
+		});
+	},
+	checkData: function() {
+		let description = document.getElementById('modal-descriptionClaim').value;
+		let photo = document.getElementById('uploadPicture').value;
+		document.getElementById("modal-photos-label").className = '';
+		document.getElementById("modal-photos-label").innerHTML = "Please, upload your identity card.";
+		document.getElementById("modal-description-label").className = '';
+		document.getElementById("modal-description-label").innerHTML = "Description";
+		if (photo === "") {
+			document.getElementById("modal-photos-label").className = 'error-red';
+			document.getElementById("modal-photos-label").innerHTML = "You need to upload your identity card!";
+		} else if (description === "") {
+			document.getElementById("modal-description-label").className = 'error-red';
+			document.getElementById("modal-description-label").innerHTML = "Please, write a request.";
+		} else {
+			document.getElementById("form-freelancer-claim").submit();
+		}
+
+
+	},
 }
