@@ -175,13 +175,8 @@ const FREELANCER = {
 
 		let descriptionDom = document.getElementById('modal-descriptionClaim');
 
-		let userId;
-
 		isLogged(function(res) {
-			userId = res.result;
-			// console.log("USERRRRRR");
-			// console.log(res);
-			// userId = 'b00000000000000000000000'; //temp; need to take this from the login
+			let userId = res.result._id;
 			let freelancerId = idfrlc;
 			let description = descriptionDom.value;
 
