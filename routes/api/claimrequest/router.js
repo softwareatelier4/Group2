@@ -46,8 +46,9 @@ router.put('/', function(req, res, next) {
 	});
 
 	form.parse(req, function(err, fields, files) {
-		console.log(fields);
-		console.log(files);
+		if (err) return next(err);
+		// console.log(fields);
+		// console.log(files);
 		let savePath = files.file.path;
 		let i = savePath.lastIndexOf('/');
 
@@ -60,6 +61,7 @@ router.put('/', function(req, res, next) {
 		claimRequest.notes = fields.description;
 		claimRequest.photos = ['/uploads/claimRequests/' + fileName];
 
+		console.log(claimRequest);
 		claimRequest.save(onModelSave(res, 200, true));
 	});
 });

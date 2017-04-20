@@ -61,7 +61,7 @@ const FREELANCER = {
 						document.getElementById("claim-button").style.visibility = "visible";
 					} // need else if for the text "pending request..." if a request has already been made by this user
 
-					FREELANCER.addListeners();
+					// FREELANCER.addListeners();
 				});
 			}
 		});
@@ -167,13 +167,14 @@ const FREELANCER = {
 
 	sendClaimingRequest: function(e) {
 		e.preventDefault();
-		console.log('sending');
+		let idfrlc = window.location.href.split("=")[1];
+		// console.log(idfrlc);
 		let data, xhr;
 
 		let descriptionDom = document.getElementById('modal-descriptionClaim');
 
 		let userId = 'b00000000000000000000000'; //temp; need to take this from the login
-		let freelancerId = 'temp';
+		let freelancerId = idfrlc;
 		let description = descriptionDom.value;
 
 		data = new FormData();
@@ -192,10 +193,18 @@ const FREELANCER = {
 
 	},
 	checkData: function() {
-
-		if (false) {
+		let description = document.getElementById('modal-descriptionClaim').value;
+		let photo = document.getElementById('uploadPicture').value;
+		document.getElementById("modal-photos-label").className = '';
+		document.getElementById("modal-photos-label").innerHTML = "Please, upload your identity card.";
+		document.getElementById("modal-description-label").className = '';
+		document.getElementById("modal-description-label").innerHTML = "Description";
+		if (photo === "") {
 			document.getElementById("modal-photos-label").className = 'error-red';
 			document.getElementById("modal-photos-label").innerHTML = "You need to upload your identity card!";
+		} else if (description === "") {
+			document.getElementById("modal-description-label").className = 'error-red';
+			document.getElementById("modal-description-label").innerHTML = "Please, write a request.";
 		} else {
 			document.getElementById("form-freelancer-claim").submit();
 		}
