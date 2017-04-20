@@ -11,14 +11,14 @@
 				<div class="ml-15 light-blue" id="info-name-bottom">
 					{freelancer.workName}
 				</div>
-                <div class="ml-15 light-blue" id="info-name-button">
-                    <button type="button" id="modify-button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
+				<div class="ml-15 light-blue" id="info-name-button">
+					<button type="button" id="modify-button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
                         Modify
                     </button>
-						  <button type="button" id="claim-button" class="btn btn-primary" data-toggle="modal" data-target="#claim-freelancer-modal" onclick="FREELANCERCLAIM.claimProfile()" style="margin-left: 5px; visibility: hidden;">
+					<button type="button" id="claim-button" class="btn btn-primary" data-toggle="modal" data-target="#claim-freelancer-modal" style="margin-left: 5px; visibility: hidden;">
                         Claim this profile
                     </button>
-                </div>
+				</div>
 			</div>
 			<div id="rank" class="ml-15">
 				{freelancer.score|s}
@@ -49,12 +49,12 @@
 				<span id="description">{freelancer.description}</span>
 			</div>
 
-            <div id="reviews">
-                <h5 class="blue">REVIEW</h5>
-                <div id="cardReviews">
-                </div>
-            </div>
-        </div>
+			<div id="reviews">
+				<h5 class="blue">REVIEW</h5>
+				<div id="cardReviews">
+				</div>
+			</div>
+		</div>
 
 		<div id="img-freelancer">
 			<div id="works" class="blue">
@@ -72,86 +72,86 @@
 
 <!-- Modal -->
 <div class="modal fade" id="update-freelancer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" id="modal-ext">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	<div class="modal-dialog" role="document" id="modal-ext">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-        <form enctype="multipart/form-data" action="javascript:FREELANCERMANAGEMENT.submitFreelancer()" id="form-freelancer-management">
+			</div>
+			<div class="modal-body">
+				<form enctype="multipart/form-data" action="javascript:FREELANCERMANAGEMENT.submitFreelancer()" id="form-freelancer-management">
 
-            <div class="form-group">
-                <label for="modal-firstName" id="modal-firstName-label">First name: </label>
-                <input type="text" class="form-control" id="modal-firstName" aria-describedby="firstName" placeholder="Enter first name">
-                <label for="modal-lastName" id="modal-lastName-label">Last name: </label>
-                <input type="text" class="form-control" id="modal-lastName" aria-describedby="lastName" placeholder="Enter last name">
-                <label for="modal-workName" id="modal-workName-label">Work name: </label>
-                <input type="text" class="form-control" id="modal-workName" aria-describedby="workName" placeholder="Enter work name">
-                <label for="modal-phoneName" id="modal-phone-label">Phone number: </label>
-                <input type="text" class="form-control" id="modal-phone" aria-describedby="phone" placeholder="Enter phone number">
-                <label for="modal-city" id="modal-city-label">City: </label>
-                <input type="text" class="form-control" id="modal-city" aria-describedby="city" placeholder="Enter city name">
-                <label for="modal-street" id="modal-street-label">Street: </label>
-                <input type="text" class="form-control" id="modal-street" aria-describedby="street" placeholder="Enter street name">
-                <label for="modal-number" id="modal-number-label">Number: </label>
-                <input type="text" class="form-control" id="modal-number" aria-describedby="number" placeholder="Enter street number">
-                <label for="modal-zip" id="modal-zip-label">Zip code: </label>
-                <input type="text" class="form-control" id="modal-zip" aria-describedby="zip" placeholder="Enter zip code">
-                <label for="modal-price" id="modal-price-label">Price: </label>
-                <input type="number" class="form-control" id="modal-price" aria-describedby="price" placeholder="Enter price">
-            </div>
-            <div class="form-group">
-                <label for="modal-tags">Tags: </label>
-                <input type="text" class="selectize-input items not-full has-options" id="modal-tags">
-                        </div>
-            <div class="form-group">
-                <label for="modal-email" id="modal-email-label">Email address: </label>
-                <input type="email" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="modal-description">Description</label>
-                <textarea class="form-control" id="modal-description" rows="3"></textarea>
-            </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
-      </div>
-    </div>
-  </div>
+					<div class="form-group">
+						<label for="modal-firstName" id="modal-firstName-label">First name: </label>
+						<input type="text" class="form-control" id="modal-firstName" aria-describedby="firstName" placeholder="Enter first name">
+						<label for="modal-lastName" id="modal-lastName-label">Last name: </label>
+						<input type="text" class="form-control" id="modal-lastName" aria-describedby="lastName" placeholder="Enter last name">
+						<label for="modal-workName" id="modal-workName-label">Work name: </label>
+						<input type="text" class="form-control" id="modal-workName" aria-describedby="workName" placeholder="Enter work name">
+						<label for="modal-phoneName" id="modal-phone-label">Phone number: </label>
+						<input type="text" class="form-control" id="modal-phone" aria-describedby="phone" placeholder="Enter phone number">
+						<label for="modal-city" id="modal-city-label">City: </label>
+						<input type="text" class="form-control" id="modal-city" aria-describedby="city" placeholder="Enter city name">
+						<label for="modal-street" id="modal-street-label">Street: </label>
+						<input type="text" class="form-control" id="modal-street" aria-describedby="street" placeholder="Enter street name">
+						<label for="modal-number" id="modal-number-label">Number: </label>
+						<input type="text" class="form-control" id="modal-number" aria-describedby="number" placeholder="Enter street number">
+						<label for="modal-zip" id="modal-zip-label">Zip code: </label>
+						<input type="text" class="form-control" id="modal-zip" aria-describedby="zip" placeholder="Enter zip code">
+						<label for="modal-price" id="modal-price-label">Price: </label>
+						<input type="number" class="form-control" id="modal-price" aria-describedby="price" placeholder="Enter price">
+					</div>
+					<div class="form-group">
+						<label for="modal-tags">Tags: </label>
+						<input type="text" class="selectize-input items not-full has-options" id="modal-tags">
+					</div>
+					<div class="form-group">
+						<label for="modal-email" id="modal-email-label">Email address: </label>
+						<input type="email" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
+					</div>
+					<div class="form-group">
+						<label for="modal-description">Description</label>
+						<textarea class="form-control" id="modal-description" rows="3"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <!-- Modal -->
 <div class="modal fade" id="claim-freelancer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document" id="modal-ext">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Claim this freelancer</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	<div class="modal-dialog" role="document" id="modal-ext">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Claim this freelancer</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-        <form enctype="multipart/form-data" action="javascript:FREELANCERCLAIM.sendClaimingRequest()" id="form-freelancer-claim">
+			</div>
+			<div class="modal-body">
+				<form enctype="multipart/form-data" action="javascript:FREELANCERCLAIM.sendClaimingRequest()" id="form-freelancer-claim">
 
-            <div class="form-group">
-					 <label for="modal-photos" id="modal-photos-label">Please, upload your identity card.</label><br>
-					 <input type="file" name="uploadPicture" accept="image/*" onChange="FREELANCERCLAIM.validateAndUpload(this);"/>
-            </div>
-            <div class="form-group">
-                <label for="modal-descriptionClaim">Description</label>
-                <textarea class="form-control" id="modal-descriptionClaim" rows="6"></textarea>
-            </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERCLAIM.checkData()">Send request</button>
-      </div>
-    </div>
-  </div>
+					<div class="form-group">
+						<label for="modal-photos" id="modal-photos-label">Please, upload your identity card.</label><br>
+						<input type="file" name="uploadPicture" accept="image/*" />
+					</div>
+					<div class="form-group">
+						<label for="modal-descriptionClaim">Description</label>
+						<textarea class="form-control" id="modal-descriptionClaim" rows="6"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERCLAIM.checkData()">Send request</button>
+			</div>
+		</div>
+	</div>
 </div>
