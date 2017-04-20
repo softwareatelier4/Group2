@@ -20,10 +20,16 @@ const FREELANCER = {
 		SORTING_OPTIONS.style.visibility = 'hidden';
 
 		FREELANCER.renderProfile();
+
 	},
 
 	remover: function() {
 		SEARCH.remover();
+		$('#form-freelancer-claim').off();
+	},
+
+	addListeners: function() {
+		$('#form-freelancer-claim').submit(FREELANCER.sendClaimingRequest);
 	},
 	/**
 	 * Render the profile of freelancer
@@ -54,6 +60,8 @@ const FREELANCER = {
 					if (res.ownerId === undefined) { // need or to check if a user is logged in
 						document.getElementById("claim-button").style.visibility = "visible";
 					} // need else if for the text "pending request..." if a request has already been made by this user
+
+					FREELANCER.addListeners();
 				});
 			}
 		});
@@ -157,23 +165,31 @@ const FREELANCER = {
 		});
 	},
 
-	sendClaimingRequest: function() {
-		let id = window.location.href.split('=')[1];
-		let photos = []; // temp, need the upload function
-		let description = document.getElementById('modal-descriptionClaim');
-		console.log(description);
+	sendClaimingRequest: function(e) {
+		e.preventDefault();
+		console.log('sending');
+		let data, xhr;
 
+		let descriptionDom = document.getElementById('modal-descriptionClaim');
 
-		let freelancer_claim = {
-			'userId': 'b00000000000000000000000', //temp, need to take this from the login
-			'freelancerId': id,
-			'photos': photos,
-			'description': description.value
+		let userId = 'b00000000000000000000000'; //temp; need to take this from the login
+		let freelancerId = 'temp';
+		let description = descriptionDom.value;
+
+		data = new FormData();
+		data.append('file', $('#uploadPicture')[0].files[0]);
+		data.append('userid', userId);
+		data.append('freelancerid', freelancerId);
+		data.append('description', description);
+
+		xhr = new XMLHttpRequest();
+
+		xhr.open('PUT', '/api/claimrequest/', true);
+		xhr.onreadystatechange = function(response) {
+			console.log(response);
 		};
+		xhr.send(data);
 
-		doJSONRequest("PUT", "/api/claimrequest/", null, freelancer_claim, function(res) {
-			location.reload();
-		});
 	},
 	checkData: function() {
 
