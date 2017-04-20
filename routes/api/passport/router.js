@@ -61,6 +61,8 @@ function(req, email, password, done) {
 				var newUser = new User();
 
 				// set the user's local credentials
+				newUser.firstName = req.body.firstName;
+				newUser.lastName = req.body.lastName;
 				newUser.email    = email;
 				newUser.password = newUser.generateHash(password);
 
