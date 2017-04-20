@@ -23,6 +23,7 @@ let drawMenu = function() {
 
 let drawLoginMenu = function() {
 	isLogged(function(loginRes) {
+		console.log(loginRes);
 		let menuEl = {};
 		const logged = loginRes.result;
 
@@ -35,26 +36,32 @@ let drawLoginMenu = function() {
 
 			menuEl.register = {
 				name: 'Register',
-				link: '#'
+				link: '/registration.html'
+			};
+		} else {
+			menuEl.logout = {
+				name: 'Logout',
+				fnOnClick: 'LOGIN.logout()'
 			};
 		}
 
 		$.get("/html/menuElement.html", function(elementHTML) {
 
 			for (let [key, el] of Object.entries(menuEl)) {
-				addElementMenu(elementHTML, el.name, el.link, el.modal, el.icon);
+				addElementMenu(elementHTML, el.name, el.link, el.modal, el.icon, el.fnOnClick);
 			}
 		});
 	});
 }
 
-let addElementMenu = function(htmlDust, name, link, modal, iconName) {
+let addElementMenu = function(htmlDust, name, link, modal, iconName, fnOnClick) {
 
 	let data = {
 		name,
 		link,
 		modal,
-		icon: iconName
+		icon: iconName,
+		fnOnClick
 	};
 
 	dust.renderSource(htmlDust, data, function(err, el) {
