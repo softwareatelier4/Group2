@@ -5,7 +5,7 @@ const LOGIN = {
      },
      submitLogin: function(){
       //   console.log("dentro");
-        let email = document.getElementById('modal-email');
+        let email = document.getElementById('login-email');
 		let password = document.getElementById('modal-password');
 
         let login = {
