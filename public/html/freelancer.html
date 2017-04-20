@@ -12,12 +12,15 @@
 					{freelancer.workName}
 				</div>
 				<div class="ml-15 light-blue" id="info-name-button">
-					<button type="button" id="modify-button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
+					<button type="button" id="modify-button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" style="visibility: hidden" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
                         Modify
                     </button>
 					<button type="button" id="claim-button" class="btn btn-primary" data-toggle="modal" data-target="#claim-freelancer-modal" style="margin-left: 5px; visibility: hidden;">
-                        Claim this profile
-                    </button>
+               	Claim this profile
+               </button>
+					<button type="button" id="pending-claim-button" class="btn btn-primary" onclick='return false;' style="margin-left: 5px; visibility: hidden;">
+	               Pending Request
+	            </button>
 				</div>
 			</div>
 			<div id="rank" class="ml-15">

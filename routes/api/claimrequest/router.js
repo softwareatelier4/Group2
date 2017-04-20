@@ -103,9 +103,6 @@ router.post('/:id', function(req, res, next) {
 			claim.save(onModelSave(res, 200, true));
 		}
 	});
-
-
-	//claimRequest.save(onModelSave(res, 200, true));
 });
 
 function onModelSave(res, status, sendItAsResponse) {

@@ -28,9 +28,6 @@ const FREELANCER = {
 		$('#form-freelancer-claim').off();
 	},
 
-	addListeners: function() {
-		$('#form-freelancer-claim').submit(FREELANCER.sendClaimingRequest);
-	},
 	/**
 	 * Render the profile of freelancer
 	 * @return {void}
@@ -41,6 +38,7 @@ const FREELANCER = {
 		var idFreelancer = url.split('=')[1];
 
 		doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
+			let owner = res.ownerId;
 			if (res.error) {
 				console.log("error");
 			} else {
@@ -57,13 +55,28 @@ const FREELANCER = {
 						MAIN_JS.innerHTML = out;
 						FREELANCER.renderReview(idFreelancer);
 					});
-					isLogged(function(res) {
-						userId = res.result;
-						if (res.ownerId === undefined && userId !== false) { // need or to check if a user is logged in
-							document.getElementById("claim-button").style.visibility = "visible";
-						} // need else if for the text "pending request..." if a request has already been made by this user
+					isLogged(function(ress) {
+						userId = ress.result;
+						doJSONRequest("GET", "/api/claimrequest", null, null, function(response) {
+							let hasReqPending = false;
+							for (let r of response) {
+								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
+									hasReqPending = true;
+								}
+							}
+							if (owner === undefined && userId !== false && hasReqPending === false) {
+								document.getElementById("claim-button").style.visibility = "visible";
+							}
+							if (hasReqPending === true) {
+								document.getElementById("pending-claim-button").style.visibility = "visible";
+							}
+							console.log(owner._id);
+							console.log(userId._id);
+							if (owner._id === userId._id) {
+								document.getElementById("modify-button").style.visibility = "visible";
+							}
+						})
 					});
-					// FREELANCER.addListeners();
 				});
 			}
 		});
