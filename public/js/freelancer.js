@@ -12,8 +12,6 @@ const FREELANCER = {
 		SEARCH.searchHeader();
 		SEARCH.addon_init();
 
-      let typingTimer;
-
 		let main = document.getElementById('main');
 		main.style.display = "inherit";
 		main.style.backgroundColor = "rgb(231, 231, 231)";
@@ -83,6 +81,7 @@ const FREELANCER = {
 		});
 	},
 
+
 	/**
 	 * Render reviews of a freelancer
 	 * @param {idFreelancer} - id of the Freelancer
@@ -90,7 +89,6 @@ const FREELANCER = {
 	 */
 	renderReview: function(idFreelancer) {
 		doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
-
 			$.get("/html/review.html", function(reviewHtml) {
 
 				for (res of result) {
@@ -99,16 +97,134 @@ const FREELANCER = {
 						empty: 5 - res.score
 					});
 				}
+
 				dust.renderSource(reviewHtml, result, function(err, out) {
 					document.getElementById('cardReviews').innerHTML = out;
+					const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
 
-					let freelancerReplyButtons = document.getElementsByName('freelancer-reply');
-					for (let freelancerReplyButton of freelancerReplyButtons) {
-						freelancerReplyButton.addEventListener('click', FREELANCER.showReplyReview);
+					for (let i = 0; i < replyNum; i++) {
+						$('.reply button[name=freelancer-reply-edit]')[i].addEventListener('click', FREELANCER.editReview);
+						$('.reply button[name=freelancer-reply-save]')[i].addEventListener('click', FREELANCER.saveReview);
+						$('.reply button[name=freelancer-reply-delete]')[i].addEventListener('click', FREELANCER.deleteReview);
+						$('.reply button[name=freelancer-reply-eraser]')[i].addEventListener('click', FREELANCER.eraserReview);
+						$('.reply button[name=freelancer-reply-times]')[i].addEventListener('click', FREELANCER.timesReview);
+						$('.reply button[name=freelancer-reply-delete-no]')[i].addEventListener('click', FREELANCER.deleteConfirm);
+						$('.reply button[name=freelancer-reply-delete-yes]')[i].addEventListener('click', FREELANCER.deleteConfirm);
+						const replyButton = $('button[name=freelancer-reply]')[i];
+						if (replyButton)
+							replyButton.addEventListener('click', FREELANCER.showReplyReview);
 					}
 				});
 			});
 		});
+
+	},
+
+	editReview: function(e) {
+		const cardBlock = this.parentNode.parentNode.parentNode;
+		const textArea = cardBlock.getElementsByTagName('textarea')[0];
+		const text = cardBlock.getElementsByTagName('p')[0];
+		const editBtn = cardBlock.querySelector('button[name=freelancer-reply-edit]');
+		const saveBtn = cardBlock.querySelector('button[name=freelancer-reply-save]');
+		const deleteBtn = cardBlock.querySelector('button[name=freelancer-reply-delete]');
+		const eraserBtn = cardBlock.querySelector('button[name=freelancer-reply-eraser]');
+		const timesBtn = cardBlock.querySelector('button[name=freelancer-reply-times]');
+
+		$(textArea).val(text.innerHTML)
+		$(text).slideUp(100);
+		$(textArea).slideDown(400);
+		$(textArea).focus();
+
+		$(editBtn).hide();
+		$(saveBtn).show();
+		$(eraserBtn).show();
+		$(timesBtn).show();
+	},
+
+	saveReview: function(e) {
+		const cardBlock = this.parentNode.parentNode.parentNode;
+		const textArea = cardBlock.getElementsByTagName('textarea')[0];
+		const text = cardBlock.getElementsByTagName('p')[0];
+		const reviewId = cardBlock.parentNode.parentNode.getElementsByTagName('form')[0].name;
+		const data = {
+			review: textArea.value
+		};
+		doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
+			text.innerHTML = $(textArea).val();
+			FREELANCER.timesReview(e);
+		});
+	},
+
+	eraserReview: function(w) {
+		const cardBlock = this.parentNode.parentNode.parentNode;
+		const textArea = cardBlock.getElementsByTagName('textarea')[0];
+		const text = cardBlock.getElementsByTagName('p')[0];
+
+		$(textArea).val(text.innerHTML);
+	},
+
+	timesReview: function(e) {
+		const cardBlock = e.target.parentNode.parentNode.parentNode;
+		const textArea = cardBlock.getElementsByTagName('textarea')[0];
+		const text = cardBlock.getElementsByTagName('p')[0];
+		const editBtn = cardBlock.querySelector('button[name=freelancer-reply-edit]');
+		const saveBtn = cardBlock.querySelector('button[name=freelancer-reply-save]');
+		const eraserBtn = cardBlock.querySelector('button[name=freelancer-reply-eraser]');
+		const timesBtn = cardBlock.querySelector('button[name=freelancer-reply-times]');
+		const confirmYesBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-yes]');
+		const confirmNoBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-no]');
+
+		$(text).slideDown(400);
+		$(textArea).slideUp(100);
+		$(saveBtn).hide();
+		$(editBtn).show();
+		$(eraserBtn).hide();
+		$(timesBtn).hide();
+		$(confirmYesBtn).hide();
+		$(confirmNoBtn).hide();
+	},
+
+	deleteReview: function(e) {
+		const cardBlock = e.target.parentNode.parentNode.parentNode;
+		const confirmYesBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-yes]');
+		const confirmNoBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-no]');
+
+
+		$(confirmYesBtn).show();
+		$(confirmNoBtn).show();
+	},
+
+	deleteConfirm: function(e) {
+
+		if (this.classList.contains('delete-yes')) {
+			// delete the reply
+			const cardBlock = this.parentNode.parentNode.parentNode;
+			const reviewBox = this.parentNode.parentNode.parentNode;
+			const replyBtn = reviewBox.parentNode.parentNode.querySelector('button[name=freelancer-reply]');
+			const textArea = cardBlock.getElementsByTagName('textarea')[0];
+			const text = cardBlock.getElementsByTagName('p')[0];
+			const reviewId = cardBlock.parentNode.parentNode.getElementsByTagName('form')[0].name;
+
+			const data = {
+				review: ''
+			};
+			doJSONRequest("POST", "/api/review/" + reviewId, null, data, function(result) {
+				FREELANCER.timesReview(e);
+				$(reviewBox).slideUp(500);
+				$(replyBtn).show();
+				$(textArea).val('');
+				text.innerHTML = '';
+			});
+
+		} else {
+			// DO NOT delete the reply
+			const cardBlock = this.parentNode.parentNode.parentNode;
+			const confirmYesBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-yes]');
+			const confirmNoBtn = cardBlock.querySelector('button[name=freelancer-reply-delete-no]');
+
+			$(confirmYesBtn).hide();
+			$(confirmNoBtn).hide();
+		}
 
 	},
 	/**
