@@ -8,34 +8,34 @@ const MAIN_DIV = document.getElementById('main');
 const SORTING_OPTIONS = document.getElementById('sorting-buttons');
 
 let userPosition = {
-   method: null,
-   city: null,
-   state: null,
-   longitude: null,
-   latitude: null,
-   time: null,
-   onChangeCall: [
-      SEARCH.setPosition
-   ]
+	method: null,
+	city: null,
+	state: null,
+	longitude: null,
+	latitude: null,
+	time: null,
+	onChangeCall: [
+		SEARCH.setPosition
+	]
 }
 
 $(document).ready(function() {
-   window.addEventListener("hashchange", hashchanged);
+	window.addEventListener("hashchange", hashchanged);
 
-   // when page load
-   hashchanged();
+	// when page load
+	hashchanged();
 
-   UTILS.geoLocation();
+	drawMenu();
+	UTILS.geoLocation();
 });
 
 /**
  * Called to check if a user is logged
  * @return {freelancer}
  */
-let isLogged = function() {
-	doJSONRequest("GET", "/api/passport/islogged",null,null,function(res) {
-		console.log(res);
-		return res;
+let isLogged = function(cb) {
+	doJSONRequest("GET", "/api/passport/islogged", null, null, function(res) {
+		cb(res);
 	});
 }
 
@@ -44,29 +44,29 @@ let isLogged = function() {
  * @return {void}
  */
 let hashchanged = function hashchanged() {
-   let hash = (window.location.hash != '') ? window.location.hash.split('#')[1].split('=')[0] : '';
+	let hash = (window.location.hash != '') ? window.location.hash.split('#')[1].split('=')[0] : '';
 
-   if (currentPage) {
-      if (currentPage.name == hash) {
-         return;
-      }
-      currentPage.remover();
-   }
+	if (currentPage) {
+		if (currentPage.name == hash) {
+			return;
+		}
+		currentPage.remover();
+	}
 
-   console.log('page loaded or change url: ' + hash);
-   switch (hash) {
-      case 'search':
-         currentPage = SEARCH;
-         break;
+	console.log('page loaded or change url: ' + hash);
+	switch (hash) {
+		case 'search':
+			currentPage = SEARCH;
+			break;
 
-      case 'freelancer':
-         currentPage = FREELANCER;
-         break;
+		case 'freelancer':
+			currentPage = FREELANCER;
+			break;
 
-      default:
-         // No hash
-         currentPage = HOMEPAGE;
-   }
+		default:
+			// No hash
+			currentPage = HOMEPAGE;
+	}
 
-   currentPage.init();
+	currentPage.init();
 }

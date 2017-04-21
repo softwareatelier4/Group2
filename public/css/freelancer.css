@@ -171,6 +171,77 @@ h5 {
    margin-top: -5px;
 }
 
+.btn.btn-primary.active.edit, .btn.btn-primary:active.edit, .btn.btn-primary:hover.edit, .btn.btn-primary:visited.edit {
+   background-color: rgb(140, 146, 148);
+   border-color: rgb(140, 146, 148);
+   color: #fff;
+   padding: .2rem 1rem;
+   margin-right: 8px;
+}
+
+.btn.btn-primary.edit {
+   background-color: rgb(154, 157, 158);
+   border-color: rgb(154, 157, 158);
+   color: #fff;
+   padding: .2rem 1rem;
+   margin-right: 8px;
+}
+
+.btn.btn-primary.active.delete-yes, .btn.btn-primary:active.delete-yes, .btn.btn-primary:hover.delete-yes, .btn.btn-primary:visited.delete-yes {
+   background-color: rgb(140, 146, 148);
+   border-color: rgb(140, 146, 148);
+   color: #fff;
+   padding: .2rem 1rem;
+   margin-right: 5px;
+   float: right;
+}
+
+.btn.btn-primary.delete-yes {
+   background-color: rgb(154, 157, 158);
+   border-color: rgb(154, 157, 158);
+   color: #fff;
+   padding: .2rem 1rem;
+   margin-right: 5px;
+   float: right;
+}
+
+.btn.btn-primary.active.delete-no, .btn.btn-primary:active.delete-no, .btn.btn-primary:hover.delete-no, .btn.btn-primary:visited.delete-no {
+   background-color: rgb(140, 146, 148);
+   border-color: rgb(140, 146, 148);
+   color: #fff;
+   padding: .2rem 1rem;
+   float: right;
+}
+
+.btn.btn-primary.delete-no {
+   background-color: rgb(154, 157, 158);
+   border-color: rgb(154, 157, 158);
+   color: #fff;
+   padding: .2rem 1rem;
+   float: right;
+}
+
+.custom-text-card {
+   margin-bottom: 4px;
+}
+
+
+/*button circle*/
+
+.btn.btn-primary.active.btn-circle, .btn.btn-primary:active.btn-circle, .btn.btn-primary:hover.btn-circle, .btn.btn-primary:visited.btn-circle {
+   background-color: rgb(140, 146, 148);
+   border-color: rgb(140, 146, 148);
+   color: #fff;
+   margin-right: 5px;
+}
+
+.btn.btn-primary.btn-circle {
+   background-color: rgb(231, 231, 231);
+   border-color: rgb(154, 157, 158);
+   color: rgb(154, 157, 158);
+   margin-right: 2px;
+}
+
 @media screen and (max-width: 1110px) {
    #profile-freelancer {
       min-width: 0 !important;
@@ -197,4 +268,9 @@ h5 {
    #thumbnail {
       margin-left: 0px;
    }
+}
+
+
+}
+
 }

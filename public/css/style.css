@@ -7,6 +7,11 @@
 body, html {
    width: 100%;
    height: 100%;
+   background-color: rgb(231, 231, 231);
+}
+
+.bg-faded {
+   background-color: rgb(46, 78, 92);
 }
 
 #main {
@@ -163,10 +168,14 @@ body, html {
    height: 35px;
 }
 
-.price-km {
+.km-time {
    display: flex;
    justify-content: space-between;
    color: rgb(78, 108, 121);
+}
+
+.price {
+	margin-left: 8px;
 }
 
 .card {
@@ -175,6 +184,32 @@ body, html {
 
 .align-right {
    float: right;
+}
+
+.navbar-light .navbar-nav .nav-link {
+   color: rgb(255, 255, 255);
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+   color: rgb(202, 197, 197);
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.open, .navbar-light .navbar-nav .open>.nav-link {
+   color: rgb(255, 255, 255);
+}
+
+@media(max-width: 1000px) {
+   .navbar-toggler {
+      background-color: #253a44;
+   }
+}
+
+a.nav-link {
+   margin-top: 10px;
+}
+
+.white {
+   color: rgb(231, 231, 231);
 }
 
 
@@ -215,14 +250,14 @@ Loading Spinner
    }
 }
 
-
-.error-red{
-   color:red;
+.error-red {
+   color: red;
 }
 
-.error-green{
-   color:green;
+.error-green {
+   color: green;
 }
+
 
 /*----------------------------------------
 Button
@@ -256,13 +291,25 @@ Button
    border-color: rgb(46, 78, 92);
 }
 
+.btn-circle {
+   width: 30px;
+   height: 30px;
+   text-align: center;
+   padding: 6px 0;
+   font-size: 12px;
+   line-height: 1.428571429;
+   border-radius: 15px;
+}
+
+
 /*----------------------------------------
 Error color's for freelancer update
 ----------------------------------------*/
-.error-red{
-   color:red;
+
+.error-red {
+   color: red;
 }
 
-.error-green{
-   color:green;
+.error-green {
+   color: green;
 }
