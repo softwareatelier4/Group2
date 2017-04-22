@@ -715,6 +715,7 @@ const SEARCH = {
 							if (c[i]._id == freelancerId) {
 								c[i].distance = distance;
 								c[i].time = duration;
+								c[i].googleMaps = true;
 							}
 						}
 
@@ -723,6 +724,7 @@ const SEARCH = {
 							if (c[i]._id == freelancerId) {
 								c[i].distance = distance;
 								c[i].time = duration;
+								c[i].googleMaps = true;
 							}
 						}
 
@@ -770,7 +772,12 @@ const SEARCH = {
 		} else {
 			distance = "";
 		}
-
+		let time;
+		if (freelancer.time) {
+			time = SEARCH.writeTimeBetter(freelancer.time);
+		} else {
+			time = "";
+		}
 		let price;
 		if (freelancer.price) {
 			price = freelancer.price + "€";
@@ -785,11 +792,13 @@ const SEARCH = {
 				'name': freelancer.firstName + " " + freelancer.lastName,
 				'price': price,
 				'distance': distance,
+				'time': time,
 				'tags': freelancer.tags,
-				'score': freelancer.score = FREELANCER.getHtmlRankStar({
+				'score': FREELANCER.getHtmlRankStar({
 					full: freelancer.score,
 					empty: 5 - freelancer.score
-				})
+				}),
+				'googleMaps': freelancer.googleMaps
 			}
 		};
 

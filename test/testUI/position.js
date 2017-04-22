@@ -22,12 +22,11 @@ module.exports = {
 
 		utils.setPositionBox(client, 'Piacenza');
 
-
 		client
 			.click('span[id=basic-addon1]')
-			.pause(1000)
+			.pause(100)
 			.assert.urlContains('city=Piacenza')
-			.assert.urlContains('state=Italy')
+			.assert.urlContains('formatted_address=Piacenza,$Province$of$Piacenza,$Italy')
 			.assert.urlContains('latitude=45.0526206&longitude=9.692984499999966')
 			.end();
 

@@ -281,8 +281,7 @@ module.exports.setPositionBox = function setPositionBox(client, city, i) {
 
 	const style = 'display: none;';
 	client.getAttribute('.pac-container', 'style', function(result) {
-		let index = result.value.indexOf(style);
-		if (index != -1) {
+		if (result.value && result.value.indexOf(style) != -1) {
 			client
 				.clearValue('input[id=position]')
 				.setValue('input[id=position]', city)

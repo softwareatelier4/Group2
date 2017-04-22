@@ -1,18 +1,18 @@
 <div class='card result-card' id="{freelancer.id}">
-   <div class='card-img-top' alt='Card image cap' {?freelancer.photo} style="background-image:url('{freelancer.photo}');" {:else} style="background-image:url('../img/default_user.jpg');" {/freelancer.photo}></div>
-   <div class='card-block'>
-         <h4 style="float:left" class='card-title'>{freelancer.name}</h4>
-         <div style="float:right" class="score">
-				{freelancer.score|s}
-			</div>
-         <div style="clear:both;"></div>
-      <div class="km-time">
-         <span class='card-text'>{?freelancer.distance}~{freelancer.distance}{:else} -- km{/freelancer.distance}</span>
-         <span class='card-text'>{?freelancer.time}~{freelancer.time}{/freelancer.time}</span>
-      </div>
-      <p class='card-text'>{#freelancer.tags} <span class="badge badge-default"> {name} </span>{/freelancer.tags}</p>
-      <img src="/html/moneyicon.png" width="24px"></img>
-      <span class='price'>{?freelancer.price}{freelancer.price}{:else} -- €{/freelancer.price}/h</span>
-      <button type="button" class="align-right btn btn-primary">More info</button>
-   </div>
+    <div class='card-img-top' alt='Card image cap' {?freelancer.photo} style="background-image:url('{freelancer.photo}');" {:else} style="background-image:url('../img/default_user.jpg');" {/freelancer.photo}></div>
+    <div class='card-block'>
+        <h4 style="float:left" class='card-title'>{freelancer.name}</h4>
+        <div style="float:right" class="score">
+            {freelancer.score|s}
+        </div>
+        <div style="clear:both;"></div>
+        <div class="km-time">
+            <span class='card-text'>{?freelancer.distance}{^freelancer.googleMaps}~{/freelancer.googleMaps}{freelancer.distance}{:else} -- km{/freelancer.distance}</span>
+            <span class='card-text'>{?freelancer.time}{^freelancer.googleMaps}~{/freelancer.googleMaps}{freelancer.time}{/freelancer.time}</span>
+        </div>
+        <p class='card-text'>{#freelancer.tags} <span class="badge badge-default"> {name} </span>{/freelancer.tags}</p>
+        <img src="/html/moneyicon.png" width="24px"></img>
+        <span class='price'>{?freelancer.price}{freelancer.price}{:else} -- €{/freelancer.price}/h</span>
+        <button type="button" class="align-right btn btn-primary">More info</button>
+    </div>
 </div>
