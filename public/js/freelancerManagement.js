@@ -3,6 +3,7 @@ const FREELANCERMANAGEMENT = {
     idFreelancer : null,
     tagsTemp : null,
     name: 'FREELANCERMANAGEMENT',
+    addedTags : [],
     getFreelancerInfo: function() {
 
         var url = window.location.href;
@@ -36,11 +37,11 @@ const FREELANCERMANAGEMENT = {
 
                     tagsTemp = [];
 
-                    // if(data.freelancer.tags != null){
-                    //     tagsTemp = data.freelancer.tags.map(function(el) {
-                    //         return el['name'];
-                    //     });
-                    // }
+                    if(data.freelancer.tags != null){
+                        tagsTemp = data.freelancer.tags.map(function(el) {
+                            return el['name'];
+                        });
+                    }
 
 
 					// var $tags = $('#modal-tags').selectize({
@@ -50,12 +51,13 @@ const FREELANCERMANAGEMENT = {
 					// });
 
 					// var selectize_tags = $("#modal-tags")[0].selectize
-					// for (let i = 0; i < tagsTemp.length; i++) {
-					// 	// console.log(tagsTemp[i]);
-					// 	selectize_tags.addOption({
-					// 		text: tagsTemp[i],
-					// 		value:  tagsTemp[i]
-					// 	});
+                    let tagsList = document.getElementById('tags-list');
+                    
+					for (let i = 0; i < tagsTemp.length; i++) {
+                        let badge = `<span class="badge badge-primary">`+ tagsTemp[i] +`  <span style="cursor: pointer;" onclick="FREELANCERMANAGEMENT.removeTag(this)" data-tag="`+ tagsTemp[i] +`" aria-hidden="true">&times;</span></span>  `;
+						FREELANCERMANAGEMENT.addedTags.push(tagsTemp[i]);
+                        tagsList.innerHTML += badge;
+                    }
 					// 	selectize_tags.addItem(tagsTemp[i]);
 					// }
 				});
@@ -212,11 +214,11 @@ const FREELANCERMANAGEMENT = {
         let price = document.getElementById('modal-price');
 
         //console.log(document.getElementById("modal-tags").value);
-        let temp_tags = document.getElementById("modal-tags").value.split(",");
-        let tags = [];
-        for(let j = 0; j<temp_tags.length; j++){
-            tags.push(temp_tags[j]);  
-        }
+        // let temp_tags = document.getElementById("modal-tags").value.split(",");
+        // let tags = [];
+        // for(let j = 0; j<temp_tags.length; j++){
+        //     tags.push(temp_tags[j]);  
+        // }
         //console.log(tags);
         let freelancer_update = {
 			'firstName' : firstName.value,
@@ -241,7 +243,7 @@ const FREELANCERMANAGEMENT = {
             'price' : price.value
 		};
 
-        doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+freelancer.address.city+"+"+freelancer.address.street+"+"+freelancer.address.number,null,null,function(res){
+        doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+freelancer_update.address.city+"+"+freelancer_update.address.street+"+"+freelancer_update.address.number,null,null,function(res){
 			if(res.status == "OK"){
 				freelancer_update.address.lat = res.results[0].geometry.location.lat;
 				freelancer_update.address.long = res.results[0].geometry.location.lng;
@@ -257,7 +259,6 @@ const FREELANCERMANAGEMENT = {
     },
 
 	result : {},
-	addedTags : [],
 
 	/**
 	* Do the json request for hinting the tags
