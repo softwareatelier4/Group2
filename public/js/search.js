@@ -646,7 +646,13 @@ const SEARCH = {
 		$("#position")
 			.geocomplete()
 			.bind("geocode:result", function(event, result) {
-				const city = UTILS.googleFindType(result.address_components, 'locality').long_name;
+				let city = UTILS.googleFindType(result.address_components, 'locality')
+
+				if (city) {
+					city = city.long_name;
+				} else {
+					city = result.address_components[0].long_name;
+				}
 
 				const formatted_address = result.formatted_address;
 
@@ -803,6 +809,8 @@ const SEARCH = {
 		};
 
 		dust.renderSource(card, data, function(err, out) {
+			if (document.getElementById(freelancer._id))
+				return;
 			MAIN_JS.insertAdjacentHTML('beforeend', out);
 
 			let link = document.getElementById(freelancer._id).getElementsByTagName('button')[0];
