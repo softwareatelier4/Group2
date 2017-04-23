@@ -40,7 +40,7 @@ const FREELANCERCLAIMADMIN = {
 	},
 	acceptRequest: function(e) {
 		let claimId = e.target.value;
-		doJSONRequest("POST", "/api/claimrequest/" + claimId, null, {
+		doJSONRequest("PUT", "/api/claimrequest/" + claimId, null, {
 			status: "Accepted"
 		}, function(res) {
 			location.reload(true);
@@ -49,7 +49,7 @@ const FREELANCERCLAIMADMIN = {
 	},
 	refuseRequest: function(e) {
 		let claimId = e.target.value;
-		doJSONRequest("POST", "/api/claimrequest/" + claimId, null, {
+		doJSONRequest("PUT", "/api/claimrequest/" + claimId, null, {
 			status: "Refused"
 		}, function(res) {
 			location.reload(true);

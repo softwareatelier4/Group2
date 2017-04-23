@@ -3,6 +3,7 @@ const FREELANCERMANAGEMENT = {
     idFreelancer : null,
     tagsTemp : null,
     name: 'FREELANCERMANAGEMENT',
+    addedTags : [],
     getFreelancerInfo: function() {
 
         var url = window.location.href;
@@ -43,21 +44,22 @@ const FREELANCERMANAGEMENT = {
                     }
 
 
-					var $tags = $('#modal-tags').selectize({
-						delimiter: ',',
-						persist: false,
-						create: true
-					});
+					// var $tags = $('#modal-tags').selectize({
+					// 	delimiter: ',',
+					// 	persist: false,
+					// 	create: true
+					// });
 
-					var selectize_tags = $("#modal-tags")[0].selectize
+					// var selectize_tags = $("#modal-tags")[0].selectize
+                    let tagsList = document.getElementById('tags-list');
+                    
 					for (let i = 0; i < tagsTemp.length; i++) {
-						// console.log(tagsTemp[i]);
-						selectize_tags.addOption({
-							text: tagsTemp[i],
-							value:  tagsTemp[i]
-						});
-						selectize_tags.addItem(tagsTemp[i]);
-					}
+                        let badge = `<span class="badge badge-primary">`+ tagsTemp[i] +`  <span style="cursor: pointer;" onclick="FREELANCERMANAGEMENT.removeTag(this)" data-tag="`+ tagsTemp[i] +`" aria-hidden="true">&times;</span></span>  `;
+						FREELANCERMANAGEMENT.addedTags.push(tagsTemp[i]);
+                        tagsList.innerHTML += badge;
+                    }
+					// 	selectize_tags.addItem(tagsTemp[i]);
+					// }
 				});
 			}
 		});
@@ -212,11 +214,11 @@ const FREELANCERMANAGEMENT = {
         let price = document.getElementById('modal-price');
 
         //console.log(document.getElementById("modal-tags").value);
-        let temp_tags = document.getElementById("modal-tags").value.split(",");
-        let tags = [];
-        for(let j = 0; j<temp_tags.length; j++){
-            tags.push(temp_tags[j]);  
-        }
+        // let temp_tags = document.getElementById("modal-tags").value.split(",");
+        // let tags = [];
+        // for(let j = 0; j<temp_tags.length; j++){
+        //     tags.push(temp_tags[j]);  
+        // }
         //console.log(tags);
         let freelancer_update = {
 			'firstName' : firstName.value,
@@ -230,20 +232,72 @@ const FREELANCERMANAGEMENT = {
 				'road' : street.value,
 				'number' : number.value,
 				'cap' : zip.value,
-				'lat' : 0,
-				'long': 0
+				'lat' : undefined,
+				'long': undefined
 			},
             'photos' : photos,
             'profilePhoto' : profilePic,
 			//'tags' : data.freelancer.tags,
-            'tags' : tags,
+            'tags' : FREELANCERMANAGEMENT.addedTags,
             'score' : null,
             'price' : price.value
 		};
 
-        doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
-            location.reload();
+        doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+freelancer_update.address.city+"+"+freelancer_update.address.street+"+"+freelancer_update.address.number,null,null,function(res){
+			if(res.status == "OK"){
+				freelancer_update.address.lat = res.results[0].geometry.location.lat;
+				freelancer_update.address.long = res.results[0].geometry.location.lng;
+			}
+
+            doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
+                location.reload();
+		    });
+
 		});
-    }
+
+
+    },
+
+	result : {},
+
+	/**
+	* Do the json request for hinting the tags
+	*/
+	tagHinter: function() {
+		let tagText = document.getElementById('tags');
+		let tagsList = document.getElementById('tags-list');
+		let oldInput = tagText.value;
+		tagText.value = tagText.value.replace(/[^A-Za-z]/g, '');
+		if(tagText.value.length > 0 && oldInput == tagText.value && event.key != "Enter") {
+			var availableTags = [];
+			doJSONRequest("GET", "/api/tag/search/" + tagText.value, null, null, function(res) {
+				FREELANCERMANAGEMENT.result = res;
+				for(let tag of res) {
+					availableTags = availableTags.concat([tag.name]);
+				}
+				$( "#tags" ).autocomplete({
+					source: availableTags
+				});
+			});
+		}
+		if(tagText.value.length > 0 && event.key == "Enter" && !FREELANCERMANAGEMENT.addedTags.includes(tagText.value)){
+			let badge = `<span class="badge badge-primary">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERMANAGEMENT.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
+			FREELANCERMANAGEMENT.addedTags.push(tagText.value);
+			tagText.value = '';
+			tagsList.innerHTML += badge;
+		}
+	},
+
+	/**
+	* Function called when clicking on the "x" of a tag
+	*/
+	removeTag: function(span) {
+		let tagName = span.dataset.tag;
+		let index = FREELANCERMANAGEMENT.addedTags.indexOf(tagName);
+		if(index > - 1) {
+			FREELANCERMANAGEMENT.addedTags.splice(index, 1);
+		}
+		span.parentNode.parentNode.removeChild(span.parentNode);
+	}
 
 }

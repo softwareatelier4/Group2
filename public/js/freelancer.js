@@ -73,21 +73,26 @@ const FREELANCER = {
 						userId = ress.result;
 						doJSONRequest("GET", "/api/claimrequest", null, null, function(response) {
 							let hasReqPending = false;
+							let userHasFreelancer = false;
+							if (userId.freeLancerId != undefined) {
+								userHasFreelancer = true;
+							}
+							console.log(userHasFreelancer);
 							for (let r of response) {
-								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
+								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending' && userId.level != 0) {
 									hasReqPending = true;
 								}
 							}
-							if (owner === undefined && userId !== false && hasReqPending === false) {
-								document.getElementById("claim-button").style.visibility = "visible";
+							if (owner === undefined && userId !== false && hasReqPending === false && userHasFreelancer === false) {
+								$(document.getElementById("claim-button")).show();
 							}
 							if (hasReqPending === true) {
-								document.getElementById("pending-claim-button").style.visibility = "visible";
+								$(document.getElementById("pending-claim-button")).show();
 							}
 
 							console.log(userId._id);
 							if (owner && owner._id === userId._id) {
-								document.getElementById("modify-button").style.visibility = "visible";
+								$(document.getElementById("modify-button")).show();
 							}
 						})
 					});
@@ -326,14 +331,14 @@ const FREELANCER = {
 			let description = descriptionDom.value;
 
 			data = new FormData();
-			data.append('file', $('#uploadPicture')[0].files[0]);
+			data.append('file', $('#uploadPictureClaim')[0].files[0]);
 			data.append('userid', userId);
 			data.append('freelancerid', freelancerId);
 			data.append('description', description);
 
 			xhr = new XMLHttpRequest();
 
-			xhr.open('PUT', '/api/claimrequest/', true);
+			xhr.open('POST', '/api/claimrequest/', true);
 			xhr.onreadystatechange = function(response) {
 				console.log(response);
 			};
@@ -344,7 +349,7 @@ const FREELANCER = {
 	},
 	checkData: function() {
 		let description = document.getElementById('modal-descriptionClaim').value;
-		let photo = document.getElementById('uploadPicture').value;
+		let photo = document.getElementById('uploadPictureClaim').value;
 		document.getElementById("modal-photos-label").className = '';
 		document.getElementById("modal-photos-label").innerHTML = "Please, upload your identity card.";
 		document.getElementById("modal-description-label").className = '';
