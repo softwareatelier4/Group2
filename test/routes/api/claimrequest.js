@@ -43,7 +43,7 @@ describe('Testing POST for localhost:3000/api/claimrequest', function() {
 					"freelancer": "f00000000000000000000002",
 					"status": "Pending",
 					"notes": "test post"
-				})
+				}).end()
 			request(app)
 				.get('/api/claimrequest')
 				.set('Accept', 'application/json')
