@@ -1,0 +1,8 @@
+.card {
+	border: 1px solid rgba(122, 122, 122, 0.5);
+}
+
+label {
+	color: rgb(255, 0, 0);
+	display: none;
+}

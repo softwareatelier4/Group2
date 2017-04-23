@@ -48,7 +48,7 @@ router.get('/freelancer/:freelancerid', function(req, res, next) {
 })
 
 //reply to review
-router.all('/:reviewid', middleware.supportedMethods('POST, OPTIONS'));
+router.all('/:reviewid', middleware.supportedMethods('POST, DELETE, OPTIONS'));
 router.post('/:reviewid', function(req, res, next) {
 	let answer = req.body.review;
 	let reviewId = req.params.reviewid;
@@ -66,8 +66,7 @@ router.post('/:reviewid', function(req, res, next) {
 			res.status(400).send(err);
 			return;
 		}
-
-		if (save.nModified == 0) {
+		if (save.ok == 0 || save.n == 0) {
 			res.status(404).send(save);
 			return;
 		}
