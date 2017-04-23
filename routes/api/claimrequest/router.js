@@ -47,8 +47,6 @@ router.post('/', function(req, res, next) {
 
 	form.parse(req, function(err, fields, files) {
 		if (err) return next(err);
-		// console.log(fields);
-		// console.log(files);
 		let savePath = files.file.path;
 		let i = savePath.lastIndexOf('/');
 
@@ -59,10 +57,13 @@ router.post('/', function(req, res, next) {
 		claimRequest.freelancer = fields.freelancerid;
 		claimRequest.status = 'Pending';
 		claimRequest.notes = fields.description;
-		claimRequest.photos = ['/uploads/claimRequests/' + fileName];
+		claimRequest.photos = '/uploads/claimRequests/' + fileName;
+		claimRequest.save(function(err, saved) {
+			if (err) res.send(err);
 
-		console.log(claimRequest);
-		claimRequest.save(onModelSave(res, 200, true));
+			console.log(saved);
+			res.send(saved);
+		});
 	});
 });
 
