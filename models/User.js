@@ -7,6 +7,7 @@
  * password      String     required         Password for the user account
  * firstName     String     required         First name of the user
  * lastName      String     required         Last name of the user
+ * level 		  Number		 optional			User's security level
  */
 
 'use strict';
@@ -36,6 +37,10 @@ var userSchema = new mongoose.Schema({
 	email: {
 		type: String,
 		required: true
+	},
+	level: {
+		type: Number,
+		default: 1
 	}
 });
 

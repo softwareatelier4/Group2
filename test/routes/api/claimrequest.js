@@ -31,6 +31,34 @@ describe('Testing Read for api/claimrequest', function() {
 	});
 });
 
+describe('Testing POST for localhost:3000/api/claimrequest', function() {
+	describe('POST /api/claimrequest', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('should respond with redirect on post', function(done) {
+			request(app)
+				.post('/api/claimrequest')
+				.send({
+					"user": "b00000000000000000000002",
+					"freelancer": "f00000000000000000000002",
+					"status": "Pending",
+					"notes": "test post"
+				})
+			request(app)
+				.get('/api/claimrequest')
+				.set('Accept', 'application/json')
+				.expect(200)
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.end(function(err, res) {
+					if (err) done(err);
+					let reqClaim = JSON.parse(res.text);
+					reqClaim.should.have.length(1);
+					done();
+				});
+		});
+	});
+});
+
 describe('Testing put for claimrequest', function() {
 	describe('PUT /api/claimrequest/claimId', function() {
 		before(seed);
