@@ -39,10 +39,18 @@ let drawLoginMenu = function() {
 				link: '/registration.html'
 			};
 		} else {
+			if (logged.level == 0) {
+				menuEl.claim = {
+					name: 'Claim request',
+					link: '/html/claimRequestsView.html'
+				};
+			}
+
 			menuEl.logout = {
 				name: 'Logout',
 				fnOnClick: 'LOGIN.logout()'
 			};
+
 		}
 
 		$.get("/html/menuElement.html", function(elementHTML) {
