@@ -1,4 +1,16 @@
+'use strict';
+var seedDb = require('../seedDb');
+var utils = require('../utils');
+
 module.exports = {
+	beforeEach: (browser, done) => {
+		seedDb.seed(done);
+	},
+
+	afterEach: (browser, done) => {
+		utils.dropDbAndCloseConnection(done);
+	},
+
 	'indexUI Tests': function(page) {
 		page
 			.url('http://localhost:3000/freelancerCreation.html')

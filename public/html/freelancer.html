@@ -18,9 +18,8 @@
 					<button type="button" id="claim-button" class="btn btn-primary" data-toggle="modal" data-target="#claim-freelancer-modal" style="margin-left: 5px; visibility: hidden;">
                	Claim this profile
                </button>
-					<button type="button" id="pending-claim-button" class="btn btn-primary" onclick='return false;' style="margin-left: 5px; visibility: hidden;">
-	               Pending Request
-	            </button>
+					<div class="alert alert-info" id="pending-claim-button" role="alert" style="margin-left: 5px; visibility: hidden;">Pending Request</div>
+
 				</div>
 			</div>
 			<div id="rank" class="ml-15">
@@ -61,17 +60,19 @@
 
 		<div id="img-freelancer">
 			<div id="works" class="blue">
-				{?freelancer.photos}<i class="fa fa-camera" aria-hidden="true"></i>
+				{?freelancer.photosThumbnail}<i class="fa fa-camera" aria-hidden="true"></i>
 				<h5>WORKS</h5>
 			</div>
 			<div id="thumbnail">
-				{#freelancer.photos}
-				<a href="{.}" data-lightbox="work-img"><img class="thumbnail-element" src="{.}" /></a>{/freelancer.photos} {/freelancer.photos}
+				{#freelancer.photosThumbnail}
+				<a href="{.}" data-lightbox="work-img"><img class="thumbnail-element" src="{.}" /></a>
+				{/freelancer.photosThumbnail} {#freelancer.photos}
+				<a href="{.}" data-lightbox="work-img"></a>
+				{/freelancer.photos}{/freelancer.photosThumbnail}
 			</div>
 		</div>
 	</div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="update-freelancer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -107,8 +108,10 @@
 						<input type="number" class="form-control" id="modal-price" aria-describedby="price" placeholder="Enter price">
 					</div>
 					<div class="form-group">
-						<label for="modal-tags">Tags: </label>
-						<input type="text" class="selectize-input items not-full has-options" id="modal-tags">
+						<label for="tags">Tags: </label>
+						<input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags" onkeypress="return event.keyCode != 13;" onkeyup="FREELANCERMANAGEMENT.tagHinter()" autocomplete="off">
+						<div id="tags-list">
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="modal-email" id="modal-email-label">Email address: </label>
@@ -142,7 +145,7 @@
 				<div class="modal-body">
 					<div class="form-group">
 						<label for="modal-photos" id="modal-photos-label">Please, upload your identity card.</label><br>
-						<input type="file" name="uploadPicture" id="uploadPicture" accept="image/*" />
+						<input type="file" name="uploadPicture" id="uploadPictureClaim" accept="image/*" />
 					</div>
 					<div class="form-group">
 						<label for="modal-descriptionClaim" id="modal-description-label">Description</label>

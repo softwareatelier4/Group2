@@ -1,16 +1,19 @@
+/*jshint esversion: 6 */
+
 const SEARCH = {
 
 	name: 'search',
 
+	// after n milliseconds the search starts
 	doneTypingInterval: 500,
 
+	// Search box position
 	position: {
 		city: null,
-		state: null,
+		formatted_address: null,
 		latitude: null,
 		longitude: null,
-		method: null,
-		observers: []
+		method: null
 	},
 
 	currentResult: [],
@@ -31,40 +34,78 @@ const SEARCH = {
 	},
 
 	/**
-	 * Set up the search
+	 * Search initializer
 	 * @return {void}
 	 */
 	init: function() {
 
+		// #search=value, take the value
 		let searchVal = window.location.hash.split('|')[0].split('=')[1];
-
-		SEARCH.getFilterHash();
-		SEARCH.setFilterHash();
 
 		// Display the search in fullscreen if nothing in search bar, else display header and search
 		if (searchVal == '') {
 			SEARCH.searchFullScreen()
 		} else {
 			SEARCH.searchHeader();
-
-			// setTimeout(SEARCH.search, 0);
 		}
 
-		SEARCH.hashUpdater();
+		// given the hash, set the search box
 		SEARCH.hashToValue();
-		SEARCH.listenerAdd();
-		SEARCH.addGeolocationListener();
 
+		// set the filters
+		SEARCH.getFilterHash();
+		SEARCH.setFilterHash();
+
+		// set the position
 		SEARCH.getPositionHash();
 		SEARCH.setPositionHash();
 
+		SEARCH.addon_init();
+
+		// if there is a search, make the search!
+		if (SEARCH_TEXT_QUERY.val() !== '') {
+			SEARCH.search();
+		}
+
 	},
 
+	/**
+	 * Called from external page to initialize the search bar
+	 * @return {void}
+	 */
 	addon_init: function() {
+		// add the necessary listeners
+		SEARCH.listenerAdd();
+
+		// update the hash when someone search something
 		SEARCH.hashUpdater();
+
+		// find the geolocalization of a person
 		SEARCH.addGeolocationListener();
+
+		// set the position when the user input it
+		$('#position').on('keyup', function() {
+			if ($('#position').val() == '') {
+				$('#position').blur(function() {
+					SEARCH.setPosition('reset');
+				});
+			} else {
+				$('#position').off('blur');
+			}
+		});
 	},
 
+	/**
+	 * Remove not needed listeners from the input-search
+	 * @return {void}
+	 */
+	remover: function() {
+		SEARCH_TEXT_QUERY.off();
+		$('#basic-addon1').off();
+		$("#position").off();
+		FILTER_DISTANCE_QUERY.off();
+		FILTER_PRICE_QUERY.off();
+	},
 
 	/**
 	 * View the search bar in full screen
@@ -103,6 +144,7 @@ const SEARCH = {
 			arrow.style.display = 'none';
 			arrow.style.visibility = 'hidden';
 		}
+		//////////////////////////////////////////////////////////////////
 	},
 
 
@@ -158,18 +200,6 @@ const SEARCH = {
 		FILTER_DISTANCE_QUERY.on('keydown', function() {
 			clearTimeout(typingTimer);
 		});
-
-		$('#position').on('keyup', function() {
-			if ($('#position').val() == '') {
-				$('#position').blur(function() {
-					SEARCH.setPosition('reset');
-				});
-			} else {
-				$('#position').off('blur');
-			}
-		});
-
-		SEARCH.position.observers = [SEARCH.search];
 	},
 
 	/**
@@ -426,16 +456,23 @@ const SEARCH = {
 			}
 
 		});
-
 		SEARCH.drawCards(SEARCH.currentResult);
 	},
 
+	/**
+	 * Draw the card usign DUST JS
+	 * @param {array} freelancers -
+	 * @return {void}
+	 */
 	drawCards: function(freelancers) {
 		let searchResult = document.getElementById('main-content');
 		searchResult.innerHTML = "";
-		for (freelancer of freelancers) {
-			SEARCH.insertCard(freelancer);
-		}
+		$.get("/html/searchCard.html", function(cardHtml) {
+			for (freelancer of freelancers) {
+
+				SEARCH.insertCard(freelancer, cardHtml);
+			}
+		}, 'html');
 		if (SEARCH.currentResult.length == 0) {
 			searchResult.innerHTML = "<h3 style='margin-top:30px;'> No result </h3>";
 		}
@@ -474,7 +511,7 @@ const SEARCH = {
 	},
 
 	/**
-	 * Update the current URL adding the searched value
+	 * Listener to update the current URL adding the searched value
 	 * @return {void}
 	 */
 	hashUpdater: function() {
@@ -482,6 +519,10 @@ const SEARCH = {
 		$('#basic-addon1').on('click', SEARCH.setSearchHash);
 	},
 
+	/**
+	 * Update the current URL adding the searched value
+	 * @return {void}
+	 */
 	setSearchHash: function() {
 		let searchHash = SEARCH_TEXT_QUERY.val().replace(/ /g, '+').replace(/|/g, '');
 		let hash = window.location.hash.split('|');
@@ -493,27 +534,29 @@ const SEARCH = {
 		window.location.hash = hash.join('|');
 	},
 
-	setPosition: function(method, latitude, longitude, city, state) {
+	/**
+	 * Update the SEARCH.position object.
+	 * @return {void}
+	 */
+	setPosition: function(method, latitude, longitude, city, formatted_address) {
 		method = method || '';
 
 		if (method == 'user') {
 			SEARCH.position = {
 				city,
-				state,
+				formatted_address,
 				latitude,
 				longitude,
-				method,
-				observers: SEARCH.position.observers
+				method
 			};
 		} else {
 			if (method == 'empty_location' || SEARCH.position.method != 'user' || method == 'reset') {
 				SEARCH.position = {
 					city: userPosition.city,
-					state: userPosition.state,
+					formatted_address: userPosition.formatted_address,
 					latitude: userPosition.latitude,
 					longitude: userPosition.longitude,
-					method: method,
-					observers: SEARCH.position.observers
+					method: method
 				};
 			} else {
 				return;
@@ -524,22 +567,25 @@ const SEARCH = {
 		SEARCH.setPositionHash();
 
 		if (currentPage.name != 'search') {
-			console.log('diverso');
 			return;
-		}
-
-		for (cb of SEARCH.position.observers) {
-			cb();
 		}
 	},
 
+	/**
+	 * Update the position box but only if it is not in focus
+	 * @return {void}
+	 */
 	setPositionBox: function() {
 		if ($('#position').is(":focus")) {
 			return;
 		}
-		$('#position').val(SEARCH.position.city + ', ' + SEARCH.position.state);
+		$('#position').val(SEARCH.position.formatted_address);
 	},
 
+	/**
+	 * Get the position values from the hash
+	 * @return {void}
+	 */
 	getPositionHash: function() {
 		let hashes = window.location.hash.split('|');
 
@@ -558,11 +604,15 @@ const SEARCH = {
 				hashObj[h.split('=')[0]] = h.split('=')[1];
 			}
 
-			SEARCH.setPosition('user', hashObj.latitude, hashObj.longitude, hashObj.city, hashObj.state);
+			SEARCH.setPosition('user', hashObj.latitude, hashObj.longitude, hashObj.city, hashObj.formatted_address.replace(/\$/g, ' '));
 		}
 
 	},
 
+	/**
+	 * Set the position hash from the position box
+	 * @return {void}
+	 */
 	setPositionHash: function() {
 		if (currentPage.name != 'search')
 			return;
@@ -576,7 +626,10 @@ const SEARCH = {
 			}
 		}
 
-		let hash = 'position:city=' + SEARCH.position.city + '&state=' + SEARCH.position.state;
+		if (!SEARCH.position.city)
+			return;
+
+		let hash = 'position:city=' + SEARCH.position.city + '&formatted_address=' + SEARCH.position.formatted_address.replace(/ /g, '$');
 		hash += '&latitude=' + SEARCH.position.latitude + '&longitude=' + SEARCH.position.longitude;
 
 		if (positionHash) {
@@ -593,17 +646,20 @@ const SEARCH = {
 		$("#position")
 			.geocomplete()
 			.bind("geocode:result", function(event, result) {
-				const city = result.address_components[0].long_name;
+				const city = UTILS.googleFindType(result.address_components, 'locality').long_name;
 
-				const addressLen = result.address_components.length;
-				const state = result.address_components[addressLen - 1].long_name;
+				const formatted_address = result.formatted_address;
 
 				const lat = result.geometry.location.lat();
 				const lng = result.geometry.location.lng();
-				SEARCH.setPosition('user', lat, lng, city, state);
+				SEARCH.setPosition('user', lat, lng, city, formatted_address);
 			});
 	},
 
+	/**
+	 * Google API - calculate the distance
+	 * @return {void}
+	 */
 	getGmapRealValue: function(data) {
 
 		const origin = new google.maps.LatLng(SEARCH.position.latitude, SEARCH.position.longitude);
@@ -625,14 +681,33 @@ const SEARCH = {
 		}, gmapsResults);
 
 		function gmapsResults(response, status) {
-			console.log(response);
+
+			// update the card with the new infos
+			function updateCard(freelancerId, distance, duration, i) {
+				i = i || 0;
+
+				const freelancerDom = $('#' + freelancerId);
+				if (freelancerDom[0]) {
+					const dom = $('#' + freelancerId + ' .km-time .card-text')[0];
+					dom.innerHTML = distance + ' km';
+					const dom1 = $('#' + freelancerId + ' .km-time .card-text')[1];
+					dom1.innerHTML = SEARCH.writeTimeBetter(duration);
+				} else if (i < 5) {
+					// if the element does not exists yet, retry in 5ms
+					setTimeout(() => {
+						updateCard(freelancerId, distance, duration, ++i);
+					}, 5);
+				}
+			}
+
+
 			if (status == 'OK') {
 				for (let i in response.rows[0].elements) {
 					let elem = response.rows[0].elements[i];
 					if (elem.status == 'OK') {
 
 						const freelancerId = data[i].id;
-						const distance = (elem.distance.value / 1000).toFixed(2);;
+						const distance = (elem.distance.value / 1000).toFixed(2);
 						const duration = elem.duration.value / 60 / 60;
 
 						for (let i in SEARCH.currentResult) {
@@ -640,6 +715,7 @@ const SEARCH = {
 							if (c[i]._id == freelancerId) {
 								c[i].distance = distance;
 								c[i].time = duration;
+								c[i].googleMaps = true;
 							}
 						}
 
@@ -648,19 +724,31 @@ const SEARCH = {
 							if (c[i]._id == freelancerId) {
 								c[i].distance = distance;
 								c[i].time = duration;
+								c[i].googleMaps = true;
 							}
 						}
 
-						const freelancerDom = $('#' + freelancerId);
-						if (freelancerDom) {
-							const dom = $('#' + freelancerId + ' .price-km .card-text')[1];
-							dom.innerHTML = distance + ' km';
-						}
+						updateCard(freelancerId, distance, duration);
 					}
 				}
 			}
 		}
 
+	},
+
+	/**
+	 * Return the time written like tot h tot min
+	 * @param {Number} - Time to convert
+	 * @return {String} - Time rewritten
+	 */
+	writeTimeBetter: function(time) {
+		if (time < 1) {
+			return (time * 60).toFixed(0) + "min";
+		} else {
+			let minutes = ((time - parseInt(time, 10)) * 60).toFixed(0);
+			let hours = parseInt(time, 10);
+			return hours + "h   " + minutes + "min";
+		}
 	},
 	/**
 	 * Update the value of the input-search putting the value of the current URL
@@ -668,61 +756,58 @@ const SEARCH = {
 	 */
 	hashToValue: function() {
 		let value = window.location.hash.split('|')[0].split('=')[1];
-		value = value.replace('+', ' ');
+		value = value.replace(/\+/g, ' ');
 		SEARCH_TEXT_QUERY.val(value);
 	},
-
-	/**
-	 * Remove not needed listeners from the input-search
-	 * @return {void}
-	 */
-	remover: function() {
-		SEARCH_TEXT_QUERY.off();
-		$('#basic-addon1').off();
-		$("#position").off();
-	},
-
 	/**
 	 * Insert and view Cards as result of the search
 	 * @param {Freelancer} freelancer - Object Freelancer
+	 * @param {String} card - HTML card string for DustJS
 	 * @return {void}
 	 */
-	insertCard: function(freelancer) {
-		$.get("/html/searchCard.html", function(card) {
+	insertCard: function(freelancer, card) {
+		let distance;
+		if (!isNaN(freelancer.distance)) {
+			distance = freelancer.distance + "km";
+		} else {
+			distance = "";
+		}
+		let time;
+		if (freelancer.time) {
+			time = SEARCH.writeTimeBetter(freelancer.time);
+		} else {
+			time = "";
+		}
+		let price;
+		if (freelancer.price) {
+			price = freelancer.price + "€";
+		} else {
+			price = "";
+		}
 
-			let distance;
-			if (!isNaN(freelancer.distance)) {
-				distance = freelancer.distance + "km";
-			} else {
-				distance = "";
+		let data = {
+			'freelancer': {
+				'id': freelancer._id,
+				'photo': freelancer.photo,
+				'name': freelancer.firstName + " " + freelancer.lastName,
+				'price': price,
+				'distance': distance,
+				'time': time,
+				'tags': freelancer.tags,
+				'score': FREELANCER.getHtmlRankStar({
+					full: freelancer.score,
+					empty: 5 - freelancer.score
+				}),
+				'googleMaps': freelancer.googleMaps
 			}
+		};
 
-			let price;
-			if (freelancer.price) {
-				price = freelancer.price + "€";
-			} else {
-				price = "";
-			}
+		dust.renderSource(card, data, function(err, out) {
+			MAIN_JS.insertAdjacentHTML('beforeend', out);
 
-			let data = {
-				'freelancer': {
-					'id': freelancer._id,
-					'photo': freelancer.photo,
-					'name': freelancer.firstName + " " + freelancer.lastName,
-					'price': price,
-					'distance': distance,
-					'tags': freelancer.tags
-				}
-			};
-
-			dust.renderSource(card, data, function(err, out) {
-				MAIN_JS.insertAdjacentHTML('beforeend', out);
-
-				let link = document.getElementById(freelancer._id).getElementsByTagName('button')[0];
-				link.addEventListener('click', SEARCH.selectProfile);
-			});
-
-		}, 'html');
+			let link = document.getElementById(freelancer._id).getElementsByTagName('button')[0];
+			link.addEventListener('click', SEARCH.selectProfile);
+		});
 	},
 
 	checkInput: function(evt) {

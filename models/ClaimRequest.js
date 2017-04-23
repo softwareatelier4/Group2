@@ -6,7 +6,7 @@
  * Freelancer    ObjectId     required       Claimed freelancer
  * status        Number       optional       Status of the request (0 pending, 1 accepted, 2 refused)
  * photos        Array        required       Photos sent from the freelancer
- * notes         String       optional       Addiitonal notes from the user
+ * notes         String       required       Addiitonal notes from the user
  */
 
 'use strict';
@@ -31,12 +31,12 @@ var claimSchema = new mongoose.Schema({
 		default: 'Pending'
 	},
 	photos: {
-		type: Array,
-		// required: true
-		default: []
+		type: String,
+		required: true
 	},
 	notes: {
 		type: String,
+		required: true
 	}
 });
 

@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.put('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
 	console.log('ciao');
 	let form = new formidable.IncomingForm({
 		uploadDir: __dirname + '/../../../public/uploads/claimRequests/',
@@ -47,8 +47,6 @@ router.put('/', function(req, res, next) {
 
 	form.parse(req, function(err, fields, files) {
 		if (err) return next(err);
-		// console.log(fields);
-		// console.log(files);
 		let savePath = files.file.path;
 		let i = savePath.lastIndexOf('/');
 
@@ -59,14 +57,17 @@ router.put('/', function(req, res, next) {
 		claimRequest.freelancer = fields.freelancerid;
 		claimRequest.status = 'Pending';
 		claimRequest.notes = fields.description;
-		claimRequest.photos = ['/uploads/claimRequests/' + fileName];
+		claimRequest.photos = '/uploads/claimRequests/' + fileName;
+		claimRequest.save(function(err, saved) {
+			if (err) res.send(err);
 
-		console.log(claimRequest);
-		claimRequest.save(onModelSave(res, 200, true));
+			console.log(saved);
+			res.send(saved);
+		});
 	});
 });
 
-router.post('/:id', function(req, res, next) {
+router.put('/:id', function(req, res, next) {
 	let claimId = req.params.id;
 	let newStatus = req.body.status;
 
@@ -86,7 +87,7 @@ router.post('/:id', function(req, res, next) {
 					if (freelancer) {
 						freelancer.ownerId = uId;
 
-						freelancer.save(onModelSave(res, 200, false));
+						freelancer.save();
 					}
 				});
 
@@ -96,42 +97,18 @@ router.post('/:id', function(req, res, next) {
 					if (user) {
 						user.freeLancerId = fId;
 
-						user.save(onModelSave(res, 200, false));
+						user.save();
 					}
 				});
 			}
-			claim.save(onModelSave(res, 200, true));
+			claim.save(function(err, saved) {
+				if (err) res.send(err);
+
+				console.log(saved);
+				res.send(saved);
+			});
 		}
 	});
 });
-
-function onModelSave(res, status, sendItAsResponse) {
-	const statusCode = status || 204;
-	sendItAsResponse = sendItAsResponse || false;
-	return function(err, saved) {
-		if (err) {
-			if (err.name === 'ValidationError' ||
-				err.name === 'TypeError') {
-				res.status(400)
-				return res.json({
-					statusCode: 400,
-					message: "Bad Request"
-				});
-			} else {
-				return next(err);
-			}
-		}
-
-		if (sendItAsResponse) {
-			const obj = saved.toObject();
-			delete obj.password;
-			delete obj.__v;
-			// addLinks(obj);
-			return res.status(statusCode).json(obj);
-		} else {
-			return res.status(statusCode).end();
-		}
-	}
-}
 
 module.exports = router;
