@@ -331,14 +331,14 @@ const FREELANCER = {
 			let description = descriptionDom.value;
 
 			data = new FormData();
-			data.append('file', $('#uploadPicture')[0].files[0]);
+			data.append('file', $('#uploadPictureClaim')[0].files[0]);
 			data.append('userid', userId);
 			data.append('freelancerid', freelancerId);
 			data.append('description', description);
 
 			xhr = new XMLHttpRequest();
 
-			xhr.open('PUT', '/api/claimrequest/', true);
+			xhr.open('POST', '/api/claimrequest/', true);
 			xhr.onreadystatechange = function(response) {
 				console.log(response);
 			};
@@ -349,7 +349,7 @@ const FREELANCER = {
 	},
 	checkData: function() {
 		let description = document.getElementById('modal-descriptionClaim').value;
-		let photo = document.getElementById('uploadPicture').value;
+		let photo = document.getElementById('uploadPictureClaim').value;
 		document.getElementById("modal-photos-label").className = '';
 		document.getElementById("modal-photos-label").innerHTML = "Please, upload your identity card.";
 		document.getElementById("modal-description-label").className = '';

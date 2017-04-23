@@ -38,7 +38,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.put('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
 	console.log('ciao');
 	let form = new formidable.IncomingForm({
 		uploadDir: __dirname + '/../../../public/uploads/claimRequests/',
@@ -66,7 +66,7 @@ router.put('/', function(req, res, next) {
 	});
 });
 
-router.post('/:id', function(req, res, next) {
+router.put('/:id', function(req, res, next) {
 	let claimId = req.params.id;
 	let newStatus = req.body.status;
 
