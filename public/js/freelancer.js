@@ -84,15 +84,15 @@ const FREELANCER = {
 								}
 							}
 							if (owner === undefined && userId !== false && hasReqPending === false && userHasFreelancer === false) {
-								document.getElementById("claim-button").style.visibility = "visible";
+								$(document.getElementById("claim-button")).show();
 							}
 							if (hasReqPending === true) {
-								document.getElementById("pending-claim-button").style.visibility = "visible";
+								$(document.getElementById("pending-claim-button")).show();
 							}
 
 							console.log(userId._id);
 							if (owner && owner._id === userId._id) {
-								document.getElementById("modify-button").style.visibility = "visible";
+								$(document.getElementById("modify-button")).show();
 							}
 						})
 					});
