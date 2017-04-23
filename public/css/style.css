@@ -10,6 +10,10 @@ body, html {
    background-color: rgb(231, 231, 231);
 }
 
+input#search-text, input#position{
+	border-color: #ccc;
+}
+
 .bg-faded {
    background-color: rgb(46, 78, 92);
 }
