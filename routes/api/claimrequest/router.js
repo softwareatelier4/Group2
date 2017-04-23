@@ -87,7 +87,7 @@ router.put('/:id', function(req, res, next) {
 					if (freelancer) {
 						freelancer.ownerId = uId;
 
-						freelancer.save(onModelSave(res, 200, false));
+						freelancer.save();
 					}
 				});
 
@@ -97,42 +97,18 @@ router.put('/:id', function(req, res, next) {
 					if (user) {
 						user.freeLancerId = fId;
 
-						user.save(onModelSave(res, 200, false));
+						user.save();
 					}
 				});
 			}
-			claim.save(onModelSave(res, 200, true));
+			claim.save(function(err, saved) {
+				if (err) res.send(err);
+
+				console.log(saved);
+				res.send(saved);
+			});
 		}
 	});
 });
-
-function onModelSave(res, status, sendItAsResponse) {
-	const statusCode = status || 204;
-	sendItAsResponse = sendItAsResponse || false;
-	return function(err, saved) {
-		if (err) {
-			if (err.name === 'ValidationError' ||
-				err.name === 'TypeError') {
-				res.status(400)
-				return res.json({
-					statusCode: 400,
-					message: "Bad Request"
-				});
-			} else {
-				return next(err);
-			}
-		}
-
-		if (sendItAsResponse) {
-			const obj = saved.toObject();
-			delete obj.password;
-			delete obj.__v;
-			// addLinks(obj);
-			return res.status(statusCode).json(obj);
-		} else {
-			return res.status(statusCode).end();
-		}
-	}
-}
 
 module.exports = router;
