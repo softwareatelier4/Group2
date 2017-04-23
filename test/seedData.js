@@ -278,10 +278,10 @@ var user = {
 		},
 		{
 			'_id': ObjectId("b00000000000000000000001"),
-			'firstName': 'Vanessa',
-			'lastName': 'Volpini',
-			'password': '00002',
-			'email': 'vanessa.volpini@usi.ch'
+			'firstName': 'User',
+			'lastName': 'Test',
+			'password': '$2a$08$U3nW8YnURpiepVPFqAPjGePbXns2XVbkFD825yiFIn0LO5cbXzLTS',
+			'email': 'test@user.test'
 		},
 		{
 			'_id': ObjectId("b00000000000000000000002"),

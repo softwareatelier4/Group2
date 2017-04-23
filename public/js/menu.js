@@ -31,12 +31,14 @@ let drawLoginMenu = function() {
 
 			menuEl.login = {
 				name: 'Login',
-				modal: '#modal-login'
+				modal: '#modal-login',
+				dom_name: 'login-link'
 			};
 
 			menuEl.register = {
 				name: 'Register',
-				link: '/registration.html'
+				link: '/registration.html',
+				dom_name: 'register-link'
 			};
 		} else {
 			menuEl.logout = {
@@ -48,20 +50,21 @@ let drawLoginMenu = function() {
 		$.get("/html/menuElement.html", function(elementHTML) {
 
 			for (let [key, el] of Object.entries(menuEl)) {
-				addElementMenu(elementHTML, el.name, el.link, el.modal, el.icon, el.fnOnClick);
+				addElementMenu(elementHTML, el.name, el.link, el.modal, el.icon, el.fnOnClick, el.dom_name);
 			}
 		});
 	});
 }
 
-let addElementMenu = function(htmlDust, name, link, modal, iconName, fnOnClick) {
+let addElementMenu = function(htmlDust, name, link, modal, iconName, fnOnClick, dom_name) {
 
 	let data = {
 		name,
 		link,
 		modal,
 		icon: iconName,
-		fnOnClick
+		fnOnClick,
+		dom_name
 	};
 
 	dust.renderSource(htmlDust, data, function(err, el) {
