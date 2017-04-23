@@ -79,7 +79,7 @@ const FREELANCER = {
 							}
 							console.log(userHasFreelancer);
 							for (let r of response) {
-								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
+								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending' && userId.level != 0) {
 									hasReqPending = true;
 								}
 							}
