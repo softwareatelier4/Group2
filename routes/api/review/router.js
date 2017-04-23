@@ -66,8 +66,7 @@ router.post('/:reviewid', function(req, res, next) {
 			res.status(400).send(err);
 			return;
 		}
-
-		if (save.ok == 0) {
+		if (save.ok == 0 || save.n == 0) {
 			res.status(404).send(save);
 			return;
 		}

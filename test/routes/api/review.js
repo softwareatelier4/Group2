@@ -44,6 +44,30 @@ describe('Testing Read for api/review/', function() {
 				.set('Accept', 'application/json')
 				.expect(400, done);
 		});
+
+		it('Should return the most recent post-value', function(done) {
+			request(app)
+				.post('/api/review/c00000000000000000000002')
+				.set('Accept', 'application/json')
+				.send({
+					"review": "first"
+				})
+				.expect(201)
+				.end(function(err, res) {
+					request(app)
+						.post('/api/review/c00000000000000000000002')
+						.set('Accept', 'application/json')
+						.send({
+							"review": "second"
+						})
+						.expect(201)
+						.end(function(err, res) {
+							res = JSON.parse(res.text);
+							should.equal(res.nModified, 1);
+							done();
+						});
+				});
+		});
 	});
 });
 
