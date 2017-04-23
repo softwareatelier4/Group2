@@ -13,6 +13,7 @@ module.exports = {
 
 	'Test Login Modal': function(client) {
 		client
+			.resizeWindow(1500, 800)
 			.url('http://localhost:3000')
 			.waitForElementVisible('body', 1000)
 
@@ -40,13 +41,13 @@ module.exports = {
 			.clearValue('input[id="password"]')
 			.clearValue('input[id="repeatPassword"]')
 
-			.setValue('input[id="firstName"]',"Riccardo")
+			.setValue('input[id="firstName"]', "Riccardo")
 			.setValue('input[id="lastName"]', "Gabriele")
 			.setValue('input[id="email"]', "riccardo@usi.ch")
 			.setValue('input[id="password"]', "123123")
 			.setValue('input[id="repeatPassword"]', "123123")
 
-			.assert.valueContains('input[id="firstName"]',"Riccardo")
+			.assert.valueContains('input[id="firstName"]', "Riccardo")
 			.assert.valueContains('input[id="lastName"]', "Gabriele")
 			.assert.valueContains('input[id="email"]', "riccardo@usi.ch")
 			.assert.valueContains('input[id="password"]', "123123")
@@ -56,7 +57,7 @@ module.exports = {
 
 			.click('button[id="formButton"]')
 
-			.pause(200)
+			.pause(2000)
 
 			.assert.urlEquals('http://localhost:3000/')
 
@@ -69,7 +70,7 @@ module.exports = {
 			.assert.urlEquals('http://localhost:3000/')
 
 
-			// LOGIN TEST 
+			// LOGIN TEST
 
 			.pause(2000)
 
@@ -83,7 +84,7 @@ module.exports = {
 
 			.pause(500)
 
-			.waitForElementVisible('div[id=modal-login]',1000)
+			.waitForElementVisible('div[id=modal-login]', 1000)
 
 			.assert.visible('input[id=login-email]')
 			.assert.visible('input[id=modal-password]')

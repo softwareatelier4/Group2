@@ -34,7 +34,7 @@ var freelancer = {
 			],
 			'score': 5,
 			'price': 20,
-			'ownerId': 'b00000000000000000000000'
+			'ownerId': ObjectId("b00000000000000000000001")
 		},
 		{
 			'_id': ObjectId("f00000000000000000000001"),

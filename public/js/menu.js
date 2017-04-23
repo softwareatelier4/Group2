@@ -50,7 +50,8 @@ let drawLoginMenu = function() {
 
 			menuEl.logout = {
 				name: 'Logout',
-				fnOnClick: 'LOGIN.logout()'
+				fnOnClick: 'LOGIN.logout()',
+				dom_name: 'logout-link'
 			};
 
 		}

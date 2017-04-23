@@ -13,8 +13,22 @@ module.exports = {
 
 	'Test modify freelancer': function(client) {
 		client
+			.resizeWindow(1500, 800)
 			.url('http://localhost:3000/#freelancer=f00000000000000000000000')
 			.waitForElementVisible('body', 1000)
+
+			.pause(500)
+
+			.assert.elementPresent('a[name=login-link]')
+			.assert.visible('#navbar-top-desktop a[name="login-link"]')
+			.click('#navbar-top-desktop a[name="login-link"]')
+			.pause(200)
+			.assert.visible('input#modal-password')
+			.setValue('input[id=login-email]', 'test@user.test')
+			.setValue('input#modal-password', 'test')
+			.pause(200)
+			.click('button[id=login-button]')
+			.pause(500)
 
 			.assert.visible('div[id=info-name-button]')
 			.assert.visible('button[id=modify-button]')
@@ -73,8 +87,6 @@ module.exports = {
 			.setValue('input[id=modal-phone]', "+39 380474747")
 
 			.click('button[id=save-button]')
-			.pause(1000)
-
 			.end();
 	}
 };

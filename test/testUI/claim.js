@@ -13,6 +13,7 @@ module.exports = {
 
 	'Check a correct claim': function(client) {
 		client
+			.resizeWindow(1500, 800)
 			.url('http://localhost:3000/#freelancer=f00000000000000000000002')
 			.waitForElementVisible('body', 1000)
 			.assert.elementPresent('a[name=login-link]')
