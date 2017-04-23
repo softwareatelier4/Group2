@@ -6,6 +6,6 @@
 	<td><a href="{photos}" data-lightbox="work-img"><img class="thumbnail-element" width="60px" src="{photos}"></a></td>
 	<td>{notes}</td>
 	<td>{status}</td>
-	{?check}<td><button style="margin-bottom: 10px; background-color: limegreen; cursor: pointer; cursor: hand;" onclick="FREELANCERCLAIMADMIN.acceptRequest(event)" value="{_id}">✓</button> <br> <button style="background-color: red; cursor: pointer; cursor: hand;" onclick="FREELANCERCLAIMADMIN.refuseRequest(event)" value="{_id}">☓</button></td>{/check}
+	{?check}<td><button class="claim-btn bg-success" onclick="FREELANCERCLAIMADMIN.acceptRequest(event)" value="{_id}">✓</button> <br> <button class="claim-btn bg-danger" onclick="FREELANCERCLAIMADMIN.refuseRequest(event)" value="{_id}">✗</button></td>{/check}
 </tr>
 {/request}

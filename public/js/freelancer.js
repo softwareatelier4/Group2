@@ -73,12 +73,17 @@ const FREELANCER = {
 						userId = ress.result;
 						doJSONRequest("GET", "/api/claimrequest", null, null, function(response) {
 							let hasReqPending = false;
+							let userHasFreelancer = false;
+							if (userId.freeLancerId != undefined) {
+								userHasFreelancer = true;
+							}
+							console.log(userHasFreelancer);
 							for (let r of response) {
 								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
 									hasReqPending = true;
 								}
 							}
-							if (owner === undefined && userId !== false && hasReqPending === false) {
+							if (owner === undefined && userId !== false && hasReqPending === false && userHasFreelancer === false) {
 								document.getElementById("claim-button").style.visibility = "visible";
 							}
 							if (hasReqPending === true) {
