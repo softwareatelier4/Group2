@@ -569,6 +569,8 @@ const SEARCH = {
 		if (currentPage.name != 'search') {
 			return;
 		}
+
+		SEARCH.search();
 	},
 
 	/**
