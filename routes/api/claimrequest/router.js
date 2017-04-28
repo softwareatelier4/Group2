@@ -57,7 +57,7 @@ router.post('/', function(req, res, next) {
 		claimRequest.freelancer = fields.freelancerid;
 		claimRequest.status = 'Pending';
 		claimRequest.notes = fields.description;
-		claimRequest.photos = '/uploads/claimRequests/' + fileName;
+		claimRequest.identitycard = '/uploads/claimRequests/' + fileName;
 		claimRequest.save(function(err, saved) {
 			if (err) res.send(err);
 

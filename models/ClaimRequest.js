@@ -30,9 +30,13 @@ var claimSchema = new mongoose.Schema({
 		enum: ['Pending', 'Accepted', 'Refused'],
 		default: 'Pending'
 	},
-	photos: {
+	identitycard: {
 		type: String,
 		required: true
+	},
+	certifications: {
+		type: Array,
+		default: []
 	},
 	notes: {
 		type: String,
