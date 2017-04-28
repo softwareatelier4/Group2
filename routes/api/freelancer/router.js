@@ -185,23 +185,25 @@ let searchEngine = function(freelancers, string) {
 			dist = dist.toFixed(1);
 			timez = dist / 60;
 		}
-		let freelancer = {
-			_id: f._id,
-			firstName: f.firstName,
-			lastName: f.lastName,
-			description: f.description,
-			tags: f.tags,
-			workName: f.workName,
-			photo: f.profilePhoto,
-			score: f.score,
-			latitude: f.address.lat,
-			longitude: f.address.long,
-			distance: dist,
-			time: timez,
-			counter: countInArray(fClone, f),
-			price: f.price
-		};
-		result.push(freelancer);
+		if (dist < 1000) {
+			let freelancer = {
+				_id: f._id,
+				firstName: f.firstName,
+				lastName: f.lastName,
+				description: f.description,
+				tags: f.tags,
+				workName: f.workName,
+				photo: f.profilePhoto,
+				score: f.score,
+				latitude: f.address.lat,
+				longitude: f.address.long,
+				distance: dist,
+				time: timez,
+				counter: countInArray(fClone, f),
+				price: f.price
+			};
+			result.push(freelancer);
+		}
 	}
 
 	/*
