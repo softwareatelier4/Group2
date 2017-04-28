@@ -299,7 +299,7 @@ var claimrequest = {
 		'_id': ObjectId("d00000000000000000000002"),
 		'user': ObjectId("b00000000000000000000002"),
 		'freelancer': ObjectId("f00000000000000000000002"),
-		'photos': "../public/uploads/claimRequests/upload_claim.png",
+		'identitycard': "../public/uploads/claimRequests/upload_claim.png",
 		'notes': 'This is my profile',
 		'status': 'Pending'
 	}]
