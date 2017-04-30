@@ -49,37 +49,43 @@ describe('Model: Review', function(done) {
 					firstName: 'Nevio',
 					lastName: 'Tollini',
 					password: 'ciao',
-					email: 'nevio@tollini.it'
+					email: 'nevio@tollini.it',
+					level: 0,
+					active: true
 				});
 
 				freelancer = new Freelancer({
-					'firstName': 'Marco',
-					'lastName': 'Tollini',
-					'workName': 'BHO',
-					'email': 'tollim@usi.ch',
-					'phone': '380474747',
-					'profilePhoto': '/uploads/5625fc2bd82b84d23d8c7bd5/profile.jpg',
-					'address': {
+					firstName: 'Marco',
+					lastName: 'Tollini',
+					workName: 'BHO',
+					email: 'tollim@usi.ch',
+					phone: '380474747',
+					profilePhoto: '/uploads/5625fc2bd82b84d23d8c7bd5/profile.jpg',
+					address: {
 						road: 'Via Zurigo',
 						number: 10,
 						city: 'Lugano',
-						cap: 29100
+						cap: 29100,
+						lat: 10,
+						long: 10
 					},
-					'tags': [tag._id],
-					'description': 'This is a description',
+					tags: [tag._id],
+					description: 'This is a description',
+					emergency: false,
 					ownerId: user._id
 				});
 
+
 				review = new Review({
-					'title': 'R1',
-					'description': 'This is some text',
-					'score': 1,
-					'photo': [
+					title: 'R1',
+					description: 'This is some text',
+					score: 1,
+					photo: [
 						'/uploads/review/134324242342.jpg'
 					],
-					'user': user._id,
-					'answer': 'This is an answer',
-					'freelancer': freelancer._id
+					user: user._id,
+					answer: 'This is an answer',
+					freelancer: freelancer._id
 
 				})
 
