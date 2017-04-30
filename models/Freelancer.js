@@ -94,7 +94,19 @@ var FreelancerSchema = new mongoose.Schema({
 	certifications: {
 		type: Array,
 		default: []
-	}
+	},
+	emergency: {
+		type: Boolean,
+		required: true
+	},
+	currentPosition: {
+		lat: {
+			type: Number
+		},
+		long: {
+			type: Number
+		},
+	},
 });
 
 

@@ -41,6 +41,10 @@ var userSchema = new mongoose.Schema({
 	level: {
 		type: Number,
 		default: 1
+	},
+	active: {
+		type: Boolean,
+		default: 0
 	}
 });
 
