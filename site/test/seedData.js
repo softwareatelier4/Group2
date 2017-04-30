@@ -449,10 +449,10 @@ var user = {
 var claimrequest = {
 	name: 'ClaimRequest',
 	data: [{
-		_id: ObjectId("d00000000000000000000002"),
-		user: ObjectId("b00000000000000000000002"),
-		freelancer: ObjectId("f00000000000000000000002"),
-		identitycard: "../public/uploads/claimRequests/upload_claim.png",
+		_id: ObjectId("d00000000000000000000000"),
+		user: ObjectId("b00000000000000000000003"),
+		freelancer: ObjectId("f00000000000000000000004"),
+		identitycard: "/uploads/test/upload_claim1.jpg",
 		notes: 'This is my profile',
 		status: 'Pending'
 	}]
