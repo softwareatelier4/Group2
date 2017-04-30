@@ -97,7 +97,8 @@ var FreelancerSchema = new mongoose.Schema({
 	},
 	emergency: {
 		type: Boolean,
-		required: true
+		required: true,
+		default: false
 	},
 	currentPosition: {
 		lat: {

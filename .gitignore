@@ -1,22 +1,24 @@
 
-node_modules/
+site/node_modules/
 
-npm-debug\.log
+site/npm-debug\.log
 
-coverage/
+site/coverage/
 
 .DS_Store
 
-jenkins-test-results\.xml
+site/jenkins-test-results\.xml
 
-test/nightwatch-reports/
+site/test/nightwatch-reports/
 
-phantomjs
+site/phantomjs
 
-phantomjsdriver.log
+site/phantomjsdriver.log
 
-selenium-server-standalone-2\.48\.2\.jar
+site/selenium-server-standalone-2\.48\.2\.jar
 
-chromedriver
+site/chromedriver
 
-public/uploads/claimRequests/
+site/public/uploads/claimRequests/
+
+npm-debug\.log
