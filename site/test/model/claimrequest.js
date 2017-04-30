@@ -50,24 +50,29 @@ describe('Model: ClaimRequest', function(done) {
 					firstName: 'Nevio',
 					lastName: 'Tollini',
 					password: 'ciao',
-					email: 'nevio@tollini.it'
+					email: 'nevio@tollini.it',
+					level: 0,
+					active: true
 				});
 
 				freelancer = new Freelancer({
-					'firstName': 'Marco',
-					'lastName': 'Tollini',
-					'workName': 'BHO',
-					'email': 'tollim@usi.ch',
-					'phone': '380474747',
-					'profilePhoto': '/uploads/5625fc2bd82b84d23d8c7bd5/profile.jpg',
-					'address': {
+					firstName: 'Marco',
+					lastName: 'Tollini',
+					workName: 'BHO',
+					email: 'tollim@usi.ch',
+					phone: '380474747',
+					profilePhoto: '/uploads/5625fc2bd82b84d23d8c7bd5/profile.jpg',
+					address: {
 						road: 'Via Zurigo',
 						number: 10,
 						city: 'Lugano',
-						cap: 29100
+						cap: 29100,
+						lat: 10,
+						long: 10
 					},
-					'tags': [tag._id],
-					'description': 'This is a description',
+					tags: [tag._id],
+					description: 'This is a description',
+					emergency: false,
 					ownerId: user._id
 				});
 				tag.freelancer.push(freelancer._id);
@@ -75,7 +80,7 @@ describe('Model: ClaimRequest', function(done) {
 				claimrequest = new ClaimRequest({
 					user: user._id,
 					freelancer: freelancer._id,
-					photos: 'upload/claimRequest/upload_claim.png',
+					identitycard: 'upload/claimRequest/upload_claim.png',
 					notes: 'Hi, this is my profile!'
 				});
 
@@ -111,7 +116,7 @@ describe('Model: ClaimRequest', function(done) {
 			claimrequest.user = user._id;
 			claimrequest.freelancer = freelancer._id;
 			claimrequest.status = 'Pending';
-			claimrequest.photos = 'upload/claimRequest/upload_claim.png';
+			claimrequest.identitycard = 'upload/claimRequest/upload_claim.png';
 			claimrequest.notes = 'Hi, this is my profile!';
 			claimrequest.save(function(err, saved) {
 				should.not.exist(err, 'No error should occur');
@@ -124,7 +129,7 @@ describe('Model: ClaimRequest', function(done) {
 			var claimrequest = new ClaimRequest();
 			claimrequest.freelancer = freelancer._id;
 			claimrequest.status = 'Pending';
-			claimrequest.photos = 'upload/claimRequest/upload_claim.png';
+			claimrequest.identitycard = 'upload/claimRequest/upload_claim.png';
 			claimrequest.notes = 'Hi, this is my profile!';
 			user.save(function(err, saved) {
 				should.not.exist(err, 'No error should occur');
@@ -137,7 +142,7 @@ describe('Model: ClaimRequest', function(done) {
 			var claimrequest = new ClaimRequest();
 			claimrequest.user = user._id;
 			claimrequest.status = 'Pending';
-			claimrequest.photos = 'upload/claimRequest/upload_claim.png';
+			claimrequest.identitycard = 'upload/claimRequest/upload_claim.png';
 			claimrequest.notes = 'Hi, this is my profile!';
 			freelancer.save(function(err, saved) {
 				should.not.exist(err, 'No error should occur');
@@ -152,7 +157,7 @@ describe('Model: ClaimRequest', function(done) {
 			claimrequest.freelancer = freelancer._id;
 			claimrequest.status = 'Pending';
 			claimrequest.notes = 'Hi, this is my profile!';
-			utils.errorIfNullUndefinedOrEmpty(claimrequest, 'photos', done);
+			utils.errorIfNullUndefinedOrEmpty(claimrequest, 'identitycard', done);
 		});
 
 		it('should fail if notes is empty, null, or undefined', function(done) {
@@ -160,7 +165,7 @@ describe('Model: ClaimRequest', function(done) {
 			claimrequest.user = user._id;
 			claimrequest.freelancer = freelancer._id;
 			claimrequest.status = 'Pending';
-			claimrequest.photos = 'upload/claimRequest/upload_claim.png';
+			claimrequest.identitycard = 'upload/claimRequest/upload_claim.png';
 			utils.errorIfNullUndefinedOrEmpty(claimrequest, 'notes', done);
 		});
 	});

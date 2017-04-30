@@ -93,6 +93,7 @@ describe('Testing put for claimrequest', function() {
 
 function seed(done) {
 	//seed the db
+	console.log(seedData);
 	seedDb.seed(function(err, seedData) {
 		if (err) return done(err);
 		done();
