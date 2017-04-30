@@ -77,17 +77,12 @@ describe('Model: User', function(done) {
 				tag.freelancer.push(freelancer._id);
 
 				freelancer.save(function(err, save) {
-					console.log(err);
 					if (err) return done(err);
 
 					tag.save(function(err, save) {
-						console.log(err);
-
 						if (err) return done(err);
 
 						user.save(function(err, save) {
-							console.log(err);
-
 							if (err) return done(err);
 							done();
 						});

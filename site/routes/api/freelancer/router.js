@@ -212,7 +212,7 @@ let searchEngine = function(freelancers, string) {
 		return b.counter - a.counter;
 	});
 
-	console.log(result);
+	// console.log(result);
 	return removeDuplicatesFreelancers(result);
 
 }
