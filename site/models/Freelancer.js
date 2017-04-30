@@ -58,16 +58,19 @@ var FreelancerSchema = new mongoose.Schema({
 			type: Number
 		},
 		city: {
-			type: String
+			type: String,
+			required: true
 		},
 		cap: {
 			type: Number
 		},
 		lat: {
-			type: Number
+			type: Number,
+			required: true
 		},
 		long: {
-			type: Number
+			type: Number,
+			required: true
 		},
 	},
 	tags: [{
@@ -97,8 +100,7 @@ var FreelancerSchema = new mongoose.Schema({
 	},
 	emergency: {
 		type: Boolean,
-		required: true,
-		default: false
+		required: true
 	},
 	currentPosition: {
 		lat: {
