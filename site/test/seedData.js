@@ -54,7 +54,7 @@ var freelancer = {
 				lat: 46.0119793,
 				long: 12.9517463,
 			},
-			ownerId: ObjectId("b00000000000000000000001")
+			ownerId: ObjectId("b00000000000000000000000")
 		},
 		{
 			_id: ObjectId("f00000000000000000000001"),
@@ -92,6 +92,8 @@ var freelancer = {
 				lat: 51.4891946,
 				long: 46.4395238,
 			},
+			ownerId: ObjectId("b00000000000000000000007")
+
 		},
 		{
 			_id: ObjectId("f00000000000000000000002"),
@@ -148,6 +150,7 @@ var freelancer = {
 				lat: 46.0040767,
 				long: 8.9530366,
 			},
+			ownerId: ObjectId("b00000000000000000000002"),
 		},
 		{
 			_id: ObjectId("f00000000000000000000004"),
@@ -198,6 +201,8 @@ var freelancer = {
 				lat: 45.0119793,
 				long: 13.9517463,
 			},
+			ownerId: ObjectId("b00000000000000000000001")
+
 		},
 		{
 			_id: ObjectId("f00000000000000000000006"),
@@ -218,6 +223,7 @@ var freelancer = {
 			score: 3,
 			price: 100,
 			emergency: false,
+			ownerId: ObjectId("b00000000000000000000005"),
 		},
 		{
 			_id: ObjectId("f00000000000000000000007"),
@@ -334,25 +340,108 @@ var tag = {
 var user = {
 	name: 'User',
 	data: [{
-			_id: ObjectId("b00000000000000000000000"),
+			_id: ObjectId("b00000000000000000000001"),
+			freeLancerId: ObjectId("f00000000000000000000005"),
 			firstName: 'Costanza',
-			lastName: 'Fox',
-			password: '00001',
-			email: 'volpic@usi.ch'
+			lastName: 'Volpini',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'c.v@usi.ch',
+			level: 0,
+			active: true
 		},
 		{
-			_id: ObjectId("b00000000000000000000001"),
-			firstName: 'User',
-			lastName: 'Test',
-			password: '$2a$08$U3nW8YnURpiepVPFqAPjGePbXns2XVbkFD825yiFIn0LO5cbXzLTS',
-			email: 'test@user.test'
+			_id: ObjectId("b00000000000000000000000"),
+			freeLancerId: ObjectId("f00000000000000000000000"),
+			firstName: 'Marco',
+			lastName: 'Tollini',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'm.t@usi.ch',
+			level: 0,
+			active: true
 		},
 		{
 			_id: ObjectId("b00000000000000000000002"),
-			firstName: 'Marco',
+			freeLancerId: ObjectId("f00000000000000000000003"),
+			firstName: 'Daniele',
 			lastName: 'Lo Preiato',
-			password: '00003',
-			email: 'marco.lopreiato@man.ch'
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'd.l@usi.ch',
+			level: 0,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000003"),
+			firstName: 'Lorenzo',
+			lastName: 'Ferri',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'l.f@usi.ch',
+			level: 0,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000004"),
+			firstName: 'Riccardo',
+			lastName: 'Gabriele',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'r.g@usi.ch',
+			level: 0,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000005"),
+			freeLancerId: ObjectId("f00000000000000000000006"),
+			firstName: 'Zeno',
+			lastName: 'Trevisan',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'z.t@usi.ch',
+			level: 0,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000006"),
+			firstName: 'Vanessa',
+			lastName: 'Braglia',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'v.b@usi.ch',
+			level: 0,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000007"),
+			freeLancerId: ObjectId("f00000000000000000000001"),
+			firstName: 'Nevio',
+			lastName: 'Valsangiacomo',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'n.v@usi.ch',
+			level: 0,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000008"),
+			firstName: 'User',
+			lastName: 'Test',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'u.t@usi.ch',
+			level: 1,
+			active: false
+		},
+		{
+			_id: ObjectId("b00000000000000000000009"),
+			firstName: '2User',
+			lastName: 'Test',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: '2.t@usi.ch',
+			level: 1,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000010"),
+			firstName: '3User',
+			lastName: 'Test',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: '3.t@usi.ch',
+			level: 1,
+			active: true
 		}
 	]
 }
@@ -398,8 +487,7 @@ var review = {
 		},
 		{
 			_id: ObjectId("c00000000000000000000002"),
-			title: 'R2',
-			date: '1971-01-13T23:58:43.122Z',
+			title: 'R3',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
 			score: 2,
 			photo: [
@@ -412,7 +500,7 @@ var review = {
 		},
 		{
 			_id: ObjectId("c00000000000000000000003"),
-			title: 'R2',
+			title: 'R4',
 			date: '1972-01-13T23:58:43.122Z',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
 			score: 3,
@@ -422,8 +510,7 @@ var review = {
 		},
 		{
 			_id: ObjectId("c00000000000000000000004"),
-			title: 'R2',
-			date: '1973-01-13T23:58:43.122Z',
+			title: 'R5',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
 			score: 4,
 			photo: [
@@ -432,14 +519,18 @@ var review = {
 				'/uploads/test/9.jpg',
 				'/uploads/test/10.jpg',
 				'/uploads/test/11.jpg',
+				'/uploads/test/1.jpg',
+				'/uploads/test/2.jpg',
+				'/uploads/test/3.jpg',
+				'/uploads/test/4.jpg',
+				'/uploads/test/5.jpg',
 			],
 			user: ObjectId("b00000000000000000000001"),
 			freelancer: ObjectId("f00000000000000000000001")
 		},
 		{
 			_id: ObjectId("c00000000000000000000005"),
-			title: 'R2',
-			date: '1974-01-13T23:58:43.122Z',
+			title: 'R6',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
 			score: 3,
 			photo: [
@@ -450,20 +541,22 @@ var review = {
 		},
 		{
 			_id: ObjectId("c00000000000000000000006"),
-			title: 'R2',
+			title: 'R7',
 			date: '1975-01-13T23:58:43.122Z',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
 			score: 5,
 			photo: [
 				'/uploads/test/7.jpg',
-
+				'/uploads/test/2.jpg',
+				'/uploads/test/1.jpg',
+				'/uploads/test/5.jpg',
 			],
 			user: ObjectId("b00000000000000000000000"),
 			freelancer: ObjectId("f00000000000000000000000")
 		},
 		{
 			_id: ObjectId("c00000000000000000000007"),
-			title: 'R2',
+			title: 'R8',
 			date: '1976-01-13T23:58:43.122Z',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
 			score: 4,
@@ -473,17 +566,18 @@ var review = {
 		},
 		{
 			_id: ObjectId("c00000000000000000000008"),
-			title: 'R2',
-			date: '2016-01-13T23:58:43.122Z',
+			title: 'R10',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
 			score: 1,
-			photo: [],
+			photo: [
+				'/uploads/test/10.jpg',
+			],
 			user: ObjectId("b00000000000000000000002"),
 			freelancer: ObjectId("f00000000000000000000005")
 		},
 		{
 			_id: ObjectId("c00000000000000000000009"),
-			title: 'R2',
+			title: 'R10',
 			date: '2015-01-13T23:58:43.122Z',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
 			score: 5,
@@ -493,7 +587,7 @@ var review = {
 		},
 		{
 			_id: ObjectId("c00000000000000000000010"),
-			title: 'R2',
+			title: 'R11',
 			date: '2003-01-13T23:58:43.122Z',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
 			score: 3,
