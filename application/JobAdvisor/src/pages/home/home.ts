@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import {Http} from '@angular/http';
+import {Http, Headers} from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
 	selector: 'page-home',
@@ -11,7 +12,7 @@ export class HomePage {
 
 	myStorage: Storage;
 	serverIP: string;
-	username: string;
+	email: string;
 	password: string;
 	http: Http;
 
@@ -26,18 +27,16 @@ export class HomePage {
 	}
 
 	signIn(){
-		var request = {
-			method: "post",
-			url: this.serverIP+"/api/passport/login",
-			data: {
-				username: this.username,
-				password: this.password
-			},
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-		};
-		/*Successful HTTP post request or not */
-		// this.http.post(request.url,request.data,null).then(function (response){
-		// 	console.log(response);
-		// });
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		let data = {
+			"email": this.email,
+			"password": this.password
+		}
+		this.http.post('http://'+ this.serverIP + '/api/passport/login', data, {"headers": headers})
+		.map(res=>res.json())
+		.subscribe(function(data){
+			console.log(data);
+		});
 	}
 }
