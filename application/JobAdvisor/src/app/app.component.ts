@@ -3,6 +3,7 @@ import { Nav, Platform, Events, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
+import { BackgroundGeolocation, BackgroundGeolocationConfig, BackgroundGeolocationResponse } from '@ionic-native/background-geolocation';
 
 import { HomePage } from '../pages/home/home';
 import { ServerPage } from '../pages/server/server';
@@ -23,7 +24,8 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public events: Events,
     public storage: Storage,
-    public app: App
+    public app: App,
+    private backgroundGeolocation: BackgroundGeolocation
   ){
     this.initializeApp();
 
@@ -33,10 +35,34 @@ export class MyApp {
       { title: 'Server', component: ServerPage }
     ];
 
-    this.events.subscribe('menu:update', userEventData => {
-      this.pages = userEventData;
+    this.events.subscribe('menu:update', pages => {
+      this.pages = pages;
     });
 
+    this.events.subscribe('root:set', root => {
+      this.nav.setRoot(root);
+    });
+
+    const config: BackgroundGeolocationConfig = {
+      desiredAccuracy: 10,
+      stationaryRadius: 20,
+      distanceFilter: 30,
+      debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+      stopOnTerminate: false, // enable this to clear background location settings when the app terminates
+    };
+
+    this.backgroundGeolocation.configure(config)
+    .subscribe((location: BackgroundGeolocationResponse) => {
+
+      console.log(location);
+
+      // IMPORTANT:  You must execute the finish method here to inform the native plugin that you're finished,
+      // and the background-task may be completed.  You must do this regardless if your HTTP request is successful or not.
+      // IF YOU DON'T, ios will CRASH YOUR APP for spending too much time in the background.
+      this.backgroundGeolocation.finish(); // FOR IOS ONLY
+
+    });
+    // this.backgroundGeolocation.start();
   }
 
   initializeApp() {
@@ -54,14 +80,13 @@ export class MyApp {
     if(page.component){
       this.nav.setRoot(page.component);
     } else {
-      console.log("DIOMERDA LOGOUT");
       if(page.action == "logout"){
         this.storage.remove("user");
         this.pages = [
           { title: 'Home', component: HomePage },
           { title: 'Server', component: ServerPage }
         ];
-        this.nav.setRoot(HomePage);
+        this.events.publish('root:set', HomePage);
       }
     }
   }

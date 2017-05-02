@@ -47,7 +47,6 @@ export class Logged {
     let body = {
       emergency: this.emergency
     }
-    console.log(this.emergency);
 	  this.http.put("http://" + this.serverIP + "/api/freelancer/emergency/"+this.user.freeLancerId, body).map(res=>res.json()).subscribe(data=>{
       this.emergency = data;
     });

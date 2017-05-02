@@ -34,7 +34,7 @@ export class HomePage {
 						{ title: 'Home', component: Logged },
 						{ title: 'Logout', action: "logout" }
 					]);
-					this.navCtrl.push(Logged);
+					this.events.publish('root:set', Logged);
 				}
 			});
 		});
@@ -61,7 +61,6 @@ export class HomePage {
 		this.http.post('http://'+ this.serverIP + '/api/passport/login', data, {"headers": headers})
 		.map(res=>res.json())
 		.subscribe( (data) => {
-			// console.log(data);
 			if(data.result != "success"){
 				alertError.present();
 			} else {
@@ -69,14 +68,13 @@ export class HomePage {
 					this.storage.set("user",data.user);
 					this.events.publish('menu:update', [
 						{ title: 'Home', component: Logged },
-						{ title: 'Logout', action: "" }
+						{ title: 'Logout', action: "logout" }
 					]);
-					this.navCtrl.push(Logged);
+					this.events.publish('root:set', Logged);
 				} else {
 					alertFreel.present();
 				}
 			}
 		});
 	}
-
 }
