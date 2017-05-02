@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 
 import { HomePage } from '../pages/home/home';
 import { ServerPage } from '../pages/server/server';
@@ -16,7 +17,14 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public events: Events,
+    public storage: Storage,
+    public app: App
+  ){
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -24,6 +32,10 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Server', component: ServerPage }
     ];
+
+    this.events.subscribe('menu:update', userEventData => {
+      this.pages = userEventData;
+    });
 
   }
 
@@ -39,6 +51,18 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if(page.component){
+      this.nav.setRoot(page.component);
+    } else {
+      console.log("DIOMERDA LOGOUT");
+      if(page.action == "logout"){
+        this.storage.remove("user");
+        this.pages = [
+          { title: 'Home', component: HomePage },
+          { title: 'Server', component: ServerPage }
+        ];
+        this.nav.setRoot(HomePage);
+      }
+    }
   }
 }

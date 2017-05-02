@@ -40,6 +40,45 @@ router.get('/:freelancerid', function(req, res, next) {
 	})
 });
 
+router.put('/emergency/:freelancerid', function(req, res, next) {
+	const data = req.body;
+	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
+		if (err) return next(err);
+
+		if (freelancer) {
+			freelancer.emergency = data.emergency;
+			freelancer.save(function(err, saved) {
+				res.send(saved.emergency);
+			});
+		}
+	});
+});
+
+router.get('/emergency/:freelancerid', function(req, res, next) {
+	const data = req.body;
+	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
+		if (err) return next(err);
+		if (freelancer) {
+			res.send(freelancer.emergency);
+		}
+	});
+});
+
+router.put('/location/:freelancerid', function(req, res, next) {
+	const data = req.body;
+	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
+		if (err) return next(err);
+
+		if (freelancer) {
+			freelancer.currentPosition = data.currentPosition;
+			freelancer.save(function(err, saved) {
+				if(err) res.send(err);
+				res.send(saved.currentPosition);
+			});
+		}
+	});
+});
+
 router.put('/:freelancerid', function(req, res, next) {
 	const data = req.body;
 

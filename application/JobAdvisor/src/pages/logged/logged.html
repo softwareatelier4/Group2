@@ -12,6 +12,6 @@
 	<h1>Hello {{user.firstName}} {{user.lastName}}!</h1>
 <ion-item no-lines>
   <ion-label> Emergency </ion-label>
-  <ion-toggle checked="false" [(ngModel)]="emergency"></ion-toggle>
+  <ion-toggle [(ngModel)]="emergency" (ionChange)="updateEmergency()"></ion-toggle>
 </ion-item>
 </ion-content>

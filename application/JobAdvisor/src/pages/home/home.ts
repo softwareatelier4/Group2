@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
+import { NavController, AlertController, ViewController, Events, App } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http, Headers } from '@angular/http';
 import { Logged } from '../logged/logged'
@@ -20,7 +20,9 @@ export class HomePage {
 		public storage: Storage,
 		public http: Http,
 		public alertCtrl: AlertController,
-		public viewCtrl: ViewController
+		public viewCtrl: ViewController,
+		public events: Events,
+		public app: App
 	){
 		this.storage.ready().then(() => {
 			this.storage.get('server').then((val) => {
@@ -28,7 +30,11 @@ export class HomePage {
 			});
 			this.storage.get('user').then((val) => {
 				if(val){
-					// this.navCtrl.setRoot(Logged);
+					this.events.publish('menu:update', [
+						{ title: 'Home', component: Logged },
+						{ title: 'Logout', action: "logout" }
+					]);
+					this.navCtrl.push(Logged);
 				}
 			});
 		});
@@ -61,7 +67,11 @@ export class HomePage {
 			} else {
 				if(data.user.freeLancerId){
 					this.storage.set("user",data.user);
-					this.navCtrl.setRoot(Logged);
+					this.events.publish('menu:update', [
+						{ title: 'Home', component: Logged },
+						{ title: 'Logout', action: "" }
+					]);
+					this.navCtrl.push(Logged);
 				} else {
 					alertFreel.present();
 				}
