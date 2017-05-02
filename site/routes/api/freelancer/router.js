@@ -289,6 +289,7 @@ router.post('/create/freelancer', function(req, res) {
 	freelancer.address = req.body.address;
 	freelancer.description = req.body.description;
 	freelancer.profilePhoto = '';
+	freelancer.emergency = req.body.emergency;
 	let tags = req.body.tags;
 	freelancer.save(function(err, newfreelancer) {
 		if (err) {

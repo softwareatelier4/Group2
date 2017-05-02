@@ -271,19 +271,22 @@ describe('Testing Post for localhost:3000/api/freelancer/create/freelancer', fun
 			request(app)
 				.post('/api/freelancer/create/freelancer')
 				.send({
-					"firstName": "Lorenzo",
-					"lastName": "Ferri",
-					"workName": "Lollo",
-					"email": "lorenzo.ferri@usi.ch",
-					"phone": "3330003330",
-					"address": {
-						"city": "Lugano",
-						"street": "via Zurigo",
-						"number": 23,
-						"cap": 6900
+					firstName: "Lorenzo",
+					lastName: "Ferri",
+					workName: "Lollo",
+					email: "lorenzo.ferri@usi.ch",
+					phone: "3330003330",
+					address: {
+						city: "Lugano",
+						street: "via Zurigo",
+						number: 23,
+						cap: 6900,
+						lat: 46.0119793,
+						long: 8.9517463
 					},
-					"tags": ["Informatico", "Photographer"],
-					"description": "AAA"
+					tags: ["Informatico", "Photographer"],
+					description: "AAA",
+					emergency: false,
 				})
 				.expect(200)
 				.expect('Content-Type', /json/)
