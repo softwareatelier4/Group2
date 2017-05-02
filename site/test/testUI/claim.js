@@ -42,7 +42,7 @@ module.exports = {
 
 	'Check an error during the claim': function(client) {
 		client
-			.url('http://localhost:3000/html/claimRequestsView.html')
+			.url('http://localhost:3000/claimRequestsView.html')
 			.waitForElementVisible('body', 1000)
 			// .assert.elementPresent('a[name=login-link]')
 			// .assert.visible('#navbar-top-desktop a[name="login-link"]')

@@ -45,7 +45,7 @@ let drawLoginMenu = function() {
 			if (logged.level == 0) {
 				menuEl.claim = {
 					name: 'Claim request',
-					link: '/html/claimRequestsView.html',
+					link: '/claimRequestsView.html',
 					dom_name: 'claim-link'
 				};
 			}

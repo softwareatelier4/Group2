@@ -9,11 +9,19 @@ const FREELANCERCLAIMADMIN = {
 			let pendingRequests = [];
 			for (let req of res) {
 				if (req.status == 'Pending') {
-					req.check = true;
+					req.pending = true;
+					req.accepted = false;
+					req.refused = false;
 					pendingRequests.push(req);
 				} else if (req.status == 'Accepted') {
+					req.pending = false;
+					req.accepted = true;
+					req.refused = false;
 					acceptedRequests.push(req);
 				} else if (req.status == 'Refused') {
+					req.pending = false;
+					req.accepted = false;
+					req.refused = true;
 					refusedRequests.push(req);
 				}
 			}
