@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ViewController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import {Http, Headers} from '@angular/http';
+import { Http, Headers } from '@angular/http';
+import { Logged } from '../logged/logged'
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -10,23 +11,41 @@ import 'rxjs/add/operator/map';
 })
 export class HomePage {
 
-	myStorage: Storage;
 	serverIP: string;
 	email: string;
 	password: string;
-	http: Http;
 
-	constructor(public navCtrl: NavController, storage: Storage, http: Http) {
-		this.http = http;
-		this.myStorage = storage;
-		this.myStorage.ready().then(() => {
-			this.myStorage.get('server').then((val) => {
+	constructor(
+		public navCtrl: NavController,
+		public storage: Storage,
+		public http: Http,
+		public alertCtrl: AlertController,
+		public viewCtrl: ViewController
+	){
+		this.storage.ready().then(() => {
+			this.storage.get('server').then((val) => {
 				this.serverIP = val;
+			});
+			this.storage.get('user').then((val) => {
+				if(val){
+					// this.navCtrl.setRoot(Logged);
+				}
 			});
 		});
 	}
 
 	signIn(){
+		let alertError = this.alertCtrl.create({
+			title: 'Error',
+			subTitle: 'e-mail or password wrong, try again!',
+			buttons: ['OK']
+		});
+
+		let alertFreel = this.alertCtrl.create({
+			title: 'Error',
+			subTitle: 'You don\'t have any freelancer linked to your account!',
+			buttons: ['OK']
+		});
 		let headers = new Headers();
 		headers.append('Content-Type', 'application/json');
 		let data = {
@@ -35,8 +54,19 @@ export class HomePage {
 		}
 		this.http.post('http://'+ this.serverIP + '/api/passport/login', data, {"headers": headers})
 		.map(res=>res.json())
-		.subscribe(function(data){
-			console.log(data);
+		.subscribe( (data) => {
+			// console.log(data);
+			if(data.result != "success"){
+				alertError.present();
+			} else {
+				if(data.user.freeLancerId){
+					this.storage.set("user",data.user);
+					this.navCtrl.setRoot(Logged);
+				} else {
+					alertFreel.present();
+				}
+			}
 		});
 	}
+
 }

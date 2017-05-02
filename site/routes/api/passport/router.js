@@ -95,7 +95,7 @@ router.post('/login',function(req, res, next) {
     if (!user) { return res.send({result:'failed'}); }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.send({result:'success'});
+      return res.send({result:'success', user: user});
     });
   })(req, res, next);
 });

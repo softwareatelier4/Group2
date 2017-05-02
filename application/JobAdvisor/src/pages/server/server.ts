@@ -9,11 +9,12 @@ import { Storage } from '@ionic/storage';
 export class ServerPage {
 
   serverText : string;
-  myStorage: Storage;
-  constructor(public navCtrl: NavController, storage: Storage ) {
-    this.myStorage = storage;
-    this.myStorage.ready().then(() => {
-      this.myStorage.get('server').then((val) => {
+  constructor(
+    public navCtrl: NavController,
+    public storage: Storage
+  ) {
+    this.storage.ready().then(() => {
+      this.storage.get('server').then((val) => {
         if(val){
           this.serverText = val;
         }
@@ -22,7 +23,7 @@ export class ServerPage {
   }
 
   setServer() {
-    this.myStorage.set('server',this.serverText);
+    this.storage.set('server',this.serverText);
   }
 
 }

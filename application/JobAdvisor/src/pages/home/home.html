@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Stacked Labels</ion-title>
+    <ion-title>JobAdvisor</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -20,10 +20,10 @@
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
 
+	 <div padding>
+		 <button ion-button color="primary" block outline (click)="signIn()">Sign In</button>
+	 </div>
   </ion-list>
 
-  <div padding>
-    <button ion-button color="primary" block outline (click)="signIn()">Sign In</button>
-  </div>
 
 </ion-content>
