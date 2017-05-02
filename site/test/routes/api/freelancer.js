@@ -95,31 +95,43 @@ describe('Testing put for freelancer', function() {
 		before(seed);
 		after(utils.dropDb);
 		var put_freelancer = {
-			'_id': ObjectId("f00000000000000000000000"),
-			'firstName': 'Marco',
-			'lastName': 'Tollini',
-			'workName': 'Il Tollo',
-			'email': 'tollim@usi.ch',
-			'phone': '+39 380474747',
-			'profilePhoto': '/uploads/test/profile0.jpg',
-			'address': {
+			_id: ObjectId("f00000000000000000000000"),
+			firstName: 'Marco',
+			lastName: 'Tollini',
+			workName: 'Il Tollo',
+			email: 'tollim@usi.ch',
+			phone: '+39 380474747',
+			profilePhoto: '/uploads/test/profile0.jpg',
+			address: {
 				road: 'Via Zurigo',
 				number: 10,
 				city: 'Lugano',
-				cap: 69100
+				cap: 69100,
+				lat: 46.0119793,
+				long: 8.9517463,
 			},
-			'tags': [
+			tags: [
 				ObjectId("a00000000000000000000000"),
 				ObjectId("a00000000000000000000001")
 			],
-			'description': 'Hello guys! I am an amazing developer. ',
-			'photos': [
+			description: 'Hello guys! I am an amazing developer. ',
+			photos: [
 				'/uploads/test/1.jpg',
 				'/uploads/test/2.jpg',
 				'/uploads/test/3.jpg',
 			],
-			'score': 5,
-			price: 10
+			score: 5,
+			price: 10,
+			certifications: [
+				'Bachelor Informatics',
+				'Master Informatics',
+				'Doctor',
+			],
+			emergency: true,
+			currentPosition: {
+				lat: 46.0119793,
+				long: 12.9517463,
+			},
 		}
 
 		var temp = put_freelancer;
