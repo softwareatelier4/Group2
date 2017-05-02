@@ -30,7 +30,7 @@ module.exports = {
 			.pause(100)
 			.waitForElementVisible('div[name=c00000000000000000000002]', 1000)
 			.getText("div[name=c00000000000000000000002] h5", function(result) {
-				this.assert.equal(result.value, "R2");
+				this.assert.equal(result.value, "R3");
 			})
 			.assert.visible('div[name=c00000000000000000000005]')
 			.click('[name=c00000000000000000000005] .card-block button')
