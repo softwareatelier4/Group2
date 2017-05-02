@@ -10,7 +10,8 @@ let drawMenu = function() {
 	menuEl.home = {
 		name: 'Home',
 		link: '/',
-		icon: 'fa-home'
+		icon: 'fa-home',
+		dom_name: 'homepage'
 	};
 
 	$.get("/html/menuElement.html", function(elementHTML) {
@@ -44,7 +45,8 @@ let drawLoginMenu = function() {
 			if (logged.level == 0) {
 				menuEl.claim = {
 					name: 'Claim request',
-					link: '/html/claimRequestsView.html'
+					link: '/html/claimRequestsView.html',
+					dom_name: 'claim-link'
 				};
 			}
 
