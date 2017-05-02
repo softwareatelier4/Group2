@@ -110,6 +110,10 @@ var FreelancerSchema = new mongoose.Schema({
 			type: Number
 		},
 	},
+	active: {
+		type: Boolean,
+		default: 0
+	}
 });
 
 
