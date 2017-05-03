@@ -22,7 +22,7 @@ router.get('/user/:userid', function(req, res, next) {
 			res.status(400).send(err);
 			return;
 		}
-		res.sendStatus(201);
+		res.status(201).redirect('/');
 	})
 });
 
