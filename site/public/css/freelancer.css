@@ -270,7 +270,16 @@ h5 {
    }
 }
 
-
+@keyframes blink {
+  0% { color: #ec1c15; }
+  100% { color: rgb(46, 68, 92); }
 }
-
+@-webkit-keyframes blink {
+  0% { color: #ec1c15; }
+  100% { color: rgb(46, 68, 92); }
+}
+.blink {
+  -webkit-animation: blink 1s ease-in infinite;
+  -moz-animation: blink 1s ease-in infinite;
+  animation: blink 1s ease-in infinite;
 }
