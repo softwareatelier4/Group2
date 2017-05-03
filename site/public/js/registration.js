@@ -8,7 +8,7 @@ const REGISTRATION = {
 		repeatPassword.value = "";
 	},
 
-	checkData: function(){
+	checkData: function() {
 		let firstName = document.getElementById('firstName');
 		let lastName = document.getElementById('lastName');
 		let email = document.getElementById('email');
@@ -19,46 +19,42 @@ const REGISTRATION = {
 		let firstNameErrorLength = document.getElementById("firstName-label2"); //firstname length error
 		let lastNameError = document.getElementById("lastName-label"); //lastname contains special characters
 		let lastNameErrorLength = document.getElementById("lastName-label2"); //lastname length error
-		let pattStrings = /^([A-Za-z_ _-_è_ü_é_ö_à_ä_á_']{3,15})+$/;
+		let pattStrings = /^([A-Za-z_ _-_è_ü_é_ö_à_ä_á_']{1,50})+$/;
 		let flag = true;
-		if(password.value !== repeatPassword.value) {
+		if (password.value !== repeatPassword.value) {
 			flag = false;
 			passwordError.style.display = "block";
 		} else {
 			passwordError.style.display = "none";
 		}
-		if(!pattStrings.test(firstName.value)){
+		if (!pattStrings.test(firstName.value)) {
 			flag = false;
 			firstNameError.style.display = "block";
-		}
-		else {
+		} else {
 			firstNameError.style.display = "none";
 		}
-		if(!pattStrings.test(lastName.value)){
+		if (!pattStrings.test(lastName.value)) {
 			flag = false;
 			lastNameError.style.display = "block";
-		}
-		else {
+		} else {
 			lastNameError.style.display = "none";
 		}
-		if(firstName.value.length < 4 || firstName.value.length > 18) {
+		if (firstName.value.length == 0 || firstName.value.length > 50) {
 			flag = false;
 			firstNameErrorLength.style.display = "block";
-		}
-		else {
+		} else {
 			firstNameErrorLength.style.display = "none";
 		}
-		if(lastName.value.length < 4 || lastName.value.length > 18) {
+		if (lastName.value.length == 0 || lastName.value.length > 50) {
 			flag = false;
 			lastNameErrorLength.style.display = "block";
-		}
-		else {
+		} else {
 			lastNameErrorLength.style.display = "none";
 		}
-		if(!flag) {
+		if (!flag) {
 			REGISTRATION.clearForm();
 		}
-		if(flag){
+		if (flag) {
 			REGISTRATION.submitUser();
 		}
 	},
@@ -70,20 +66,19 @@ const REGISTRATION = {
 		let password = document.getElementById('password');
 		let emailError = document.getElementById("email-label"); //email already taken
 		let user = {
-			'firstName' : firstName.value,
-			'lastName' : lastName.value,
-			'email' : email.value,
-			'password' : password.value
+			'firstName': firstName.value,
+			'lastName': lastName.value,
+			'email': email.value,
+			'password': password.value
 		}
 		doJSONRequest("POST", "/api/passport/signup", null, user, function(res) {
-			if(res.error){
+			if (res.error) {
 				emailError.style.display = "block";
 				email.value = "";
 				password.value = "";
 				repeatPassword.value = "";
-			}
-			else if(res.success){
-				window.location.href ='/';
+			} else if (res.success) {
+				window.location.href = '/';
 			}
 		});
 	}
