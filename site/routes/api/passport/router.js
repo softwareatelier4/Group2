@@ -66,7 +66,7 @@ passport.use('local-signup', new LocalStrategy({
 
 					// if there is no user with that email
 					// create the user
-					var newUser = new User();
+					let newUser = new User();
 
 					// set the user's local credentials
 					newUser.firstName = req.body.firstName;
@@ -75,10 +75,26 @@ passport.use('local-signup', new LocalStrategy({
 					newUser.password = newUser.generateHash(password);
 
 					// save the user
-					newUser.save(function(err) {
+					User.create(newUser, function(err, user) {
 						if (err)
 							throw err;
-						return done(null, newUser);
+
+						// send an email
+						const link = rootUrl + '/api/active/user/' + user._id;
+						const content = {
+							title: `Your JobAdvisor account is almost ready!`,
+							body: `
+							<p>Welcome ${user.firstName},</p>
+							<p>Please complete your account by verifying your email address.</p>
+							<div style="text-align: center">
+            				<a href="${link}" class="confirmBtn" style="display: inline-block; margin-top: 20px;">Verify Email</a>
+          				</div>
+							<p style="font-size: 11px !important; margin-top:30px;">If the link above doesn't work, you can copy and paste the following into your browser:</p>
+							<a style="font-size: 11px !important; color: #aaaaaa;" href="${link}">${link}</a>`
+						}
+						require('./../mail').sendMail(user.email, 'JobAdvisor: registration', content, function(err, info) {
+							return done(null, newUser);
+						});
 					});
 				}
 			});

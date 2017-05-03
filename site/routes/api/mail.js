@@ -62,6 +62,27 @@ module.exports.sendMail = function(to, subject, content, callback) {
 			width: 20%;
 			min-width: 130px;
 		}
+
+		.confirmBtn {
+			text-decoration: none;
+			color: rgb(41, 124, 128);
+			padding: 10px 3% 10px 3%;
+			border: 5px solid rgb(41, 124, 128);
+		}
+
+		.confirmBtn:hover {
+			text-decoration: none;
+			color: white;
+			background-color: rgb(41, 124, 128);
+			padding: 10px 3% 10px 3%;
+			border: 5px solid rgb(41, 124, 128);
+			-webkit-transition: background-color 250ms ease-out;
+			-ms-transition: background-color 250ms ease-out;
+			transition: background-color 250ms ease-out;
+			-webkit-transition: color 250ms ease-out;
+			-ms-transition: color 250ms ease-out;
+			transition: color 250ms ease-out;
+		}
 	</style>
 </head>
 
