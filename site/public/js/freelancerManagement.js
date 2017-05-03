@@ -21,7 +21,7 @@ const FREELANCERMANAGEMENT = {
                     data = {
                         freelancer: res
                     };
-                    
+
                     console.log(data.freelancer.tags);
                     $("#modal-firstName").val(data.freelancer.firstName);
                     $("#modal-lastName").val(data.freelancer.lastName);
@@ -34,7 +34,10 @@ const FREELANCERMANAGEMENT = {
                     $("#modal-number").val(data.freelancer.address.number);
                     $("#modal-description").val(data.freelancer.description);
                     $("#modal-price").val(data.freelancer.price);
-
+						  if(data.freelancer.emergency){
+							  $("#modal-emergency").prop("checked", true);
+						  }
+						  console.log("Emergency: " + data.freelancer.emergency);
                     tagsTemp = [];
 
                     if(data.freelancer.tags != null){
@@ -52,7 +55,7 @@ const FREELANCERMANAGEMENT = {
 
 					// var selectize_tags = $("#modal-tags")[0].selectize
                     let tagsList = document.getElementById('tags-list');
-                    
+
 					for (let i = 0; i < tagsTemp.length; i++) {
                         let badge = `<span class="badge badge-primary">`+ tagsTemp[i] +`  <span style="cursor: pointer;" onclick="FREELANCERMANAGEMENT.removeTag(this)" data-tag="`+ tagsTemp[i] +`" aria-hidden="true">&times;</span></span>  `;
 						FREELANCERMANAGEMENT.addedTags.push(tagsTemp[i]);
@@ -212,12 +215,15 @@ const FREELANCERMANAGEMENT = {
         let photos = data.freelancer.photos;
 		let description = document.getElementById('modal-description');
         let price = document.getElementById('modal-price');
-
+		  let emergency = false;
+		  if(document.getElementById('modal-emergency').checked){
+			  emergency = false;
+		  }
         //console.log(document.getElementById("modal-tags").value);
         // let temp_tags = document.getElementById("modal-tags").value.split(",");
         // let tags = [];
         // for(let j = 0; j<temp_tags.length; j++){
-        //     tags.push(temp_tags[j]);  
+        //     tags.push(temp_tags[j]);
         // }
         //console.log(tags);
         let freelancer_update = {
@@ -232,15 +238,16 @@ const FREELANCERMANAGEMENT = {
 				'road' : street.value,
 				'number' : number.value,
 				'cap' : zip.value,
-				'lat' : undefined,
-				'long': undefined
+				'lat' : 0,
+				'long': 0
 			},
             'photos' : photos,
             'profilePhoto' : profilePic,
 			//'tags' : data.freelancer.tags,
             'tags' : FREELANCERMANAGEMENT.addedTags,
             'score' : null,
-            'price' : price.value
+            'price' : price.value,
+				'emergency' : emergency
 		};
 
         doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+freelancer_update.address.city+"+"+freelancer_update.address.street+"+"+freelancer_update.address.number,null,null,function(res){
