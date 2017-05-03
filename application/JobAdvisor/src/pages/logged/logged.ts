@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { Http } from '@angular/http';
+import { LocationTracker } from '../../providers/location-tracker';
 /**
 * Generated class for the Logged page.
 *
@@ -25,7 +26,8 @@ export class Logged {
     public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public http: Http
+    public http: Http,
+    public locationTracker: LocationTracker
   ){}
 
   ionViewDidLoad() {
@@ -35,7 +37,11 @@ export class Logged {
         this.storage.get('server').then((val) => {
           this.serverIP = val;
           this.http.get("http://" + val + "/api/freelancer/emergency/"+this.user.freeLancerId).map(res=>res.json()).subscribe(data=>{
-            this.emergency = data;
+            if(data == true){
+              this.locationTracker.startTracking("http://" + val + "/api/freelancer/location/"+this.user.freeLancerId);
+            } else {
+              this.locationTracker.stopTracking();
+            }
             this.emergency = data;
           });
         });
@@ -48,6 +54,11 @@ export class Logged {
       emergency: this.emergency
     }
 	  this.http.put("http://" + this.serverIP + "/api/freelancer/emergency/"+this.user.freeLancerId, body).map(res=>res.json()).subscribe(data=>{
+      if(data == true){
+        this.locationTracker.startTracking("http://" + this.serverIP + "/api/freelancer/location/"+this.user.freeLancerId);
+      } else {
+        this.locationTracker.stopTracking();
+      }
       this.emergency = data;
     });
   }

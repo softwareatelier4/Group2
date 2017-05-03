@@ -1,17 +1,20 @@
 <ion-header>
-  <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Stacked Labels</ion-title>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Stacked Labels</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-	<h1>Hello {{user.firstName}} {{user.lastName}}!</h1>
-<ion-item no-lines>
-  <ion-label> Emergency </ion-label>
-  <ion-toggle [(ngModel)]="emergency" (ionChange)="updateEmergency()"></ion-toggle>
-</ion-item>
+  <h1>Hello {{user.firstName}} {{user.lastName}}!</h1>
+  <ion-item no-lines>
+    <ion-label> Emergency </ion-label>
+    <ion-toggle [(ngModel)]="emergency" (ionChange)="updateEmergency()"></ion-toggle>
+  </ion-item>
+
+  <h3>Current Latitude: {{locationTracker.lat}}</h3>
+  <h3>Current Longitude: {{locationTracker.lng}}</h3>
 </ion-content>
