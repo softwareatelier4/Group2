@@ -97,9 +97,32 @@ router.put('/:id', function(req, res, next) {
 						user.freeLancerId = fId;
 
 						user.save();
+
+						let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
+						const content = {
+							title: 'You are a freelancer now!',
+							body: 'You request for the ' + fHtml + ' has been accepted.\nGood luck with your job!'
+						}
+						require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
+					}
+				});
+			} else if (newStatus == 'Refused') {
+				let fId = claim.freelancer;
+				let uId = claim.user;
+				User.findById(uId, function(err, user) {
+					if (err) return next(err);
+
+					if (user) {
+						let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
+						const content = {
+							title: 'Request Refused!',
+							body: 'You request for the ' + fHtml + ' has not been accepted.\nFor further informations contact us!'
+						}
+						require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
 					}
 				});
 			}
+
 			claim.save(function(err, saved) {
 				if (err) res.send(err);
 
