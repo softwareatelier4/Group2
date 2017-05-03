@@ -30,7 +30,14 @@ const SEARCH = {
 			type: undefined
 		},
 		price: undefined,
-		distance: undefined
+		distance: undefined,
+		emergency: false
+	},
+
+	preEmergencyStatus: {
+		oldDistance: "",
+		oldButton: "",
+		oldType: ""
 	},
 
 	/**
@@ -65,6 +72,99 @@ const SEARCH = {
 		// if there is a search, make the search!
 		if (SEARCH_TEXT_QUERY.val() !== '') {
 			SEARCH.search();
+		}
+
+	},
+
+	clickEmergency: function(e) {
+		let distanceInput = document.getElementById("distance-input");
+		if (e.target.dataset.value.toString() == 'true') {
+			SEARCH.filters.emergency = false;
+			e.target.dataset.value = false;
+			e.target.style.backgroundColor = "green";
+			distanceInput.value = SEARCH.preEmergencyStatus.oldDistance;
+			let buttons = document.getElementById('sorting-buttons').childNodes;
+			let currentButton = document.getElementById(SEARCH.preEmergencyStatus.oldButton);
+			for (let i = 0; i < buttons.length; i++) {
+				// skip current clicked button or not buttons
+				if (buttons[i].tagName != 'SPAN')
+					continue;
+
+				buttons[i].style.textDecoration = '';
+				if (buttons[i].innerText !== undefined) {
+					if (currentButton) {
+						currentButton.getElementsByClassName('up-arrow')[0].style.visibility = 'hidden';
+						currentButton.getElementsByClassName('down-arrow')[0].style.display = 'none';
+					}
+					buttons[i].getElementsByClassName('up-arrow')[0].style.visibility = 'hidden';
+					buttons[i].getElementsByClassName('up-arrow')[0].style.display = 'inline';
+					buttons[i].getElementsByClassName('down-arrow')[0].style.display = 'none';
+					buttons[i].getElementsByClassName('down-arrow')[0].style.visibility = 'hidden';
+					buttons[i].dataset.sorttype = "neutral";
+
+				}
+			}
+
+			if (SEARCH.preEmergencyStatus.oldButton !== null && SEARCH.preEmergencyStatus.oldButton) {
+				document.getElementById(SEARCH.preEmergencyStatus.oldButton).dataset.sorttype = SEARCH.filters.sort.type;
+				SEARCH.applyFilters();
+				SEARCH.cardSort(SEARCH.preEmergencyStatus.oldButton, SEARCH.filters.sort.type);
+				currentButton.dataset.sorttype = SEARCH.filters.sort.type;
+				if (SEARCH.filters.sort.type == 'asc') {
+					currentButton.getElementsByClassName('up-arrow')[0].style.visibility = 'visible';
+					currentButton.getElementsByClassName('up-arrow')[0].style.display = 'inline';
+					currentButton.style.textDecoration = 'underline';
+				} else if (SEARCH.filters.sort.type == 'desc') {
+					currentButton.getElementsByClassName('down-arrow')[0].style.visibility = 'visible';
+					currentButton.getElementsByClassName('down-arrow')[0].style.display = 'inline';
+					currentButton.getElementsByClassName('up-arrow')[0].style.display = 'none';
+					currentButton.style.textDecoration = 'underline';
+				}
+			} else {
+				SEARCH.applyFilters();
+				SEARCH.cardSort(SEARCH.preEmergencyStatus.oldButton, SEARCH.filters.sort.type);
+				SEARCH.preEmergencyStatus.oldButton = "";
+				SEARCH.filters.sort.type = "";
+			}
+		} else {
+			SEARCH.filters.emergency = true;
+			e.target.dataset.value = true;
+			e.target.style.backgroundColor = "red";
+			SEARCH.preEmergencyStatus.oldDistance = distanceInput.value;
+			SEARCH.preEmergencyStatus.oldButton = SEARCH.filters.sort.idBtn;
+			SEARCH.preEmergencyStatus.oldType = SEARCH.filters.sort.type;
+			distanceInput.value = 50;
+			let buttons = document.getElementById('sorting-buttons').childNodes;
+			let currentButton = document.getElementById('btn-distance');
+			for (let i = 0; i < buttons.length; i++) {
+				// skip current clicked button or not buttons
+				if (buttons[i].tagName != 'SPAN')
+					continue;
+
+				buttons[i].style.textDecoration = '';
+				if (buttons[i].innerText !== undefined) {
+					currentButton.getElementsByClassName('up-arrow')[0].style.visibility = 'hidden';
+					currentButton.getElementsByClassName('down-arrow')[0].style.display = 'none';
+					buttons[i].getElementsByClassName('up-arrow')[0].style.visibility = 'hidden';
+					buttons[i].getElementsByClassName('up-arrow')[0].style.display = 'inline';
+					buttons[i].getElementsByClassName('down-arrow')[0].style.display = 'none';
+					buttons[i].getElementsByClassName('down-arrow')[0].style.visibility = 'hidden';
+					buttons[i].dataset.sorttype = "neutral";
+
+				}
+			}
+
+			currentButton.getElementsByClassName('up-arrow')[0].style.visibility = 'visible';
+			currentButton.style.textDecoration = 'underline';
+			currentButton.dataset.sorttype = 'asc';
+			SEARCH.filters.sort.idBtn = 'btn-distance';
+			SEARCH.filters.sort.type = 'asc';
+			SEARCH.filters.sort.distance = 50;
+			SEARCH.filters.emergency = true;
+
+			SEARCH.applyFilters();
+			SEARCH.cardSort('btn-distance', "asc");
+
 		}
 
 	},
@@ -488,6 +588,13 @@ const SEARCH = {
 
 		SEARCH.currentResult = JSON.parse(JSON.stringify(SEARCH.originalResponse));
 
+		// apply emergency filter
+		if (SEARCH.filters.emergency) {
+			SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
+				return freelancer.emergency;
+			});
+		}
+
 		// apply price filter
 		if (!isNaN(maxPrice - 0) && maxPrice !== null && maxPrice !== "" && maxPrice !== false) {
 			SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
@@ -866,8 +973,12 @@ const SEARCH = {
 			}
 		}
 
+		if (SEARCH.filters.emergency === undefined)
+			SEARCH.filters.emergency = false;
+
 		let hash = 'filters:type=' + SEARCH.filters.sort.type + '&btn=' + SEARCH.filters.sort.idBtn;
 		hash += '&price=' + SEARCH.filters.price + '&distance=' + SEARCH.filters.distance;
+		hash += '&emergency=' + SEARCH.filters.emergency;
 
 		if (filterHash) {
 			hashes[filterHash] = hash;
@@ -902,6 +1013,13 @@ const SEARCH = {
 				priceInput.value = hashObj.price;
 			if (hashObj.distance != undefined)
 				distanceInput.value = hashObj.distance;
+			if (hashObj.emergency != undefined) {
+				SEARCH.filters.emergency = hashObj.emergency;
+				document.getElementById('emergency-btn').dataset.value = hashObj.emergency;
+				if (hashObj.emergency.toString() == 'true') {
+					document.getElementById('emergency-btn').style.backgroundColor = 'red';
+				}
+			}
 			SEARCH.filters.sort.idBtn = hashObj.btn;
 			SEARCH.filters.sort.type = hashObj.type;
 		}

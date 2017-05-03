@@ -201,6 +201,7 @@ let searchEngine = function(freelancers, string) {
 			longitude: f.address.long,
 			distance: dist,
 			time: timez,
+			emergency: f.emergency,
 			counter: countInArray(fClone, f),
 			price: f.price
 		};
