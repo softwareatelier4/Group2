@@ -109,6 +109,19 @@ router.put('/:id', function(req, res, next) {
 			} else if (newStatus == 'Refused') {
 				let fId = claim.freelancer;
 				let uId = claim.user;
+
+				Freelancer.findById(fId).exec(function(err, freelancer) {
+					if (err) return next(err);
+
+					if (freelancer) {
+						if (freelancer.ownerId.toString() == uId) {
+							console.log("STO CANCELLANDO USERID");
+							freelancer.ownerId = undefined;
+						}
+						freelancer.save();
+					}
+				});
+
 				User.findById(uId, function(err, user) {
 					if (err) return next(err);
 
