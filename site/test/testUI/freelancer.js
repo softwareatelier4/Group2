@@ -94,10 +94,10 @@ module.exports = {
 			.assert.visible('div[class=title-author-review]')
 			.assert.visible('div[id=score-name]')
 			.getText("div[id=score-name] h5", function(result) {
-				this.assert.equal(result.value, "R2");
+				this.assert.equal(result.value, "R7");
 			})
 			.getText("h6[id=review-user]", function(result) {
-				this.assert.equal(result.value, "Costanza Fox");
+				this.assert.equal(result.value, "Costanza Volpini");
 			})
 			.assert.visible('p[id=review-description]')
 			.getText("p[id=review-description]", function(result) {
