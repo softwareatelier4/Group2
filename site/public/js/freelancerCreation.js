@@ -87,9 +87,11 @@ const FREELANCERCREATION = {
 					for (var i = 0; i < Object.keys(finalFiles).length; i++)
 					{
 						title.push(finalFiles[i].name);
+						// console.log(finalFiles[i]);
+						data.append('file'+i, finalFiles[i]);
 					}
 
-					data.append('photos', finalFiles);
+
 					data.append('title', title);
 					data.append('freelancerId', freelancerId);
 

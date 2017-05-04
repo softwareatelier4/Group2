@@ -78,7 +78,7 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 	  res.writeHead(200, {'content-type': 'text/plain'});
 	  res.write('Upload received :\n');
 	  res.end(util.inspect({fields: fields, files: files}));
-	//   console.log("\nprova\n" + files);
+	  console.log("\nprova\n" + files);
 	  console.log(util.inspect(files, false, null));
 	  console.log(util.inspect(fields, false, null));
 	});
