@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
 const formidable = require('formidable');
 const Tag = mongoose.model('Tag');
+const util = require('util');
 
 //supported methods
 router.all('/', middleware.supportedMethods('GET, PUT, OPTIONS'));
@@ -43,31 +44,43 @@ router.get('/:freelancerid', function(req, res, next) {
 });
 
 router.put('/galleryUpload/:id', function(req, res, next) {
-	let form = new formidable.IncomingForm({
-		uploadDir: __dirname + '/../../../public/uploads/',
-		keepExtensions: true
-	});
+	// let form = new formidable.IncomingForm({
+	// 	uploadDir: __dirname + '/../../../public/uploads/',
+	// 	keepExtensions: true
+	// });
+	//
+	// form.parse(req, function(err, fields, files) {
+	// 	if (err) return next(err);
+	// 	console.log("\n\n\n\n\n\n\n\n\n"+fields.title+"\n\n\n\n\n");
+	// 	// let savePath = files.file.path;
+	// 	// let i = savePath.lastIndexOf('/');
+	// 	//
+	// 	// let fileName = savePath.substring(i + 1, savePath.length);
+	// 	//
+	// 	// let claimRequest = new ClaimRequest();
+	// 	// claimRequest.user = fields.userid;
+	// 	// claimRequest.freelancer = fields.freelancerid;
+	// 	// claimRequest.status = 'Pending';
+	// 	// claimRequest.notes = fields.description;
+	// 	// claimRequest.identitycard = '/uploads/claimRequests/' + fileName;
+	// 	// claimRequest.save(function(err, saved) {
+	// 	// 	if (err) res.send(err);
+	// 	//
+	// 	// 	console.log(saved);
+	// 	// 	res.send(saved);
+	// 	// });
+	// });
 
+	var form = new formidable.IncomingForm();
+
+// parse a file upload
 	form.parse(req, function(err, fields, files) {
-		if (err) return next(err);
-		console.log("\n\n\n\n\n\n\n\n\n"+fields.title+"\n\n\n\n\n");
-		// let savePath = files.file.path;
-		// let i = savePath.lastIndexOf('/');
-		//
-		// let fileName = savePath.substring(i + 1, savePath.length);
-		//
-		// let claimRequest = new ClaimRequest();
-		// claimRequest.user = fields.userid;
-		// claimRequest.freelancer = fields.freelancerid;
-		// claimRequest.status = 'Pending';
-		// claimRequest.notes = fields.description;
-		// claimRequest.identitycard = '/uploads/claimRequests/' + fileName;
-		// claimRequest.save(function(err, saved) {
-		// 	if (err) res.send(err);
-		//
-		// 	console.log(saved);
-		// 	res.send(saved);
-		// });
+	  res.writeHead(200, {'content-type': 'text/plain'});
+	  res.write('Upload received :\n');
+	  res.end(util.inspect({fields: fields, files: files}));
+	//   console.log("\nprova\n" + files);
+	  console.log(util.inspect(files, false, null));
+	  console.log(util.inspect(fields, false, null));
 	});
 });
 
