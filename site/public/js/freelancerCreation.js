@@ -87,7 +87,6 @@ const FREELANCERCREATION = {
 					for (var i = 0; i < Object.keys(finalFiles).length; i++)
 					{
 						title.push(finalFiles[i].name);
-						// console.log(finalFiles[i]);
 						data.append('file'+i, finalFiles[i]);
 					}
 
@@ -191,9 +190,6 @@ $(document).ready(function() {
 
 
 $(function() {
-
-
-
   var ooleft = dropZone.offset().left;
   var ooright = dropZone.outerWidth() + ooleft;
   var ootop = dropZone.offset().top;

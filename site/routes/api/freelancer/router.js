@@ -44,43 +44,43 @@ router.get('/:freelancerid', function(req, res, next) {
 });
 
 router.put('/galleryUpload/:id', function(req, res, next) {
-	// let form = new formidable.IncomingForm({
-	// 	uploadDir: __dirname + '/../../../public/uploads/',
-	// 	keepExtensions: true
-	// });
-	//
-	// form.parse(req, function(err, fields, files) {
-	// 	if (err) return next(err);
-	// 	console.log("\n\n\n\n\n\n\n\n\n"+fields.title+"\n\n\n\n\n");
-	// 	// let savePath = files.file.path;
-	// 	// let i = savePath.lastIndexOf('/');
-	// 	//
-	// 	// let fileName = savePath.substring(i + 1, savePath.length);
-	// 	//
-	// 	// let claimRequest = new ClaimRequest();
-	// 	// claimRequest.user = fields.userid;
-	// 	// claimRequest.freelancer = fields.freelancerid;
-	// 	// claimRequest.status = 'Pending';
-	// 	// claimRequest.notes = fields.description;
-	// 	// claimRequest.identitycard = '/uploads/claimRequests/' + fileName;
-	// 	// claimRequest.save(function(err, saved) {
-	// 	// 	if (err) res.send(err);
-	// 	//
-	// 	// 	console.log(saved);
-	// 	// 	res.send(saved);
-	// 	// });
-	// });
+	const id = req.params.id;
+	let dir = __dirname + '/../../../public/uploads/' + id;
 
-	var form = new formidable.IncomingForm();
+	let title = [];
+	if (!fs.existsSync(dir)){
+	    fs.mkdirSync(dir);
+	}
 
-// parse a file upload
+	let form = new formidable.IncomingForm({
+		uploadDir: dir,
+		keepExtensions: true
+	});
+
 	form.parse(req, function(err, fields, files) {
-	  res.writeHead(200, {'content-type': 'text/plain'});
-	  res.write('Upload received :\n');
-	  res.end(util.inspect({fields: fields, files: files}));
-	  console.log("\nprova\n" + files);
-	  console.log(util.inspect(files, false, null));
-	  console.log(util.inspect(fields, false, null));
+		if (err) return next(err);
+		for (let value in files) {
+			let savePath = files[value].path;
+			let i = savePath.lastIndexOf('/');
+
+			let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+
+			title.push(fileName);
+			console.log(fileName + "\n");
+		}
+
+		Freelancer.findById(id, function(err, freelancer) {
+			if (err) {
+				res.status(400).send(err);
+				return;
+			}
+
+			if (freelancer) {
+				freelancer.photos = title;
+				freelancer.save(onModelSave(res, 200, true));
+				console.log("SAVED\n");
+			}
+		});
 	});
 });
 
