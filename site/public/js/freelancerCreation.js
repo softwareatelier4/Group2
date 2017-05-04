@@ -1,9 +1,11 @@
 var dropZoneId = "drop-zone";
-  var buttonId = "clickHere";
-  var mouseOverClass = "mouse-over";
+var buttonId = "clickHere";
+var mouseOverClass = "mouse-over";
 var dropZone = $("#" + dropZoneId);
- var inputFile = dropZone.find("input");
- var finalFiles = {};
+var inputFile = dropZone.find("input");
+var finalFiles = {};
+
+var freelancerId = 0;
 
 const FREELANCERCREATION = {
 
@@ -27,13 +29,19 @@ const FREELANCERCREATION = {
 		let emergency = false;
 
 
-		let files = $("#file")[0].files;
-		console.log(finalFiles);
 
-		for (var i = 0; i < files.length; i++)
+
+		let title = [];
+
+		for (var i = 0; i < Object.keys(finalFiles).length; i++)
 		{
-		 	console.log(files[i].name);
+			// title.push(finalFiles[i].name);
+			console.log(finalFiles[i].name);
 		}
+
+		// console.log("TITLE:");
+		// console.log(title);
+		// console.log(FREELANCERCREATION.addedTags);
 
 		if(document.getElementById('modal-emergency').checked){
 			emergency = true;
@@ -57,18 +65,6 @@ const FREELANCERCREATION = {
 			'emergency' : emergency,
 			'tags' : FREELANCERCREATION.addedTags
 		};
-		// $("#position")
-		// .geocomplete()
-		// .bind("geocode:result", function(event, result) {
-		// 	const city = result.address_components[0].long_name;
-		//
-		// 	const addressLen = result.address_components.length;
-		// 	const state = result.address_components[addressLen - 1].long_name;
-		//
-		// 	const lat = result.geometry.location.lat();
-		// 	const lng = result.geometry.location.lng();
-		// 	SEARCH.setPosition('user', lat, lng, city, state);
-		// });
 
 		doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+freelancer.address.city+"+"+freelancer.address.street+"+"+freelancer.address.number,null,null,function(res){
 			if(res.status == "OK"){
@@ -78,12 +74,45 @@ const FREELANCERCREATION = {
 			doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
 				console.log(freelancer);
 				if(!res.errors){
+					// console.log(res.result._id)
+					freelancerId = res._id;
+					let data, xhr;
+
+					console.log(freelancerId);
+
+					data = new FormData();
+
+					let title = [];
+
+					for (var i = 0; i < Object.keys(finalFiles).length; i++)
+					{
+						title.push(finalFiles[i].name);
+					}
+
+					data.append('photos', finalFiles);
+					data.append('title', title);
+					data.append('freelancerId', freelancerId);
+
+					xhr = new XMLHttpRequest();
+
+					xhr.open('PUT', '/api/freelancer/galleryUpload/' + freelancerId, true);
+					xhr.onreadystatechange = function(response) {
+						console.log(response);
+					};
+					xhr.send(data);
+
 					// window.location.href ='/#freelancer=' + res._id;
 				} else {
 					console.log("Error: " + res.errors[0]);
 				}
 			});
 		});
+
+		/*
+			Send later the photos to be added, profile photo and also gallery photos
+		*/
+
+
 	},
 
 	result : {},
