@@ -12,6 +12,24 @@ const formidable = require('formidable');
 const Tag = mongoose.model('Tag');
 const util = require('util');
 
+let rmDir = function(dirPath, removeSelf) {
+      if (removeSelf === undefined)
+        removeSelf = true;
+      try { var files = fs.readdirSync(dirPath); }
+      catch(e) { return; }
+      if (files.length > 0)
+        for (var i = 0; i < files.length; i++) {
+          var filePath = dirPath + '/' + files[i];
+          if (fs.statSync(filePath).isFile())
+            fs.unlinkSync(filePath);
+          else
+            rmDir(filePath);
+        }
+      if (removeSelf)
+        fs.rmdirSync(dirPath);
+    };
+
+
 //supported methods
 router.all('/', middleware.supportedMethods('GET, PUT, OPTIONS'));
 
@@ -46,7 +64,7 @@ router.get('/:freelancerid', function(req, res, next) {
 router.put('/galleryUpload/:id', function(req, res, next) {
 	const id = req.params.id;
 	let dir = __dirname + '/../../../public/uploads/' + id;
-
+	rmDir(__dirname + '/../../../public/uploads/' + id, false);
 	let title = [];
 	if (!fs.existsSync(dir)){
 	    fs.mkdirSync(dir);
@@ -83,6 +101,8 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 		});
 	});
 });
+
+
 
 router.put('/:freelancerid', function(req, res, next) {
 	const data = req.body;
