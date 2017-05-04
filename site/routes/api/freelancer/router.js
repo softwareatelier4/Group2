@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 var middleware = require('../../middleware');
 var rootUrl = require("../../../config").url;
+var fs = require('fs');
 const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
 const Tag = mongoose.model('Tag');
@@ -294,8 +295,10 @@ router.post('/create/freelancer', function(req, res) {
 	freelancer.profilePhoto = '';
 	freelancer.emergency = req.body.emergency;
 	let tags = req.body.tags;
+
 	freelancer.save(function(err, newfreelancer) {
 		if (err) {
+			console.log(err);
 			res.send(err);
 		} else {
 			Freelancer.update({

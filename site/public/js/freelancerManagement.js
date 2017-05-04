@@ -217,7 +217,7 @@ const FREELANCERMANAGEMENT = {
         let price = document.getElementById('modal-price');
 		  let emergency = false;
 		  if(document.getElementById('modal-emergency').checked){
-			  emergency = false;
+			  emergency = true;
 		  }
         //console.log(document.getElementById("modal-tags").value);
         // let temp_tags = document.getElementById("modal-tags").value.split(",");

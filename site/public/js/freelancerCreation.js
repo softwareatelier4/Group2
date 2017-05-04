@@ -1,3 +1,10 @@
+var dropZoneId = "drop-zone";
+  var buttonId = "clickHere";
+  var mouseOverClass = "mouse-over";
+var dropZone = $("#" + dropZoneId);
+ var inputFile = dropZone.find("input");
+ var finalFiles = {};
+
 const FREELANCERCREATION = {
 
 	name: 'freelancerCreation',
@@ -6,7 +13,7 @@ const FREELANCERCREATION = {
 	* Create and send the freelancer trought the json request
 	*/
 	submitFreelancer: function() {
-		let firstName = document.getElementById('firstName');
+		let firstName = document.getElementById('firstName-complex');
 		let lastName = document.getElementById('lastName');
 		let workName = document.getElementById('workName');
 		let phoneNumber = document.getElementById('phone');
@@ -17,6 +24,20 @@ const FREELANCERCREATION = {
 		let mail = document.getElementById('email');
 		let profilePic = document.getElementById('profilePicture');
 		let description = document.getElementById('description');
+		let emergency = false;
+
+
+		let files = $("#file")[0].files;
+		console.log(finalFiles);
+
+		for (var i = 0; i < files.length; i++)
+		{
+		 	console.log(files[i].name);
+		}
+
+		if(document.getElementById('modal-emergency').checked){
+			emergency = true;
+		}
 		let freelancer = {
 			'firstName' : firstName.value,
 			'lastName' : lastName.value,
@@ -29,10 +50,11 @@ const FREELANCERCREATION = {
 				'street' : street.value,
 				'number' : number.value,
 				'cap' : zip.value,
-				'lat' : undefined,
-				'long': undefined
+				'lat' : 0,
+				'long': 0
 
 			},
+			'emergency' : emergency,
 			'tags' : FREELANCERCREATION.addedTags
 		};
 		// $("#position")
@@ -54,8 +76,11 @@ const FREELANCERCREATION = {
 				freelancer.address.long = res.results[0].geometry.location.lng;
 			}
 			doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
+				console.log(freelancer);
 				if(!res.errors){
-					window.location.href ='/#freelancer=' + res._id;
+					// window.location.href ='/#freelancer=' + res._id;
+				} else {
+					console.log("Error: " + res.errors[0]);
 				}
 			});
 		});
@@ -104,4 +129,125 @@ const FREELANCERCREATION = {
 		span.parentNode.parentNode.removeChild(span.parentNode);
 	}
 
+}
+
+$(document).ready(function() {
+  if (window.File && window.FileList && window.FileReader) {
+    $("#gallery-upload").on("change", function(e) {
+      var files = e.target.files,
+        filesLength = files.length;
+      for (var i = 0; i < filesLength; i++) {
+        var f = files[i]
+        var fileReader = new FileReader();
+        fileReader.onload = (function(e) {
+          var file = e.target;
+          $("<span class=\"pip\">" +
+            "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+            "<br/><span class=\"remove\">Remove image</span>" +
+            "</span>").insertAfter("#gallery-upload");
+          $(".remove").click(function(){
+            $(this).parent(".pip").remove();
+          });
+
+        });
+        fileReader.readAsDataURL(f);
+      }
+    });
+  } else {
+    alert("Your browser doesn't support to File API")
+  }
+});
+
+
+$(function() {
+
+
+
+  var ooleft = dropZone.offset().left;
+  var ooright = dropZone.outerWidth() + ooleft;
+  var ootop = dropZone.offset().top;
+  var oobottom = dropZone.outerHeight() + ootop;
+
+  document.getElementById(dropZoneId).addEventListener("dragover", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dropZone.addClass(mouseOverClass);
+    var x = e.pageX;
+    var y = e.pageY;
+
+    if (!(x < ooleft || x > ooright || y < ootop || y > oobottom)) {
+      inputFile.offset({
+        top: y - 15,
+        left: x - 100
+      });
+    } else {
+      inputFile.offset({
+        top: -400,
+        left: -400
+      });
+    }
+
+  }, true);
+
+  if (buttonId != "") {
+    var clickZone = $("#" + buttonId);
+
+    var oleft = clickZone.offset().left;
+    var oright = clickZone.outerWidth() + oleft;
+    var otop = clickZone.offset().top;
+    var obottom = clickZone.outerHeight() + otop;
+
+    $("#" + buttonId).mousemove(function(e) {
+      var x = e.pageX;
+      var y = e.pageY;
+      if (!(x < oleft || x > oright || y < otop || y > obottom)) {
+        inputFile.offset({
+          top: y - 15,
+          left: x - 160
+        });
+      } else {
+        inputFile.offset({
+          top: -400,
+          left: -400
+        });
+      }
+    });
+  }
+
+  document.getElementById(dropZoneId).addEventListener("drop", function(e) {
+    $("#" + dropZoneId).removeClass(mouseOverClass);
+  }, true);
+
+
+  inputFile.on('change', function(e) {
+    finalFiles = {};
+    $('#filename').html("");
+    var fileNum = this.files.length,
+      initial = 0,
+      counter = 0;
+
+    $.each(this.files,function(idx,elm){
+       finalFiles[idx]=elm;
+    });
+
+    for (initial; initial < fileNum; initial++) {
+      counter = counter + 1;
+      $('#filename').append('<div id="file_'+ initial +'"><span class="fa-stack fa-lg"><i class="fa fa-file fa-stack-1x "></i><strong class="fa-stack-1x" style="color:#FFF; font-size:12px; margin-top:2px;">' + counter + '</strong></span> ' + this.files[initial].name + '&nbsp;&nbsp;<span class="fa fa-times-circle fa-lg closeBtn" onclick="removeLine(this)" title="remove"></span></div>');
+    }
+  });
+
+
+
+})
+
+function removeLine(obj)
+{
+  inputFile.val('');
+  var jqObj = $(obj);
+  var container = jqObj.closest('div');
+  var index = container.attr("id").split('_')[1];
+  container.remove();
+
+  delete finalFiles[index];
+  console.log(finalFiles);
 }
