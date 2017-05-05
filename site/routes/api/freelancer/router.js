@@ -77,14 +77,26 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 
 	form.parse(req, function(err, fields, files) {
 		if (err) return next(err);
+		let flag = true;
+		let profile = "";
 		for (let value in files) {
-			let savePath = files[value].path;
-			let i = savePath.lastIndexOf('/');
+			if(flag){
+				let savePath = files[value].path;
+				let i = savePath.lastIndexOf('/');
 
-			let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+				profile = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
 
-			title.push(fileName);
-			console.log(fileName + "\n");
+				flag = false;
+			} else {
+				let savePath = files[value].path;
+				let i = savePath.lastIndexOf('/');
+
+				let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+
+				title.push(fileName);
+				// console.log(fileName + "\n");
+			}
+
 		}
 
 		Freelancer.findById(id, function(err, freelancer) {
@@ -95,8 +107,9 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 
 			if (freelancer) {
 				freelancer.photos = title;
+				freelancer.profilePhoto = profile;
 				freelancer.save(onModelSave(res, 200, true));
-				console.log("SAVED\n");
+				// console.log("SAVED\n");
 			}
 		});
 	});

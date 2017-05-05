@@ -84,10 +84,12 @@ const FREELANCERCREATION = {
 
 					let title = [];
 
+					data.append('file0', $('#profilePicture')[0].files[0]);
+
 					for (var i = 0; i < Object.keys(finalFiles).length; i++)
 					{
 						title.push(finalFiles[i].name);
-						data.append('file'+i, finalFiles[i]);
+						data.append('file'+i+1, finalFiles[i]);
 					}
 
 
