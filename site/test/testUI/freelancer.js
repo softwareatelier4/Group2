@@ -115,6 +115,13 @@ module.exports = {
 				this.assert.equal(result.value, "WORKS");
 			})
 			.assert.visible('div[id=thumbnail]')
+
+
+			//test if there is an emergency
+			.assert.visible('i[id=emergency-sign]')
+
+			//test validification claim
+			.assert.visible('i[id=verified-sign]')
 			.end();
 	}
 };
