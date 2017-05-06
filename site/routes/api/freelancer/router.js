@@ -79,6 +79,7 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 		if (err) return next(err);
 		let flag = true;
 		let profile = "";
+		let j = 1;
 		for (let value in files) {
 			if(flag){
 				let savePath = files[value].path;
@@ -88,12 +89,18 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 
 				flag = false;
 			} else {
-				let savePath = files[value].path;
-				let i = savePath.lastIndexOf('/');
+				if(j <= 12){
+					let savePath = files[value].path;
+					let i = savePath.lastIndexOf('/');
 
-				let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+					let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
 
-				title.push(fileName);
+					title.push(fileName);
+				} else {
+					break;
+				}
+
+				j++;
 				// console.log(fileName + "\n");
 			}
 
@@ -115,7 +122,66 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 	});
 });
 
+router.put('/galleryModification/:id', function(req, res, next) {
+	const id = req.params.id;
+	let dir = __dirname + '/../../../public/uploads/' + id;
+	// rmDir(__dirname + '/../../../public/uploads/' + id, false);
+	let number = [];
+	if (!fs.existsSync(dir)){
+	    fs.mkdirSync(dir);
+	}
 
+	let form = new formidable.IncomingForm({
+		uploadDir: dir,
+		keepExtensions: true
+	});
+
+	form.parse(req, function(err, fields, files) {
+		if (err) return next(err);
+		let flag = true;
+		let profile = "";
+		let j = 1;
+		for (let value in files) {
+			// if(flag){
+			// 	let savePath = files[value].path;
+			// 	let i = savePath.lastIndexOf('/');
+			//
+			// 	profile = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+			//
+			// 	flag = false;
+			// } else {
+			// 	if(j <= 12){
+			// 		let savePath = files[value].path;
+			// 		let i = savePath.lastIndexOf('/');
+			//
+			// 		let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+			//
+			// 		title.push(fileName);
+			// 	} else {
+			// 		break;
+			// 	}
+			//
+			// 	j++;
+				console.log("\n\n PORCAO: " + files[value] + "\n\n");
+			}
+
+		// }
+
+		// Freelancer.findById(id, function(err, freelancer) {
+		// 	if (err) {
+		// 		res.status(400).send(err);
+		// 		return;
+		// 	}
+		//
+		// 	if (freelancer) {
+		// 		freelancer.photos = title;
+		// 		freelancer.profilePhoto = profile;
+		// 		freelancer.save(onModelSave(res, 200, true));
+		// 		// console.log("SAVED\n");
+		// 	}
+		// });
+	});
+});
 
 router.put('/:freelancerid', function(req, res, next) {
 	const data = req.body;
@@ -127,10 +193,10 @@ router.put('/:freelancerid', function(req, res, next) {
 		}
 
 		if (freelancer) {
-			freelancer.firstName = data.firstName;
-			freelancer.lastName = data.lastName;
+			// freelancer.firstName = data.firstName;
+			// freelancer.lastName = data.lastName;
 			freelancer.workName = data.workName;
-			freelancer.email = data.email;
+			// freelancer.email = data.email;
 			freelancer.phone = data.phone;
 			freelancer.profilePhoto = data.profilePhoto;
 			freelancer.photos = data.photos;

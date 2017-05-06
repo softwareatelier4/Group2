@@ -190,7 +190,6 @@ $(document).ready(function() {
   }
 });
 
-
 $(function() {
   var ooleft = dropZone.offset().left;
   var ooright = dropZone.outerWidth() + ooleft;
@@ -278,5 +277,5 @@ function removeLine(obj)
   container.remove();
 
   delete finalFiles[index];
-  console.log(finalFiles);
+  // console.log(finalFiles);
 }
