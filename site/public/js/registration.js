@@ -11,6 +11,7 @@ const REGISTRATION = {
 
 	checkFreelancer: function() {
 		flag_2 = true;
+		console.log("DIO2");
 		REGISTRATION.checkData();
 	},
 
@@ -66,7 +67,6 @@ const REGISTRATION = {
 			REGISTRATION.clearForm();
 		}
 		if(flag){
-			console.log("test");
 			REGISTRATION.submitUser();
 		}
 	},
@@ -91,8 +91,8 @@ const REGISTRATION = {
 				repeatPassword.value = "";
 			}
 			else if(res.success){
+				console.log("DIO3");
 				if(flag_2){
-					
 					console.log(email.value);
 					window.location.href ='/freelancerCreation.html#email='+email.value;
 				}

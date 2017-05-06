@@ -61,6 +61,29 @@ router.get('/:freelancerid', function(req, res, next) {
 	})
 });
 
+router.post('/sendEmailFreelancer/:email', function(req, res, next) {
+	let email = req.params.email;
+	let freelancerId = req.body.id;
+	let work = req.body.work;
+
+	const link = rootUrl + '/api/active/freelancer/' + freelancerId;
+	const content = {
+		title: `Your JobAdvisor account is almost ready!`,
+		body: `
+		<p>Welcome ${work},</p>
+		<p>Please complete your account by verifying your email address.</p>
+		<div style="text-align: center">
+			<a href="${link}" class="confirmBtn" style="display: inline-block; margin-top: 20px;">Verify Email</a>
+		</div>
+		<p style="font-size: 11px !important; margin-top:30px;">If the link above doesn't work, you can copy and paste the following into your browser:</p>
+		<a style="font-size: 11px !important; color: #aaaaaa;" href="${link}">${link}</a>`
+	}
+	require('./../mail').sendMail(email, 'JobAdvisor: new freelancer', content, function(err, info) {
+		res.sendStatus(200);
+	});
+
+});
+
 router.put('/galleryUpload/:id', function(req, res, next) {
 	const id = req.params.id;
 	let dir = __dirname + '/../../../public/uploads/' + id;

@@ -28,20 +28,7 @@ const FREELANCERCREATION = {
 		let description = document.getElementById('description');
 		let emergency = false;
 
-
-
-
 		let title = [];
-		// 
-		// for (var i = 0; i < Object.keys(finalFiles).length; i++)
-		// {
-		// 	//
-		// 	console.log(finalFiles[i].name);
-		// }
-
-		// console.log("TITLE:");
-		// console.log(title);
-		// console.log(FREELANCERCREATION.addedTags);
 
 		if(document.getElementById('modal-emergency').checked){
 			emergency = true;
@@ -72,7 +59,7 @@ const FREELANCERCREATION = {
 				freelancer.address.long = res.results[0].geometry.location.lng;
 			}
 			doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
-				console.log(freelancer);
+				// console.log(freelancer);
 				if(!res.errors){
 					// console.log(res.result._id)
 					freelancerId = res._id;
@@ -104,7 +91,20 @@ const FREELANCERCREATION = {
 					};
 					xhr.send(data);
 
-					// window.location.href ='/#freelancer=' + res._id;
+					let email2 = location.hash.split("=")[1];
+					if(email2 != mail.value){
+
+						let verification = {
+							'id' : freelancerId,
+							'work' : workName.value
+						};
+						console.log(mail.value);
+						doJSONRequest("POST", "/api/freelancer/sendEmailFreelancer/" + mail.value, null, verification, function(res) {
+							// if(!res.errors){
+							// 	console.log("YEBOI");
+							// }
+						});
+					}
 				} else {
 					console.log("Error: " + res.errors[0]);
 				}
@@ -159,11 +159,42 @@ const FREELANCERCREATION = {
 			FREELANCERCREATION.addedTags.splice(index, 1);
 		}
 		span.parentNode.parentNode.removeChild(span.parentNode);
-	}
+	},
+
+	googleFindType: function(address, searchType) {
+	      for (let a of address) {
+	         let types = a.types;
+
+	         for (let type of types) {
+	            if (type == searchType)
+	               return a;
+	         }
+	      }
+	   }
 
 }
 
 $(document).ready(function() {
+	
+	$("#position")
+	      .geocomplete()
+	      .bind("geocode:result", function(event, result) {
+	        let city = FREELANCERCREATION.googleFindType(result.address_components, 'locality')
+
+	        if (city) {
+	          city = city.long_name;
+	        } else {
+	          city = result.address_components[0].long_name;
+	        }
+
+	        const formatted_address = result.formatted_address;
+
+	        const lat = result.geometry.location.lat();
+	        const lng = result.geometry.location.lng();
+
+	      });
+
+
   if (window.File && window.FileList && window.FileReader) {
     $("#gallery-upload").on("change", function(e) {
       var files = e.target.files,
@@ -279,3 +310,7 @@ function removeLine(obj)
   delete finalFiles[index];
   // console.log(finalFiles);
 }
+
+
+/*******/
+//position
