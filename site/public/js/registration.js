@@ -66,6 +66,7 @@ const REGISTRATION = {
 			REGISTRATION.clearForm();
 		}
 		if(flag){
+			console.log("test");
 			REGISTRATION.submitUser();
 		}
 	},
