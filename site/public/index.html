@@ -42,12 +42,17 @@
 					</nav>
 				</div>
 				<form class="" autocomplete="off">
-					<div class="input-group">
-						<a id="emergency-btn" onclick="SEARCH.clickEmergency(event)" data-value="false" style="background-color: green;">Emergency</a>
-						<input type="text" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
-						<span class="input-group-addon search-btn" id="basic-addon1">Search</span>
-						<input type="text" class="form-control" aria-describedby="basic-addon1" id="position" placeholder="Loading position...">
+					<div style="float:left; display:block;">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
+							<span class="input-group-addon search-btn" id="basic-addon1">Search</span>
+							<input type="text" class="form-control" aria-describedby="basic-addon1" id="position" placeholder="Loading position...">
+						</div>
 					</div>
+					<div style="float:right; display:block; width:120px; height:38px;">
+						<button id="emergency-btn" style="text-align: center;" onclick="SEARCH.clickEmergency(event)" data-value="false" type="button" class="btn btn-default btn-lg">Emergency</button>
+					</div>
+					<div style="clear:both;"></div>
 				</form>
 				<div class="input-group" id="sorting-buttons">
 					<span class="filter-btn" id="btn-score" data-sorttype="neutral" onclick="SEARCH.sortSearchFreelancers('btn-score');">Score <span class="up-arrow">↑</span><span class="down-arrow">↓</span></span>

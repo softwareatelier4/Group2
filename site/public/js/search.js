@@ -81,7 +81,9 @@ const SEARCH = {
 		if (e.target.dataset.value.toString() == 'true') {
 			SEARCH.filters.emergency = false;
 			e.target.dataset.value = false;
-			e.target.style.backgroundColor = "green";
+			e.target.classList.remove('btn-danger');
+			e.target.classList.add('btn-default');
+			// e.target.style.backgroundColor = "green";
 			distanceInput.value = SEARCH.preEmergencyStatus.oldDistance;
 			let buttons = document.getElementById('sorting-buttons').childNodes;
 			let currentButton = document.getElementById(SEARCH.preEmergencyStatus.oldButton);
@@ -108,13 +110,16 @@ const SEARCH = {
 			if (SEARCH.preEmergencyStatus.oldButton !== null && SEARCH.preEmergencyStatus.oldButton) {
 				document.getElementById(SEARCH.preEmergencyStatus.oldButton).dataset.sorttype = SEARCH.filters.sort.type;
 				SEARCH.applyFilters();
-				SEARCH.cardSort(SEARCH.preEmergencyStatus.oldButton, SEARCH.filters.sort.type);
-				currentButton.dataset.sorttype = SEARCH.filters.sort.type;
-				if (SEARCH.filters.sort.type == 'asc') {
+				currentButton.dataset.sorttype = SEARCH.preEmergencyStatus.oldType;
+				SEARCH.cardSort(SEARCH.preEmergencyStatus.oldButton, SEARCH.preEmergencyStatus.oldType);
+				SEARCH.filters.sort.idBtn = currentButton.id;
+				SEARCH.filters.sort.type = currentButton.dataset.sorttype;
+				SEARCH.setFilterHash();
+				if (currentButton.dataset.sorttype == 'asc') {
 					currentButton.getElementsByClassName('up-arrow')[0].style.visibility = 'visible';
 					currentButton.getElementsByClassName('up-arrow')[0].style.display = 'inline';
 					currentButton.style.textDecoration = 'underline';
-				} else if (SEARCH.filters.sort.type == 'desc') {
+				} else if (currentButton.dataset.sorttype == 'desc') {
 					currentButton.getElementsByClassName('down-arrow')[0].style.visibility = 'visible';
 					currentButton.getElementsByClassName('down-arrow')[0].style.display = 'inline';
 					currentButton.getElementsByClassName('up-arrow')[0].style.display = 'none';
@@ -122,14 +127,15 @@ const SEARCH = {
 				}
 			} else {
 				SEARCH.applyFilters();
-				SEARCH.cardSort(SEARCH.preEmergencyStatus.oldButton, SEARCH.filters.sort.type);
 				SEARCH.preEmergencyStatus.oldButton = "";
 				SEARCH.filters.sort.type = "";
 			}
 		} else {
 			SEARCH.filters.emergency = true;
 			e.target.dataset.value = true;
-			e.target.style.backgroundColor = "red";
+			e.target.classList.remove('btn-default');
+			e.target.classList.add('btn-danger');
+			// e.target.style.backgroundColor = "red";
 			SEARCH.preEmergencyStatus.oldDistance = distanceInput.value;
 			SEARCH.preEmergencyStatus.oldButton = SEARCH.filters.sort.idBtn;
 			SEARCH.preEmergencyStatus.oldType = SEARCH.filters.sort.type;
