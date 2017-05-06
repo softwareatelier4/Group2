@@ -235,7 +235,8 @@ const SEARCH = {
 			distance: undefined
 		};
 		SORTING_OPTIONS.style.visibility = 'hidden';
-		document.getElementById("emergency-btn").style.visibility = 'hidden';
+		document.getElementById("emergency-btn").style.visibility = "hidden";
+		document.getElementById("emergency-btn").style.display = "none";
 		let btns = document.getElementsByClassName('filter-btn');
 		for (let elem of btns) {
 			elem.style.textDecoration = '';
@@ -266,6 +267,7 @@ const SEARCH = {
 		MAIN_DIV.style.backgroundColor = "rgb(231, 231, 231)";
 		SORTING_OPTIONS.style.visibility = 'visible';
 		document.getElementById("emergency-btn").style.visibility = 'visible';
+		document.getElementById("emergency-btn").style.display = "block";
 	},
 
 
