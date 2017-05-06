@@ -23,3 +23,7 @@ site/public/uploads/claimRequests/*
 !site/public/uploads/claimRequests/.gitkeep
 
 npm-debug\.log
+
+*.png
+
+*.jpg

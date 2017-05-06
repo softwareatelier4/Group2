@@ -1,3 +1,11 @@
+// var dropZoneId = "drop-zone";
+// var buttonId = "clickHere";
+// var mouseOverClass = "mouse-over";
+// var dropZone = $("#" + dropZoneId);
+// var inputFile = dropZone.find("input");
+// var finalFiles = {};
+
+
 const FREELANCERMANAGEMENT = {
     data: null,
     idFreelancer : null,
@@ -21,12 +29,10 @@ const FREELANCERMANAGEMENT = {
                     data = {
                         freelancer: res
                     };
-                    
-                    console.log(data.freelancer.tags);
-                    $("#modal-firstName").val(data.freelancer.firstName);
-                    $("#modal-lastName").val(data.freelancer.lastName);
+
+						  console.log(data.freelancer.photos);
+
                     $("#modal-workName").val(data.freelancer.workName);
-                    $("#modal-email").val(data.freelancer.email);
                     $("#modal-phone").val(data.freelancer.phone);
                     $("#modal-city").val(data.freelancer.address.city);
                     $("#modal-street").val(data.freelancer.address.road);
@@ -34,7 +40,10 @@ const FREELANCERMANAGEMENT = {
                     $("#modal-number").val(data.freelancer.address.number);
                     $("#modal-description").val(data.freelancer.description);
                     $("#modal-price").val(data.freelancer.price);
-
+						  if(data.freelancer.emergency){
+							  $("#modal-emergency").prop("checked", true);
+						  }
+						  console.log("Emergency: " + data.freelancer.emergency);
                     tagsTemp = [];
 
                     if(data.freelancer.tags != null){
@@ -43,16 +52,8 @@ const FREELANCERMANAGEMENT = {
                         });
                     }
 
-
-					// var $tags = $('#modal-tags').selectize({
-					// 	delimiter: ',',
-					// 	persist: false,
-					// 	create: true
-					// });
-
-					// var selectize_tags = $("#modal-tags")[0].selectize
                     let tagsList = document.getElementById('tags-list');
-                    
+
 					for (let i = 0; i < tagsTemp.length; i++) {
                         let badge = `<span class="badge badge-primary">`+ tagsTemp[i] +`  <span style="cursor: pointer;" onclick="FREELANCERMANAGEMENT.removeTag(this)" data-tag="`+ tagsTemp[i] +`" aria-hidden="true">&times;</span></span>  `;
 						FREELANCERMANAGEMENT.addedTags.push(tagsTemp[i]);
@@ -76,29 +77,29 @@ const FREELANCERMANAGEMENT = {
         // console.log(patt.test(document.getElementById("modal-firstName").value));
 
 
-        if(!pattStrings.test(document.getElementById("modal-firstName").value)){
-            flag = false;
-            document.getElementById("modal-firstName-label").className = 'error-red';
-            document.getElementById("modal-firstName-label").innerHTML = "Firstname can only contain letters(a-z,A-Z) and spaces";
-        }
-        else if(pattStrings.test(document.getElementById("modal-firstName").value) &&
-           document.getElementById("modal-firstName-label").className == 'error-red'){
-            document.getElementById("modal-firstName-label").className = 'error-green';
-            document.getElementById("modal-firstName-label").innerHTML = "Firstname input was corrected";
+      //   if(!pattStrings.test(document.getElementById("modal-firstName").value)){
+      //       flag = false;
+      //       document.getElementById("modal-firstName-label").className = 'error-red';
+      //       document.getElementById("modal-firstName-label").innerHTML = "Firstname can only contain letters(a-z,A-Z) and spaces";
+      //   }
+      //   else if(pattStrings.test(document.getElementById("modal-firstName").value) &&
+      //      document.getElementById("modal-firstName-label").className == 'error-red'){
+      //       document.getElementById("modal-firstName-label").className = 'error-green';
+      //       document.getElementById("modal-firstName-label").innerHTML = "Firstname input was corrected";
+		  //
+      //   }
 
-        }
-
-        if(!pattStrings.test(document.getElementById("modal-lastName").value)){
-            flag = false;
-            document.getElementById("modal-lastName-label").className = 'error-red';
-            document.getElementById("modal-lastName-label").innerHTML = "Lastname can only contain letters(a-z,A-Z) and spaces";
-        }
-        else if(pattStrings.test(document.getElementById("modal-lastName").value) &&
-           document.getElementById("modal-lastName-label").className == 'error-red'){
-            document.getElementById("modal-lastName-label").className = 'error-green';
-            document.getElementById("modal-lastName-label").innerHTML = "Lastname input was corrected";
-
-        }
+      //   if(!pattStrings.test(document.getElementById("modal-lastName").value)){
+      //       flag = false;
+      //       document.getElementById("modal-lastName-label").className = 'error-red';
+      //       document.getElementById("modal-lastName-label").innerHTML = "Lastname can only contain letters(a-z,A-Z) and spaces";
+      //   }
+      //   else if(pattStrings.test(document.getElementById("modal-lastName").value) &&
+      //      document.getElementById("modal-lastName-label").className == 'error-red'){
+      //       document.getElementById("modal-lastName-label").className = 'error-green';
+      //       document.getElementById("modal-lastName-label").innerHTML = "Lastname input was corrected";
+		  //
+      //   }
 
         if(!pattStrings.test(document.getElementById("modal-workName").value)){
             flag = false;
@@ -178,18 +179,18 @@ const FREELANCERMANAGEMENT = {
 
         }
 
-        if(!pattEmail.test(document.getElementById("modal-email").value)){
-            flag = false;
-            document.getElementById("modal-email-label").className = 'error-red';
-            document.getElementById("modal-email-label").innerHTML = "Email must be of form name@mail.dom";
-        }
-
-        else if(pattEmail.test(document.getElementById("modal-email").value) &&
-           document.getElementById("modal-email-label").className == 'error-red'){
-            document.getElementById("modal-email-label").className = 'error-green';
-            document.getElementById("modal-email-label").innerHTML = "Email code input was corrected";
-
-        }
+      //   if(!pattEmail.test(document.getElementById("modal-email").value)){
+      //       flag = false;
+      //       document.getElementById("modal-email-label").className = 'error-red';
+      //       document.getElementById("modal-email-label").innerHTML = "Email must be of form name@mail.dom";
+      //   }
+		  //
+      //   else if(pattEmail.test(document.getElementById("modal-email").value) &&
+      //      document.getElementById("modal-email-label").className == 'error-red'){
+      //       document.getElementById("modal-email-label").className = 'error-green';
+      //       document.getElementById("modal-email-label").innerHTML = "Email code input was corrected";
+		  //
+      //   }
 
         if(flag){
             document.getElementById("form-freelancer-management").submit();
@@ -199,32 +200,30 @@ const FREELANCERMANAGEMENT = {
 
     submitFreelancer: function(){
         let id = idFreelancer;
-        let firstName = document.getElementById('modal-firstName');
-		let lastName = document.getElementById('modal-lastName');
+      //   let firstName = document.getElementById('modal-firstName');
+		// let lastName = document.getElementById('modal-lastName');
 		let workName = document.getElementById('modal-workName');
 		let phoneNumber = document.getElementById('modal-phone');
 		let city = document.getElementById('modal-city');
 		let street = document.getElementById('modal-street');
 		let number = document.getElementById('modal-number');
 		let zip = document.getElementById('modal-zip');
-		let mail = document.getElementById('modal-email');
+		// let mail = document.getElementById('modal-email');
 		let profilePic = data.freelancer.profilePhoto;
-        let photos = data.freelancer.photos;
+       let photos = data.freelancer.photos;
+
 		let description = document.getElementById('modal-description');
         let price = document.getElementById('modal-price');
+		  let emergency = false;
+		  if(document.getElementById('modal-emergency').checked){
+			  emergency = true;
+		  }
 
-        //console.log(document.getElementById("modal-tags").value);
-        // let temp_tags = document.getElementById("modal-tags").value.split(",");
-        // let tags = [];
-        // for(let j = 0; j<temp_tags.length; j++){
-        //     tags.push(temp_tags[j]);  
-        // }
-        //console.log(tags);
         let freelancer_update = {
-			'firstName' : firstName.value,
-			'lastName' : lastName.value,
+			// 'firstName' : firstName.value,
+			// 'lastName' : lastName.value,
 			'workName' : workName.value,
-			'email' : mail.value,
+			// 'email' : mail.value,
 			'phone' : phoneNumber.value,
 			'description' : description.value,
 			'address' : {
@@ -232,15 +231,15 @@ const FREELANCERMANAGEMENT = {
 				'road' : street.value,
 				'number' : number.value,
 				'cap' : zip.value,
-				'lat' : undefined,
-				'long': undefined
+				'lat' : 0,
+				'long': 0
 			},
             'photos' : photos,
             'profilePhoto' : profilePic,
-			//'tags' : data.freelancer.tags,
             'tags' : FREELANCERMANAGEMENT.addedTags,
             'score' : null,
-            'price' : price.value
+            'price' : price.value,
+				'emergency' : emergency
 		};
 
         doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+freelancer_update.address.city+"+"+freelancer_update.address.street+"+"+freelancer_update.address.number,null,null,function(res){
@@ -250,7 +249,45 @@ const FREELANCERMANAGEMENT = {
 			}
 
             doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
-                location.reload();
+               //  location.reload();
+					let data, xhr;
+
+					// console.log(freelancerId);
+
+					data = new FormData();
+
+					let number = [];
+
+					if($('#profilePicture')[0].files[0] != null){
+						data.append('file0', $('#profilePicture')[0].files[0]);
+						data.append('profile_check', 'true');
+					}
+
+					for (var i = 1; i <= 9; i++)
+					{
+						if($('#file'+i)[0].files[0] != null){
+							number.push(i);
+							data.append('file'+i, $('#file'+i)[0].files[0]);
+						}
+					}
+
+					//
+					data.append('files', number);
+					data.append('freelancerId', id);
+
+					xhr = new XMLHttpRequest();
+
+					xhr.open('PUT', '/api/freelancer/galleryModification/' + id, true);
+					xhr.onreadystatechange = function(response) {
+						console.log(response);
+					};
+					xhr.send(data);
+
+					location.reload();
+					window.location.href ='/#freelancer=' + res._id;
+				// } else {
+				// 	console.log("Error: " + res.errors[0]);
+				// }
 		    });
 
 		});
