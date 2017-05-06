@@ -89,7 +89,7 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 
 				flag = false;
 			} else {
-				if(j <= 12){
+				if(j <= 9){
 					let savePath = files[value].path;
 					let i = savePath.lastIndexOf('/');
 
@@ -122,6 +122,10 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 	});
 });
 
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
+}
+
 router.put('/galleryModification/:id', function(req, res, next) {
 	const id = req.params.id;
 	let dir = __dirname + '/../../../public/uploads/' + id;
@@ -140,46 +144,61 @@ router.put('/galleryModification/:id', function(req, res, next) {
 		if (err) return next(err);
 		let flag = true;
 		let profile = "";
+		let numbers = fields.files;
+		let title = [];
 		let j = 1;
+
 		for (let value in files) {
-			// if(flag){
-			// 	let savePath = files[value].path;
-			// 	let i = savePath.lastIndexOf('/');
-			//
-			// 	profile = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
-			//
-			// 	flag = false;
-			// } else {
-			// 	if(j <= 12){
-			// 		let savePath = files[value].path;
-			// 		let i = savePath.lastIndexOf('/');
-			//
-			// 		let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
-			//
-			// 		title.push(fileName);
-			// 	} else {
-			// 		break;
-			// 	}
-			//
-			// 	j++;
-				console.log("\n\n PORCAO: " + files[value] + "\n\n");
+			if(fields.profile_check == "true" && flag == true){
+				let savePath = files[value].path;
+				let i = savePath.lastIndexOf('/');
+
+				let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+
+				profile = fileName;
+				flag = false;
+			} else {
+				if(j <= 12){
+					let savePath = files[value].path;
+					let i = savePath.lastIndexOf('/');
+
+					let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+					title.push(fileName);
+				} else {
+					break;
+				}
+
+				j++;
 			}
+		}
 
-		// }
+		Freelancer.findById(id, function(err, freelancer) {
+			if (err) {
+				res.status(400).send(err);
+				return;
+			}
+			 let temp = [];
+			if (freelancer) {
+				if(fields.profile_check == "true"){
+					freelancer.profilePhoto = profile;
+				}
+				let z = 0;
 
-		// Freelancer.findById(id, function(err, freelancer) {
-		// 	if (err) {
-		// 		res.status(400).send(err);
-		// 		return;
-		// 	}
-		//
-		// 	if (freelancer) {
-		// 		freelancer.photos = title;
-		// 		freelancer.profilePhoto = profile;
-		// 		freelancer.save(onModelSave(res, 200, true));
-		// 		// console.log("SAVED\n");
-		// 	}
-		// });
+				for(let i = 1; i <= 9; i++){
+					if(isInArray(i, numbers)){
+						// freelancer.photos[i] = title[z];
+						temp[i - 1] = title[z];
+						console.log("\n i:" + title[z] + "\n z: " + freelancer.photos[i] + "\n");
+						z++;
+					} else {
+						temp[i - 1] = freelancer.photos[i - 1];
+					}
+				}
+				freelancer.photos = temp;
+				console.log(temp);
+				freelancer.save(onModelSave(res, 200, true));
+			}
+		});
 	});
 });
 

@@ -260,9 +260,10 @@ const FREELANCERMANAGEMENT = {
 
 					if($('#profilePicture')[0].files[0] != null){
 						data.append('file0', $('#profilePicture')[0].files[0]);
+						data.append('profile_check', 'true');
 					}
 
-					for (var i = 1; i <= 12; i++)
+					for (var i = 1; i <= 9; i++)
 					{
 						if($('#file'+i)[0].files[0] != null){
 							number.push(i);

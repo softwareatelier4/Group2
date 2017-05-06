@@ -32,12 +32,12 @@ const FREELANCERCREATION = {
 
 
 		let title = [];
-
-		for (var i = 0; i < Object.keys(finalFiles).length; i++)
-		{
-			// title.push(finalFiles[i].name);
-			console.log(finalFiles[i].name);
-		}
+		// 
+		// for (var i = 0; i < Object.keys(finalFiles).length; i++)
+		// {
+		// 	//
+		// 	console.log(finalFiles[i].name);
+		// }
 
 		// console.log("TITLE:");
 		// console.log(title);
