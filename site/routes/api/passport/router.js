@@ -93,7 +93,7 @@ passport.use('local-signup', new LocalStrategy({
 							<a style="font-size: 11px !important; color: #aaaaaa;" href="${link}">${link}</a>`
 						}
 
-						if (user.email == 'werfwefwefwefwfwefewfwefewfs@usi.ch' || user.email == 'm.t@usi.ch') {
+						if (user.email == 'werfwefwefwefwfwefewfwefewfs@usi.ch' || user.email == 'vincenzo.ehiy@virgilio.it' || user.email == 'm.t@usi.ch' || user.email == 'l.f@usi.ch' || user.email == 'tollim@usi.ch' || user.email == 'valsan@usi.ch') {
 							console.log('anti-send email');
 							return done(null, newUser);
 						}
