@@ -652,8 +652,10 @@ const SEARCH = {
 		// apply distance filter
 		if (!isNaN(maxDistance - 0) && maxDistance !== null && maxDistance !== "" && maxDistance !== false) {
 			SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
-				if (freelancer.distance)
+				if (freelancer.distance && SEARCH.filters.emergency.toString() == "false")
 					return Number(freelancer.distance) <= Number(maxDistance);
+				else if (freelancer.eDistance && SEARCH.filters.emergency.toString() == "true")
+					return Number(freelancer.eDistance) <= Number(maxDistance);
 			});
 		}
 
