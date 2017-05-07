@@ -121,7 +121,7 @@ const SEARCH = {
 				}
 			}
 
-			if (SEARCH.preEmergencyStatus.oldButton !== null && SEARCH.preEmergencyStatus.oldButton && document.getElementById(SEARCH.preEmergencyStatus.oldButton).dataset) {
+			if (SEARCH.preEmergencyStatus.oldButton !== null && SEARCH.preEmergencyStatus.oldButton && document.getElementById(SEARCH.preEmergencyStatus.oldButton) && document.getElementById(SEARCH.preEmergencyStatus.oldButton).dataset) {
 				document.getElementById(SEARCH.preEmergencyStatus.oldButton).dataset.sorttype = SEARCH.filters.sort.type;
 				SEARCH.applyFilters();
 				currentButton.dataset.sorttype = SEARCH.preEmergencyStatus.oldType;
@@ -145,7 +145,6 @@ const SEARCH = {
 				SEARCH.setFilterHash();
 				SEARCH.applyFilters();
 				SEARCH.preEmergencyStatus.oldButton = "";
-				SEARCH.filters.sort.type = "";
 			}
 		} else {
 			SEARCH.filters.emergency = true;
@@ -638,7 +637,7 @@ const SEARCH = {
 		SEARCH.currentResult = JSON.parse(JSON.stringify(SEARCH.originalResponse));
 
 		// apply emergency filter
-		if (SEARCH.filters.emergency) {
+		if (SEARCH.filters.emergency.toString() == "true") {
 			SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
 				return freelancer.emergency;
 			});
