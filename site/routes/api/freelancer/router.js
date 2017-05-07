@@ -61,7 +61,7 @@ router.get('/:freelancerid', function(req, res, next) {
 	})
 });
 
-router.post('/sendEmailFreelancer/:email', function(req, res, next) {
+router.post('/sendEmailFreelancer/:email', function(req, res) {
 	let email = req.params.email;
 	let freelancerId = req.body.id;
 	let work = req.body.work;
@@ -75,7 +75,7 @@ router.post('/sendEmailFreelancer/:email', function(req, res, next) {
 		<div style="text-align: center">
 			<a href="${link}" class="confirmBtn" style="display: inline-block; margin-top: 20px;">Verify Email</a>
 		</div>
-		<p style="font-size: 11px !important; margin-top:30px;">If the link above doesn't work, you can copy and paste the following into your browser:</p>
+		<p style="font-size: 11px !important; margin-top:30px;">If the link above does not work, you can copy and paste the following into your browser:</p>
 		<a style="font-size: 11px !important; color: #aaaaaa;" href="${link}">${link}</a>`
 	}
 	require('./../mail').sendMail(email, 'JobAdvisor: new freelancer', content, function(err, info) {
@@ -480,6 +480,7 @@ router.post('/create/freelancer', function(req, res) {
 	freelancer.emergency = req.body.emergency;
 	let tags = req.body.tags;
 
+	console.log("\n\n address: " + freelancer.address + "\n\n");
 	freelancer.save(function(err, newfreelancer) {
 		if (err) {
 			console.log(err);

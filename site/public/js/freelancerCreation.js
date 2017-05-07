@@ -7,6 +7,14 @@ var finalFiles = {};
 
 var freelancerId = 0;
 
+
+var city = undefined;
+var stree_number = undefined;
+var route = undefined;
+var postal_code = undefined;
+var lat = 0;
+var lng = 0;
+
 const FREELANCERCREATION = {
 
 	name: 'freelancerCreation',
@@ -19,10 +27,6 @@ const FREELANCERCREATION = {
 		let lastName = document.getElementById('lastName');
 		let workName = document.getElementById('workName');
 		let phoneNumber = document.getElementById('phone');
-		let city = document.getElementById('city');
-		let street = document.getElementById('street');
-		let number = document.getElementById('number');
-		let zip = document.getElementById('zip');
 		let mail = document.getElementById('email');
 		let profilePic = document.getElementById('profilePicture');
 		let description = document.getElementById('description');
@@ -41,23 +45,18 @@ const FREELANCERCREATION = {
 			'phone': phoneNumber.value,
 			'description': description.value,
 			'address': {
-				'city': city.value,
-				'street': street.value,
-				'number': number.value,
-				'cap': zip.value,
-				'lat': 0,
-				'long': 0
+				'city': city,
+				'road': route,
+				'number': stree_number,
+				'cap': postal_code,
+				'lat': lat,
+				'long': lng
 
 			},
 			'emergency': emergency,
 			'tags': FREELANCERCREATION.addedTags
 		};
 
-		doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address=" + freelancer.address.city + "+" + freelancer.address.street + "+" + freelancer.address.number, null, null, function(res) {
-			if (res.status == "OK") {
-				freelancer.address.lat = res.results[0].geometry.location.lat;
-				freelancer.address.long = res.results[0].geometry.location.lng;
-			}
 			doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
 				// console.log(freelancer);
 				if (!res.errors) {
@@ -65,7 +64,7 @@ const FREELANCERCREATION = {
 					freelancerId = res._id;
 					let data, xhr;
 
-					console.log(freelancerId);
+					// console.log(freelancerId);
 
 					data = new FormData();
 
@@ -97,18 +96,18 @@ const FREELANCERCREATION = {
 							'id': freelancerId,
 							'work': workName.value
 						};
-						console.log(mail.value);
+						// console.log(mail.value);
 						doJSONRequest("POST", "/api/freelancer/sendEmailFreelancer/" + mail.value, null, verification, function(res) {
 							// if(!res.errors){
 							// 	console.log("YEBOI");
 							// }
+							window.location.href = "http://127.0.0.1:3000/#freelancer="+freelancerId;
 						});
 					}
 				} else {
 					console.log("Error: " + res.errors[0]);
 				}
 			});
-		});
 
 		/*
 			Send later the photos to be added, profile photo and also gallery photos
@@ -178,7 +177,10 @@ $(document).ready(function() {
 	$("#position")
 		.geocomplete()
 		.bind("geocode:result", function(event, result) {
-			let city = FREELANCERCREATION.googleFindType(result.address_components, 'locality')
+			city = FREELANCERCREATION.googleFindType(result.address_components, 'locality');
+			stree_number = FREELANCERCREATION.googleFindType(result.address_components, 'street_number');
+			route = FREELANCERCREATION.googleFindType(result.address_components, 'route');//postal_code
+			postal_code = FREELANCERCREATION.googleFindType(result.address_components, 'postal_code');
 
 			if (city) {
 				city = city.long_name;
@@ -186,11 +188,20 @@ $(document).ready(function() {
 				city = result.address_components[0].long_name;
 			}
 
-			const formatted_address = result.formatted_address;
+			if(stree_number){
+				stree_number = stree_number.long_name;
+			}
 
-			const lat = result.geometry.location.lat();
-			const lng = result.geometry.location.lng();
+			if(route){
+				route = route.long_name;
+			}
 
+			if(postal_code){
+				postal_code = postal_code.long_name;
+			}
+
+			lat = result.geometry.location.lat();
+			lng = result.geometry.location.lng();
 		});
 
 
