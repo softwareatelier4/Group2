@@ -121,7 +121,7 @@ const SEARCH = {
 				}
 			}
 
-			if (SEARCH.preEmergencyStatus.oldButton !== null && SEARCH.preEmergencyStatus.oldButton) {
+			if (SEARCH.preEmergencyStatus.oldButton !== null && SEARCH.preEmergencyStatus.oldButton && document.getElementById(SEARCH.preEmergencyStatus.oldButton).dataset) {
 				document.getElementById(SEARCH.preEmergencyStatus.oldButton).dataset.sorttype = SEARCH.filters.sort.type;
 				SEARCH.applyFilters();
 				currentButton.dataset.sorttype = SEARCH.preEmergencyStatus.oldType;
@@ -348,7 +348,9 @@ const SEARCH = {
 				long = 8.947147; // temp long
 			}
 
-			doJSONRequest("GET", "/api/freelancer/search/" + query + "|" + lat + "," + long + "|" + SEARCH.position.city, null, null, function(res) {
+			doJSONRequest("GET", "/api/freelancer/search/" + query + "|" + lat + "," + long + "|" + SEARCH.position.city, null, {
+				emergency: SEARCH.filters.emergency
+			}, function(res) {
 				if (res.error) {
 					console.log("error");
 				} else {
