@@ -93,7 +93,7 @@ passport.use('local-signup', new LocalStrategy({
 							<a style="font-size: 11px !important; color: #aaaaaa;" href="${link}">${link}</a>`
 						}
 
-						if (user.email == 'werfwefwefwefwfwefewfwefewfs@usi.ch') {
+						if (user.email == 'werfwefwefwefwfwefewfwefewfs@usi.ch' || user.email == 'm.t@usi.ch') {
 							console.log('anti-send email');
 							return done(null, newUser);
 						}
