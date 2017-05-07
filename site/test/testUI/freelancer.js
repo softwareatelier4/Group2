@@ -214,7 +214,7 @@ module.exports = {
 			.assert.hidden('div[id=photo-review]')
 
 			//test if there is an emergency
-			.assert.visible('i[id=disabled-emergency-sign]')
+			.assert.visible('span[id=disabled-emergency-sign]')
 
 			//test validification claim
 			.assert.visible('i[id=verified-sign]')
