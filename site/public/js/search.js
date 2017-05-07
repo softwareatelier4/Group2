@@ -637,7 +637,7 @@ const SEARCH = {
 		SEARCH.currentResult = JSON.parse(JSON.stringify(SEARCH.originalResponse));
 
 		// apply emergency filter
-		if (SEARCH.filters.emergency.toString() == "true") {
+		if (SEARCH.filters.emergency && SEARCH.filters.emergency.toString() == "true") {
 			SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
 				return freelancer.emergency;
 			});
