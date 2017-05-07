@@ -3,7 +3,7 @@
 	<td>{_id}</td>
 	<td>{user.firstName} {user.lastName} <br> <a href="mailto:{user.email}">{user.email}</a> </td>
 	<td><a href="/#freelancer={freelancer._id}">{freelancer.firstName} {freelancer.lastName}</a> <br> <a href="mailto:{freelancer.email}">{freelancer.email}</a> </td>
-	<td><a href="{photos}" data-lightbox="work-img"><img class="thumbnail-element" width="60px" src="{photos}"></a></td>
+	<td><a href="{identitycard}" data-lightbox="work-img"><img class="thumbnail-element" width="60px" src="{identitycard}"></a></td>
 	<td>{notes}</td>
 	<td>{status}</td>
 	{?pending}<td><button class="claim-btn bg-success" id="accept-btn" onclick="FREELANCERCLAIMADMIN.acceptRequest(event)" value="{_id}">✓</button> <br> <button class="claim-btn bg-danger" id="refuse-btn" onclick="FREELANCERCLAIMADMIN.refuseRequest(event)" value="{_id}">✗</button></td>{/pending}
