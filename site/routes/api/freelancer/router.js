@@ -44,7 +44,10 @@ router.put('/:freelancerid', function(req, res, next) {
 	const data = req.body;
 
 	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
-		if (err) return next(err);
+		if (err) {
+			res.status(400).send(err);
+			return;
+		}
 
 		if (freelancer) {
 			freelancer.firstName = data.firstName;
