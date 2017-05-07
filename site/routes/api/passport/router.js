@@ -92,6 +92,11 @@ passport.use('local-signup', new LocalStrategy({
 							<p style="font-size: 11px !important; margin-top:30px;">If the link above doesn't work, you can copy and paste the following into your browser:</p>
 							<a style="font-size: 11px !important; color: #aaaaaa;" href="${link}">${link}</a>`
 						}
+
+						if (user.email == 'werfwefwefwefwfwefewfwefewfs@usi.ch') {
+							console.log('anti-send email');
+							return done(null, newUser);
+						}
 						require('./../mail').sendMail(user.email, 'JobAdvisor: registration', content, function(err, info) {
 							return done(null, newUser);
 						});
