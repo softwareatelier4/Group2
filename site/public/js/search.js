@@ -140,6 +140,9 @@ const SEARCH = {
 					currentButton.style.textDecoration = 'underline';
 				}
 			} else {
+				SEARCH.filters.sort.idBtn = "";
+				SEARCH.filters.sort.type = "";
+				SEARCH.setFilterHash();
 				SEARCH.applyFilters();
 				SEARCH.preEmergencyStatus.oldButton = "";
 				SEARCH.filters.sort.type = "";
