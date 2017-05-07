@@ -26,4 +26,21 @@ router.get('/user/:userid', function(req, res, next) {
 	})
 });
 
+
+router.all('/freelancer/:freelancerid', middleware.supportedMethods('GET'));
+router.get('/freelancer/:freelancerid', function(req, res, next) {
+	const freelancerId = req.params.freelancerid;
+	const set = {
+		active: true
+	};
+
+	Freelancer.findByIdAndUpdate(freelancerId, set, function(err, user) {
+		if (err) {
+			res.status(400).send(err);
+			return;
+		}
+		res.status(201).redirect('/');
+	})
+});
+
 module.exports = router;

@@ -15,8 +15,15 @@ const LOGIN = {
 		doJSONRequest("POST", "/api/passport/login", null, login, function(res) {
 			if (res.result == "success") {
 				location.reload();
+			} else if (res.motivation == 'not-found') {
+				$('#login-error').html('<strong>Error: </strong> User name or password are wrong');
+				$('#login-error').slideDown();
+			} else if (res.motivation == 'inactive') {
+				$('#login-error').html('<strong>Error: </strong> Please, confirm your mail');
+				$('#login-error').slideDown();
 			} else {
-				document.getElementById("modal-title").innerText = "User name or password wrong, try again!";
+				$('#login-error').html('<strong>Error: </strong> I am not feeling well. Sorry :\'(');
+				$('#login-error').slideDown();
 			}
 		});
 	},

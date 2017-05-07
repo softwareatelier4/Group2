@@ -120,8 +120,15 @@ router.post('/login', function(req, res, next) {
 		}
 		if (!user) {
 			return res.send({
-				result: 'failed'
+				result: 'failed',
+				motivation: 'not-found'
 			});
+		}
+		if (!user.active) {
+			return res.send({
+				result: 'failed',
+				motivation: 'inactive'
+			})
 		}
 		req.logIn(user, function(err) {
 			if (err) {
@@ -142,13 +149,9 @@ router.post('/signup', function(req, res, next) {
 		if (!user) {
 			return res.send(info);
 		}
-		req.logIn(user, function(err) {
-			if (err) {
-				return next(err);
-			}
-			return res.send({
-				success: true
-			});
+
+		return res.send({
+			success: true
 		});
 	})(req, res, next);
 });
