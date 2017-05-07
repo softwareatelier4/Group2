@@ -14,6 +14,13 @@ let drawMenu = function() {
 		dom_name: 'homepage'
 	};
 
+	menuEl.freelancerCreation = {
+		name: 'New freelancer',
+		link: '/freelancerCreation.html',
+		dom_name: 'create-reelancer'
+	};
+
+
 	$.get("/html/menuElement.html", function(elementHTML) {
 
 		for (let [key, el] of Object.entries(menuEl)) {
