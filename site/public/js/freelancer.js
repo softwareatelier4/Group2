@@ -77,9 +77,8 @@ const FREELANCER = {
 							if (userId.freeLancerId != undefined) {
 								userHasFreelancer = true;
 							}
-							console.log(userHasFreelancer);
 							for (let r of response) {
-								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending' && userId.level != 0) {
+								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
 									hasReqPending = true;
 								}
 							}
@@ -89,8 +88,6 @@ const FREELANCER = {
 							if (hasReqPending === true) {
 								$(document.getElementById("pending-claim-button")).show();
 							}
-
-							console.log(userId._id);
 							if (owner && owner._id === userId._id) {
 								$(document.getElementById("modify-button")).show();
 							}
