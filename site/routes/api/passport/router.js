@@ -118,17 +118,6 @@ passport.deserializeUser(function(id, done) {
 	});
 });
 
-<<<<<<< HEAD
-router.post('/login',function(req, res, next) {
-  passport.authenticate('local-login', function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) { return res.send({result:'failed'}); }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      return res.send({result:'success', user: user});
-    });
-  })(req, res, next);
-=======
 router.post('/login', function(req, res, next) {
 	passport.authenticate('local-login', function(err, user, info) {
 		if (err) {
@@ -151,11 +140,11 @@ router.post('/login', function(req, res, next) {
 				return next(err);
 			}
 			return res.send({
-				result: 'success'
+				result: 'success',
+				user: user
 			});
 		});
 	})(req, res, next);
->>>>>>> Re-Init
 });
 
 router.post('/signup', function(req, res, next) {

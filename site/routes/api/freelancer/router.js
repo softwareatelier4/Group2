@@ -61,7 +61,6 @@ router.get('/:freelancerid', function(req, res, next) {
 	})
 });
 
-<<<<<<< HEAD
 router.put('/emergency/:freelancerid', function(req, res, next) {
 	const data = req.body;
 	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
@@ -99,7 +98,9 @@ router.post('/location/:freelancerid', function(req, res, next) {
 				res.sendStatus(200);
 			});
 		}
-=======
+	});
+});
+
 router.post('/sendEmailFreelancer/:email', function(req, res) {
 	let email = req.params.email;
 	let freelancerId = req.body.id;
@@ -261,7 +262,6 @@ router.put('/galleryModification/:id', function(req, res, next) {
 				freelancer.save(onModelSave(res, 200, true));
 			}
 		});
->>>>>>> Re-Init
 	});
 });
 
