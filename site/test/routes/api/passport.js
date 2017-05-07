@@ -20,7 +20,7 @@ describe('Testing Post for localhost:3000/api/passport/signup', function() {
 				.send({
 					"firstName": "Lorenzo",
 					"lastName": "Ferri",
-					"email": "paroleacaso@usi.ch",
+					"email": "werfwefwefwefwfwefewfwefewfs@usi.ch",
 					"password": "ciao"
 				})
 				.expect(200)
@@ -38,7 +38,7 @@ describe('Testing Post for localhost:3000/api/passport/signup', function() {
 				.send({
 					"firstName": "Lorenzo",
 					"lastName": "Ferri",
-					"email": "paroleacaso@usi.ch",
+					"email": "werfwefwefwefwfwefewfwefewfs@usi.ch",
 					"password": "ciao"
 				})
 				.expect(200)

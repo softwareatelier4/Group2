@@ -3,6 +3,9 @@ const nodemailer = require('nodemailer');
 const juice = require('juice');
 
 module.exports.sendMail = function(to, subject, content, callback) {
+	if (to == 'werfwefwefwefwfwefewfwefewfs@usi.ch') {
+		return callback({}, {});
+	}
 	// content is a object with title and body
 	let from = '"JobAdvisor" <jobadvisor@usi.ch>';
 
