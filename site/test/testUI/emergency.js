@@ -18,26 +18,26 @@ module.exports = {
 			.assert.visible('input[id=search-text]')
 			.assert.visible('span[id=basic-addon1]')
 
-		utils.setPositionBox(client, 'Varese');
+		utils.setPositionBox(client, 'Udine');
 
 		client
 			.clearValue('input[id=search-text]')
-			.setValue('input[id=search-text]', 'Informatico')
+			.setValue('input[id=search-text]', 'Developer')
 			.click('span[id=basic-addon1]')
 			.pause(500)
-			.assert.urlContains('search=Informatico')
+			.assert.urlContains('search=Developer')
 			.pause(500)
 			.assert.visible('div[id=f00000000000000000000000]')
 			.assert.visible('div[id=f00000000000000000000006]')
-			.assert.visible('button[id=emergency-btn]')
-			.click('button[id=emergency-btn]')
+			.assert.visible('span[id=emergency-btn]')
+			.click('span[id=emergency-btn]')
 			.pause(500)
 			.assert.attributeContains('#btn-distance', 'data-sorttype', 'asc')
 			.assert.visible('div[id=f00000000000000000000000]')
 			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
 				this.assert.equal(result.value, 'f00000000000000000000000');
 			})
-			.click('button[id=emergency-btn]')
+			.click('span[id=emergency-btn]')
 			.pause(500)
 			.assert.attributeContains('#btn-distance', 'data-sorttype', 'neutral')
 			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
@@ -56,7 +56,7 @@ module.exports = {
 			.assert.visible('span[id=basic-addon1]')
 
 
-		utils.setPositionBox(client, 'Varese');
+		utils.setPositionBox(client, 'Udine');
 
 		client
 			.clearValue('input[id=search-text]')
@@ -91,14 +91,14 @@ module.exports = {
 			.getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
 				this.assert.equal(result.value, 'f00000000000000000000000');
 			})
-			.click('button[id=emergency-btn]')
+			.click('span[id=emergency-btn]')
 			.pause(500)
 			.assert.attributeContains('#btn-distance', 'data-sorttype', 'asc')
 			.assert.attributeContains('#btn-price', 'data-sorttype', 'neutral')
 			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
 				this.assert.equal(result.value, 'f00000000000000000000000');
 			})
-			.click('button[id=emergency-btn]')
+			.click('span[id=emergency-btn]')
 			.pause(500)
 			.assert.attributeContains('#btn-distance', 'data-sorttype', 'neutral')
 			.assert.attributeContains('#btn-price', 'data-sorttype', 'desc')
