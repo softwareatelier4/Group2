@@ -105,8 +105,11 @@ router.put('/:freelancerid', function(req, res, next) {
  * @param {number} long - User's longitude
  * @return {number} - Distance
  */
-let distanceCalculation = function(freelancer, lat, long) {
+let distanceCalculation = function(freelancer, lat, long, emergency) {
 	if (!freelancer || !lat || !long)
+		return undefined;
+
+	if (emergency != 0 && (!freelancer.currentPosition || !freelancer.currentPosition.lat || !freelancer.currentPosition.long))
 		return undefined;
 
 	let R = 6371;
@@ -120,9 +123,14 @@ let distanceCalculation = function(freelancer, lat, long) {
 	let d;
 	/* Degree to radiants */
 	lat_alfa = pigreco * lat / 180;
-	lat_beta = pigreco * freelancer.address.lat / 180;
 	lon_alfa = pigreco * long / 180;
-	lon_beta = pigreco * freelancer.address.long / 180;
+	if (emergency == 0) {
+		lat_beta = pigreco * freelancer.address.lat / 180;
+		lon_beta = pigreco * freelancer.address.long / 180;
+	} else {
+		lat_beta = pigreco * freelancer.currentPosition.lat / 180;
+		lon_beta = pigreco * freelancer.currentPosition.long / 180;
+	}
 	/* Calculate the angle in between fi */
 	fi = Math.abs(lon_alfa - lon_beta);
 	/* Calculate the third side of the spherical triangle */
@@ -182,11 +190,16 @@ let searchEngine = function(freelancers, string) {
 	   Put freelancers that satisfy requirements in the result
 	*/
 	for (let f of fClone) {
-		let dist = Number(distanceCalculation(f, lat, long));
+		let dist = Number(distanceCalculation(f, lat, long, 0));
+		let eDist = Number(distanceCalculation(f, lat, long, 1));
 		let timez = undefined;
 		if (dist !== undefined) {
 			dist = dist.toFixed(1);
 			timez = dist / 60;
+		}
+		if (eDist !== undefined) {
+			eDist = eDist.toFixed(1);
+			timez = eDist / 60;
 		}
 		let freelancer = {
 			_id: f._id,
@@ -203,7 +216,8 @@ let searchEngine = function(freelancers, string) {
 			time: timez,
 			emergency: f.emergency,
 			counter: countInArray(fClone, f),
-			price: f.price
+			price: f.price,
+			eDistance: eDist
 		};
 		result.push(freelancer);
 	}

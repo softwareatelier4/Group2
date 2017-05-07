@@ -348,9 +348,7 @@ const SEARCH = {
 				long = 8.947147; // temp long
 			}
 
-			doJSONRequest("GET", "/api/freelancer/search/" + query + "|" + lat + "," + long + "|" + SEARCH.position.city, null, {
-				emergency: SEARCH.filters.emergency
-			}, function(res) {
+			doJSONRequest("GET", "/api/freelancer/search/" + query + "|" + lat + "," + long + "|" + SEARCH.position.city, null, null, function(res) {
 				if (res.error) {
 					console.log("error");
 				} else {
@@ -499,7 +497,6 @@ const SEARCH = {
 	},
 
 	cardSort: function(buttonId, sortType) {
-
 		SEARCH.currentResult.sort(function(a, b) {
 			switch (buttonId) {
 				case "btn-score":
@@ -548,22 +545,43 @@ const SEARCH = {
 					}
 					break;
 				case "btn-distance":
-					if (sortType === "desc") {
-						if (a.distance === undefined || a.distance === null)
-							return 1;
+					if (SEARCH.filters.emergency.toString() == "true") {
+						if (sortType === "desc") {
+							if (a.eDistance === undefined || a.eDistance === null)
+								return 1;
 
-						if (b.distance === undefined || b.distance === null)
-							return -1;
+							if (b.eDistance === undefined || b.eDistance === null)
+								return -1;
 
-						return b.distance - a.distance;
+							return b.eDistance - a.eDistance;
+						} else {
+							if (a.eDistance === undefined || a.eDistance === null)
+								return 1;
+
+							if (a.eDistance === undefined || b.eDistance === null)
+								return -1;
+
+							return a.eDistance - b.eDistance;
+						}
 					} else {
-						if (a.distance === undefined || a.distance === null)
-							return 1;
 
-						if (a.distance === undefined || b.distance === null)
-							return -1;
+						if (sortType === "desc") {
+							if (a.distance === undefined || a.distance === null)
+								return 1;
 
-						return a.distance - b.distance;
+							if (b.distance === undefined || b.distance === null)
+								return -1;
+
+							return b.distance - a.distance;
+						} else {
+							if (a.distance === undefined || a.distance === null)
+								return 1;
+
+							if (a.distance === undefined || b.distance === null)
+								return -1;
+
+							return a.distance - b.distance;
+						}
 					}
 					break;
 				case "btn-name":
@@ -910,8 +928,10 @@ const SEARCH = {
 	 */
 	insertCard: function(freelancer, card) {
 		let distance;
-		if (!isNaN(freelancer.distance)) {
+		if (!isNaN(freelancer.distance) && SEARCH.filters.emergency.toString() == "false") {
 			distance = freelancer.distance + "km";
+		} else if (!isNaN(freelancer.eDistance) && SEARCH.filters.emergency.toString() == "true") {
+			distance = freelancer.eDistance + "km";
 		} else {
 			distance = "";
 		}
