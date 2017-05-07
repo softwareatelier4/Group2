@@ -81,7 +81,9 @@ export class LocationTracker {
 
 		this.backgroundGeolocation.finish();
 		this.backgroundGeolocation.stop();
-		this.watch.unsubscribe();
+		if(this.watch){
+			this.watch.unsubscribe();
+		}
 
 	}
 

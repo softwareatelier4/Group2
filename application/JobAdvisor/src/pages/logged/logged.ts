@@ -40,7 +40,9 @@ export class Logged {
             if(data == true){
               this.locationTracker.startTracking("http://" + val + "/api/freelancer/location/"+this.user.freeLancerId);
             } else {
-              this.locationTracker.stopTracking();
+					if(this.locationTracker){
+						this.locationTracker.stopTracking();
+					}
             }
             this.emergency = data;
           });
