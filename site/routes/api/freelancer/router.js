@@ -202,26 +202,28 @@ let searchEngine = function(freelancers, string) {
 			eDist = eDist.toFixed(1);
 			timex = eDist / 60;
 		}
-		let freelancer = {
-			_id: f._id,
-			firstName: f.firstName,
-			lastName: f.lastName,
-			description: f.description,
-			tags: f.tags,
-			workName: f.workName,
-			photo: f.profilePhoto,
-			score: f.score,
-			latitude: f.address.lat,
-			longitude: f.address.long,
-			distance: dist,
-			time: timez,
-			eTime: timex,
-			emergency: f.emergency,
-			counter: countInArray(fClone, f),
-			price: f.price,
-			eDistance: eDist
-		};
-		result.push(freelancer);
+		if (dist < 1000) {
+			let freelancer = {
+				_id: f._id,
+				firstName: f.firstName,
+				lastName: f.lastName,
+				description: f.description,
+				tags: f.tags,
+				workName: f.workName,
+				photo: f.profilePhoto,
+				score: f.score,
+				latitude: f.address.lat,
+				longitude: f.address.long,
+				distance: dist,
+				time: timez,
+				eTime: timex,
+				emergency: f.emergency,
+				counter: countInArray(fClone, f),
+				price: f.price,
+				eDistance: eDist
+			};
+			result.push(freelancer);
+		}
 	}
 
 	/*
