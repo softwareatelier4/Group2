@@ -65,7 +65,7 @@ const FREELANCERMANAGEMENT = {
                     $("#modal-workName").val(data.freelancer.workName);
                     $("#modal-phone").val(data.freelancer.phone);
 
-                  //   $("#modify_position").val(data.freelancer.address.road + " " + data.freelancer.address.number + ", " + data.freelancer.address.city);
+                    $("#modify_position").val(data.freelancer.address.road + " " + data.freelancer.address.number + ", " + data.freelancer.address.city);
 
                     $("#modal-description").val(data.freelancer.description);
                     $("#modal-price").val(data.freelancer.price);
