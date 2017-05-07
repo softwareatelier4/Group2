@@ -67,6 +67,9 @@ const FREELANCER = {
 
 					dust.renderSource(html, data, function(err, out) {
 						MAIN_JS.innerHTML = out;
+						$('#verified-sign').tooltip();
+						$('#emergency-sign').tooltip();
+						$('#disabled-emergency-sign').tooltip();
 						FREELANCER.renderReview(idFreelancer);
 					});
 					isLogged(function(ress) {
@@ -77,9 +80,8 @@ const FREELANCER = {
 							if (userId.freeLancerId != undefined) {
 								userHasFreelancer = true;
 							}
-							console.log(userHasFreelancer);
 							for (let r of response) {
-								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending' && userId.level != 0) {
+								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
 									hasReqPending = true;
 								}
 							}
@@ -89,8 +91,6 @@ const FREELANCER = {
 							if (hasReqPending === true) {
 								$(document.getElementById("pending-claim-button")).show();
 							}
-
-							console.log(userId._id);
 							if (owner && owner._id === userId._id) {
 								$(document.getElementById("modify-button")).show();
 							}
@@ -118,23 +118,35 @@ const FREELANCER = {
 					});
 				}
 
-				dust.renderSource(reviewHtml, result, function(err, out) {
-					document.getElementById('cardReviews').innerHTML = out;
-					const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
+				isLogged(function(loginRes) {
+					loginRes = loginRes.result;
+					if (loginRes && loginRes.freeLancerId == idFreelancer) {
+						// the user has the current profile
+						result.ableReply = true;
 
-					for (let i = 0; i < replyNum; i++) {
-						$('.reply button[name=freelancer-reply-edit]')[i].addEventListener('click', FREELANCER.editReview);
-						$('.reply button[name=freelancer-reply-save]')[i].addEventListener('click', FREELANCER.saveReview);
-						$('.reply button[name=freelancer-reply-delete]')[i].addEventListener('click', FREELANCER.deleteReview);
-						$('.reply button[name=freelancer-reply-eraser]')[i].addEventListener('click', FREELANCER.eraserReview);
-						$('.reply button[name=freelancer-reply-times]')[i].addEventListener('click', FREELANCER.timesReview);
-						$('.reply button[name=freelancer-reply-delete-no]')[i].addEventListener('click', FREELANCER.deleteConfirm);
-						$('.reply button[name=freelancer-reply-delete-yes]')[i].addEventListener('click', FREELANCER.deleteConfirm);
-						const replyButton = $('button[name=freelancer-reply]')[i];
-						if (replyButton)
-							replyButton.addEventListener('click', FREELANCER.showReplyReview);
+						for (res of result) {
+							res.ableReply = true;
+						}
 					}
-				});
+
+					dust.renderSource(reviewHtml, result, function(err, out) {
+						document.getElementById('cardReviews').innerHTML = out;
+						const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
+
+						for (let i = 0; i < replyNum; i++) {
+							$('.reply button[name=freelancer-reply-edit]')[i].addEventListener('click', FREELANCER.editReview);
+							$('.reply button[name=freelancer-reply-save]')[i].addEventListener('click', FREELANCER.saveReview);
+							$('.reply button[name=freelancer-reply-delete]')[i].addEventListener('click', FREELANCER.deleteReview);
+							$('.reply button[name=freelancer-reply-eraser]')[i].addEventListener('click', FREELANCER.eraserReview);
+							$('.reply button[name=freelancer-reply-times]')[i].addEventListener('click', FREELANCER.timesReview);
+							$('.reply button[name=freelancer-reply-delete-no]')[i].addEventListener('click', FREELANCER.deleteConfirm);
+							$('.reply button[name=freelancer-reply-delete-yes]')[i].addEventListener('click', FREELANCER.deleteConfirm);
+							const replyButton = $('button[name=freelancer-reply]')[i];
+							if (replyButton)
+								replyButton.addEventListener('click', FREELANCER.showReplyReview);
+						}
+					});
+				})
 			});
 		});
 

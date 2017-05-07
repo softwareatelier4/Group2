@@ -59,38 +59,6 @@ describe('Testing POST for localhost:3000/api/claimrequest', function() {
 	});
 });
 
-describe('Testing put for claimrequest', function() {
-	describe('PUT /api/claimrequest/claimId', function() {
-		before(seed);
-		after(utils.dropDb);
-		var put_claimRequest = {
-			_id: ObjectId("d00000000000000000000002"),
-			user: ObjectId("b00000000000000000000002"),
-			freelancer: ObjectId("f00000000000000000000002"),
-			photos: "../public/uploads/claimRequests/upload_claim.png",
-			notes: 'This is my profile',
-			status: 'Pending'
-		}
-
-		var temp = put_claimRequest;
-		temp.status = "Accepted";
-
-		it('Should modify the status of the claim request', function(done) {
-			request(app)
-				.put('/api/claimrequest/d00000000000000000000002')
-				.send(temp)
-				.set('Accept', 'application/json')
-				.expect('Content-Type', /json/, 'it should respond with json')
-				.expect(200)
-				.end(function(err, res) {
-					let resJson = JSON.parse(res.text);
-					resJson.status.should.not.equal("Pending");
-					done();
-				});
-		});
-	});
-});
-
 function seed(done) {
 	//seed the db
 	seedDb.seed(function(err, seedData) {

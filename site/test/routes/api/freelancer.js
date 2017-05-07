@@ -94,72 +94,48 @@ describe('Testing put for freelancer', function() {
 	describe('PUT /api/freelancer/:freelancerID', function() {
 		before(seed);
 		after(utils.dropDb);
-		var put_freelancer = 	{
-						'_id': ObjectId("f00000000000000000000000"),
-						'firstName': 'Marco',
-						'lastName': 'Tollini',
-						'workName': 'Il Tollo',
-						'email': 'tollim@usi.ch',
-						'phone': '+39 380474747',
-						'profilePhoto': '/uploads/test/profile0.jpg',
-						'address': {
-							road: 'Via Zurigo',
-							number: 10,
-							city: 'Lugano',
-							cap: 69100
-						},
-						'tags': [
-							ObjectId("a00000000000000000000000"),
-							ObjectId("a00000000000000000000001")
-						],
-						'description': 'Hello guys! I am an amazing developer. ',
-						'photos': [
-							'/uploads/test/1.jpg',
-							'/uploads/test/2.jpg',
-							'/uploads/test/3.jpg',
-						],
-						'score': 5,
-						price : 10
-					}
+		var put_freelancer = {
+			_id: ObjectId("f00000000000000000000000"),
+			firstName: 'Marco',
+			lastName: 'Tollini',
+			workName: 'Il Tollo',
+			email: 'tollim@usi.ch',
+			phone: '+39 380474747',
+			profilePhoto: '/uploads/test/profile0.jpg',
+			address: {
+				road: 'Via Zurigo',
+				number: 10,
+				city: 'Lugano',
+				cap: 69100,
+				lat: 46.0119793,
+				long: 8.9517463,
+			},
+			tags: [
+				ObjectId("a00000000000000000000000"),
+				ObjectId("a00000000000000000000001")
+			],
+			description: 'Hello guys! I am an amazing developer. ',
+			photos: [
+				'/uploads/test/1.jpg',
+				'/uploads/test/2.jpg',
+				'/uploads/test/3.jpg',
+			],
+			score: 5,
+			price: 10,
+			certifications: [
+				'Bachelor Informatics',
+				'Master Informatics',
+				'Doctor',
+			],
+			emergency: true,
+			currentPosition: {
+				lat: 46.0119793,
+				long: 12.9517463,
+			},
+		}
 
 		var temp = put_freelancer;
-		temp.firstName = "Francesco";
 
-		it('Should modify the first name of the freelancer', function(done) {
-			request(app)
-				.put('/api/freelancer/f00000000000000000000000')
-				.send(
-					temp
-				)
-				.set('Accept', 'application/json')
-				.expect('Content-Type', /json/, 'it should respond with json')
-				.expect(200)
-				.end(function(err, res) {
-					let resJson = JSON.parse(res.text);
-					resJson.firstName.should.not.equal("Marco");
-					done();
-				});
-		});
-
-		temp = put_freelancer;
-		temp.lastName = "Mocciolo";
-		it('Should modify the last name of the freelancer', function(done) {
-			request(app)
-				.put('/api/freelancer/f00000000000000000000000')
-				.send(
-					temp
-				)
-				.set('Accept', 'application/json')
-				.expect('Content-Type', /json/, 'it should respond with json')
-				.expect(200)
-				.end(function(err, res) {
-					let resJson = JSON.parse(res.text);
-					resJson.lastName.should.not.equal("Tollini");
-					done();
-				});
-		});
-
-		temp = put_freelancer;
 		temp.workName = "Nokia";
 		it('Should modify the work name of the freelancer', function(done) {
 			request(app)
@@ -177,23 +153,6 @@ describe('Testing put for freelancer', function() {
 				});
 		});
 
-		temp = put_freelancer;
-		temp.email = "123@gmail.com";
-		it('Should modify the work name of the freelancer', function(done) {
-			request(app)
-				.put('/api/freelancer/f00000000000000000000000')
-				.send(
-					temp
-				)
-				.set('Accept', 'application/json')
-				.expect('Content-Type', /json/, 'it should respond with json')
-				.expect(200)
-				.end(function(err, res) {
-					let resJson = JSON.parse(res.text);
-					resJson.email.should.not.equal("tollim@usi.ch");
-					done();
-				});
-		});
 
 		temp = put_freelancer;
 		temp.phone = "+41797805942";
@@ -257,30 +216,33 @@ describe('Testing Post for localhost:3000/api/freelancer/create/freelancer', fun
 		after(utils.dropDb);
 		it('should respond with redirect on post', function(done) {
 			request(app)
-			.post('/api/freelancer/create/freelancer')
-			.send({
-				"firstName": "Lorenzo",
-				"lastName": "Ferri",
-				"workName": "Lollo",
-				"email": "lorenzo.ferri@usi.ch",
-				"phone": "3330003330",
-				"address": {
-					"city": "Lugano",
-					"street": "via Zurigo",
-					"number": 23,
-					"cap": 6900
-				},
-				"tags" : ["Informatico", "Photographer"],
-				"description" : "AAA"
-			})
-			.expect(200)
-			.expect('Content-Type', /json/)
-			.end(function(err, res) {
-				if (err) done(err);
-				res.body.should.have.property('firstName','Lorenzo');
-				res.body.should.have.property('lastName','Ferri');
-				done();
-			});
+				.post('/api/freelancer/create/freelancer')
+				.send({
+					firstName: "Lorenzo",
+					lastName: "Ferri",
+					workName: "Lollo",
+					email: "lorenzo.ferri@usi.ch",
+					phone: "3330003330",
+					address: {
+						city: "Lugano",
+						street: "via Zurigo",
+						number: 23,
+						cap: 6900,
+						lat: 46.0119793,
+						long: 8.9517463
+					},
+					tags: ["Informatico", "Photographer"],
+					description: "AAA",
+					emergency: false,
+				})
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.should.have.property('firstName', 'Lorenzo');
+					res.body.should.have.property('lastName', 'Ferri');
+					done();
+				});
 		});
 	});
 });

@@ -94,10 +94,10 @@ module.exports = {
 			.assert.visible('div[class=title-author-review]')
 			.assert.visible('div[id=score-name]')
 			.getText("div[id=score-name] h5", function(result) {
-				this.assert.equal(result.value, "R2");
+				this.assert.equal(result.value, "R7");
 			})
 			.getText("h6[id=review-user]", function(result) {
-				this.assert.equal(result.value, "Costanza Fox");
+				this.assert.equal(result.value, "Costanza Volpini");
 			})
 			.assert.visible('p[id=review-description]')
 			.getText("p[id=review-description]", function(result) {
@@ -115,6 +115,109 @@ module.exports = {
 				this.assert.equal(result.value, "WORKS");
 			})
 			.assert.visible('div[id=thumbnail]')
+
+
+			//test if there is an emergency
+			.assert.visible('i[id=emergency-sign]')
+
+			//test validification claim
+			.assert.visible('i[id=verified-sign]')
+			.end();
+	},
+
+	'Freelancer profile test-2': function(client) {
+		client
+			.url('http://localhost:3000/')
+			.waitForElementVisible('body', 1000)
+			.pause(100)
+			.assert.visible('input[id=search-text]')
+			.assert.visible('span[id=basic-addon1]')
+			.clearValue('input[id=search-text]')
+			.setValue('input[id=search-text]', 'da')
+			.pause(100)
+			.waitForElementVisible('main[id=main-content]', 1000)
+			.waitForElementVisible('div[id=f00000000000000000000003]', 1000)
+			.waitForElementVisible('#f00000000000000000000003', 1000)
+			.pause(200)
+			.click('#f00000000000000000000003 .card-block button')
+			.pause(200)
+			.waitForElementVisible('#main-info', 2000)
+			.assert.visible('#main-info')
+			.assert.visible('#main-info-vertical')
+			.assert.visible('#info-name')
+			.assert.visible('.info-name-top')
+			.getText("div[class=info-name-top] span", function(result) {
+				this.assert.equal(result.value, "Daniele LoPred");
+			})
+			.assert.visible('span[id=city-freelancer]')
+			.assert.hidden('div[id=info-name-bottom]')
+			.assert.visible('div[id=rank]')
+			//contact
+			.assert.visible('div[id=contact-info-top]')
+			.assert.visible('div[id=contact-info-top] #chat')
+			.getText("div[id=contact-info-top] #chat", function(result) {
+				this.assert.equal(result.value, "chat");
+			})
+			.assert.visible('div[id=contact-info-top] #email')
+			.getText("div[id=contact-info-top] #email", function(result) {
+				this.assert.equal(result.value, "lopred@usi.ch");
+			})
+			.assert.visible('div[id=contact-info-top] #phone')
+			.getText("div[id=contact-info-top] #phone", function(result) {
+				this.assert.equal(result.value, "+4107362864");
+			})
+
+			//main info bottom
+			.assert.visible('div[id=main-info-bottom]')
+			.assert.visible('div[id=info-review]')
+			.assert.visible('div[id=info]')
+			.getText("div[id=info] h5", function(result) {
+				this.assert.equal(result.value, "INFO");
+			})
+			.assert.visible('div[id=tag]')
+			.getText("div[id=tag] span:nth-child(1)", function(result) {
+				this.assert.equal(result.value, "House Painter");
+			})
+			.getText("div[id=tag] span:nth-child(2)", function(result) {
+				this.assert.equal(result.value, "Vetraio");
+			})
+			.getText("div[id=tag] span:nth-child(3)", function(result) {
+				this.assert.equal(result.value, "Carpentiere");
+			})
+
+			//description
+			.assert.visible('div[id=info] span')
+			.assert.visible("span[id=description]")
+
+			//review
+			.assert.visible('div[id=reviews]')
+			.getText("div[id=reviews] h5", function(result) {
+				this.assert.equal(result.value, "REVIEW");
+			})
+
+			.assert.visible('div[id=cardReviews]')
+			.assert.visible('div[class=title-author-review]')
+			.assert.visible('div[id=score-name]')
+			.getText("div[id=score-name] h5", function(result) {
+				this.assert.equal(result.value, "R1");
+			})
+			.getText("h6[id=review-user]", function(result) {
+				this.assert.equal(result.value, "Marco Tollini");
+			})
+			.assert.visible('p[id=review-description]')
+			.getText("p[id=review-description]", function(result) {
+				this.assert.equal(result.value, "Mi ha lasciato il muro imbiancato a metá!!!!!!!!!!!!!!!!!!!!!!!!!! :O");
+			})
+			.getText("div[id=price]", function(result) {
+				this.assert.equal(result.value, "€10 price/hour");
+			})
+			.assert.hidden('div[id=photo-review]')
+
+			//test if there is an emergency
+			.assert.visible('span[id=disabled-emergency-sign]')
+
+			//test validification claim
+			.assert.visible('i[id=verified-sign]')
 			.end();
 	}
 };

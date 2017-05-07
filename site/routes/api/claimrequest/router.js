@@ -39,7 +39,6 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-	console.log('ciao');
 	let form = new formidable.IncomingForm({
 		uploadDir: __dirname + '/../../../public/uploads/claimRequests/',
 		keepExtensions: true
@@ -98,9 +97,49 @@ router.put('/:id', function(req, res, next) {
 						user.freeLancerId = fId;
 
 						user.save();
+
+						let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
+						const content = {
+							title: 'You are a freelancer now!',
+							body: 'You request for the ' + fHtml + ' has been accepted.\nGood luck with your job!'
+						}
+						if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch') {
+							require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
+						}
+					}
+				});
+			} else if (newStatus == 'Refused') {
+				let fId = claim.freelancer;
+				let uId = claim.user;
+
+				Freelancer.findById(fId).exec(function(err, freelancer) {
+					if (err) return next(err);
+
+					if (freelancer) {
+						if (freelancer.ownerId.toString() == uId) {
+							console.log("STO CANCELLANDO USERID");
+							freelancer.ownerId = undefined;
+						}
+						freelancer.save();
+					}
+				});
+
+				User.findById(uId, function(err, user) {
+					if (err) return next(err);
+
+					if (user) {
+						let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
+						const content = {
+							title: 'Request Refused!',
+							body: 'You request for the ' + fHtml + ' has not been accepted.\nFor further informations contact us!'
+						}
+						if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch') {
+							require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
+						}
 					}
 				});
 			}
+
 			claim.save(function(err, saved) {
 				if (err) res.send(err);
 

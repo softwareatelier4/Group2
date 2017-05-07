@@ -5,8 +5,13 @@
 		<div id="main-info-vertical">
 			<div id="info-name">
 				<div class="info-name-top">
-					<span class="ml-15" id="profile-name">{freelancer.firstName} {freelancer.lastName}</span>
+					<span class="ml-15" id="profile-name">{freelancer.firstName} {freelancer.lastName}</span> {?freelancer.ownerId}
 					<span class="ml-15 light-blue" id="city-freelancer">{?freelancer.address.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a> {/freelancer.address.city}</span>
+					<span class="ml-15"><i class="fa fa-check-circle light-blue" style="font-size: 22px" id="verified-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="This freelancer is verified"></i></span>{/freelancer.ownerId} {?freelancer.emergency}
+					<span class="ml-15"><i class="fa fa-bell blink light-blue" style="font-size: 22px;" id="emergency-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Available for emergency"></i></span>{/freelancer.emergency} {^freelancer.emergency}
+					<span class="ml-15 light-blue" id="disabled-emergency-sign" style="font-size: 22px;" data-toggle="tooltip" data-placement="top" title="Not available for emergency">
+						<i class="fa fa-bell-slash"></i>
+					</span>{/freelancer.emergency}
 				</div>
 				<div class="ml-15 light-blue" id="info-name-bottom">
 					{freelancer.workName}
@@ -88,49 +93,72 @@
 				<form enctype="multipart/form-data" action="javascript:FREELANCERMANAGEMENT.submitFreelancer()" id="form-freelancer-management">
 
 					<div class="form-group">
-						<label for="modal-firstName" id="modal-firstName-label">First name: </label>
+						<!-- <label for="modal-firstName" id="modal-firstName-label">First name: </label>
 						<input type="text" class="form-control" id="modal-firstName" aria-describedby="firstName" placeholder="Enter first name">
 						<label for="modal-lastName" id="modal-lastName-label">Last name: </label>
-						<input type="text" class="form-control" id="modal-lastName" aria-describedby="lastName" placeholder="Enter last name">
+						<input type="text" class="form-control" id="modal-lastName" aria-describedby="lastName" placeholder="Enter last name"> -->
 						<label for="modal-workName" id="modal-workName-label">Work name: </label>
 						<input type="text" class="form-control" id="modal-workName" aria-describedby="workName" placeholder="Enter work name">
 						<label for="modal-phoneName" id="modal-phone-label">Phone number: </label>
 						<input type="text" class="form-control" id="modal-phone" aria-describedby="phone" placeholder="Enter phone number">
-						<label for="modal-city" id="modal-city-label">City: </label>
-						<input type="text" class="form-control" id="modal-city" aria-describedby="city" placeholder="Enter city name">
-						<label for="modal-street" id="modal-street-label">Street: </label>
-						<input type="text" class="form-control" id="modal-street" aria-describedby="street" placeholder="Enter street name">
-						<label for="modal-number" id="modal-number-label">Number: </label>
-						<input type="text" class="form-control" id="modal-number" aria-describedby="number" placeholder="Enter street number">
-						<label for="modal-zip" id="modal-zip-label">Zip code: </label>
-						<input type="text" class="form-control" id="modal-zip" aria-describedby="zip" placeholder="Enter zip code">
+						<label for="phoneName">Address: (city is required)</label>
+						<input type="text" class="form-control" aria-describedby="basic-addon1" id="modify_position" placeholder="Loading position..." required>
 						<label for="modal-price" id="modal-price-label">Price: </label>
 						<input type="number" class="form-control" id="modal-price" aria-describedby="price" placeholder="Enter price">
-					</div>
+						<div class="form-group">
+							<label for="profilePicture">Upload a new profile picture to change it</label>
+							<input type="file" class="form-control-file" id="profilePicture" aria-describedby="profilePicture">
+						</div>
+						<div class="form-group">
+							<label for="profilePicture">Choose which photo gallery to modify (from right to left)</label>
+							<input type="file" class="form-control-file" id="file1" aria-describedby="file1">
+							<input type="file" class="form-control-file" id="file2" aria-describedby="file2">
+							<input type="file" class="form-control-file" id="file3" aria-describedby="file3">
+							<input type="file" class="form-control-file" id="file4" aria-describedby="file4">
+							<input type="file" class="form-control-file" id="file5" aria-describedby="file5">
+							<input type="file" class="form-control-file" id="file6" aria-describedby="file6">
+							<input type="file" class="form-control-file" id="file7" aria-describedby="file7">
+							<input type="file" class="form-control-file" id="file8" aria-describedby="file8">
+							<input type="file" class="form-control-file" id="file9" aria-describedby="file9">
+						</div>
+						<!-- <div id="drop-zone">
+						  <p>Drop gallery images</p>
+						  <div id="clickHere">or click here <i class="fa fa-upload"></i>
+							 <input type="file" name="file" id="file" multiple />
+						  </div>
+						  <div id='filename'></div>
+						</div> -->
+
 					<div class="form-group">
 						<label for="tags">Tags: </label>
 						<input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags" onkeypress="return event.keyCode != 13;" onkeyup="FREELANCERMANAGEMENT.tagHinter()" autocomplete="off">
 						<div id="tags-list">
 						</div>
 					</div>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="modal-email" id="modal-email-label">Email address: </label>
 						<input type="email" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
-					</div>
+					</div> -->
 					<div class="form-group">
 						<label for="modal-description">Description</label>
 						<textarea class="form-control" id="modal-description" rows="3"></textarea>
 					</div>
+					<div class="form-group">
+					  <label class="form-check-label">
+					    <input class="form-check-input" type="checkbox" value="" id="modal-emergency">
+					    Available for emergency
+					  </label>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
+					</div>
 				</form>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
 			</div>
 		</div>
 	</div>
 </div>
-
+</div>
 <!-- Modal -->
 <div class="modal fade" id="claim-freelancer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document" id="modal-ext">
