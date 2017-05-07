@@ -936,8 +936,10 @@ const SEARCH = {
 			distance = "";
 		}
 		let time;
-		if (freelancer.time) {
+		if (freelancer.time && SEARCH.filters.emergency.toString() == "false") {
 			time = SEARCH.writeTimeBetter(freelancer.time);
+		} else if (freelancer.eTime && SEARCH.filters.emergency.toString() == "true") {
+			time = SEARCH.writeTimeBetter(freelancer.eTime);
 		} else {
 			time = "";
 		}

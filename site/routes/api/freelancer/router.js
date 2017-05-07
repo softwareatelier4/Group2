@@ -192,14 +192,15 @@ let searchEngine = function(freelancers, string) {
 	for (let f of fClone) {
 		let dist = Number(distanceCalculation(f, lat, long, 0));
 		let eDist = Number(distanceCalculation(f, lat, long, 1));
-		let timez = undefined;
+		let timez = undefined
+		let timex = undefined;
 		if (dist !== undefined) {
 			dist = dist.toFixed(1);
 			timez = dist / 60;
 		}
 		if (eDist !== undefined) {
 			eDist = eDist.toFixed(1);
-			timez = eDist / 60;
+			timex = eDist / 60;
 		}
 		let freelancer = {
 			_id: f._id,
@@ -214,6 +215,7 @@ let searchEngine = function(freelancers, string) {
 			longitude: f.address.long,
 			distance: dist,
 			time: timez,
+			eTime: timex,
 			emergency: f.emergency,
 			counter: countInArray(fClone, f),
 			price: f.price,
