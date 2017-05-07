@@ -135,43 +135,7 @@ describe('Testing put for freelancer', function() {
 		}
 
 		var temp = put_freelancer;
-		temp.firstName = "Francesco";
 
-		it('Should modify the first name of the freelancer', function(done) {
-			request(app)
-				.put('/api/freelancer/f00000000000000000000000')
-				.send(
-					temp
-				)
-				.set('Accept', 'application/json')
-				.expect('Content-Type', /json/, 'it should respond with json')
-				.expect(200)
-				.end(function(err, res) {
-					let resJson = JSON.parse(res.text);
-					resJson.firstName.should.not.equal("Marco");
-					done();
-				});
-		});
-
-		temp = put_freelancer;
-		temp.lastName = "Mocciolo";
-		it('Should modify the last name of the freelancer', function(done) {
-			request(app)
-				.put('/api/freelancer/f00000000000000000000000')
-				.send(
-					temp
-				)
-				.set('Accept', 'application/json')
-				.expect('Content-Type', /json/, 'it should respond with json')
-				.expect(200)
-				.end(function(err, res) {
-					let resJson = JSON.parse(res.text);
-					resJson.lastName.should.not.equal("Tollini");
-					done();
-				});
-		});
-
-		temp = put_freelancer;
 		temp.workName = "Nokia";
 		it('Should modify the work name of the freelancer', function(done) {
 			request(app)
@@ -189,23 +153,6 @@ describe('Testing put for freelancer', function() {
 				});
 		});
 
-		temp = put_freelancer;
-		temp.email = "123@gmail.com";
-		it('Should modify the work name of the freelancer', function(done) {
-			request(app)
-				.put('/api/freelancer/f00000000000000000000000')
-				.send(
-					temp
-				)
-				.set('Accept', 'application/json')
-				.expect('Content-Type', /json/, 'it should respond with json')
-				.expect(200)
-				.end(function(err, res) {
-					let resJson = JSON.parse(res.text);
-					resJson.email.should.not.equal("tollim@usi.ch");
-					done();
-				});
-		});
 
 		temp = put_freelancer;
 		temp.phone = "+41797805942";

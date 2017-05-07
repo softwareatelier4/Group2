@@ -5,9 +5,30 @@ var express = require('express');
 var router = express.Router();
 var middleware = require('../../middleware');
 var rootUrl = require("../../../config").url;
+var fs = require('fs');
 const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
+const formidable = require('formidable');
 const Tag = mongoose.model('Tag');
+const util = require('util');
+
+let rmDir = function(dirPath, removeSelf) {
+      if (removeSelf === undefined)
+        removeSelf = true;
+      try { var files = fs.readdirSync(dirPath); }
+      catch(e) { return; }
+      if (files.length > 0)
+        for (var i = 0; i < files.length; i++) {
+          var filePath = dirPath + '/' + files[i];
+          if (fs.statSync(filePath).isFile())
+            fs.unlinkSync(filePath);
+          else
+            rmDir(filePath);
+        }
+      if (removeSelf)
+        fs.rmdirSync(dirPath);
+    };
+
 
 //supported methods
 router.all('/', middleware.supportedMethods('GET, PUT, OPTIONS'));
@@ -40,6 +61,170 @@ router.get('/:freelancerid', function(req, res, next) {
 	})
 });
 
+router.post('/sendEmailFreelancer/:email', function(req, res) {
+	let email = req.params.email;
+	let freelancerId = req.body.id;
+	let work = req.body.work;
+
+	const link = rootUrl + '/api/active/freelancer/' + freelancerId;
+	const content = {
+		title: `Your JobAdvisor account is almost ready!`,
+		body: `
+		<p>Welcome ${work},</p>
+		<p>Please complete your account by verifying your email address.</p>
+		<div style="text-align: center">
+			<a href="${link}" class="confirmBtn" style="display: inline-block; margin-top: 20px;">Verify Email</a>
+		</div>
+		<p style="font-size: 11px !important; margin-top:30px;">If the link above does not work, you can copy and paste the following into your browser:</p>
+		<a style="font-size: 11px !important; color: #aaaaaa;" href="${link}">${link}</a>`
+	}
+	require('./../mail').sendMail(email, 'JobAdvisor: new freelancer', content, function(err, info) {
+		res.sendStatus(200);
+	});
+
+});
+
+router.put('/galleryUpload/:id', function(req, res, next) {
+	const id = req.params.id;
+	let dir = __dirname + '/../../../public/uploads/' + id;
+	rmDir(__dirname + '/../../../public/uploads/' + id, false);
+	let title = [];
+	if (!fs.existsSync(dir)){
+	    fs.mkdirSync(dir);
+	}
+
+	let form = new formidable.IncomingForm({
+		uploadDir: dir,
+		keepExtensions: true
+	});
+
+	form.parse(req, function(err, fields, files) {
+		if (err) return next(err);
+		let flag = true;
+		let profile = "";
+		let j = 1;
+		for (let value in files) {
+			if(flag){
+				let savePath = files[value].path;
+				let i = savePath.lastIndexOf('/');
+
+				profile = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+
+				flag = false;
+			} else {
+				if(j <= 9){
+					let savePath = files[value].path;
+					let i = savePath.lastIndexOf('/');
+
+					let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+
+					title.push(fileName);
+				} else {
+					break;
+				}
+
+				j++;
+				// console.log(fileName + "\n");
+			}
+
+		}
+
+		Freelancer.findById(id, function(err, freelancer) {
+			if (err) {
+				res.status(400).send(err);
+				return;
+			}
+
+			if (freelancer) {
+				freelancer.photos = title;
+				freelancer.profilePhoto = profile;
+				freelancer.save(onModelSave(res, 200, true));
+				// console.log("SAVED\n");
+			}
+		});
+	});
+});
+
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
+}
+
+router.put('/galleryModification/:id', function(req, res, next) {
+	const id = req.params.id;
+	let dir = __dirname + '/../../../public/uploads/' + id;
+	// rmDir(__dirname + '/../../../public/uploads/' + id, false);
+	let number = [];
+	if (!fs.existsSync(dir)){
+	    fs.mkdirSync(dir);
+	}
+
+	let form = new formidable.IncomingForm({
+		uploadDir: dir,
+		keepExtensions: true
+	});
+
+	form.parse(req, function(err, fields, files) {
+		if (err) return next(err);
+		let flag = true;
+		let profile = "";
+		let numbers = fields.files;
+		let title = [];
+		let j = 1;
+
+		for (let value in files) {
+			if(fields.profile_check == "true" && flag == true){
+				let savePath = files[value].path;
+				let i = savePath.lastIndexOf('/');
+
+				let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+
+				profile = fileName;
+				flag = false;
+			} else {
+				if(j <= 12){
+					let savePath = files[value].path;
+					let i = savePath.lastIndexOf('/');
+
+					let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+					title.push(fileName);
+				} else {
+					break;
+				}
+
+				j++;
+			}
+		}
+
+		Freelancer.findById(id, function(err, freelancer) {
+			if (err) {
+				res.status(400).send(err);
+				return;
+			}
+			 let temp = [];
+			if (freelancer) {
+				if(fields.profile_check == "true"){
+					freelancer.profilePhoto = profile;
+				}
+				let z = 0;
+
+				for(let i = 1; i <= 9; i++){
+					if(isInArray(i, numbers)){
+						// freelancer.photos[i] = title[z];
+						temp[i - 1] = title[z];
+						console.log("\n i:" + title[z] + "\n z: " + freelancer.photos[i] + "\n");
+						z++;
+					} else {
+						temp[i - 1] = freelancer.photos[i - 1];
+					}
+				}
+				freelancer.photos = temp;
+				console.log(temp);
+				freelancer.save(onModelSave(res, 200, true));
+			}
+		});
+	});
+});
+
 router.put('/:freelancerid', function(req, res, next) {
 	const data = req.body;
 
@@ -50,10 +235,10 @@ router.put('/:freelancerid', function(req, res, next) {
 		}
 
 		if (freelancer) {
-			freelancer.firstName = data.firstName;
-			freelancer.lastName = data.lastName;
+			// freelancer.firstName = data.firstName;
+			// freelancer.lastName = data.lastName;
 			freelancer.workName = data.workName;
-			freelancer.email = data.email;
+			// freelancer.email = data.email;
 			freelancer.phone = data.phone;
 			freelancer.profilePhoto = data.profilePhoto;
 			freelancer.photos = data.photos;
@@ -313,8 +498,11 @@ router.post('/create/freelancer', function(req, res) {
 	freelancer.profilePhoto = '';
 	freelancer.emergency = req.body.emergency;
 	let tags = req.body.tags;
+
+	console.log("\n\n address: " + freelancer.address + "\n\n");
 	freelancer.save(function(err, newfreelancer) {
 		if (err) {
+			console.log(err);
 			res.send(err);
 		} else {
 			Freelancer.update({
@@ -345,6 +533,7 @@ router.post('/create/freelancer', function(req, res) {
 				});
 			}
 			res.json(newfreelancer);
+			// res.send(newfreelancer._id);
 		}
 	});
 });

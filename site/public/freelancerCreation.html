@@ -13,29 +13,24 @@
 	<link rel="stylesheet" href="css/freelancer.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/lightbox.min.css">
+	<link rel="stylesheet" href="css/uploadPhoto.css">
 	<title>JobAdvisor</title>
 </head>
 
 <body>
-	<div id="freelancerCreation" style="width: 500px; padding: 30px; margin-left:auto; margin-right:auto;" >
+	<div id="freelancerCreation" style="width: 500px; padding: 30px; margin-left:auto; margin-right:auto;">
 		<form enctype="multipart/form-data" action="javascript:FREELANCERCREATION.submitFreelancer()">
 			<div class="form-group">
 				<label for="firstName">First name: </label>
-				<input type="text" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter first name" required>
+				<input type="text" class="form-control" id="firstName-complex" aria-describedby="firstName" placeholder="Enter first name">
 				<label for="lastName">Last name: </label>
-				<input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name" required>
+				<input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name">
 				<label for="workName">Work name: </label>
 				<input type="text" class="form-control" id="workName" aria-describedby="workName" placeholder="Enter work name">
 				<label for="phoneName">Phone number: </label>
 				<input type="text" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter phone number" required>
-				<label for="city">City: </label>
-				<input type="text" class="form-control" id="city" aria-describedby="city" placeholder="Enter city name" required>
-				<label for="street">Street: </label>
-				<input type="text" class="form-control" id="street" aria-describedby="street" placeholder="Enter street name" required>
-				<label for="number">Number: </label>
-				<input type="text" class="form-control" id="number" aria-describedby="number" placeholder="Enter street number" required>
-				<label for="zip">Zip code: </label>
-				<input type="text" class="form-control" id="zip" aria-describedby="zip" placeholder="Enter zip code" required>
+				<label for="phoneName">Address: (city is required)</label>
+				<input type="text" class="form-control" aria-describedby="basic-addon1" id="position" placeholder="Loading position..." required>
 			</div>
 			<div class="form-group">
 				<label for="tags">Tags: </label>
@@ -55,21 +50,37 @@
 				<label for="profilePicture">Profile picture upload</label>
 				<input type="file" class="form-control-file" id="profilePicture" aria-describedby="profilePicture">
 			</div>
+			<div id="drop-zone">
+				<p>Drop gallery images</p>
+				<div id="clickHere">or click here <i class="fa fa-upload"></i>
+					<input type="file" name="file" id="file" multiple />
+				</div>
+				<div id='filename'></div>
+			</div>
+
+			<div class="form-group">
+				<label class="form-check-label">
+				 <input class="form-check-input" type="checkbox" value="" id="modal-emergency">
+				 Available for emergency
+			  </label>
+			</div>
 			<button type="submit" class="btn btn-primary" id="submit">Submit</button>
 		</form>
 	</div>
-</div>
+	</div>
 
-<!-- jQuery first, then Tether, then Bootstrap JS. -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-<script src="js/dust-full.min.js"></script>
-<script src="js/ajax.js"></script>
-<script src="js/lightbox.min.js"></script>
+	<!-- jQuery first, then Tether, then Bootstrap JS. -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+	<script src="js/dust-full.min.js"></script>
+	<script src="js/ajax.js"></script>
+	<script src="js/lightbox.min.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+	<script src="js/jquery.geocomplete.min.js"></script>
 
-<script src="js/freelancerCreation.js"></script>
+	<script src="js/freelancerCreation.js"></script>
 </body>
 
 </html>

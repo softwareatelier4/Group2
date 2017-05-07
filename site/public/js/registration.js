@@ -1,3 +1,4 @@
+
 const REGISTRATION = {
 	name: 'registration',
 
@@ -8,7 +9,13 @@ const REGISTRATION = {
 		repeatPassword.value = "";
 	},
 
-	checkData: function() {
+	checkData: function(){
+	checkFreelancer: function() {
+		flag_2 = true;
+		REGISTRATION.checkData();
+	},
+
+	checkData: function(){
 		let firstName = document.getElementById('firstName');
 		let lastName = document.getElementById('lastName');
 		let email = document.getElementById('email');
@@ -21,7 +28,9 @@ const REGISTRATION = {
 		let lastNameErrorLength = document.getElementById("lastName-label2"); //lastname length error
 		let pattStrings = /^([A-Za-z_ _-_è_ü_é_ö_à_ä_á_']{1,50})+$/;
 		let flag = true;
-		if (password.value !== repeatPassword.value) {
+		if(password.value !== repeatPassword.value) {
+
+		if(password.value !== repeatPassword.value) {
 			flag = false;
 			passwordError.style.display = "block";
 		} else {
@@ -80,6 +89,18 @@ const REGISTRATION = {
 			} else if (res.success) {
 				window.location.href = '/';
 			}
+			else if(res.success){
+				window.location.href ='/';
+			}
+			else if(res.success){
+				if(flag_2){
+					console.log(email.value);
+					window.location.href ='/freelancerCreation.html#email='+email.value;
+				}
+				else{
+					window.location.href='/';
+				}
+			}
 		});
-	}
-}
+				}
+			}
