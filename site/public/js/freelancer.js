@@ -67,6 +67,9 @@ const FREELANCER = {
 
 					dust.renderSource(html, data, function(err, out) {
 						MAIN_JS.innerHTML = out;
+						$('#verified-sign').tooltip();
+						$('#emergency-sign').tooltip();
+						$('#disabled-emergency-sign').tooltip();
 						FREELANCER.renderReview(idFreelancer);
 					});
 					isLogged(function(ress) {
