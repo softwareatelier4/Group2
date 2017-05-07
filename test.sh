@@ -5,4 +5,5 @@ cd site
 
 cd ..
 cd application/JobAdvisor
+pwd
 ./test.sh
