@@ -78,17 +78,26 @@ const SEARCH = {
 
 	clickEmergency: function(e) {
 		let distanceInput = document.getElementById("distance-input");
+		let bell;
+		let parent;
+		if (e.target.tagName.toLowerCase() == 'span') {
+			bell = e.target.childNodes[0];
+			parent = e.target;
+		} else {
+			bell = e.target;
+			parent = e.target.parentNode;
+		}
 
-		if (e.target.dataset.value.toString() == 'true') {
+		if (parent.dataset.value.toString() == 'true') {
+			parent.dataset.value = false;
 			//tooltip
-			e.target.parentNode.setAttribute('data-original-title', 'Not Available for emergency');
-			e.target.parentNode.title = "Not Available for emergency";
+			parent.setAttribute('data-original-title', 'Not Available for emergency');
+			parent.title = "Not Available for emergency";
 
 			SEARCH.filters.emergency = false;
-			e.target.dataset.value = false;
-			e.target.classList.remove('fa-bell');
-			e.target.classList.add('fa-bell-slash');
-			e.target.classList.remove('blink');
+			bell.classList.remove('fa-bell');
+			bell.classList.add('fa-bell-slash');
+			bell.classList.remove('blink');
 			distanceInput.value = SEARCH.preEmergencyStatus.oldDistance;
 			let buttons = document.getElementById('sorting-buttons').childNodes;
 			let currentButton = document.getElementById(SEARCH.preEmergencyStatus.oldButton);
@@ -137,8 +146,7 @@ const SEARCH = {
 			}
 		} else {
 			SEARCH.filters.emergency = true;
-			e.target.dataset.value = true;
-			let bell = document.getElementById('emergency-btn').childNodes[0];
+			parent.dataset.value = true;
 			bell.classList.remove('fa-bell-slash');
 			bell.classList.add('fa-bell');
 			bell.classList.add('blink');
