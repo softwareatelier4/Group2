@@ -78,12 +78,17 @@ const SEARCH = {
 
 	clickEmergency: function(e) {
 		let distanceInput = document.getElementById("distance-input");
+
 		if (e.target.dataset.value.toString() == 'true') {
+			//tooltip
+			e.target.parentNode.setAttribute('data-original-title', 'Not Available for emergency');
+			e.target.parentNode.title = "Not Available for emergency";
+
 			SEARCH.filters.emergency = false;
 			e.target.dataset.value = false;
-			e.target.classList.remove('btn-danger');
-			e.target.classList.add('btn-default');
-			// e.target.style.backgroundColor = "green";
+			e.target.classList.remove('fa-bell');
+			e.target.classList.add('fa-bell-slash');
+			e.target.classList.remove('blink');
 			distanceInput.value = SEARCH.preEmergencyStatus.oldDistance;
 			let buttons = document.getElementById('sorting-buttons').childNodes;
 			let currentButton = document.getElementById(SEARCH.preEmergencyStatus.oldButton);
@@ -133,9 +138,12 @@ const SEARCH = {
 		} else {
 			SEARCH.filters.emergency = true;
 			e.target.dataset.value = true;
-			e.target.classList.remove('btn-default');
-			e.target.classList.add('btn-danger');
-			// e.target.style.backgroundColor = "red";
+			let bell = document.getElementById('emergency-btn').childNodes[0];
+			bell.classList.remove('fa-bell-slash');
+			bell.classList.add('fa-bell');
+			bell.classList.add('blink');
+			document.getElementById('emergency-btn').setAttribute('data-original-title', 'Available for emergency');
+			document.getElementById('emergency-btn').title = "Available for emergency";
 			SEARCH.preEmergencyStatus.oldDistance = distanceInput.value;
 			SEARCH.preEmergencyStatus.oldButton = SEARCH.filters.sort.idBtn;
 			SEARCH.preEmergencyStatus.oldType = SEARCH.filters.sort.type;
@@ -932,6 +940,8 @@ const SEARCH = {
 				return;
 			MAIN_JS.insertAdjacentHTML('beforeend', out);
 
+			$('#emergency-btn').tooltip();
+
 			let link = document.getElementById(freelancer._id).getElementsByTagName('button')[0];
 			link.addEventListener('click', SEARCH.selectProfile);
 		});
@@ -1027,7 +1037,13 @@ const SEARCH = {
 				SEARCH.filters.emergency = hashObj.emergency;
 				document.getElementById('emergency-btn').dataset.value = hashObj.emergency;
 				if (hashObj.emergency.toString() == 'true') {
-					document.getElementById('emergency-btn').style.backgroundColor = 'red';
+					//add fa-bell and remove fa-bell-slash
+					document.getElementById('emergency-btn').setAttribute('data-original-title', 'Available for emergency');
+					document.getElementById('emergency-btn').title = "Available for emergency";
+					let bell = document.getElementById('emergency-btn').childNodes[0];
+					bell.classList.remove('fa-bell-slash');
+					bell.classList.add('fa-bell');
+					bell.classList.add('blink');
 				}
 			}
 			SEARCH.filters.sort.idBtn = hashObj.btn;

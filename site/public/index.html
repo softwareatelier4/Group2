@@ -42,15 +42,11 @@
 					</nav>
 				</div>
 				<form class="" autocomplete="off">
-					<div style="float:left; display:block;">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
-							<span class="input-group-addon search-btn" id="basic-addon1">Search</span>
-							<input type="text" class="form-control" aria-describedby="basic-addon1" id="position" placeholder="Loading position...">
-						</div>
-					</div>
-					<div id="emergency-btn"style="float:right; display:block; width:120px; height:38px;">
-						<button style="text-align: center;" onclick="SEARCH.clickEmergency(event)" data-value="false" type="button" class="btn btn-default btn-lg">Emergency</button>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="What do you need?" aria-describedby="basic-addon1" id="search-text">
+						<span class="input-group-addon search-btn" id="basic-addon1">Search</span>
+						<input type="text" class="form-control" aria-describedby="basic-addon1" id="position" placeholder="Loading position...">
+						<span id="emergency-btn" class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Not Available for emergency"><i class="fa fa-bell-slash" onclick="SEARCH.clickEmergency(event)" data-value="false" aria-hidden="true"></i></span>
 					</div>
 					<div style="clear:both;"></div>
 				</form>
@@ -116,21 +112,21 @@
           <span aria-hidden="true">&times;</span>
         </button>
 
-      </div>
-      <div class="modal-body">
-        <form enctype="multipart/form-data" action="javascript:LOGIN.submitLogin()" id="form-login">
-            <div class="form-group">
-                <label for="modal-email" id="label-email-label">Email: </label>
-                <input type="text" class="form-control" id="login-email" aria-describedby="email" placeholder="Enter email">
-                <label for="modal-password" id="modal-password-label">Password: </label>
-                <input type="password" class="form-control" id="modal-password" aria-describedby="password" placeholder="Enter password">
-                </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="login-button" class="btn btn-primary" onclick="LOGIN.checkData()">Login</button>
-      </div>
-    </div>
-  </div>
+			</div>
+			<div class="modal-body">
+				<form enctype="multipart/form-data" action="javascript:LOGIN.submitLogin()" id="form-login">
+					<div class="form-group">
+						<label for="modal-email" id="label-email-label">Email: </label>
+						<input type="text" class="form-control" id="login-email" aria-describedby="email" placeholder="Enter email">
+						<label for="modal-password" id="modal-password-label">Password: </label>
+						<input type="password" class="form-control" id="modal-password" aria-describedby="password" placeholder="Enter password">
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" id="login-button" class="btn btn-primary" onclick="LOGIN.checkData()">Login</button>
+			</div>
+		</div>
+	</div>
 </div>
