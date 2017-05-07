@@ -22,7 +22,7 @@ module.exports = {
 			.click('#navbar-top-desktop a[name="login-link"]')
 			.pause(500)
 			.assert.visible('input#modal-password')
-			.setValue('input[id=login-email]', 'u.t@usi.ch')
+			.setValue('input[id=login-email]', '2.t@usi.ch')
 			.setValue('input#modal-password', 'test')
 			.pause(1000)
 			.assert.visible('button[id=login-button]')
