@@ -10,18 +10,18 @@ body, html {
    background-color: rgb(231, 231, 231);
 }
 
-input#search-text, input#position{
-	border-color: #ccc;
+input#search-text, input#position {
+   border-color: #ccc;
 }
 
 .bg-faded {
    background-color: rgb(46, 78, 92);
 }
 
-.claim-btn{
+.claim-btn {
    border: none;
    border-radius: 4px;
-   color: rgba(0,0,0,0.4);
+   color: rgba(0, 0, 0, 0.4);
    margin: 5px;
    width: 25px;
 }
@@ -187,7 +187,7 @@ input#search-text, input#position{
 }
 
 .price {
-	margin-left: 8px;
+   margin-left: 8px;
 }
 
 .card {
@@ -324,4 +324,28 @@ Error color's for freelancer update
 
 .error-green {
    color: green;
+}
+
+@keyframes blink {
+   0% {
+      color: #ec1c15;
+   }
+   100% {
+      color: rgb(46, 68, 92);
+   }
+}
+
+@-webkit-keyframes blink {
+   0% {
+      color: #ec1c15;
+   }
+   100% {
+      color: rgb(46, 68, 92);
+   }
+}
+
+.blink {
+   -webkit-animation: blink 1s ease-in infinite;
+   -moz-animation: blink 1s ease-in infinite;
+   animation: blink 1s ease-in infinite;
 }

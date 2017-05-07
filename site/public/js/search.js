@@ -30,7 +30,14 @@ const SEARCH = {
 			type: undefined
 		},
 		price: undefined,
-		distance: undefined
+		distance: undefined,
+		emergency: false
+	},
+
+	preEmergencyStatus: {
+		oldDistance: "",
+		oldButton: "",
+		oldType: ""
 	},
 
 	/**
@@ -65,6 +72,123 @@ const SEARCH = {
 		// if there is a search, make the search!
 		if (SEARCH_TEXT_QUERY.val() !== '') {
 			SEARCH.search();
+		}
+
+	},
+
+	clickEmergency: function(e) {
+		let distanceInput = document.getElementById("distance-input");
+		let bell;
+		let parent;
+		if (e.target.tagName.toLowerCase() == 'span') {
+			bell = e.target.childNodes[0];
+			parent = e.target;
+		} else {
+			bell = e.target;
+			parent = e.target.parentNode;
+		}
+
+		if (parent.dataset.value.toString() == 'true') {
+			parent.dataset.value = false;
+			//tooltip
+			parent.setAttribute('data-original-title', 'Not Available for emergency');
+			parent.title = "Not Available for emergency";
+
+			SEARCH.filters.emergency = false;
+			bell.classList.remove('fa-bell');
+			bell.classList.add('fa-bell-slash');
+			bell.classList.remove('blink');
+			distanceInput.value = SEARCH.preEmergencyStatus.oldDistance;
+			let buttons = document.getElementById('sorting-buttons').childNodes;
+			let currentButton = document.getElementById(SEARCH.preEmergencyStatus.oldButton);
+			for (let i = 0; i < buttons.length; i++) {
+				// skip current clicked button or not buttons
+				if (buttons[i].tagName != 'SPAN')
+					continue;
+
+				buttons[i].style.textDecoration = '';
+				if (buttons[i].innerText !== undefined) {
+					if (currentButton) {
+						currentButton.getElementsByClassName('up-arrow')[0].style.visibility = 'hidden';
+						currentButton.getElementsByClassName('down-arrow')[0].style.display = 'none';
+					}
+					buttons[i].getElementsByClassName('up-arrow')[0].style.visibility = 'hidden';
+					buttons[i].getElementsByClassName('up-arrow')[0].style.display = 'inline';
+					buttons[i].getElementsByClassName('down-arrow')[0].style.display = 'none';
+					buttons[i].getElementsByClassName('down-arrow')[0].style.visibility = 'hidden';
+					buttons[i].dataset.sorttype = "neutral";
+
+				}
+			}
+
+			if (SEARCH.preEmergencyStatus.oldButton !== null && SEARCH.preEmergencyStatus.oldButton && document.getElementById(SEARCH.preEmergencyStatus.oldButton) && document.getElementById(SEARCH.preEmergencyStatus.oldButton).dataset) {
+				document.getElementById(SEARCH.preEmergencyStatus.oldButton).dataset.sorttype = SEARCH.filters.sort.type;
+				SEARCH.applyFilters();
+				currentButton.dataset.sorttype = SEARCH.preEmergencyStatus.oldType;
+				SEARCH.cardSort(SEARCH.preEmergencyStatus.oldButton, SEARCH.preEmergencyStatus.oldType);
+				SEARCH.filters.sort.idBtn = currentButton.id;
+				SEARCH.filters.sort.type = currentButton.dataset.sorttype;
+				SEARCH.setFilterHash();
+				if (currentButton.dataset.sorttype == 'asc') {
+					currentButton.getElementsByClassName('up-arrow')[0].style.visibility = 'visible';
+					currentButton.getElementsByClassName('up-arrow')[0].style.display = 'inline';
+					currentButton.style.textDecoration = 'underline';
+				} else if (currentButton.dataset.sorttype == 'desc') {
+					currentButton.getElementsByClassName('down-arrow')[0].style.visibility = 'visible';
+					currentButton.getElementsByClassName('down-arrow')[0].style.display = 'inline';
+					currentButton.getElementsByClassName('up-arrow')[0].style.display = 'none';
+					currentButton.style.textDecoration = 'underline';
+				}
+			} else {
+				SEARCH.filters.sort.idBtn = "";
+				SEARCH.filters.sort.type = "";
+				SEARCH.setFilterHash();
+				SEARCH.applyFilters();
+				SEARCH.preEmergencyStatus.oldButton = "";
+			}
+		} else {
+			SEARCH.filters.emergency = true;
+			parent.dataset.value = true;
+			bell.classList.remove('fa-bell-slash');
+			bell.classList.add('fa-bell');
+			bell.classList.add('blink');
+			document.getElementById('emergency-btn').setAttribute('data-original-title', 'Available for emergency');
+			document.getElementById('emergency-btn').title = "Available for emergency";
+			SEARCH.preEmergencyStatus.oldDistance = distanceInput.value;
+			SEARCH.preEmergencyStatus.oldButton = SEARCH.filters.sort.idBtn;
+			SEARCH.preEmergencyStatus.oldType = SEARCH.filters.sort.type;
+			distanceInput.value = 50;
+			let buttons = document.getElementById('sorting-buttons').childNodes;
+			let currentButton = document.getElementById('btn-distance');
+			for (let i = 0; i < buttons.length; i++) {
+				// skip current clicked button or not buttons
+				if (buttons[i].tagName != 'SPAN')
+					continue;
+
+				buttons[i].style.textDecoration = '';
+				if (buttons[i].innerText !== undefined) {
+					currentButton.getElementsByClassName('up-arrow')[0].style.visibility = 'hidden';
+					currentButton.getElementsByClassName('down-arrow')[0].style.display = 'none';
+					buttons[i].getElementsByClassName('up-arrow')[0].style.visibility = 'hidden';
+					buttons[i].getElementsByClassName('up-arrow')[0].style.display = 'inline';
+					buttons[i].getElementsByClassName('down-arrow')[0].style.display = 'none';
+					buttons[i].getElementsByClassName('down-arrow')[0].style.visibility = 'hidden';
+					buttons[i].dataset.sorttype = "neutral";
+
+				}
+			}
+
+			currentButton.getElementsByClassName('up-arrow')[0].style.visibility = 'visible';
+			currentButton.style.textDecoration = 'underline';
+			currentButton.dataset.sorttype = 'asc';
+			SEARCH.filters.sort.idBtn = 'btn-distance';
+			SEARCH.filters.sort.type = 'asc';
+			SEARCH.filters.sort.distance = 50;
+			SEARCH.filters.emergency = true;
+
+			SEARCH.applyFilters();
+			SEARCH.cardSort('btn-distance', "asc");
+
 		}
 
 	},
@@ -129,6 +253,8 @@ const SEARCH = {
 			distance: undefined
 		};
 		SORTING_OPTIONS.style.visibility = 'hidden';
+		document.getElementById("emergency-btn").style.visibility = "hidden";
+		document.getElementById("emergency-btn").style.display = "none";
 		let btns = document.getElementsByClassName('filter-btn');
 		for (let elem of btns) {
 			elem.style.textDecoration = '';
@@ -158,6 +284,8 @@ const SEARCH = {
 		MAIN_DIV.style.display = "inline";
 		MAIN_DIV.style.backgroundColor = "rgb(231, 231, 231)";
 		SORTING_OPTIONS.style.visibility = 'visible';
+		document.getElementById("emergency-btn").style.visibility = 'visible';
+		document.getElementById("emergency-btn").style.display = "block";
 	},
 
 
@@ -371,7 +499,6 @@ const SEARCH = {
 	},
 
 	cardSort: function(buttonId, sortType) {
-
 		SEARCH.currentResult.sort(function(a, b) {
 			switch (buttonId) {
 				case "btn-score":
@@ -420,22 +547,43 @@ const SEARCH = {
 					}
 					break;
 				case "btn-distance":
-					if (sortType === "desc") {
-						if (a.distance === undefined || a.distance === null)
-							return 1;
+					if (SEARCH.filters.emergency.toString() == "true") {
+						if (sortType === "desc") {
+							if (a.eDistance === undefined || a.eDistance === null)
+								return 1;
 
-						if (b.distance === undefined || b.distance === null)
-							return -1;
+							if (b.eDistance === undefined || b.eDistance === null)
+								return -1;
 
-						return b.distance - a.distance;
+							return b.eDistance - a.eDistance;
+						} else {
+							if (a.eDistance === undefined || a.eDistance === null)
+								return 1;
+
+							if (a.eDistance === undefined || b.eDistance === null)
+								return -1;
+
+							return a.eDistance - b.eDistance;
+						}
 					} else {
-						if (a.distance === undefined || a.distance === null)
-							return 1;
 
-						if (a.distance === undefined || b.distance === null)
-							return -1;
+						if (sortType === "desc") {
+							if (a.distance === undefined || a.distance === null)
+								return 1;
 
-						return a.distance - b.distance;
+							if (b.distance === undefined || b.distance === null)
+								return -1;
+
+							return b.distance - a.distance;
+						} else {
+							if (a.distance === undefined || a.distance === null)
+								return 1;
+
+							if (a.distance === undefined || b.distance === null)
+								return -1;
+
+							return a.distance - b.distance;
+						}
 					}
 					break;
 				case "btn-name":
@@ -488,6 +636,13 @@ const SEARCH = {
 
 		SEARCH.currentResult = JSON.parse(JSON.stringify(SEARCH.originalResponse));
 
+		// apply emergency filter
+		if (SEARCH.filters.emergency && SEARCH.filters.emergency.toString() == "true") {
+			SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
+				return freelancer.emergency;
+			});
+		}
+
 		// apply price filter
 		if (!isNaN(maxPrice - 0) && maxPrice !== null && maxPrice !== "" && maxPrice !== false) {
 			SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
@@ -499,8 +654,10 @@ const SEARCH = {
 		// apply distance filter
 		if (!isNaN(maxDistance - 0) && maxDistance !== null && maxDistance !== "" && maxDistance !== false) {
 			SEARCH.currentResult = SEARCH.currentResult.filter(function(freelancer) {
-				if (freelancer.distance)
+				if (freelancer.distance && SEARCH.filters.emergency.toString() == "false")
 					return Number(freelancer.distance) <= Number(maxDistance);
+				else if (freelancer.eDistance && SEARCH.filters.emergency.toString() == "true")
+					return Number(freelancer.eDistance) <= Number(maxDistance);
 			});
 		}
 
@@ -775,14 +932,18 @@ const SEARCH = {
 	 */
 	insertCard: function(freelancer, card) {
 		let distance;
-		if (!isNaN(freelancer.distance)) {
+		if (!isNaN(freelancer.distance) && SEARCH.filters.emergency.toString() == "false") {
 			distance = freelancer.distance + "km";
+		} else if (!isNaN(freelancer.eDistance) && SEARCH.filters.emergency.toString() == "true") {
+			distance = freelancer.eDistance + "km";
 		} else {
 			distance = "";
 		}
 		let time;
-		if (freelancer.time) {
+		if (freelancer.time && SEARCH.filters.emergency.toString() == "false") {
 			time = SEARCH.writeTimeBetter(freelancer.time);
+		} else if (freelancer.eTime && SEARCH.filters.emergency.toString() == "true") {
+			time = SEARCH.writeTimeBetter(freelancer.eTime);
 		} else {
 			time = "";
 		}
@@ -814,6 +975,8 @@ const SEARCH = {
 			if (document.getElementById(freelancer._id))
 				return;
 			MAIN_JS.insertAdjacentHTML('beforeend', out);
+
+			$('#emergency-btn').tooltip();
 
 			let link = document.getElementById(freelancer._id).getElementsByTagName('button')[0];
 			link.addEventListener('click', SEARCH.selectProfile);
@@ -866,8 +1029,12 @@ const SEARCH = {
 			}
 		}
 
+		if (SEARCH.filters.emergency === undefined)
+			SEARCH.filters.emergency = false;
+
 		let hash = 'filters:type=' + SEARCH.filters.sort.type + '&btn=' + SEARCH.filters.sort.idBtn;
 		hash += '&price=' + SEARCH.filters.price + '&distance=' + SEARCH.filters.distance;
+		hash += '&emergency=' + SEARCH.filters.emergency;
 
 		if (filterHash) {
 			hashes[filterHash] = hash;
@@ -902,6 +1069,19 @@ const SEARCH = {
 				priceInput.value = hashObj.price;
 			if (hashObj.distance != undefined)
 				distanceInput.value = hashObj.distance;
+			if (hashObj.emergency != undefined) {
+				SEARCH.filters.emergency = hashObj.emergency;
+				document.getElementById('emergency-btn').dataset.value = hashObj.emergency;
+				if (hashObj.emergency.toString() == 'true') {
+					//add fa-bell and remove fa-bell-slash
+					document.getElementById('emergency-btn').setAttribute('data-original-title', 'Available for emergency');
+					document.getElementById('emergency-btn').title = "Available for emergency";
+					let bell = document.getElementById('emergency-btn').childNodes[0];
+					bell.classList.remove('fa-bell-slash');
+					bell.classList.add('fa-bell');
+					bell.classList.add('blink');
+				}
+			}
 			SEARCH.filters.sort.idBtn = hashObj.btn;
 			SEARCH.filters.sort.type = hashObj.type;
 		}

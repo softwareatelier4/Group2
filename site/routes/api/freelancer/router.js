@@ -44,7 +44,10 @@ router.put('/:freelancerid', function(req, res, next) {
 	const data = req.body;
 
 	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
-		if (err) return next(err);
+		if (err) {
+			res.status(400).send(err);
+			return;
+		}
 
 		if (freelancer) {
 			freelancer.firstName = data.firstName;
@@ -102,8 +105,11 @@ router.put('/:freelancerid', function(req, res, next) {
  * @param {number} long - User's longitude
  * @return {number} - Distance
  */
-let distanceCalculation = function(freelancer, lat, long) {
+let distanceCalculation = function(freelancer, lat, long, emergency) {
 	if (!freelancer || !lat || !long)
+		return undefined;
+
+	if (emergency != 0 && (!freelancer.currentPosition || !freelancer.currentPosition.lat || !freelancer.currentPosition.long))
 		return undefined;
 
 	let R = 6371;
@@ -117,9 +123,14 @@ let distanceCalculation = function(freelancer, lat, long) {
 	let d;
 	/* Degree to radiants */
 	lat_alfa = pigreco * lat / 180;
-	lat_beta = pigreco * freelancer.address.lat / 180;
 	lon_alfa = pigreco * long / 180;
-	lon_beta = pigreco * freelancer.address.long / 180;
+	if (emergency == 0) {
+		lat_beta = pigreco * freelancer.address.lat / 180;
+		lon_beta = pigreco * freelancer.address.long / 180;
+	} else {
+		lat_beta = pigreco * freelancer.currentPosition.lat / 180;
+		lon_beta = pigreco * freelancer.currentPosition.long / 180;
+	}
 	/* Calculate the angle in between fi */
 	fi = Math.abs(lon_alfa - lon_beta);
 	/* Calculate the third side of the spherical triangle */
@@ -179,11 +190,17 @@ let searchEngine = function(freelancers, string) {
 	   Put freelancers that satisfy requirements in the result
 	*/
 	for (let f of fClone) {
-		let dist = Number(distanceCalculation(f, lat, long));
-		let timez = undefined;
+		let dist = Number(distanceCalculation(f, lat, long, 0));
+		let eDist = Number(distanceCalculation(f, lat, long, 1));
+		let timez = undefined
+		let timex = undefined;
 		if (dist !== undefined) {
 			dist = dist.toFixed(1);
 			timez = dist / 60;
+		}
+		if (eDist !== undefined) {
+			eDist = eDist.toFixed(1);
+			timex = eDist / 60;
 		}
 		if (dist < 1000) {
 			let freelancer = {
@@ -199,8 +216,11 @@ let searchEngine = function(freelancers, string) {
 				longitude: f.address.long,
 				distance: dist,
 				time: timez,
+				eTime: timex,
+				emergency: f.emergency,
 				counter: countInArray(fClone, f),
-				price: f.price
+				price: f.price,
+				eDistance: eDist
 			};
 			result.push(freelancer);
 		}
