@@ -7,7 +7,7 @@ var app = express();
 var methodOverride = require('method-override');
 var flash = require('connect-flash');
 var passport = require('passport');
-var session  = require('express-session');
+var session = require('express-session');
 
 // Connect to MongoDB here
 var mongoose = require('mongoose');
@@ -33,13 +33,16 @@ app.use(methodOverride(
 	}
 ));
 
-app.use(session({ secret: 'jobadvisorsession' }));
+app.use(session({
+	secret: 'jobadvisorsession'
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 // Initialize routers here
 var routers = require('./routes/api/routers');
-app.use('/api/claimrequest', routers.claimrequest);
+app.use('/api/claimrequest/', routers.claimrequest);
+app.use('/api/active/', routers.active);
 app.use('/api/freelancer/', routers.freelancer);
 app.use('/api/passport/', routers.passport);
 app.use('/api/review/', routers.review);
