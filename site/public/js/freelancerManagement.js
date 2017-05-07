@@ -17,10 +17,10 @@ const FREELANCERMANAGEMENT = {
 		 $("#modify_position")
 		   .geocomplete()
 		   .bind("geocode:result", function(event, result) {
-			   city = FREELANCERCREATION.googleFindType(result.address_components, 'locality');
-			   stree_number = FREELANCERCREATION.googleFindType(result.address_components, 'street_number');
-			   route = FREELANCERCREATION.googleFindType(result.address_components, 'route');//postal_code
-			   postal_code = FREELANCERCREATION.googleFindType(result.address_components, 'postal_code');
+			   city = FREELANCERMANAGEMENT.googleFindType(result.address_components, 'locality');
+			   stree_number = FREELANCERMANAGEMENT.googleFindType(result.address_components, 'street_number');
+			   route = FREELANCERMANAGEMENT.googleFindType(result.address_components, 'route');//postal_code
+			   postal_code = FREELANCERMANAGEMENT.googleFindType(result.address_components, 'postal_code');
 
 			   if (city) {
 					city = city.long_name;
