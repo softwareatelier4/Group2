@@ -12,7 +12,7 @@ const FREELANCERMANAGEMENT = {
     name: 'FREELANCERMANAGEMENT',
     addedTags : [],
     getFreelancerInfo: function() {
-		 console.log(document.getElementById("modify_position"));
+		//  console.log(document.getElementById("modify_position"));
 
 		 $("#modify_position")
 		   .geocomplete()
@@ -101,7 +101,7 @@ const FREELANCERMANAGEMENT = {
                         });
                     }
 
-						  console.log(data.freelancer.tags);
+						//   console.log(data.freelancer.tags);
 
                     let tagsList = document.getElementById('tags-list');
 
@@ -194,6 +194,7 @@ const FREELANCERMANAGEMENT = {
 				'emergency' : emergency
 		};
 
+		console.log(FREELANCERMANAGEMENT.addedTags);
 		console.log(freelancer_update);
             doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
                //  location.reload();
@@ -230,12 +231,6 @@ const FREELANCERMANAGEMENT = {
 					};
 					xhr.send(data);
 
-					// let tagText = document.getElementById('tags');
-					// let tagsList = document.getElementById('tags-list');
-					//
-					// tagsList.innerHTML = "";
-					// tagText.value = "";
-					addedTags = [];
 					location.reload();
 					window.location.href ='/#freelancer=' + res._id;
 		    });
