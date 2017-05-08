@@ -53,22 +53,22 @@ module.exports = {
 			.setValue('input[id=modal-workName]', "Sample Name")
 			.setValue('input[id=modal-phone]', "+41 24 2222222")
 
-			.click('button[id=save-button]')
-			.pause(1000)
-
-			.assert.containsText('div[id=info-name-bottom]', "Sample Name")
-			.assert.containsText('div[id=phone]', "+41 24 2222222")
-
-			.click('button[id=modify-button]')
-			.pause(200)
-
-			.clearValue('input[id=modal-workName]')
-			.clearValue('input[id=modal-phone]')
-
-			.setValue('input[id=modal-workName]', "Il Tollo")
-			.setValue('input[id=modal-phone]', "+39 380474747")
-
-			.click('button[id=save-button]')
+			// .click('button[id=save-button]')
+			// .pause(1000)
+			//
+			// .assert.containsText('div[id=info-name-bottom]', "Sample Name")
+			// .assert.containsText('div[id=phone]', "+41 24 2222222")
+			//
+			// .click('button[id=modify-button]')
+			// .pause(200)
+			//
+			// .clearValue('input[id=modal-workName]')
+			// .clearValue('input[id=modal-phone]')
+			//
+			// .setValue('input[id=modal-workName]', "Il Tollo")
+			// .setValue('input[id=modal-phone]', "+39 380474747")
+			//
+			// .click('button[id=save-button]')
 			.end();
 	}
 };
