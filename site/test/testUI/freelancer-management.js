@@ -31,6 +31,7 @@ module.exports = {
 			.pause(500)
 
 			.assert.visible('div[id=info-name-button]')
+			.pause(1000)
 			.assert.visible('button[id=modify-button]')
 			.assert.visible('div[id=info-name-bottom]')
 			.assert.visible('div[id=info]')
