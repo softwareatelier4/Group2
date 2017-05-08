@@ -13,21 +13,24 @@ const Tag = mongoose.model('Tag');
 const util = require('util');
 
 let rmDir = function(dirPath, removeSelf) {
-      if (removeSelf === undefined)
-        removeSelf = true;
-      try { var files = fs.readdirSync(dirPath); }
-      catch(e) { return; }
-      if (files.length > 0)
-        for (var i = 0; i < files.length; i++) {
-          var filePath = dirPath + '/' + files[i];
-          if (fs.statSync(filePath).isFile())
-            fs.unlinkSync(filePath);
-          else
-            rmDir(filePath);
-        }
-      if (removeSelf)
-        fs.rmdirSync(dirPath);
-    };
+	if (removeSelf === undefined)
+		removeSelf = true;
+	try {
+		var files = fs.readdirSync(dirPath);
+	} catch (e) {
+		return;
+	}
+	if (files.length > 0)
+		for (var i = 0; i < files.length; i++) {
+			var filePath = dirPath + '/' + files[i];
+			if (fs.statSync(filePath).isFile())
+				fs.unlinkSync(filePath);
+			else
+				rmDir(filePath);
+		}
+	if (removeSelf)
+		fs.rmdirSync(dirPath);
+};
 
 
 //supported methods
@@ -89,8 +92,8 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 	let dir = __dirname + '/../../../public/uploads/' + id;
 	rmDir(__dirname + '/../../../public/uploads/' + id, false);
 	let title = [];
-	if (!fs.existsSync(dir)){
-	    fs.mkdirSync(dir);
+	if (!fs.existsSync(dir)) {
+		fs.mkdirSync(dir);
 	}
 
 	let form = new formidable.IncomingForm({
@@ -104,7 +107,7 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 		let profile = "";
 		let j = 1;
 		for (let value in files) {
-			if(flag){
+			if (flag) {
 				let savePath = files[value].path;
 				let i = savePath.lastIndexOf('/');
 
@@ -112,7 +115,7 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 
 				flag = false;
 			} else {
-				if(j <= 9){
+				if (j <= 9) {
 					let savePath = files[value].path;
 					let i = savePath.lastIndexOf('/');
 
@@ -146,7 +149,7 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 });
 
 function isInArray(value, array) {
-  return array.indexOf(value) > -1;
+	return array.indexOf(value) > -1;
 }
 
 router.put('/galleryModification/:id', function(req, res, next) {
@@ -154,8 +157,8 @@ router.put('/galleryModification/:id', function(req, res, next) {
 	let dir = __dirname + '/../../../public/uploads/' + id;
 	// rmDir(__dirname + '/../../../public/uploads/' + id, false);
 	let number = [];
-	if (!fs.existsSync(dir)){
-	    fs.mkdirSync(dir);
+	if (!fs.existsSync(dir)) {
+		fs.mkdirSync(dir);
 	}
 
 	let form = new formidable.IncomingForm({
@@ -172,7 +175,7 @@ router.put('/galleryModification/:id', function(req, res, next) {
 		let j = 1;
 
 		for (let value in files) {
-			if(fields.profile_check == "true" && flag == true){
+			if (fields.profile_check == "true" && flag == true) {
 				let savePath = files[value].path;
 				let i = savePath.lastIndexOf('/');
 
@@ -181,7 +184,7 @@ router.put('/galleryModification/:id', function(req, res, next) {
 				profile = fileName;
 				flag = false;
 			} else {
-				if(j <= 12){
+				if (j <= 12) {
 					let savePath = files[value].path;
 					let i = savePath.lastIndexOf('/');
 
@@ -200,15 +203,15 @@ router.put('/galleryModification/:id', function(req, res, next) {
 				res.status(400).send(err);
 				return;
 			}
-			 let temp = [];
+			let temp = [];
 			if (freelancer) {
-				if(fields.profile_check == "true"){
+				if (fields.profile_check == "true") {
 					freelancer.profilePhoto = profile;
 				}
 				let z = 0;
 
-				for(let i = 1; i <= 9; i++){
-					if(isInArray(i, numbers)){
+				for (let i = 1; i <= 9; i++) {
+					if (isInArray(i, numbers)) {
 						// freelancer.photos[i] = title[z];
 						temp[i - 1] = title[z];
 						console.log("\n i:" + title[z] + "\n z: " + freelancer.photos[i] + "\n");
@@ -235,18 +238,18 @@ router.put('/:freelancerid', function(req, res) {
 		}
 
 		if (freelancer) {
-			freelancer.firstName = freelancer.firstName;
-			freelancer.lastName = freelancer.lastName;
+			// freelancer.firstName = freelancer.firstName;
+			// freelancer.lastName = freelancer.lastName;
 			freelancer.workName = data.workName;
 
-			freelancer.email = freelancer.email;
+			// freelancer.email = freelancer.email;
 			freelancer.phone = data.phone;
 			freelancer.profilePhoto = data.profilePhoto;
 			freelancer.photos = data.photos;
 			freelancer.address = data.address;
 			freelancer.tags = null;
 			freelancer.description = data.description;
-			freelancer.ownerId = data.ownerId;
+			// freelancer.ownerId = data.ownerId;
 			freelancer.price = data.price;
 
 			if (data.score != null) {
