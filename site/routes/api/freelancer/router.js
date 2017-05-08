@@ -149,7 +149,7 @@ function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
-router.put('/galleryModification/:id', function(req, res, next) {
+router.put('/galleryModification/:id', function(req, res) {
 	const id = req.params.id;
 	let dir = __dirname + '/../../../public/uploads/' + id;
 	// rmDir(__dirname + '/../../../public/uploads/' + id, false);
