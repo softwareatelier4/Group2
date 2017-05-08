@@ -1,7 +1,7 @@
-var city = undefined;
-var stree_number = undefined;
-var route = undefined;
-var postal_code = undefined;
+var city = "";
+var stree_number = "";
+var road = "";
+var postal_code = "";
 var lat = 0;
 var lng = 0;
 
@@ -19,7 +19,7 @@ const FREELANCERMANAGEMENT = {
 		   .bind("geocode:result", function(event, result) {
 			   city = FREELANCERMANAGEMENT.googleFindType(result.address_components, 'locality');
 			   stree_number = FREELANCERMANAGEMENT.googleFindType(result.address_components, 'street_number');
-			   route = FREELANCERMANAGEMENT.googleFindType(result.address_components, 'route');//postal_code
+			   road = FREELANCERMANAGEMENT.googleFindType(result.address_components, 'route');//postal_code
 			   postal_code = FREELANCERMANAGEMENT.googleFindType(result.address_components, 'postal_code');
 
 			   if (city) {
@@ -29,11 +29,12 @@ const FREELANCERMANAGEMENT = {
 			   }
 
 			   if(stree_number){
+					console.log(stree_number);
 					stree_number = stree_number.long_name;
 			   }
 
-			   if(route){
-					route = route.long_name;
+			   if(road){
+					road = road.long_name;
 			   }
 
 			   if(postal_code){
@@ -65,7 +66,26 @@ const FREELANCERMANAGEMENT = {
                     $("#modal-workName").val(data.freelancer.workName);
                     $("#modal-phone").val(data.freelancer.phone);
 
-                    $("#modify_position").val(data.freelancer.address.road + " " + data.freelancer.address.number + ", " + data.freelancer.address.city);
+						  let pos = "";
+						  if(data.freelancer.address.road){
+							  pos += data.freelancer.address.road;
+							  road = data.freelancer.address.road;
+						  }
+
+						  if(data.freelancer.address.number){
+							  pos += " " + data.freelancer.address.number;
+							  stree_number = data.freelancer.address.number;
+						  }
+
+						  if(data.freelancer.address.city){
+							  pos += ", " + data.freelancer.address.city;
+							  city = data.freelancer.address.city;
+							//   console.
+						  }
+
+                    $("#modify_position").val(pos);
+
+						  simulate(document.getElementById('modify_position'), 'click');
 
                     $("#modal-description").val(data.freelancer.description);
                     $("#modal-price").val(data.freelancer.price);
@@ -81,6 +101,8 @@ const FREELANCERMANAGEMENT = {
                         });
                     }
 
+						  console.log(data.freelancer.tags);
+
                     let tagsList = document.getElementById('tags-list');
 
 					for (let i = 0; i < tagsTemp.length; i++) {
@@ -88,8 +110,6 @@ const FREELANCERMANAGEMENT = {
 						FREELANCERMANAGEMENT.addedTags.push(tagsTemp[i]);
                         tagsList.innerHTML += badge;
                     }
-					// 	selectize_tags.addItem(tagsTemp[i]);
-					// }
 				});
 			}
 		});
@@ -104,7 +124,7 @@ const FREELANCERMANAGEMENT = {
 
         let flag = true;
 
-        if(!pattStrings.test(document.getElementById("modal-workName").value)){
+        if(!pattStrings.test(document.getElementById("modal-workName").value) && document.getElementById("modal-workName").value != ""){
             flag = false;
             document.getElementById("modal-workName-label").className = 'error-red';
             document.getElementById("modal-workName-label").innerHTML = "Workame can only contain letters(a-z,A-Z) and spaces";
@@ -137,10 +157,13 @@ const FREELANCERMANAGEMENT = {
     },
 
     submitFreelancer: function(){
-        let id = idFreelancer;
+		//  eventFire(document.getElementById('modify_position'), 'click');
+		//  simulate(document.getElementById('modify_position'), 'click');
+       let id = idFreelancer;
 		let workName = document.getElementById('modal-workName');
 		let phoneNumber = document.getElementById('modal-phone');
 
+		console.log(workName.value);
 		let profilePic = data.freelancer.profilePhoto;
        let photos = data.freelancer.photos;
 
@@ -157,7 +180,7 @@ const FREELANCERMANAGEMENT = {
 			'description' : description.value,
 			'address' : {
 				'city' : city,
-				'road' : route,
+				'road' : road,
 				'number' : stree_number,
 				'cap' : postal_code,
 				'lat' : lat,
@@ -171,12 +194,7 @@ const FREELANCERMANAGEMENT = {
 				'emergency' : emergency
 		};
 
-        doJSONRequest("GET", "https://maps.googleapis.com/maps/api/geocode/json?address="+freelancer_update.address.city+"+"+freelancer_update.address.street+"+"+freelancer_update.address.number,null,null,function(res){
-			if(res.status == "OK"){
-				freelancer_update.address.lat = res.results[0].geometry.location.lat;
-				freelancer_update.address.long = res.results[0].geometry.location.lng;
-			}
-
+		console.log(freelancer_update);
             doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
                //  location.reload();
 					let data, xhr;
@@ -212,11 +230,15 @@ const FREELANCERMANAGEMENT = {
 					};
 					xhr.send(data);
 
+					// let tagText = document.getElementById('tags');
+					// let tagsList = document.getElementById('tags-list');
+					//
+					// tagsList.innerHTML = "";
+					// tagText.value = "";
+					addedTags = [];
 					location.reload();
 					window.location.href ='/#freelancer=' + res._id;
 		    });
-
-		});
 
 
     },
@@ -276,10 +298,63 @@ const FREELANCERMANAGEMENT = {
 
 }
 
+function simulate(element, eventName)
+{
+    var options = extend(defaultOptions, arguments[2] || {});
+    var oEvent, eventType = null;
 
+    for (var name in eventMatchers)
+    {
+        if (eventMatchers[name].test(eventName)) { eventType = name; break; }
+    }
 
-$(document).ready(function() {
+    if (!eventType)
+        throw new SyntaxError('Only HTMLEvents and MouseEvents interfaces are supported');
 
+    if (document.createEvent)
+    {
+        oEvent = document.createEvent(eventType);
+        if (eventType == 'HTMLEvents')
+        {
+            oEvent.initEvent(eventName, options.bubbles, options.cancelable);
+        }
+        else
+        {
+            oEvent.initMouseEvent(eventName, options.bubbles, options.cancelable, document.defaultView,
+            options.button, options.pointerX, options.pointerY, options.pointerX, options.pointerY,
+            options.ctrlKey, options.altKey, options.shiftKey, options.metaKey, options.button, element);
+        }
+        element.dispatchEvent(oEvent);
+    }
+    else
+    {
+        options.clientX = options.pointerX;
+        options.clientY = options.pointerY;
+        var evt = document.createEventObject();
+        oEvent = extend(evt, options);
+        element.fireEvent('on' + eventName, oEvent);
+    }
+    return element;
+}
 
+function extend(destination, source) {
+    for (var property in source)
+      destination[property] = source[property];
+    return destination;
+}
 
-	});
+var eventMatchers = {
+    'HTMLEvents': /^(?:load|unload|abort|error|select|change|submit|reset|focus|blur|resize|scroll)$/,
+    'MouseEvents': /^(?:click|dblclick|mouse(?:down|up|over|move|out))$/
+}
+var defaultOptions = {
+    pointerX: 0,
+    pointerY: 0,
+    button: 0,
+    ctrlKey: false,
+    altKey: false,
+    shiftKey: false,
+    metaKey: false,
+    bubbles: true,
+    cancelable: true
+}

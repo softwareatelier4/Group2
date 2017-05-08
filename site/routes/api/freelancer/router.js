@@ -225,7 +225,7 @@ router.put('/galleryModification/:id', function(req, res, next) {
 	});
 });
 
-router.put('/:freelancerid', function(req, res, next) {
+router.put('/:freelancerid', function(req, res) {
 	const data = req.body;
 
 	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
@@ -235,10 +235,11 @@ router.put('/:freelancerid', function(req, res, next) {
 		}
 
 		if (freelancer) {
-			// freelancer.firstName = data.firstName;
-			// freelancer.lastName = data.lastName;
+			freelancer.firstName = freelancer.firstName;
+			freelancer.lastName = freelancer.lastName;
 			freelancer.workName = data.workName;
-			// freelancer.email = data.email;
+
+			freelancer.email = freelancer.email;
 			freelancer.phone = data.phone;
 			freelancer.profilePhoto = data.profilePhoto;
 			freelancer.photos = data.photos;
@@ -254,18 +255,19 @@ router.put('/:freelancerid', function(req, res, next) {
 
 			freelancer.save(onModelSave(res, 200, true));
 
-			freelancer.tags = [];
 			let tags = req.body.tags;
 			//console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
 			for (let tag of tags) {
 				Freelancer.findById(req.params.freelancerid, function(err, updatedFreelancer) {
 					//console.log("\n\n\n\n"+tag+"\n\n\n");
+					updatedFreelancer.tags = [];
 					Tag.findOne({
 						name: tag
 					}, function(err, docs) {
 						if (docs) {
 							updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
 							updatedFreelancer.save(function() {});
+							console.log(docs.name);
 						} else {
 							let newTag = new Tag();
 							newTag._id = mongoose.Types.ObjectId();
@@ -273,6 +275,7 @@ router.put('/:freelancerid', function(req, res, next) {
 							newTag.save(function(err, newTagRes) {
 								updatedFreelancer.tags.push(newTagRes._id);
 								updatedFreelancer.save(function() {});
+								console.log(tag);
 							});
 						}
 					});
