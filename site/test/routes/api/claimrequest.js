@@ -75,7 +75,7 @@ describe('Testing put for claimrequest', function() {
 		var temp = put_claimRequest;
 		temp.status = "Accepted";
 
-		it('Should modify the status of the claim request', function(done) {
+		it('Should modify the status of the claim request to Accepted', function(done) {
 			request(app)
 				.put('/api/claimrequest/d00000000000000000000000')
 				.send(temp)
@@ -85,6 +85,22 @@ describe('Testing put for claimrequest', function() {
 				.end(function(err, res) {
 					let resJson = JSON.parse(res.text);
 					resJson.status.should.not.equal("Pending");
+					done();
+				});
+		});
+
+		temp.status = "Refused";
+
+		it('Should modify the status of the claim request to Refused', function(done) {
+			request(app)
+				.put('/api/claimrequest/d00000000000000000000000')
+				.send(temp)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.status.should.not.equal("Accepted");
 					done();
 				});
 		});

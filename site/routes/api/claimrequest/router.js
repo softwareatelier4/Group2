@@ -115,9 +115,8 @@ router.put('/:id', function(req, res, next) {
 				Freelancer.findById(fId).exec(function(err, freelancer) {
 					if (err) return next(err);
 
-					if (freelancer) {
+					if (freelancer && freelancer.ownerId) {
 						if (freelancer.ownerId.toString() == uId) {
-							console.log("STO CANCELLANDO USERID");
 							freelancer.ownerId = undefined;
 						}
 						freelancer.save();
