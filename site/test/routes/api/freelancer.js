@@ -245,6 +245,41 @@ describe('Testing Post for localhost:3000/api/freelancer/create/freelancer', fun
 				});
 		});
 	});
+
+	describe('POST /api/freelancer/create/freelancer', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('should respond with redirect on post', function(done) {
+			request(app)
+				.post('/api/freelancer/create/freelancer')
+				.send({
+					firstName: "Federica",
+					lastName: "Amica",
+					workName: "Mano",
+					email: "fede@mano.amica",
+					phone: "3330003330",
+					address: {
+						city: "Lugano",
+						street: "via Zurigo",
+						number: 23,
+						cap: 6900,
+						lat: 46.0119793,
+						long: 8.9517463
+					},
+					tags: ["Accompagnatrice", "Falegname"],
+					description: "AAA",
+					emergency: false,
+				})
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.should.have.property('firstName', 'Federica');
+					res.body.should.have.property('lastName', 'Amica');
+					done();
+				});
+		});
+	});
 });
 
 describe('Testing ROUTE for localhost:3000/api/freelancer/emergency/:freelancerid', function() {
