@@ -123,6 +123,38 @@ describe('Testing put for claimrequest', function() {
 	});
 });
 
+describe('Testing put for claimrequest', function() {
+	describe('PUT /api/claimrequest/claimId', function() {
+		before(seed);
+		after(utils.dropDb);
+		var put_claimRequest = {
+			_id: ObjectId("d00000000000000000000000"),
+			user: ObjectId("b00000000000000000000002"),
+			freelancer: ObjectId("f00000000000000000000002"),
+			identitycard: "../public/uploads/claimRequests/upload_claim.png",
+			notes: 'This is my profile',
+			status: 'Accepted'
+		}
+
+		let temp = put_claimRequest;
+		temp.status = "I love Mucca";
+
+		it('Should not modify the status of the claim giving an incorrect status', function(done) {
+			request(app)
+				.put('/api/claimrequest/d00000000000000000000001')
+				.send(temp)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.name.should.be.equal("ValidationError");
+					done();
+				});
+		});
+	});
+});
+
 function seed(done) {
 	//seed the db
 	seedDb.seed(function(err, seedData) {
