@@ -153,6 +153,43 @@ describe('Testing put for freelancer', function() {
 				});
 		});
 
+		temp = put_freelancer;
+		temp.photos[3] = "/uploads/test/4.jpg";
+		it('Should add a photo', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.photos[3].should.equal("/uploads/test/4.jpg");
+					done();
+				});
+		});
+
+		temp = put_freelancer;
+		temp.photos[0] = undefined;
+		temp.photos[1] = undefined;
+		temp.photos[2] = undefined;
+		it('Should add a photo', function(done) {
+			request(app)
+				.put('/api/freelancer/f00000000000000000000000')
+				.send(
+					temp
+				)
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.photos.indexOf(0).should.equal(-1);
+					done();
+				});
+		});
 
 		temp = put_freelancer;
 		temp.phone = "+41797805942";
