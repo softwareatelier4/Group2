@@ -24,7 +24,7 @@ describe('Testing Read for api/claimrequest', function() {
 				.expect(200)
 				.end(function(err, res) {
 					var reqClaim = JSON.parse(res.text);
-					reqClaim.should.have.length(1);
+					reqClaim.should.have.length(2);
 					done();
 				});
 		});
@@ -52,7 +52,7 @@ describe('Testing POST for localhost:3000/api/claimrequest', function() {
 				.end(function(err, res) {
 					if (err) done(err);
 					let reqClaim = JSON.parse(res.text);
-					reqClaim.should.have.length(1);
+					reqClaim.should.have.length(2);
 					done();
 				});
 		});
@@ -88,14 +88,29 @@ describe('Testing put for claimrequest', function() {
 					done();
 				});
 		});
+	});
+});
 
-		let temp2 = put_claimRequest;
-		temp2.status = "Refused";
+describe('Testing put for claimrequest', function() {
+	describe('PUT /api/claimrequest/claimId', function() {
+		before(seed);
+		after(utils.dropDb);
+		var put_claimRequest = {
+			_id: ObjectId("d00000000000000000000000"),
+			user: ObjectId("b00000000000000000000002"),
+			freelancer: ObjectId("f00000000000000000000002"),
+			identitycard: "../public/uploads/claimRequests/upload_claim.png",
+			notes: 'This is my profile',
+			status: 'Accepted'
+		}
+
+		let temp = put_claimRequest;
+		temp.status = "Refused";
 
 		it('Should modify the status of the claim request to Refused', function(done) {
 			request(app)
-				.put('/api/claimrequest/d00000000000000000000000')
-				.send(temp2)
+				.put('/api/claimrequest/d00000000000000000000001')
+				.send(temp)
 				.set('Accept', 'application/json')
 				.expect('Content-Type', /json/, 'it should respond with json')
 				.expect(200)
@@ -107,38 +122,6 @@ describe('Testing put for claimrequest', function() {
 		});
 	});
 });
-
-// describe('Testing put for claimrequest', function() {
-// 	describe('PUT /api/claimrequest/claimId', function() {
-// 		before(seed);
-// 		after(utils.dropDb);
-// 		var put_claimRequest = {
-// 			_id: ObjectId("d00000000000000000000000"),
-// 			user: ObjectId("b00000000000000000000002"),
-// 			freelancer: ObjectId("f00000000000000000000002"),
-// 			identitycard: "../public/uploads/claimRequests/upload_claim.png",
-// 			notes: 'This is my profile',
-// 			status: 'Accepted'
-// 		}
-//
-// 		let temp = put_claimRequest;
-// 		temp.status = "Refused";
-//
-// 		it('Should modify the status of the claim request to Refused', function(done) {
-// 			request(app)
-// 				.put('/api/claimrequest/d00000000000000000000000')
-// 				.send(temp)
-// 				.set('Accept', 'application/json')
-// 				.expect('Content-Type', /json/, 'it should respond with json')
-// 				.expect(200)
-// 				.end(function(err, res) {
-// 					let resJson = JSON.parse(res.text);
-// 					resJson.status.should.not.equal("Accepted");
-// 					done();
-// 				});
-// 		});
-// 	});
-// });
 
 function seed(done) {
 	//seed the db
