@@ -132,9 +132,7 @@ router.put('/:id', function(req, res, next) {
 							title: 'Request Refused!',
 							body: 'You request for the ' + fHtml + ' has not been accepted.\nFor further informations contact us!'
 						}
-						if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch') {
-							require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
-						}
+						require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
 					}
 				});
 			}
