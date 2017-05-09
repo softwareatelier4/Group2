@@ -71,43 +71,43 @@ router.put('/:id', function(req, res, next) {
 	let newStatus = req.body.status;
 
 	ClaimRequest.findById(claimId, function(err, claim) {
-		if (err) return next(err);
+			if (err) return next(err);
 
-		if (claim) {
-			claim.status = newStatus;
+			if (claim) {
+				claim.status = newStatus;
 
-			if (newStatus === "Accepted") {
-				let fId = claim.freelancer;
-				let uId = claim.user;
+				if (newStatus === "Accepted") {
+					let fId = claim.freelancer;
+					let uId = claim.user;
 
-				Freelancer.findById(fId, function(err, freelancer) {
-					if (err) return next(err);
+					Freelancer.findById(fId, function(err, freelancer) {
+						if (err) return next(err);
 
-					if (freelancer) {
-						freelancer.ownerId = uId;
+						if (freelancer) {
+							freelancer.ownerId = uId;
 
-						freelancer.save();
-					}
-				});
-
-				User.findById(uId, function(err, user) {
-					if (err) return next(err);
-
-					if (user) {
-						user.freeLancerId = fId;
-
-						user.save();
-
-						let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
-						const content = {
-							title: 'You are a freelancer now!',
-							body: 'You request for the ' + fHtml + ' has been accepted.\nGood luck with your job!'
+							freelancer.save();
 						}
-						// if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch')
-						require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
+					});
 
-					}
-				});
+					User.findById(uId, function(err, user) {
+							if (err) return next(err);
+
+							if (user) {
+								user.freeLancerId = fId;
+
+								user.save();
+
+								let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
+								const content = {
+									title: 'You are a freelancer now!',
+									body: 'You request for the ' + fHtml + ' has been accepted.\nGood luck with your job!'
+								}
+								if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch')
+									require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
+							}
+						}
+					});
 			} else if (newStatus == 'Refused') {
 				let fId = claim.freelancer;
 				let uId = claim.user;
@@ -132,9 +132,9 @@ router.put('/:id', function(req, res, next) {
 							title: 'Request Refused!',
 							body: 'You request for the ' + fHtml + ' has not been accepted.\nFor further informations contact us!'
 						}
-						// if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch') {
-						require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
-
+						if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch') {
+							require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
+						}
 					}
 				});
 			}
