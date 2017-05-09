@@ -1,22 +1,64 @@
 
-node_modules/
+site/node_modules/
 
-npm-debug\.log
+site/npm-debug\.log
 
-coverage/
+site/coverage/
 
 .DS_Store
 
-jenkins-test-results\.xml
+site/jenkins-test-results\.xml
 
-test/nightwatch-reports/
+site/test/nightwatch-reports/
 
-phantomjs
+site/phantomjs
 
-phantomjsdriver.log
+site/phantomjsdriver.log
 
-selenium-server-standalone-2\.48\.2\.jar
+site/selenium-server-standalone-2\.48\.2\.jar
 
-chromedriver
+site/chromedriver
 
-public/uploads/claimRequests/
+site/public/uploads/claimRequests/*
+!site/public/uploads/claimRequests/.gitkeep
+
+npm-debug\.log
+
+node_modules/
+
+application/JobAdvisor/*~
+application/JobAdvisor/*.sw[mnpcod]
+application/JobAdvisor/*.log
+application/JobAdvisor/*.tmp
+application/JobAdvisor/*.tmp.*
+application/JobAdvisor/log.txt
+application/JobAdvisor/*.sublime-project
+application/JobAdvisor/*.sublime-workspace
+application/JobAdvisor/.vscode/
+application/JobAdvisor/npm-debug.log*
+
+application/JobAdvisor/.idea/
+application/JobAdvisor/.sass-cache/
+application/JobAdvisor/.tmp/
+application/JobAdvisor/.versions/
+application/JobAdvisor/coverage/
+application/JobAdvisor/dist/
+application/JobAdvisor/node_modules/
+application/JobAdvisor/tmp/
+application/JobAdvisor/temp/
+application/JobAdvisor/hooks/
+application/JobAdvisor/platforms/
+application/JobAdvisor/plugins/
+application/JobAdvisor/plugins/android.json
+application/JobAdvisor/plugins/ios.json
+application/JobAdvisor/www/
+application/JobAdvisor/$RECYCLE.BIN/
+
+application/JobAdvisor/.DS_Store
+application/JobAdvisor/Thumbs.db
+application/JobAdvisor/UserInterfaceState.xcuserstate
+
+
+*.png
+
+*.jpg

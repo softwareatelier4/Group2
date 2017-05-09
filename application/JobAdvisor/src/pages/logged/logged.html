@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Stacked Labels</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <h1 text-center>Welcome {{user.firstName}} {{user.lastName}}!</h1>
+  <div class="vcenter">
+  </div>
+	 	<div text-center>
+			<h2> Emergency </h2>
+	 	</div>
+	  <ion-item no-lines>
+		  <ion-toggle [(ngModel)]="emergency" (ionChange)="updateEmergency()"></ion-toggle>
+	  </ion-item>
+</ion-content>
