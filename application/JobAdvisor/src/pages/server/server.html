@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>JobAdvisor</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label stacked>Server IP:</ion-label>
+    <ion-input type="text" [(ngModel)]="serverText"></ion-input>
+  </ion-item>
+
+  <div padding>
+    <button ion-button color="primary" (click)='setServer();' block outline>Set</button>
+  </div>
+
+</ion-content>
