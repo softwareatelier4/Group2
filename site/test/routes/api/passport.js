@@ -14,6 +14,7 @@ var reviews;
 describe('Testing Post for localhost:3000/api/passport/signup', function() {
 	describe('POST /api/passport/signup', function() {
 		before(seed);
+		after(utils.dropDb);
 		it('should respond with success', function(done) {
 			request(app)
 				.post('/api/passport/signup')
@@ -72,8 +73,9 @@ describe('Testing Post for localhost:3000/api/passport/signup', function() {
 
 describe('Testing Post for localhost:3000/api/passport/login', function() {
 	describe('POST /api/passport/login', function() {
+		before(seed);
 		after(utils.dropDb);
-		it('should respond with error', function(done) {
+		it('should respond with error if the email is not present in the DB', function(done) {
 			request(app)
 				.post('/api/passport/login')
 				.send({
@@ -85,6 +87,22 @@ describe('Testing Post for localhost:3000/api/passport/login', function() {
 				.end(function(err, res) {
 					if (err) done(err);
 					res.body.should.have.property('result', 'failed');
+					res.body.should.have.property('motivation', 'not-found');
+					done();
+				});
+		});
+
+		it('should respond with error if the password is not present', function(done) {
+			request(app)
+				.post('/api/passport/login')
+				.send({
+					"email": "m.t@usi.ch"
+				})
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.should.have.property('result', 'failed');
+					res.body.should.have.property('motivation', 'not-found');
 					done();
 				});
 		});
