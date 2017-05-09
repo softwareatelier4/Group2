@@ -24,6 +24,41 @@ site/public/uploads/claimRequests/*
 
 npm-debug\.log
 
+node_modules/
+
+application/JobAdvisor/*~
+application/JobAdvisor/*.sw[mnpcod]
+application/JobAdvisor/*.log
+application/JobAdvisor/*.tmp
+application/JobAdvisor/*.tmp.*
+application/JobAdvisor/log.txt
+application/JobAdvisor/*.sublime-project
+application/JobAdvisor/*.sublime-workspace
+application/JobAdvisor/.vscode/
+application/JobAdvisor/npm-debug.log*
+
+application/JobAdvisor/.idea/
+application/JobAdvisor/.sass-cache/
+application/JobAdvisor/.tmp/
+application/JobAdvisor/.versions/
+application/JobAdvisor/coverage/
+application/JobAdvisor/dist/
+application/JobAdvisor/node_modules/
+application/JobAdvisor/tmp/
+application/JobAdvisor/temp/
+application/JobAdvisor/hooks/
+application/JobAdvisor/platforms/
+application/JobAdvisor/plugins/
+application/JobAdvisor/plugins/android.json
+application/JobAdvisor/plugins/ios.json
+application/JobAdvisor/www/
+application/JobAdvisor/$RECYCLE.BIN/
+
+application/JobAdvisor/.DS_Store
+application/JobAdvisor/Thumbs.db
+application/JobAdvisor/UserInterfaceState.xcuserstate
+
+
 *.png
 
 *.jpg
