@@ -140,7 +140,8 @@ router.post('/login', function(req, res, next) {
 				return next(err);
 			}
 			return res.send({
-				result: 'success'
+				result: 'success',
+				user: user
 			});
 		});
 	})(req, res, next);
