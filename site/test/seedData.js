@@ -223,6 +223,7 @@ var freelancer = {
 			score: 3,
 			price: 100,
 			emergency: false,
+			active: true,
 			ownerId: ObjectId("b00000000000000000000005"),
 		},
 		{
@@ -240,7 +241,8 @@ var freelancer = {
 			],
 			description: "I don't want to share my information with you. Believe I am the best freelancer!",
 			score: 5,
-			emergency: false
+			emergency: false,
+			active: false
 		},
 	]
 }
