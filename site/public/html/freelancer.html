@@ -58,6 +58,54 @@
 
 			<div id="reviews">
 				<h5 class="blue">REVIEW</h5>
+				<div id="writeReviews">
+					<div class="card review" name="{._id}">
+						<div class="card-block">
+							<div class="title-author-review">
+								<h5>Write a review!</h5>
+							</div>
+							<form style="padding-top:20px;" onsubmit="FREELANCER.writeReviewSubmit(event)">
+								<div class="form-group row">
+									<label for="new-review-title" class="col-2 col-form-label">Score</label>
+									<div class="col-10 col-form-label">
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 1)" onclick="FREELANCER.writeReviewClickStar(this, 1)" id="star1"></i>&nbsp;
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 2)" onclick="FREELANCER.writeReviewClickStar(this, 2)" id="star2"></i>&nbsp;
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 3)" onclick="FREELANCER.writeReviewClickStar(this, 3)" id="star3"></i>&nbsp;
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 4)" onclick="FREELANCER.writeReviewClickStar(this, 4)" id="star4"></i>&nbsp;
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 5)" onclick="FREELANCER.writeReviewClickStar(this, 5)" id="star5"></i>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="new-review-title" class="col-2 col-form-label">Title</label>
+									<div class="col-10">
+										<input class="form-control" type="text" placeholder="Insert title" id="new-review-title">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="new-review-description" class="col-2 col-form-label">Description</label>
+									<div class="col-10">
+										<textarea class="form-control" id="new-review-description" placeholder="Insert description" rows="5"></textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-10 offset-sm-2">
+										<div id="drop-zone">
+											<p>Drop gallery images</p>
+											<div id="clickHere">or click here <i class="fa fa-upload"></i>
+												<input type="file" name="file" id="file" multiple />
+											</div>
+											<div id="filename"></div>
+										</div>
+									</div>
+								</div>
+
+
+								<button type="submit" class="btn btn-primary pull-right">Save your review</button>
+							</form>
+						</div>
+					</div>
+				</div>
 				<div id="cardReviews">
 				</div>
 			</div>
@@ -129,35 +177,35 @@
 						  <div id='filename'></div>
 						</div> -->
 
-					<div class="form-group">
-						<label for="tags">Tags: </label>
-						<input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags" onkeypress="return event.keyCode != 13;" onkeyup="FREELANCERMANAGEMENT.tagHinter()" autocomplete="off">
-						<div id="tags-list">
+						<div class="form-group">
+							<label for="tags">Tags: </label>
+							<input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags" onkeypress="return event.keyCode != 13;" onkeyup="FREELANCERMANAGEMENT.tagHinter()" autocomplete="off">
+							<div id="tags-list">
+							</div>
 						</div>
-					</div>
-					<!-- <div class="form-group">
+						<!-- <div class="form-group">
 						<label for="modal-email" id="modal-email-label">Email address: </label>
 						<input type="email" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
 					</div> -->
-					<div class="form-group">
-						<label for="modal-description">Description</label>
-						<textarea class="form-control" id="modal-description" rows="3"></textarea>
-					</div>
-					<div class="form-group">
-					  <label class="form-check-label">
+						<div class="form-group">
+							<label for="modal-description">Description</label>
+							<textarea class="form-control" id="modal-description" rows="3"></textarea>
+						</div>
+						<div class="form-group">
+							<label class="form-check-label">
 					    <input class="form-check-input" type="checkbox" value="" id="modal-emergency">
 					    Available for emergency
 					  </label>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
-					</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
+						</div>
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="claim-freelancer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
