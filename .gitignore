@@ -54,8 +54,3 @@ application/JobAdvisor/$RECYCLE.BIN/
 application/JobAdvisor/.DS_Store
 application/JobAdvisor/Thumbs.db
 application/JobAdvisor/UserInterfaceState.xcuserstate
-
-
-*.png
-
-*.jpg
