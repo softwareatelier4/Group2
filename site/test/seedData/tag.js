@@ -188,6 +188,55 @@ module.exports.tag = {
 		// 	_id: ObjectId("a00000000000000000000031"),
 		// 	name: '',
 		// 	freelancer: []
-		// }
+		// },
+		{
+			_id: ObjectId("a00000000000000000000030"),
+			name: 'C#',
+			freelancer: [
+				ObjectId("f00000000000000000000010"),
+				ObjectId("f00000000000000000000002"),
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000031"),
+			name: 'Windows Presentation Foundation (WPF)',
+			freelancer: [
+				ObjectId("f00000000000000000000010")
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000032"),
+			name: 'Graphic Designer',
+			freelancer: [
+				ObjectId("f00000000000000000000010"),
+				ObjectId("f00000000000000000000000"),
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000033"),
+			name: 'Nail',
+			freelancer: [
+				ObjectId("f00000000000000000000011"),
+				ObjectId("f00000000000000000000012"),
+				ObjectId("f00000000000000000000013")
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000034"),
+			name: 'Nail Artist',
+			freelancer: [
+				ObjectId("f00000000000000000000011"),
+				ObjectId("f00000000000000000000012"),
+				ObjectId("f00000000000000000000013")
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000035"),
+			name: 'Beautician',
+			freelancer: [
+				ObjectId("f00000000000000000000012"),
+				ObjectId("f00000000000000000000013")
+			]
+		}
 	]
 }

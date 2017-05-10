@@ -247,5 +247,125 @@ module.exports.freelancer = {
 		// 		long: 13.9517463,
 		// 	},
 		// },
+		{
+			_id: ObjectId("f00000000000000000000010"),
+			firstName: 'Hoang ',
+			lastName: 'Nua',
+			workName: '.NET/WPF Developer',
+			email: 'hoang.nua96xd@yy.com',
+			phone: '+41 760474747',
+			profilePhoto: '/uploads/test/profile10.jpg',
+			photos: [
+				'/uploads/test/10a.jpg',
+				'/uploads/test/10b.jpg',
+				'/uploads/test/10c.jpg',
+				'/uploads/test/10d.jpg',
+				'/uploads/test/10e.jpg',
+				'/uploads/test/10f.jpg'
+			],
+			address: {
+				road: 'Via Zurigo',
+				number: 10,
+				city: 'Lugano',
+				cap: 69100,
+				lat: 46.0119793,
+				long: 8.9517463,
+			},
+			tags: [
+				ObjectId("a00000000000000000000030"),
+				ObjectId("a00000000000000000000031"),
+				ObjectId("a00000000000000000000032")
+			],
+			description: "•6+ years of strong .Net experience •Analysis and Designing Object– Orient• Languages & Scripting: VB, C#• Database: MS SQL Server 2005 / 2008 / 2012 / 2014• Web Servers: IIS• Control: Telerik, Atalasoft, TxtextControl for WPF• patterns & practices: Smart Client, MVVM• Mobile: Hybird Applicaion / Cross platform with Appbuilder, Window Phone• NET Frameworks: .NET 4.5, NET 4.0, NET 3.5.•ASP.NET Frameworks: Telerik ASP.NET AJAX, WebForm• WebServices(SOAP and REST): WCF, WebAPI Odata, Restful• Database: MS SQL Server 2005 / 2008 / 2012• Mobile: Hybrid Application / Cross platform with Telerik AppBuilder, Window Phone• Continuous Integration: TeamCity• TDD: Unit Test• Languages: C#, VB.NET, SQL• Microsoft more ",
+			score: 0,
+			price: 16,
+			emergency: true,
+			currentPosition: {
+				lat: 46.0119793,
+				long: 12.9517463,
+			}
+		},
+		{
+			_id: ObjectId("f00000000000000000000011"),
+			firstName: 'Sally ',
+			lastName: 'Sausage',
+			workName: 'SallyPower',
+			email: 'sally.sausage@shsh.it',
+			phone: '+ 39 380474747',
+			profilePhoto: '/uploads/test/profile11.jpg',
+			photos: [
+				'/uploads/test/11a.jpg',
+				'/uploads/test/11b.jpg',
+				'/uploads/test/11c.jpg',
+				'/uploads/test/11d.jpg',
+				'/uploads/test/11e.jpg',
+				'/uploads/test/11f.jpg',
+				'/uploads/test/11g.jpg'
+			],
+			address: {
+				road: 'Via Giuseppe Garibaldi',
+				number: 4,
+				city: 'Milano',
+				cap: 20091,
+				lat: 45.5337957,
+				long: 9.1916273,
+			},
+			tags: [
+				ObjectId("a000000000000000000000033"),
+				ObjectId("a000000000000000000000034")
+			],
+			description: "I am a CIDESCO trained therapist with meticulous high standards. I have experience as a personal beauty therapist, in 5* spas on land and at sea, working for luxury skin care brands and also management and training experience. My experiences have meant that I have been able to travel around the world and work with people of all ages, cultures, nationalities and religions. This has allowed me to improve my people skills and enabled me to have the confidence and ability to work with people from different backgrounds. As a therapist I am extremely passionate, hard-working, professional and I love to make people feel and look their best. I am a very empathetic and understanding person and give 100% at all times in my work",
+			score: 0,
+			price: 30,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000012"),
+			firstName: 'Francesca',
+			lastName: 'Carozzi',
+			email: 'fra.caroz@jaja.com',
+			phone: '23234234234',
+			profilePhoto: '/uploads/test/profile12.jpg',
+			photos: [
+				'/uploads/test/12a.jpg',
+				'/uploads/test/12b.jpg'
+			],
+			address: {
+				road: 'Via Bagutti',
+				number: 2,
+				city: 'Lugano',
+				cap: 6900,
+				lat: 46.0115264,
+				long: 8.9535802,
+			},
+			tags: [
+				ObjectId("a00000000000000000000033"),
+				ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000035")
+			],
+			description: "😀Goodmorning , in the HEART ❤️ of the city 'is the FM salon HAIR AND BEAUTY LUGANO 🇨🇭 and and' formed by a young team of 5 hairdressers and beautician 1, most of us have worked in the best fashion brands. The salon was founded in 2004 in Lugano as a unisex salon for men, women and children and offers an innovative service without an appointment, not to feel connected to 'appointment with the' anxiety to tell, do not arrive on time and risk not find a place. We always rely on products of excellent quality 'and for looking after it in the hair coloring that in respect of health and the environment without sulfates, SLS, SLES, benzoates, petrolami ammonia fee. We offer services for wedding, coloring, manicures, waxing, balajages, shatush, streaks, highlighters, henna ', colarazioni water, decolarazioni ammonia, skin problems, selling hair dryer, plates, hair products, face and body.",
+			emergency: false,
+		},
+		{
+			_id: ObjectId("f00000000000000000000013"),
+			firstName: 'Camilla',
+			lastName: 'La Valle',
+			email: 'cami99@cc.it',
+			phone: '+4107362864',
+			address: {
+				city: 'Lugano',
+				lat: 46.0295779,
+				long: 8.8547208,
+			},
+			tags: [
+				ObjectId("a00000000000000000000033"),
+				ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000035")
+			],
+			description: "Welcome to Christina's Beauty & Day Spa Salon, established in 1984, we offer the most comprehensive Beauty, Hairdressing, Day Spa & Cosmetic Rejuvenation Services, using the most up-to-date skincare products to guarantee we meet all your desired goals & needs. We provide an extensive range of Facial & Body Treatments, Hairdressing, Manicures, Pedicures, Waxing, Make-up, Spray Tans and Cosmetic & Laser services Our aim at Christina’s is to provide a sanctuary where you can escape the stresses of everyday. Our experienced staff will guide you through our luxurious spa treatments. So come in, and relax in our beautiful, private & peaceful surroundings.",
+			score: 4,
+			price: 50,
+			emergency: false
+		}
 	]
 }
