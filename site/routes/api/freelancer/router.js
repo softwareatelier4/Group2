@@ -87,6 +87,7 @@ router.get('/emergency/:freelancerid', function(req, res, next) {
 
 router.post('/location/:freelancerid', function(req, res, next) {
 	const data = req.body;
+	console.log(data);
 	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
 		if (err) return next(err);
 

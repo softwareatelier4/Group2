@@ -1,6 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/filter';
 
 @Injectable()
@@ -10,7 +11,7 @@ export class LocationTracker {
 	public lat: number = 0;
 	public lng: number = 0;
 
-	constructor(public zone: NgZone, public backgroundGeolocation: BackgroundGeolocation, public geolocation: Geolocation) {
+	constructor(public zone: NgZone, public backgroundGeolocation: BackgroundGeolocation, public geolocation: Geolocation, public http: Http) {
 
 	}
 
@@ -19,13 +20,13 @@ export class LocationTracker {
 		// Background Tracking
 
 		let config = {
-			desiredAccuracy: 10,
-			stationaryRadius: 10,
-			distanceFilter: 10,
+			desiredAccuracy: 1,
+			stationaryRadius: 1,
+			distanceFilter: 1,
 			url: url,
 			startOnBoot: true,
-			activitiesInterval: 600000,
-			interval: 600000,
+			activitiesInterval: 1,
+			interval: 1,
 			notificationTitle: "JobAdvisor Emergency Tracking",
 			notificationText: "You are avaiable for emergency call!",
 			notificationIconColor: "#2E4E5C",
@@ -34,6 +35,19 @@ export class LocationTracker {
 		this.backgroundGeolocation.configure(config).subscribe((location) => {
 
 			console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);
+			let data = {
+				currentPosition : {
+					lat : location.latitude,
+					long : location.longitude
+				}
+			};
+			let headers = new Headers();
+			headers.append('Content-Type', 'application/json');
+			this.http.post(url, data, {"headers": headers})
+			.map(res=>res.json())
+			.subscribe( (data) => {
+				console.log(data);
+			});
 
 			// Run update inside of Angular's zone
 			this.zone.run(() => {
@@ -54,7 +68,7 @@ export class LocationTracker {
 		// Foreground Tracking
 
 		let options = {
-			frequency: 600000,
+			frequency: 1,
 			enableHighAccuracy: true
 		};
 
@@ -62,6 +76,19 @@ export class LocationTracker {
 
 			console.log(position);
 
+			if(position){
+				let data = [{
+					latitude: position.coords.latitude,
+					longitude: position.coords.longitude
+				}]
+				let headers = new Headers();
+				headers.append('Content-Type', 'application/json');
+				this.http.post(url, data, {"headers": headers})
+				.map(res=>res)
+				.subscribe( (data) => {
+					console.log(data);
+				});
+			}
 			// Run update inside of Angular's zone
 			this.zone.run(() => {
 				this.lat = position.coords.latitude;
