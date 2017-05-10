@@ -45,6 +45,10 @@ var userSchema = new mongoose.Schema({
 	active: {
 		type: Boolean,
 		default: 0
+	},
+	favorites: {
+		type: Array,
+		default: []
 	}
 });
 

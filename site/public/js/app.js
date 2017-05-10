@@ -63,6 +63,10 @@ let hashchanged = function hashchanged() {
 			currentPage = FREELANCER;
 			break;
 
+		case 'favorite':
+			currentPage = FAVORITE;
+			break;
+
 		default:
 			// No hash
 			currentPage = HOMEPAGE;

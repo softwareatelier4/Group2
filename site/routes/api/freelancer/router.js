@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
 const formidable = require('formidable');
 const Tag = mongoose.model('Tag');
+const User = mongoose.model('User');
 const util = require('util');
 
 let rmDir = function(dirPath, removeSelf) {
@@ -587,6 +588,38 @@ router.post('/create/freelancer', function(req, res) {
 			}
 			res.json(newfreelancer);
 			// res.send(newfreelancer._id);
+		}
+	});
+});
+
+router.all('/favorite/:freelancerid', middleware.supportedMethods('POST, OPTIONS'));
+router.post('/favorite/:freelancerid', function(req,res){
+	let freelancerId = req.params.freelancerid;
+	let userId = req.body.userId;
+	Freelancer.findById(freelancerId,function(err,freelancer) {
+		if(err) res.send(err);
+		if(freelancer){
+			User.findById(userId,function(err,user) {
+				if(err) res.send(err);
+				if(user){
+					let index = user.favorites.indexOf(freelancerId);
+					if( index == -1){
+						user.favorites.push(freelancerId);
+						user.save(function(err, newuser) {
+							res.send({status: true });
+						})
+					} else {
+						user.favorites.splice(index,1);
+						user.save(function(err, newuser) {
+							res.send({status: false });
+						})
+					}
+				} else{
+					res.sendStatus(404);
+				}
+			});
+		} else {
+			res.sendStatus(404);
 		}
 	});
 });

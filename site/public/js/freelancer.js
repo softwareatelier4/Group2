@@ -17,6 +17,7 @@ const FREELANCER = {
 		main.style.backgroundColor = "rgb(231, 231, 231)";
 
 		SORTING_OPTIONS.style.visibility = 'hidden';
+		$('#emergency-btn').hide();
 
 		FREELANCER.renderProfile();
 
@@ -73,7 +74,9 @@ const FREELANCER = {
 						FREELANCER.renderReview(idFreelancer);
 					});
 					isLogged(function(ress) {
+						console.log(ress);
 						userId = ress.result;
+						userFavorites = ress.result.favorites;
 						doJSONRequest("GET", "/api/claimrequest", null, null, function(response) {
 							let hasReqPending = false;
 							let userHasFreelancer = false;
@@ -94,7 +97,17 @@ const FREELANCER = {
 							if (owner && owner._id === userId._id) {
 								$(document.getElementById("modify-button")).show();
 							}
-						})
+						});
+						if (ress.result){
+							$(document.getElementById("favorite")).show();
+							if(userFavorites.indexOf(idFreelancer) == -1){
+								console.log("none");
+								document.getElementById("favorite").className = "fa fa-heart-o";
+							} else {
+								console.log("yessa");
+								document.getElementById("favorite").className = "fa fa-heart";
+							}
+						}
 					});
 				});
 			}
@@ -378,4 +391,22 @@ const FREELANCER = {
 
 
 	},
+
+	favorite: function() {
+		isLogged(function(res) {
+			var url = window.location.href;
+			var idFreelancer = url.split('=')[1];
+			let user = res.result._id;
+			if(user){
+				doJSONRequest("POST", "/api/freelancer/favorite/" + idFreelancer, null, {userId: user}, function(result) {
+					console.log(result);
+					if(result.status == false){
+						document.getElementById("favorite").className = "fa fa-heart-o";
+					} else {
+						document.getElementById("favorite").className = "fa fa-heart";
+					}
+				});
+			}
+		});
+	}
 }
