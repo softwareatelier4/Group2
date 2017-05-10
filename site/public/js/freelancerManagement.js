@@ -94,7 +94,8 @@ const FREELANCERMANAGEMENT = {
 						  }
 						  console.log("Emergency: " + data.freelancer.emergency);
                     tagsTemp = [];
-
+						  console.log("TAGS BEFORE:");
+						  console.log(data.freelancer.tags);
                     if(data.freelancer.tags != null){
                         tagsTemp = data.freelancer.tags.map(function(el) {
                             return el['name'];
@@ -194,13 +195,8 @@ const FREELANCERMANAGEMENT = {
 				'emergency' : emergency
 		};
 
-		console.log(FREELANCERMANAGEMENT.addedTags);
-		console.log(freelancer_update);
             doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
-               //  location.reload();
 					let data, xhr;
-
-					// console.log(freelancerId);
 
 					data = new FormData();
 
@@ -219,7 +215,6 @@ const FREELANCERMANAGEMENT = {
 						}
 					}
 
-					//
 					data.append('files', number);
 					data.append('freelancerId', id);
 
@@ -227,12 +222,13 @@ const FREELANCERMANAGEMENT = {
 
 					xhr.open('PUT', '/api/freelancer/galleryModification/' + id, true);
 					xhr.onreadystatechange = function(response) {
-						console.log(response);
+						// console.log(response);
 					};
 					xhr.send(data);
 
-					location.reload();
-					window.location.href ='/#freelancer=' + res._id;
+					console.log(data);
+					// location.reload();
+					// window.location.href ='/#freelancer=' + res._id;
 		    });
 
 
