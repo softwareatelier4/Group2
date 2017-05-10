@@ -13,21 +13,24 @@ const Tag = mongoose.model('Tag');
 const util = require('util');
 
 let rmDir = function(dirPath, removeSelf) {
-      if (removeSelf === undefined)
-        removeSelf = true;
-      try { var files = fs.readdirSync(dirPath); }
-      catch(e) { return; }
-      if (files.length > 0)
-        for (var i = 0; i < files.length; i++) {
-          var filePath = dirPath + '/' + files[i];
-          if (fs.statSync(filePath).isFile())
-            fs.unlinkSync(filePath);
-          else
-            rmDir(filePath);
-        }
-      if (removeSelf)
-        fs.rmdirSync(dirPath);
-    };
+	if (removeSelf === undefined)
+	removeSelf = true;
+	try {
+		var files = fs.readdirSync(dirPath);
+	} catch (e) {
+		return;
+	}
+	if (files.length > 0)
+	for (var i = 0; i < files.length; i++) {
+		var filePath = dirPath + '/' + files[i];
+		if (fs.statSync(filePath).isFile())
+		fs.unlinkSync(filePath);
+		else
+		rmDir(filePath);
+	}
+	if (removeSelf)
+	fs.rmdirSync(dirPath);
+};
 
 
 //supported methods
@@ -71,6 +74,8 @@ router.put('/emergency/:freelancerid', function(req, res, next) {
 			freelancer.save(function(err, saved) {
 				res.send(saved.emergency);
 			});
+		} else {
+			res.sendStatus(404);
 		}
 	});
 });
@@ -81,6 +86,8 @@ router.get('/emergency/:freelancerid', function(req, res, next) {
 		if (err) return next(err);
 		if (freelancer) {
 			res.send(freelancer.emergency);
+		} else {
+			res.sendStatus(404);
 		}
 	});
 });
@@ -98,6 +105,8 @@ router.post('/location/:freelancerid', function(req, res, next) {
 				if(err) res.send(err);
 				res.sendStatus(200);
 			});
+		} else {
+			res.sendStatus(404);
 		}
 	});
 });
@@ -114,7 +123,7 @@ router.post('/sendEmailFreelancer/:email', function(req, res) {
 		<p>Welcome ${work},</p>
 		<p>Please complete your account by verifying your email address.</p>
 		<div style="text-align: center">
-			<a href="${link}" class="confirmBtn" style="display: inline-block; margin-top: 20px;">Verify Email</a>
+		<a href="${link}" class="confirmBtn" style="display: inline-block; margin-top: 20px;">Verify Email</a>
 		</div>
 		<p style="font-size: 11px !important; margin-top:30px;">If the link above does not work, you can copy and paste the following into your browser:</p>
 		<a style="font-size: 11px !important; color: #aaaaaa;" href="${link}">${link}</a>`
@@ -130,8 +139,8 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 	let dir = __dirname + '/../../../public/uploads/' + id;
 	rmDir(__dirname + '/../../../public/uploads/' + id, false);
 	let title = [];
-	if (!fs.existsSync(dir)){
-	    fs.mkdirSync(dir);
+	if (!fs.existsSync(dir)) {
+		fs.mkdirSync(dir);
 	}
 
 	let form = new formidable.IncomingForm({
@@ -145,7 +154,7 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 		let profile = "";
 		let j = 1;
 		for (let value in files) {
-			if(flag){
+			if (flag) {
 				let savePath = files[value].path;
 				let i = savePath.lastIndexOf('/');
 
@@ -153,7 +162,7 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 
 				flag = false;
 			} else {
-				if(j <= 9){
+				if (j <= 9) {
 					let savePath = files[value].path;
 					let i = savePath.lastIndexOf('/');
 
@@ -187,16 +196,16 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 });
 
 function isInArray(value, array) {
-  return array.indexOf(value) > -1;
+	return array.indexOf(value) > -1;
 }
 
-router.put('/galleryModification/:id', function(req, res, next) {
+router.put('/galleryModification/:id', function(req, res) {
 	const id = req.params.id;
 	let dir = __dirname + '/../../../public/uploads/' + id;
 	// rmDir(__dirname + '/../../../public/uploads/' + id, false);
 	let number = [];
-	if (!fs.existsSync(dir)){
-	    fs.mkdirSync(dir);
+	if (!fs.existsSync(dir)) {
+		fs.mkdirSync(dir);
 	}
 
 	let form = new formidable.IncomingForm({
@@ -213,7 +222,7 @@ router.put('/galleryModification/:id', function(req, res, next) {
 		let j = 1;
 
 		for (let value in files) {
-			if(fields.profile_check == "true" && flag == true){
+			if (fields.profile_check == "true" && flag == true) {
 				let savePath = files[value].path;
 				let i = savePath.lastIndexOf('/');
 
@@ -222,7 +231,7 @@ router.put('/galleryModification/:id', function(req, res, next) {
 				profile = fileName;
 				flag = false;
 			} else {
-				if(j <= 12){
+				if (j <= 12) {
 					let savePath = files[value].path;
 					let i = savePath.lastIndexOf('/');
 
@@ -241,15 +250,15 @@ router.put('/galleryModification/:id', function(req, res, next) {
 				res.status(400).send(err);
 				return;
 			}
-			 let temp = [];
+			let temp = [];
 			if (freelancer) {
-				if(fields.profile_check == "true"){
+				if (fields.profile_check == "true") {
 					freelancer.profilePhoto = profile;
 				}
 				let z = 0;
 
-				for(let i = 1; i <= 9; i++){
-					if(isInArray(i, numbers)){
+				for (let i = 1; i <= 9; i++) {
+					if (isInArray(i, numbers)) {
 						// freelancer.photos[i] = title[z];
 						temp[i - 1] = title[z];
 						console.log("\n i:" + title[z] + "\n z: " + freelancer.photos[i] + "\n");
@@ -266,7 +275,7 @@ router.put('/galleryModification/:id', function(req, res, next) {
 	});
 });
 
-router.put('/:freelancerid', function(req, res, next) {
+router.put('/:freelancerid', function(req, res) {
 	const data = req.body;
 
 	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
@@ -276,17 +285,18 @@ router.put('/:freelancerid', function(req, res, next) {
 		}
 
 		if (freelancer) {
-			// freelancer.firstName = data.firstName;
-			// freelancer.lastName = data.lastName;
+			// freelancer.firstName = freelancer.firstName;
+			// freelancer.lastName = freelancer.lastName;
 			freelancer.workName = data.workName;
-			// freelancer.email = data.email;
+
+			// freelancer.email = freelancer.email;
 			freelancer.phone = data.phone;
 			freelancer.profilePhoto = data.profilePhoto;
 			freelancer.photos = data.photos;
 			freelancer.address = data.address;
 			freelancer.tags = null;
 			freelancer.description = data.description;
-			freelancer.ownerId = data.ownerId;
+			// freelancer.ownerId = data.ownerId;
 			freelancer.price = data.price;
 
 			if (data.score != null) {
@@ -295,18 +305,19 @@ router.put('/:freelancerid', function(req, res, next) {
 
 			freelancer.save(onModelSave(res, 200, true));
 
-			freelancer.tags = [];
 			let tags = req.body.tags;
 			//console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
 			for (let tag of tags) {
 				Freelancer.findById(req.params.freelancerid, function(err, updatedFreelancer) {
 					//console.log("\n\n\n\n"+tag+"\n\n\n");
+					updatedFreelancer.tags = [];
 					Tag.findOne({
 						name: tag
 					}, function(err, docs) {
 						if (docs) {
 							updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
 							updatedFreelancer.save(function() {});
+							console.log(docs.name);
 						} else {
 							let newTag = new Tag();
 							newTag._id = mongoose.Types.ObjectId();
@@ -314,6 +325,7 @@ router.put('/:freelancerid', function(req, res, next) {
 							newTag.save(function(err, newTagRes) {
 								updatedFreelancer.tags.push(newTagRes._id);
 								updatedFreelancer.save(function() {});
+								console.log(tag);
 							});
 						}
 					});
@@ -325,18 +337,18 @@ router.put('/:freelancerid', function(req, res, next) {
 
 
 /**
- * Returns a distance from a freelancer and a user's coordinates
- * @param {object} freelancer - A freelancer
- * @param {number} lat - User's latitude
- * @param {number} long - User's longitude
- * @return {number} - Distance
- */
+* Returns a distance from a freelancer and a user's coordinates
+* @param {object} freelancer - A freelancer
+* @param {number} lat - User's latitude
+* @param {number} long - User's longitude
+* @return {number} - Distance
+*/
 let distanceCalculation = function(freelancer, lat, long, emergency) {
 	if (!freelancer || !lat || !long)
-		return undefined;
+	return undefined;
 
 	if (emergency != 0 && (!freelancer.currentPosition || !freelancer.currentPosition.lat || !freelancer.currentPosition.long))
-		return undefined;
+	return undefined;
 
 	let R = 6371;
 	let pigreco = Math.PI;
@@ -367,11 +379,11 @@ let distanceCalculation = function(freelancer, lat, long, emergency) {
 }
 
 /**
- * Returns an array of Freelancers based on a given string
- * @param {array} freelancers - List of freelancer to filter
- * @param {string} string - Search criteria
- * @return {array} - Array of filtered freelancers
- */
+* Returns an array of Freelancers based on a given string
+* @param {array} freelancers - List of freelancer to filter
+* @param {string} string - Search criteria
+* @return {array} - Array of filtered freelancers
+*/
 let searchEngine = function(freelancers, string) {
 	let result = [];
 	let params = string.split("|");
@@ -385,7 +397,7 @@ let searchEngine = function(freelancers, string) {
 	let fClone = [];
 
 	/*
-	 Search for the searchWords in freelancers datas
+	Search for the searchWords in freelancers datas
 	(tags, cities and then other datas)
 	*/
 	for (let w of words) {
@@ -413,7 +425,7 @@ let searchEngine = function(freelancers, string) {
 	}
 
 	/*
-	   Put freelancers that satisfy requirements in the result
+	Put freelancers that satisfy requirements in the result
 	*/
 	for (let f of fClone) {
 		let dist = Number(distanceCalculation(f, lat, long, 0));
@@ -453,8 +465,8 @@ let searchEngine = function(freelancers, string) {
 	}
 
 	/*
-	   Sort the freelancer based on the number of found searchWords in the
-	   freelancer's profile
+	Sort the freelancer based on the number of found searchWords in the
+	freelancer's profile
 	*/
 	result.sort(function(a, b) {
 		return b.counter - a.counter;
@@ -476,46 +488,46 @@ let searchEngine = function(freelancers, string) {
 
 
 /**
- * Returns an array without duplicates freelancers
- * @param {array} array - List of freelancers
- * @return {array} - Array of unique freelancers
- */
+* Returns an array without duplicates freelancers
+* @param {array} array - List of freelancers
+* @return {array} - Array of unique freelancers
+*/
 let removeDuplicatesFreelancers = function(array) {
 	let temp = [];
 	let found = false;
 	for (let f of array) {
 		for (let x of temp) {
 			if (f._id === x._id)
-				found = true;
+			found = true;
 		}
 		if (!found)
-			temp.push(f);
+		temp.push(f);
 		found = false;
 	}
 	return temp;
 }
 
 /**
- * Returns an array of Strings based on a given string and array of Strings
- * @param {array} array - List to iterate on (tags, cities, ...)
- * @param {string} string - Search criteria
- * @return {array} - Array of filtered stuff
- */
+* Returns an array of Strings based on a given string and array of Strings
+* @param {array} array - List to iterate on (tags, cities, ...)
+* @param {string} string - Search criteria
+* @return {array} - Array of filtered stuff
+*/
 let searchForTag = function(array, string) {
 	let result = [];
 	for (let s of array) {
 		if (s && string && s.toLowerCase().includes(string.toLowerCase()))
-			result.push(s);
+		result.push(s);
 	}
 	return result;
 }
 
 /**
- * Returns the number of occurencies of an element in an array
- * @param {array} array - List to iterate on (tags, cities, ...)
- * @param {string} what - The element
- * @return {number} - Occurencies of that element in the array
- */
+* Returns the number of occurencies of an element in an array
+* @param {array} array - List to iterate on (tags, cities, ...)
+* @param {string} what - The element
+* @return {number} - Occurencies of that element in the array
+*/
 function countInArray(array, what) {
 	var count = 0;
 	for (var i = 0; i < array.length; i++) {
@@ -585,7 +597,7 @@ function onModelSave(res, status, sendItAsResponse) {
 	return function(err, saved) {
 		if (err) {
 			if (err.name === 'ValidationError' ||
-				err.name === 'TypeError') {
+			err.name === 'TypeError') {
 				res.status(400)
 				return res.json({
 					statusCode: 400,

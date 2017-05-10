@@ -21,6 +21,9 @@ router.get('/user/:userid', function(req, res, next) {
 		if (err) {
 			res.status(400).send(err);
 			return;
+		} else if (!user) {
+			return res.status(404).json();
+
 		}
 		res.status(201).redirect('/');
 	})
@@ -34,10 +37,13 @@ router.get('/freelancer/:freelancerid', function(req, res, next) {
 		active: true
 	};
 
-	Freelancer.findByIdAndUpdate(freelancerId, set, function(err, user) {
+	Freelancer.findByIdAndUpdate(freelancerId, set, function(err, freelancer) {
 		if (err) {
 			res.status(400).send(err);
 			return;
+		} else if (!freelancer) {
+			return res.status(404).json();
+
 		}
 		res.status(201).redirect('/');
 	})

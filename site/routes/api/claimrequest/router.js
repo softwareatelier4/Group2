@@ -115,9 +115,8 @@ router.put('/:id', function(req, res, next) {
 				Freelancer.findById(fId).exec(function(err, freelancer) {
 					if (err) return next(err);
 
-					if (freelancer) {
+					if (freelancer && freelancer.ownerId) {
 						if (freelancer.ownerId.toString() == uId) {
-							console.log("STO CANCELLANDO USERID");
 							freelancer.ownerId = undefined;
 						}
 						freelancer.save();
@@ -133,9 +132,7 @@ router.put('/:id', function(req, res, next) {
 							title: 'Request Refused!',
 							body: 'You request for the ' + fHtml + ' has not been accepted.\nFor further informations contact us!'
 						}
-						if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch') {
-							require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
-						}
+						require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
 					}
 				});
 			}

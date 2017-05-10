@@ -61,14 +61,6 @@ module.exports = {
 
 			.assert.urlEquals('http://localhost:3000/')
 
-			.assert.visible('#navbar-top-desktop a[name="logout-link"]')
-
-			.click('#navbar-top-desktop a[name="logout-link"]')
-
-			.pause(200)
-
-			.assert.urlEquals('http://localhost:3000/')
-
 
 			// LOGIN TEST
 
@@ -92,11 +84,11 @@ module.exports = {
 			.clearValue('input[id=login-email]')
 			.clearValue('input[id=modal-password]')
 
-			.setValue('input[id=login-email]', 'riccardo@usi.ch')
-			.setValue('input[id=modal-password]', '123123')
+			.setValue('input[id=login-email]', 'm.t@usi.ch')
+			.setValue('input[id=modal-password]', 'test')
 
-			.assert.valueContains('input[id=login-email]', 'riccardo@usi.ch')
-			.assert.valueContains('input[id=modal-password]', '123123')
+			.assert.valueContains('input[id=login-email]', 'm.t@usi.ch')
+			.assert.valueContains('input[id=modal-password]', 'test')
 
 			.assert.visible('button[id="login-button"]')
 

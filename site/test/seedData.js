@@ -223,6 +223,7 @@ var freelancer = {
 			score: 3,
 			price: 100,
 			emergency: false,
+			active: true,
 			ownerId: ObjectId("b00000000000000000000005"),
 		},
 		{
@@ -240,7 +241,8 @@ var freelancer = {
 			],
 			description: "I don't want to share my information with you. Believe I am the best freelancer!",
 			score: 5,
-			emergency: false
+			emergency: false,
+			active: false
 		},
 	]
 }
@@ -449,13 +451,22 @@ var user = {
 var claimrequest = {
 	name: 'ClaimRequest',
 	data: [{
-		_id: ObjectId("d00000000000000000000000"),
-		user: ObjectId("b00000000000000000000003"),
-		freelancer: ObjectId("f00000000000000000000004"),
-		identitycard: "/uploads/test/upload_claim1.jpg",
-		notes: 'This is my profile',
-		status: 'Pending'
-	}]
+			_id: ObjectId("d00000000000000000000000"),
+			user: ObjectId("b00000000000000000000003"),
+			freelancer: ObjectId("f00000000000000000000004"),
+			identitycard: "/uploads/test/upload_claim1.jpg",
+			notes: 'This is my profile',
+			status: 'Pending'
+		},
+		{
+			_id: ObjectId("d00000000000000000000001"),
+			user: ObjectId("b00000000000000000000003"),
+			freelancer: ObjectId("f00000000000000000000004"),
+			identitycard: "/uploads/test/upload_claim1.jpg",
+			notes: 'This is my profile',
+			status: 'Accepted'
+		}
+	]
 }
 
 var review = {
