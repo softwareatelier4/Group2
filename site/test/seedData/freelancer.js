@@ -300,7 +300,12 @@ module.exports.freelancer = {
 				'/uploads/test/11d.jpg',
 				'/uploads/test/11e.jpg',
 				'/uploads/test/11f.jpg',
-				'/uploads/test/11g.jpg'
+				'/uploads/test/11g.jpg',
+				'/uploads/test/11h.jpg',
+				'/uploads/test/11i.jpg',
+				'/uploads/test/11j.jpg',
+				'/uploads/test/11k.jpg',
+				'/uploads/test/11l.jpg'
 			],
 			address: {
 				road: 'Via Giuseppe Garibaldi',
