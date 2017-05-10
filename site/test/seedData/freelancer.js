@@ -7,541 +7,245 @@ module.exports.freelancer = {
 	name: 'Freelancer',
 	data: [{
 			_id: ObjectId("f00000000000000000000000"),
-			firstName: 'Marco',
-			lastName: 'Tollini',
-			workName: 'Il Tollo',
-			email: 'tollim@usi.ch',
-			phone: '+39 380474747',
+			firstName: 'Shageevan',
+			lastName: 'Suzuki',
+			workName: 'Shagii',
+			email: 'shagii@suzu.com',
+			phone: '+49 303 341534567',
 			profilePhoto: '/uploads/test/profile0.jpg',
 			photos: [
-				'/uploads/test/1.jpg',
-				'/uploads/test/2.jpg',
-				'/uploads/test/3.jpg',
-				'/uploads/test/4.jpg',
-				'/uploads/test/5.jpg',
-				'/uploads/test/6.jpg',
-				'/uploads/test/7.jpg',
-				'/uploads/test/8.jpg',
-				'/uploads/test/9.jpg',
-				'/uploads/test/10.jpg',
-				'/uploads/test/11.jpg',
-				'/uploads/test/12.jpg',
-				'/uploads/test/13.jpg',
+				'/uploads/test/0a.jpg',
+				'/uploads/test/0b.jpg',
 			],
 			address: {
-				road: 'Via Zurigo',
-				number: 10,
-				city: 'Lugano',
+				road: 'Turmstraße',
+				number: '47A',
+				city: '10551',
 				cap: 69100,
-				lat: 46.0119793,
-				long: 8.9517463,
+				lat: 52.5156273,
+				long: 13.3228416,
 			},
 			tags: [
-				ObjectId("a00000000000000000000003"),
+				ObjectId("a00000000000000000000032"),
 				ObjectId("a00000000000000000000004"),
-				ObjectId("a00000000000000000000006")
+				ObjectId("a00000000000000000000000"),
+				ObjectId("a00000000000000000000001"),
+				ObjectId("a00000000000000000000002")
 			],
-			description: 'Hello guys! I am an amazing developer.',
-			score: 5,
-			price: 20,
-			certifications: [
-				'Bachelor Informatics',
-				'Master Informatics',
-				'Doctor',
-			],
+			description: 'Upwork Freelancer plus the CEO of a successful E-Commerce store in Berlin which did more than $1million revenue within an year of launching and still going strong. My core skills include HTML, CSS, Javascript, PHP, MySQL, WordPress, Shopify, BigCommerce, cPanel/WHM, JIRA/Confluence Administration plus anything related to web developement and server configuration. I will be available every weekday 3:30PM GMT to 5:30PM GMT and you can contact me by e-mail.',
+			score: 0,
+			price: 33,
 			emergency: true,
-			currentPosition: {
+			currentPosition: { //Lugano
 				lat: 46.0119793,
 				long: 12.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000000")
+			}
 		},
 		{
 			_id: ObjectId("f00000000000000000000001"),
-			firstName: 'Nevio',
-			lastName: 'Valsangiacomo',
-			workName: 'SuperNevio94',
-			email: 'valsan@usi.ch',
-			phone: '+ 39 380474747',
+			firstName: 'Vladimir',
+			lastName: 'Valsan',
+			workName: 'Vlad',
+			email: 'valsava@designer.ch',
+			phone: '+41 3804734747',
 			profilePhoto: '/uploads/test/profile1.jpg',
 			photos: [
-				'/uploads/test/1.jpg',
-				'/uploads/test/5.jpg',
-				'/uploads/test/13.jpg',
+				'/uploads/test/1a.png',
+				'/uploads/test/1b.jpg',
+				'/uploads/test/1c.jpg',
 			],
 			address: {
-				road: 'Via Shisha',
-				number: 69,
-				city: 'Kalininsk',
+				road: 'Goswell Rd',
+				number: 4,
+				city: 'London',
 				cap: 29100,
-				lat: 51.4891946,
-				long: 44.4395238,
+				lat: 51.5228221,
+				long: -0.1682101,
 			},
 			tags: [
-				ObjectId("a00000000000000000000009"),
+				ObjectId("a00000000000000000000003"),
+				ObjectId("a00000000000000000000005"),
+				ObjectId("a00000000000000000000006"),
+				ObjectId("a00000000000000000000007"),
 			],
-			description: "I'm Nevio, an award-winning photographer based in New York, specialising in weddings professionally, I will capture your special day. My passion is capturing the beauty of my city in landscapes.",
-			score: 3,
-			price: 30,
-			certifications: [
-				'Master Informatics',
-				'Doctor',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 51.4891946,
-				long: 46.4395238,
-			},
-			ownerId: ObjectId("b00000000000000000000007")
-
+			description: "My name is Vladimir Valsan also know as Vlad a freelancer graphic designer specializing in branding and UI design, currently based in London, UK. In my 6 years of experience, I have worked with clients and agencies worldwide. I enjoy discussing business ideas and then visualizing them. I can offer you an innovative design solution that's perfect for your business needs.  My mission is to create vibrant, fresh and easy-to-use products with a clear district brand identity. Also i value deadlines, stick to agreements and please my clients.",
+			score: 0,
+			price: 50,
+			emergency: false,
 		},
 		{
 			_id: ObjectId("f00000000000000000000002"),
-			firstName: 'Vanessa',
-			lastName: 'Braglia',
-			workName: 'Ninni',
-			email: 'tester@usi.ch',
-			phone: '23234234234',
+			firstName: 'Simone',
+			lastName: 'Ponchia',
+			email: 'simo@ponchia.it',
+			phone: '+39 344557762',
 			profilePhoto: '/uploads/test/profile2.jpg',
 			address: {
-				road: 'Via Schianno',
-				number: 99,
-				city: 'Varese',
-				cap: 29100,
-				lat: 45.7790629,
-				long: 8.8427876,
+				road: 'Viale Argonne',
+				number: 52,
+				city: 'Milano',
+				cap: 20133,
+				lat: 45.4677303,
+				long: 9.2284312,
 			},
 			tags: [
-				ObjectId("a00000000000000000000007"),
-				ObjectId("a00000000000000000000011")
+				ObjectId("a00000000000000000000004"),
+				ObjectId("a00000000000000000000030"),
+				ObjectId("a00000000000000000000008"),
 			],
-			description: "I am a CIDESCO trained therapist with meticulous high standards. I have experience as a personal beauty therapist, in 5* spas on land and at sea, working for luxury skin care brands and also management and training experience. My experiences have meant that I have been able to travel around the world and work with people of all ages, cultures, nationalities and religions. This has allowed me to improve my people skills and enabled me to have the confidence and ability to work with people from different backgrounds. As a therapist I am extremely passionate, hard-working, professional and I love to make people feel and look their best. I am a very empathetic and understanding person and give 100% at all times in my work",
+			description: "Started as a freelancer programmer, I've quickly grown to highly qualified and valued developer at ELEKS Software where I co-worked with world-famous companies and enterprise products such as SAP, Microsoft Dynamics and other, was a team leader and later a project manager of a growing real-estate management project. I have widely distributed and highly rated professional skills in variety of Informational technologies and other areas.",
 			emergency: true,
-			currentPosition: {
-				lat: 51.4891946,
-				long: 46.4395238,
+			currentPosition: { //Milano
+				lat: 45.4659865,
+				long: 9.1269591,
 			},
 		},
 		{
 			_id: ObjectId("f00000000000000000000003"),
-			firstName: 'Daniele',
-			lastName: 'LoPred',
-			email: 'lopred@usi.ch',
-			phone: '+4107362864',
+			firstName: 'Antonella',
+			lastName: 'Pirillo',
+			email: 'antonella@pirillo.it',
+			phone: '+39 3295613738',
 			profilePhoto: '/uploads/test/profile3.jpg',
 			address: {
-				city: 'Casinò di lugano',
-				lat: 46.0040767,
-				long: 8.9530366,
+				city: 'Como',
+				lat: 45.8080383,
+				long: 9.0151366,
 			},
 			tags: [
-				ObjectId("a00000000000000000000008"),
-				ObjectId("a00000000000000000000001"),
-				ObjectId("a00000000000000000000002")
+				ObjectId("a00000000000000000000009"),
+				ObjectId("a00000000000000000000010")
 			],
-			description: "With over twenty years experience in the international distribution and coproduction business including stints as Head of International Distribution at Mediatoon and Alphanim Paris, I have created indie distributor awol animation in 2004. Significant representations since then include/have included Emmy award winning Little Airplane Productions NYC, The Jim Henson Company, Les Films de l’Arlequin and Supamonks France, Korean based Goldilocks Studio and Funny Flux Entertainment, along with Belfast based BAFTA award winning studio Black North-Enter Yes and multi award winning UK based studio Dot to Dot Productions etc. With over 130 international clients including public service broadcasters, pan-regional and commercial channels, digital platforms, Educational Networks, book publishers and consumer products partners, awol animation offers a one stop shop vertically integrated roll out for new brands.",
-			score: 4,
+			description: "My experience in the field of civil and idraulic engineering is 7 years old. At the beginning i followed mainly residential and industrial tecnological systems for heating and air conditioning. Some years ago I began to collaborate with an Hydraulic Engineer, to project hydraulic solution for rivers' protections. I made some projects for heating and air conditioning system, expecially with the use of best available tecnologies, for example in the field of renovanle energy (solar, geothermal..). At the same time i collaborated for some hydraulic projects like systems of rivers' protections, hydraulic systems in the project of roads. I can use the softwares Hec-Ras, Heasted Methods.",
+			score: 0,
 			price: 10,
 			certifications: [
 				'Engineer',
 			],
-			emergency: false,
-			currentPosition: {
-				lat: 46.0040767,
-				long: 8.9530366,
-			},
-			ownerId: ObjectId("b00000000000000000000002"),
-		},
-		{
-			_id: ObjectId("f00000000000000000000004"),
-			firstName: 'Samantha',
-			lastName: 'Ferri',
-			email: 'sammi@gmail.com',
-			photos: [
-				'/uploads/test/1.jpg',
-				'/uploads/test/6.jpg'
-			],
-			address: {
-				city: 'Mendrisio',
-				lat: 45.8887047,
-				long: 8.9552257,
-			},
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			description: "I love building online communities that have heart and purpose to impact the world and create transformation and change. To be able to create pathways that connect purpose and destiny with reality. Here's what some people have said about me after we chatted....Working in the design industry for the last 10+ years Samantha has creative flair combined with sharp marketing savvy and the passion to reveal your message in an authentic way. Founding Design Reaction in 2006, she has worked with a large range of clients in the Newcastle and Sydney area including: Hunter New England Health, State Spinal, Bone Marrow Transplant Network, Hunter Development Corporation and many well known small businesses in the Newcastle region.",
-			emergency: false
-		},
-		{
-			_id: ObjectId("f00000000000000000000005"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
 			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
+			currentPosition: { //Milano
+				lat: 45.4654005,
+				long: 9.1158844,
 			},
-			ownerId: ObjectId("b00000000000000000000001")
-
+			//ownerId:
 		},
-		{
-			_id: ObjectId("f00000000000000000000006"),
-			firstName: 'Zeno',
-			lastName: 'Treviz',
-			email: 'zenos@gmail.com',
-			address: {
-				city: 'Mendrisio',
-				lat: 45.8887047,
-				long: 8.9552257,
-			},
-			tags: [
-				ObjectId("a00000000000000000000004"),
-				ObjectId("a00000000000000000000003"),
-				ObjectId("a00000000000000000000006")
-			],
-			description: "Sono dimplomato come informatico presso SAMT. Terminata la scuola ho svolto il servizio militare, dopo ciò mi sono messo in proprio aprendo la mia azienda. Principalmente al momento mi occupo di assistenza ai clienti e di sviluppo di siti web. Sto studiando presso la Xamarin University e la Microsoft Virtual Accademy in maniera da continuare ad accrescermi professionalmente.",
-			score: 3,
-			price: 100,
-			emergency: false,
-			active: true,
-			ownerId: ObjectId("b00000000000000000000005"),
-		},
-		{
-			_id: ObjectId("f00000000000000000000007"),
-			firstName: 'Kate',
-			lastName: 'Baluba',
-			email: 'balubina@hotmail.com',
-			address: {
-				city: 'Zurich',
-				lat: 47.3775499,
-				long: 8.4666754
-			},
-			tags: [
-				ObjectId("a00000000000000000000008")
-			],
-			description: "I don't want to share my information with you. Believe I am the best freelancer!",
-			score: 5,
-			emergency: false,
-			active: false
-		},
-		{
-			_id: ObjectId("f00000000000000000000008"), ////
-			firstName: '',
-			lastName: '',
-			workName: '',
-			email: '',
-			address: {
-				city: '',
-				lat: ,
-				long: ,
-			},
-			description: ""
-			price: ,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
-		{
-			_id: ObjectId("f00000000000000000000009"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
-		{
-			_id: ObjectId("f00000000000000000000010"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
-		{
-			_id: ObjectId("f00000000000000000000011"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
-		{
-			_id: ObjectId("f00000000000000000000012"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
-		{
-			_id: ObjectId("f00000000000000000000013"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
-		{
-			_id: ObjectId("f00000000000000000000014"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
-		{
-			_id: ObjectId("f00000000000000000000015"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
-		{
-			_id: ObjectId("f00000000000000000000016"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
-		{
-			_id: ObjectId("f00000000000000000000017"),
-			firstName: 'Costanza',
-			lastName: 'Fox',
-			workName: 'Cocco',
-			email: 'cocco@gmail.com',
-			address: {
-				city: 'Milano',
-				lat: 45.4627124,
-				long: 9.1076929,
-			},
-			description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 3,
-			price: 200,
-			tags: [
-				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000000"),
-				ObjectId("a00000000000000000000006")
-			],
-			certifications: [
-				'Bachelor Pizza',
-			],
-			emergency: true,
-			currentPosition: {
-				lat: 45.0119793,
-				long: 13.9517463,
-			},
-			ownerId: ObjectId("b00000000000000000000001")
-
-		},
+		// {
+		// 	_id: ObjectId("f00000000000000000000004"), //da fare
+		// 	firstName: 'Samantha',
+		// 	lastName: 'Ferri',
+		// 	email: 'sammi@gmail.com',
+		// 	photos: [
+		// 		'/uploads/test/1.jpg',
+		// 		'/uploads/test/6.jpg'
+		// 	],
+		// 	address: {
+		// 		city: 'Mendrisio',
+		// 		lat: 45.8887047,
+		// 		long: 8.9552257,
+		// 	},
+		// 	tags: [],
+		// 	description: "I love building online communities that have heart and purpose to impact the world and create transformation and change. To be able to create pathways that connect purpose and destiny with reality. Here's what some people have said about me after we chatted....Working in the design industry for the last 10+ years Samantha has creative flair combined with sharp marketing savvy and the passion to reveal your message in an authentic way. Founding Design Reaction in 2006, she has worked with a large range of clients in the Newcastle and Sydney area including: Hunter New England Health, State Spinal, Bone Marrow Transplant Network, Hunter Development Corporation and many well known small businesses in the Newcastle region.",
+		// 	emergency: false
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000005"), //da fare
+		// 	firstName: 'Costanza',
+		// 	lastName: 'Fox',
+		// 	workName: 'Cocco',
+		// 	email: 'cocco@gmail.com',
+		// 	address: {
+		// 		city: 'Milano',
+		// 		lat: 45.4627124,
+		// 		long: 9.1076929,
+		// 	},
+		// 	description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
+		// 	score: 0,
+		// 	price: 200,
+		// 	tags: [],
+		// 	emergency: true,
+		// 	currentPosition: {
+		// 		lat: 45.0119793,
+		// 		long: 13.9517463,
+		// 	},
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000006"), //da fare
+		// 	firstName: 'Zeno',
+		// 	lastName: 'Treviz',
+		// 	email: 'zenos@gmail.com',
+		// 	address: {
+		// 		city: 'Mendrisio',
+		// 		lat: 45.8887047,
+		// 		long: 8.9552257,
+		// 	},
+		// 	tags: [],
+		// 	description: "Sono dimplomato come informatico presso SAMT. Terminata la scuola ho svolto il servizio militare, dopo ciò mi sono messo in proprio aprendo la mia azienda. Principalmente al momento mi occupo di assistenza ai clienti e di sviluppo di siti web. Sto studiando presso la Xamarin University e la Microsoft Virtual Accademy in maniera da continuare ad accrescermi professionalmente.",
+		// 	score: 0,
+		// 	price: 100,
+		// 	emergency: false,
+		// 	active: true,
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000007"), //da fare
+		// 	firstName: 'Kate',
+		// 	lastName: 'Baluba',
+		// 	email: 'balubina@hotmail.com',
+		// 	address: {
+		// 		city: 'Zurich',
+		// 		lat: 47.3775499,
+		// 		long: 8.4666754
+		// 	},
+		// 	tags: [
+		// 		ObjectId("a00000000000000000000008")
+		// 	],
+		// 	description: "I don't want to share my information with you. Believe I am the best freelancer!",
+		// 	score: 0,
+		// 	emergency: false,
+		// 	active: false
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000008"), ////da fare
+		// 	firstName: '',
+		// 	lastName: '',
+		// 	workName: '',
+		// 	email: '',
+		// 	address: {
+		// 		city: '',
+		// 		lat: ,
+		// 		long: ,
+		// 	},
+		// 	description: ""
+		// 	price: 0,
+		// 	tags: [
+		//
+		// 	],
+		// 	score: 0,
+		// 	emergency: true,
+		// 	currentPosition: {
+		// 		lat: 45.0119793,
+		// 		long: 13.9517463,
+		// 	},
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000009"), //da fare
+		// 	firstName: 'Costanza',
+		// 	lastName: 'Fox',
+		// 	workName: 'Cocco',
+		// 	email: 'cocco@gmail.com',
+		// 	address: {
+		// 		city: 'Milano',
+		// 		lat: 45.4627124,
+		// 		long: 9.1076929,
+		// 	},
+		// 	description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
+		// 	score: 0,
+		// 	price: 200,
+		// 	tags: [],
+		// 	emergency: true,
+		// 	currentPosition: {
+		// 		lat: 45.0119793,
+		// 		long: 13.9517463,
+		// 	},
+		// },
 	]
 }

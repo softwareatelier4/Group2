@@ -7,90 +7,187 @@ module.exports.tag = {
 	name: 'Tag',
 	data: [{
 			_id: ObjectId("a00000000000000000000000"),
-			name: 'Idraulico',
+			name: 'WordPress',
 			freelancer: [
-				ObjectId("a0f000000000000000000004"),
+				ObjectId("f000000000000000000000"),
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000001"),
-			name: 'Vetraio',
+			name: 'HTML',
 			freelancer: [
-				ObjectId("a0f000000000000000000003")
+				ObjectId("f000000000000000000000"),
+				ObjectId("f000000000000000000002")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000002"),
-			name: 'Carpentiere',
+			name: 'BigCommerce',
 			freelancer: [
-				ObjectId("a0f000000000000000000003")
+				ObjectId("f000000000000000000000")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000003"),
-			name: 'Developer',
+			name: 'Logo Design',
 			freelancer: [
-				ObjectId("a0f000000000000000000000"),
-				ObjectId("a0f000000000000000000006")
+				ObjectId("f000000000000000000001")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000004"),
-			name: 'Informatico',
+			name: 'Javascript',
 			freelancer: [
-				ObjectId("a0f000000000000000000000"),
-				ObjectId("a0f000000000000000000006")
+				ObjectId("f000000000000000000000"),
+				ObjectId("f000000000000000000002")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000005"),
-			name: 'Meccanic',
+			name: 'Adobe Photoshop',
 			freelancer: [
-				ObjectId("a0f000000000000000000004")
+				ObjectId("f000000000000000000001")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000006"),
-			name: 'Tecnico',
+			name: 'UI Design',
 			freelancer: [
-				ObjectId("a0f000000000000000000000"),
-				ObjectId("a0f000000000000000000004"),
-				ObjectId("a0f000000000000000000006")
+				ObjectId("f000000000000000000001")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000007"),
-			name: 'Nail Artist',
+			name: 'Web Design',
 			freelancer: [
-				ObjectId("a0f000000000000000000002")
+				ObjectId("f000000000000000000001")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000008"),
-			name: 'House Painter',
+			name: 'Database',
 			freelancer: [
-				ObjectId("a0f000000000000000000003"),
-				ObjectId("a0f000000000000000000007")
+				ObjectId("f000000000000000000002")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000009"),
-			name: 'Photographer',
+			name: 'Idraulic',
 			freelancer: [
-				ObjectId("a0f000000000000000000001")
+				ObjectId("f000000000000000000003")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000010"),
-			name: 'Movie Producer',
-			freelancer: []
-		},
-		{
-			_id: ObjectId("a00000000000000000000011"),
-			name: 'Beautician',
+			name: 'Autocad',
 			freelancer: [
-				ObjectId("a0f000000000000000000002")
+				ObjectId("f000000000000000000003")
 			]
-		}
+		},
+		// {
+		// 	_id: ObjectId("a00000000000000000000011"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000012"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000013"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000014"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000015"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000016"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000017"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000018"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000019"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000020"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000021"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000022"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000023"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000024"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000025"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000026"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000027"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000028"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000029"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000030"),
+		// 	name: '',
+		// 	freelancer: []
+		// },
+		// {
+		// 	_id: ObjectId("a00000000000000000000031"),
+		// 	name: '',
+		// 	freelancer: []
+		// }
 	]
 }
