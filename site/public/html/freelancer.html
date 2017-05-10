@@ -9,7 +9,7 @@
 					<span class="ml-15 light-blue" id="city-freelancer">{?freelancer.address.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a> {/freelancer.address.city}</span>
 					<span class="ml-15"><i class="fa fa-check-circle light-blue" style="font-size: 22px" id="verified-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="This freelancer is verified"></i></span>{/freelancer.ownerId} {?freelancer.emergency}
 					<span class="ml-15"><i class="fa fa-bell blink light-blue" style="font-size: 22px;" id="emergency-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Available for emergency"></i></span>{/freelancer.emergency} {^freelancer.emergency}
-					<span class="ml-15 light-blue" id="disabled-emergency-sign" style="font-size: 22px;" data-toggle="tooltip" data-placement="top" title="Not available for emergency">
+					<span class="ml-15 light-blue" id="disabled-emergency-sign" style="font-size: 22px;" data-toggle="tooltip" data-placement="top" title="No emergency">
 						<i class="fa fa-bell-slash"></i>
 					</span>{/freelancer.emergency}
 				</div>
