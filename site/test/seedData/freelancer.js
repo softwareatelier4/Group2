@@ -16,6 +16,10 @@ module.exports.freelancer = {
 			photos: [
 				'/uploads/test/0a.jpg',
 				'/uploads/test/0b.jpg',
+				'/uploads/test/0c.jpg',
+				'/uploads/test/0d.jpg',
+				'/uploads/test/0e.png',
+				'/uploads/test/0f.jpg',
 			],
 			address: {
 				road: 'Turmstraße',
@@ -53,6 +57,9 @@ module.exports.freelancer = {
 				'/uploads/test/1a.png',
 				'/uploads/test/1b.jpg',
 				'/uploads/test/1c.jpg',
+				'/uploads/test/1d.png',
+				'/uploads/test/1e.jpg',
+				'/uploads/test/1f.jpg',
 			],
 			address: {
 				road: 'Goswell Rd',
@@ -80,6 +87,11 @@ module.exports.freelancer = {
 			email: 'simo@ponchia.it',
 			phone: '+39 344557762',
 			profilePhoto: '/uploads/test/profile2.jpg',
+			photos: [
+				'/uploads/test/2a.jpg',
+				'/uploads/test/2b.jpg',
+				'/uploads/test/2c.png'
+			],
 			address: {
 				road: 'Viale Argonne',
 				number: 52,
