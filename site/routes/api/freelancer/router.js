@@ -151,7 +151,6 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 		if (err) return next(err);
 		let flag = true;
 		let profile = "";
-		let j = 1;
 		for (let value in files) {
 			if (flag) {
 				let savePath = files[value].path;
@@ -161,19 +160,11 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 
 				flag = false;
 			} else {
-				if (j <= 9) {
-					let savePath = files[value].path;
-					let i = savePath.lastIndexOf('/');
+				let savePath = files[value].path;
+				let i = savePath.lastIndexOf('/');
+				let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
 
-					let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
-
-					title.push(fileName);
-				} else {
-					break;
-				}
-
-				j++;
-				// console.log(fileName + "\n");
+				title.push(fileName);
 			}
 
 		}
