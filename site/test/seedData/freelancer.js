@@ -19,7 +19,7 @@ module.exports.freelancer = {
 			],
 			address: {
 				road: 'Turmstraße',
-				number: '47A',
+				number: '47',
 				city: '10551',
 				cap: 69100,
 				lat: 52.5156273,
@@ -311,8 +311,8 @@ module.exports.freelancer = {
 				long: 9.1916273,
 			},
 			tags: [
-				ObjectId("a000000000000000000000033"),
-				ObjectId("a000000000000000000000034")
+				ObjectId("a00000000000000000000033"),
+				ObjectId("a00000000000000000000034")
 			],
 			description: "I am a CIDESCO trained therapist with meticulous high standards. I have experience as a personal beauty therapist, in 5* spas on land and at sea, working for luxury skin care brands and also management and training experience. My experiences have meant that I have been able to travel around the world and work with people of all ages, cultures, nationalities and religions. This has allowed me to improve my people skills and enabled me to have the confidence and ability to work with people from different backgrounds. As a therapist I am extremely passionate, hard-working, professional and I love to make people feel and look their best. I am a very empathetic and understanding person and give 100% at all times in my work",
 			score: 0,
