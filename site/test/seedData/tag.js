@@ -252,5 +252,23 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000015")
 			]
 		},
+		{
+			_id: ObjectId("a00000000000000000000038"),
+			name: 'Plumber',
+			freelancer: [
+				ObjectId("f00000000000000000000014"),
+				ObjectId("f00000000000000000000016"),
+				ObjectId("f00000000000000000000017")
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000039"),
+			name: 'Arts & Crafts',
+			freelancer: [
+				ObjectId("f00000000000000000000014"),
+				ObjectId("f00000000000000000000016"),
+				ObjectId("f00000000000000000000017")
+			]
+		},
 	]
 }

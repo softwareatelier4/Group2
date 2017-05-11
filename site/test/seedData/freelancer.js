@@ -384,34 +384,33 @@ module.exports.freelancer = {
 			price: 50,
 			emergency: false
 		},
-		// {
-		// 	_id: ObjectId("f00000000000000000000014"),
-		// 	firstName: 'Angelo',
-		// 	lastName: 'Maurti',
-		// 	email: 'angelo.m99@cc.it',
-		// 	phone: '+4107362864',
-		// 	address: {
-		// 		road: "via Gerolamo Vegezzi",
-		// 		number: 4,
-		// 		city: 'Lugano',
-		// 		lat: 46.0045396,
-		// 		long: 8.9498874
-		// 	},
-		// 	photos: [
-		// 		'/uploads/test/15a.jpg',
-		// 		'/uploads/test/15b.jpg'
-		// 	],
-		// 	tags: [
-		// 		ObjectId("a00000000000000000000036"),
-		// 		ObjectId("a00000000000000000000034"),
-		// 		ObjectId("a00000000000000000000035"),
-		// 		ObjectId("a00000000000000000000037")
-		// 	],
-		// 	description: "Decades of experience since 1945, delivering expertise and innovation. Initially opened as a traditional Barber Shop and later joined with international consultants. Today a space located in the center of Lugano, where focus is on all-round beauty, securing an array of first class, hair, skin and body care services with the customer's well-being at heart.",
-		// 	score: 0,
-		// 	price: 65,
-		// 	emergency: false
-		// },
+		{
+			_id: ObjectId("f00000000000000000000014"),
+			firstName: 'Francesco',
+			lastName: 'Girardi',
+			email: 'fra.giri99@cc.it',
+			phone: '+4107362864',
+			address: {
+				road: "via Pretorio",
+				number: 5,
+				city: 'Lugano',
+				lat: 46.0054892,
+				long: 8.9492606
+			},
+			profilePhoto: '/uploads/test/profile14.jpg',
+			tags: [
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000039"),
+			],
+			description: "Pimlico Plumbers provide services for all your domestic maintenance requirements which include heating, plumbing, bathrooms, drain clearing, electrics, appliance installation and repairs, carpentry, roofing and building. A transparent charging system at competitive and economical rates, guaranteed work with a 24 hour service and 1 hour response makes Pimlico Lugano’s leading, largest and fastest independent service company. Pimlico’s’ workforce of over 270 has a comprehensive skill base of highly experienced tradesmen from heating engineers to bricklayers - all at the top of their trade.",
+			score: 0,
+			price: 40,
+			emergency: true,
+			currentPosition: {
+				lat: 46.0079307,
+				long: 8.9541892,
+			}
+		},
 		{
 			_id: ObjectId("f00000000000000000000015"),
 			firstName: 'Angelo',
@@ -439,6 +438,55 @@ module.exports.freelancer = {
 			description: "Decades of experience since 1945, delivering expertise and innovation. Initially opened as a traditional Barber Shop and later joined with international consultants. Today a space located in the center of Lugano, where focus is on all-round beauty, securing an array of first class, hair, skin and body care services with the customer's well-being at heart.",
 			score: 0,
 			price: 65,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000016"),
+			firstName: 'Fabio',
+			lastName: 'Putignano',
+			email: 'fab.putin99@gg.com',
+			phone: '+3907362864',
+			address: {
+				road: "Viale Regina Elena",
+				number: 330,
+				city: 'Roma',
+				lat: 41.905744,
+				long: 12.5133013
+			},
+			tags: [
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000039"),
+			],
+			description: "Welcome to H2 Property Services - we are a well established, local, family-run, plumbing, heating and electrical business working across London. Our qualified Plumbers, Domestic Gas Engineers, Central Heating Engineers and Electricians are here to help get your plumbing, heating and electrics running again smoothly in the shortest possible time. We carry out all sizes of repairs, new installations, landlord certificates and annual maintenance services.",
+			score: 0,
+			price: 25,
+			emergency: true,
+			currentPosition: {
+				lat: 41.8514803,
+				long: 12.456211
+			}
+		},
+		{
+			_id: ObjectId("f00000000000000000000017"),
+			firstName: 'Giovanni',
+			lastName: 'Giovannino',
+			email: 'gio.gio99@gio.gio',
+			phone: '+390007362864',
+			address: {
+				road: "Via dei Due Ponti",
+				number: 203,
+				city: 'Roma',
+				lat: 41.965184,
+				long: 12.4487113
+			},
+			profilePhoto: '/uploads/test/profile17.jpg',
+			tags: [
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000039"),
+			],
+			description: "Plumbers provides an extensive range of plumbing and boiler services throughout the London area. We’ve completed all kinds of jobs in areas near you: … and many other London postcode areas as well. We handle boiler breakdowns, boiler repairs and replacements and plumbing repairs for a wide range of clients, including homeowners, landlords and business people.",
+			score: 0,
+			price: 30,
 			emergency: false
 		},
 	]
