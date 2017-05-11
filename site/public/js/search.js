@@ -146,6 +146,20 @@ const SEARCH = {
 				SEARCH.applyFilters();
 				SEARCH.preEmergencyStatus.oldButton = "";
 			}
+
+			let distResult = [];
+			for (let i = 0; i < 10; i++) {
+
+				if (SEARCH.freelancerForMarco[i] === undefined)
+					continue;
+				let temp = {
+					lat: SEARCH.freelancerForMarco[i].latitude,
+					lng: SEARCH.freelancerForMarco[i].longitude,
+					id: SEARCH.freelancerForMarco[i]._id
+				}
+				distResult.push(temp);
+			}
+			SEARCH.getGmapRealValue(distResult);
 		} else {
 			SEARCH.filters.emergency = true;
 			parent.dataset.value = true;
@@ -377,8 +391,12 @@ const SEARCH = {
 						}
 					}
 
+					if (SEARCH.filters.emergency === false) {
+						SEARCH.freelancerForMarco = JSON.parse(JSON.stringify(SEARCH.currentResult));
+					} else {
+						SEARCH.freelancerForMarco = JSON.parse(JSON.stringify(SEARCH.originalResponse));
+					}
 
-					SEARCH.freelancerForMarco = JSON.parse(JSON.stringify(SEARCH.currentResult));
 					SEARCH.freelancerForMarco.sort(function(a, b) {
 						if (a.distance === undefined || a.distance === null)
 							return 1;
@@ -400,7 +418,9 @@ const SEARCH = {
 						}
 						distResult.push(temp);
 					}
-					SEARCH.getGmapRealValue(distResult);
+					if (SEARCH.filters.emergency === false) {
+						SEARCH.getGmapRealValue(distResult);
+					}
 
 				}
 				let spinner = document.getElementById('spinner');
