@@ -13,7 +13,7 @@ const FREELANCERMANAGEMENT = {
     addedTags : [],
     getFreelancerInfo: function() {
 		//  console.log(document.getElementById("modify_position"));
-
+		document.getElementById('delete_gallery').innerHTML = "";
 		 $("#modify_position")
 		   .geocomplete()
 		   .bind("geocode:result", function(event, result) {
@@ -29,7 +29,6 @@ const FREELANCERMANAGEMENT = {
 			   }
 
 			   if(stree_number){
-					console.log(stree_number);
 					stree_number = stree_number.long_name;
 			   }
 
@@ -61,8 +60,6 @@ const FREELANCERMANAGEMENT = {
                         freelancer: res
                     };
 
-						  console.log(data.freelancer.photos);
-
                     $("#modal-workName").val(data.freelancer.workName);
                     $("#modal-phone").val(data.freelancer.phone);
 
@@ -92,10 +89,9 @@ const FREELANCERMANAGEMENT = {
 						  if(data.freelancer.emergency){
 							  $("#modal-emergency").prop("checked", true);
 						  }
-						  console.log("Emergency: " + data.freelancer.emergency);
+
                     tagsTemp = [];
-						  console.log("TAGS BEFORE:");
-						  console.log(data.freelancer.tags);
+
                     if(data.freelancer.tags != null){
                         tagsTemp = data.freelancer.tags.map(function(el) {
                             return el['name'];
@@ -111,6 +107,12 @@ const FREELANCERMANAGEMENT = {
 						FREELANCERMANAGEMENT.addedTags.push(tagsTemp[i]);
                         tagsList.innerHTML += badge;
                     }
+
+						  let gallery = document.getElementById('delete_gallery');
+						  for(let i = 0; i < data.freelancer.photos.length; i++){
+							  let temp = '<div class="img-del" id = "'+data.freelancer.photos[i]+'"> <span class="close">&times;</span> <img height = "50px" src="'+data.freelancer.photos[i]+'" data-id="'+data.freelancer.photos[i]+'"></div>';
+								gallery.innerHTML += temp;
+						  }
 				});
 			}
 		});
@@ -164,7 +166,7 @@ const FREELANCERMANAGEMENT = {
 		let workName = document.getElementById('modal-workName');
 		let phoneNumber = document.getElementById('modal-phone');
 
-		console.log(workName.value);
+		// console.log(workName.value);
 		let profilePic = data.freelancer.profilePhoto;
        let photos = data.freelancer.photos;
 
@@ -226,7 +228,7 @@ const FREELANCERMANAGEMENT = {
 					};
 					xhr.send(data);
 
-					console.log(data);
+					// console.log(data);
 					// location.reload();
 					// window.location.href ='/#freelancer=' + res._id;
 		    });
@@ -349,3 +351,12 @@ var defaultOptions = {
     bubbles: true,
     cancelable: true
 }
+
+$(document).ready( function () {
+
+	$(document).on('click', '.img-del .close', function(){
+		var id = $(this).closest('.img-del').find('img').data('id');
+    	alert('remove picture: ' + id);
+	});
+
+});
