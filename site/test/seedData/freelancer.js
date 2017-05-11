@@ -380,9 +380,66 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000035")
 			],
 			description: "Welcome to Christina's Beauty & Day Spa Salon, established in 1984, we offer the most comprehensive Beauty, Hairdressing, Day Spa & Cosmetic Rejuvenation Services, using the most up-to-date skincare products to guarantee we meet all your desired goals & needs. We provide an extensive range of Facial & Body Treatments, Hairdressing, Manicures, Pedicures, Waxing, Make-up, Spray Tans and Cosmetic & Laser services Our aim at Christina’s is to provide a sanctuary where you can escape the stresses of everyday. Our experienced staff will guide you through our luxurious spa treatments. So come in, and relax in our beautiful, private & peaceful surroundings.",
-			score: 4,
+			score: 0,
 			price: 50,
 			emergency: false
-		}
+		},
+		// {
+		// 	_id: ObjectId("f00000000000000000000014"),
+		// 	firstName: 'Angelo',
+		// 	lastName: 'Maurti',
+		// 	email: 'angelo.m99@cc.it',
+		// 	phone: '+4107362864',
+		// 	address: {
+		// 		road: "via Gerolamo Vegezzi",
+		// 		number: 4,
+		// 		city: 'Lugano',
+		// 		lat: 46.0045396,
+		// 		long: 8.9498874
+		// 	},
+		// 	photos: [
+		// 		'/uploads/test/15a.jpg',
+		// 		'/uploads/test/15b.jpg'
+		// 	],
+		// 	tags: [
+		// 		ObjectId("a00000000000000000000036"),
+		// 		ObjectId("a00000000000000000000034"),
+		// 		ObjectId("a00000000000000000000035"),
+		// 		ObjectId("a00000000000000000000037")
+		// 	],
+		// 	description: "Decades of experience since 1945, delivering expertise and innovation. Initially opened as a traditional Barber Shop and later joined with international consultants. Today a space located in the center of Lugano, where focus is on all-round beauty, securing an array of first class, hair, skin and body care services with the customer's well-being at heart.",
+		// 	score: 0,
+		// 	price: 65,
+		// 	emergency: false
+		// },
+		{
+			_id: ObjectId("f00000000000000000000015"),
+			firstName: 'Angelo',
+			lastName: 'Maurti',
+			email: 'angelo.m99@cc.it',
+			phone: '+4107362864',
+			profilePhoto: '/uploads/test/profile15.jpg',
+			address: {
+				road: "via Gerolamo Vegezzi",
+				number: 4,
+				city: 'Lugano',
+				lat: 46.0045396,
+				long: 8.9498874,
+			},
+			photos: [
+				'/uploads/test/15a.jpg',
+				'/uploads/test/15b.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000036"),
+				ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000035"),
+				ObjectId("a00000000000000000000037")
+			],
+			description: "Decades of experience since 1945, delivering expertise and innovation. Initially opened as a traditional Barber Shop and later joined with international consultants. Today a space located in the center of Lugano, where focus is on all-round beauty, securing an array of first class, hair, skin and body care services with the customer's well-being at heart.",
+			score: 0,
+			price: 65,
+			emergency: false
+		},
 	]
 }

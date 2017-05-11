@@ -237,6 +237,20 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000012"),
 				ObjectId("f00000000000000000000013")
 			]
-		}
+		},
+		{
+			_id: ObjectId("a00000000000000000000036"),
+			name: 'Masseur',
+			freelancer: [
+				ObjectId("f00000000000000000000015")
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000037"),
+			name: 'Hairstylist',
+			freelancer: [
+				ObjectId("f00000000000000000000015")
+			]
+		},
 	]
 }
