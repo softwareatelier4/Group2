@@ -46,7 +46,8 @@ module.exports.tag = {
 			_id: ObjectId("a00000000000000000000005"),
 			name: 'Adobe Photoshop',
 			freelancer: [
-				ObjectId("f00000000000000000000001")
+				ObjectId("f00000000000000000000001"),
+				ObjectId("f00000000000000000000004")
 			]
 		},
 		{
@@ -81,24 +82,27 @@ module.exports.tag = {
 			_id: ObjectId("a00000000000000000000010"),
 			name: 'Autocad',
 			freelancer: [
-				ObjectId("f00000000000000000000003")
+				ObjectId("f00000000000000000000003"),
+				ObjectId("f00000000000000000000004")
 			]
 		},
-		// {
-		// 	_id: ObjectId("a00000000000000000000011"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000012"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000013"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
+		{
+			_id: ObjectId("a00000000000000000000011"),
+			name: 'Architect',
+			freelancer: [ObjectId("f00000000000000000000004")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000012"),
+			name: 'Doctor',
+			freelancer: [
+				ObjectId("f00000000000000000000005"),
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000013"),
+			name: 'Pediatrician',
+			freelancer: [ObjectId("f00000000000000000000005"), ]
+		},
 		// {
 		// 	_id: ObjectId("a00000000000000000000014"),
 		// 	name: '',

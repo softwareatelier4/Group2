@@ -141,45 +141,63 @@ module.exports.freelancer = {
 			},
 			//ownerId:
 		},
-		// {
-		// 	_id: ObjectId("f00000000000000000000004"), //da fare
-		// 	firstName: 'Samantha',
-		// 	lastName: 'Ferri',
-		// 	email: 'sammi@gmail.com',
-		// 	photos: [
-		// 		'/uploads/test/1.jpg',
-		// 		'/uploads/test/6.jpg'
-		// 	],
-		// 	address: {
-		// 		city: 'Mendrisio',
-		// 		lat: 45.8887047,
-		// 		long: 8.9552257,
-		// 	},
-		// 	tags: [],
-		// 	description: "I love building online communities that have heart and purpose to impact the world and create transformation and change. To be able to create pathways that connect purpose and destiny with reality. Here's what some people have said about me after we chatted....Working in the design industry for the last 10+ years Samantha has creative flair combined with sharp marketing savvy and the passion to reveal your message in an authentic way. Founding Design Reaction in 2006, she has worked with a large range of clients in the Newcastle and Sydney area including: Hunter New England Health, State Spinal, Bone Marrow Transplant Network, Hunter Development Corporation and many well known small businesses in the Newcastle region.",
-		// 	emergency: false
-		// },
-		// {
-		// 	_id: ObjectId("f00000000000000000000005"), //da fare
-		// 	firstName: 'Costanza',
-		// 	lastName: 'Fox',
-		// 	workName: 'Cocco',
-		// 	email: 'cocco@gmail.com',
-		// 	address: {
-		// 		city: 'Milano',
-		// 		lat: 45.4627124,
-		// 		long: 9.1076929,
-		// 	},
-		// 	description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-		// 	score: 0,
-		// 	price: 200,
-		// 	tags: [],
-		// 	emergency: true,
-		// 	currentPosition: {
-		// 		lat: 45.0119793,
-		// 		long: 13.9517463,
-		// 	},
-		// },
+		{
+			_id: ObjectId("f00000000000000000000004"),
+			firstName: 'Samantha',
+			lastName: 'Scotti',
+			workName: 'leCorbusierLove',
+			email: 'sammi@gmail.com',
+			phone: '32945613738',
+			profilePhoto: '/uploads/test/profile4.jpg',
+			photos: [
+				'/uploads/test/4a.jpg',
+				'/uploads/test/4b.jpg',
+				'/uploads/test/4c.jpg',
+				'/uploads/test/4d.jpg',
+				'/uploads/test/4e.jpg',
+				'/uploads/test/4f.jpg',
+				'/uploads/test/4g.jpg',
+				'/uploads/test/4h.jpg',
+				'/uploads/test/4i.jpg'
+			],
+			score: 0,
+			price: 80,
+			address: {
+				city: 'Berlin',
+				lat: 52.5072111,
+				long: 13.1459664,
+			},
+			tags: [ObjectId("a00000000000000000000005"),
+				ObjectId("a00000000000000000000010"),
+				ObjectId("a00000000000000000000011")
+			],
+			description: "I love building online communities that have heart and purpose to impact the world and create transformation and change. To be able to create pathways that connect purpose and destiny with reality. Here's what some people have said about me after we chatted....Working in the design industry for the last 10+ years Samantha has creative flair combined with sharp marketing savvy and the passion to reveal your message in an authentic way. Founding Design Reaction in 2006, she has worked with a large range of clients in the Newcastle and Sydney area including: Hunter New England Health, State Spinal, Bone Marrow Transplant Network, Hunter Development Corporation and many well known small businesses in the Newcastle region.",
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000005"),
+			firstName: 'Isabel',
+			lastName: 'Gyned',
+			phone: '023295613738',
+			email: 'isabel.gyned@gmail.com',
+			profilePhoto: '/uploads/test/profile5.jpg',
+			address: {
+				city: 'London',
+				lat: 51.5285582,
+				long: -0.2417011,
+			},
+			description: "Dr. Gyned has provided care to children and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Isabel  Gyned graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Gyned has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
+			score: 0,
+			price: 200,
+			tags: [ObjectId("a00000000000000000000012"),
+				ObjectId("a00000000000000000000013")
+			],
+			emergency: false,
+			currentPosition: { //Lugano
+				lat: 46.0293395,
+				long: 8.854721
+			},
+		},
 		// {
 		// 	_id: ObjectId("f00000000000000000000006"), //da fare
 		// 	firstName: 'Zeno',
