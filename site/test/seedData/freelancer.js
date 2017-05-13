@@ -800,6 +800,106 @@ module.exports.freelancer = {
 			score: 0,
 			price: 73,
 			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000026"),
+			firstName: 'Nicholas',
+			lastName: 'Gerard',
+			workName: 'Nico Godden',
+			email: 'nicogi@nic.nic',
+			phone: '+0007362864',
+			address: {
+				road: "St. Albans Rd",
+				number: 30,
+				city: 'Londra',
+				lat: 51.5605843,
+				long: -0.1521165,
+			},
+			profilePhoto: '/uploads/test/profile26.jpg',
+			photos: [
+				'/uploads/test/26a.jpg',
+				'/uploads/test/26b.jpg',
+				'/uploads/test/26c.jpg',
+				'/uploads/test/26d.jpg',
+				'/uploads/test/26e.jpg',
+				'/uploads/test/26f.jpg',
+				'/uploads/test/26g.jpg',
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000043"),
+			],
+			description: "My name's Nico, I'm a professional London photographer specialised in creating exciting visual content for global brands, including FTSE100 companies. A key thing is to stay up to date with the latest marketing and photography trends to then get these two to meet in a happy place. For that reason I offer a catalogue of new ideas and techniques often the result of late night experiments in my studio.",
+			score: 0,
+			price: 46,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000027"),
+			firstName: 'Tom',
+			lastName: 'Gold',
+			email: 'tommy@gold.gold',
+			phone: '+0007362864',
+			address: {
+				city: 'Londra',
+				lat: 51.5287714,
+				long: -0.2420447
+			},
+			profilePhoto: '/uploads/test/profile27.jpg',
+			photos: [
+				'/uploads/test/27a.jpg',
+				'/uploads/test/27b.jpg',
+				'/uploads/test/27c.jpg',
+				'/uploads/test/27d.jpg',
+				'/uploads/test/27e.jpg',
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000044")
+			],
+			description: "Over the past ten years I’ve worked as a full time professional wedding photographer in London and the South East. In that time I’ve photographed over 350 weddings and have developed a distinct, but timeless style which is both modern and classic. I consistently create exceptional photographs, with a calm and unobtrusive approach. Keeping things simple, I capture events as they happen throughout the day, with a reportage / documentary method of observational photography, along with loosely directed images and formal family photography where required. I not only love working with natural light, but also the challenge of low light and the subtle colours that it creates. I draw inspiration from all corners including photojournalism, architecture, renaissance art and visual aspects of past eras such as art deco design, old movies and vintage fashion.",
+			score: 0,
+			price: 52,
+			emergency: true,
+			currentPosition: {
+				lat: 51.6413265,
+				long: 0.1390522
+			}
+		},
+		{
+			_id: ObjectId("f00000000000000000000028"),
+			firstName: 'Matthew',
+			lastName: 'Joseph',
+			email: 'matt@sh.sh',
+			phone: '+10007362864',
+			address: {
+				road: "Dulwich Road",
+				number: 22,
+				city: 'Londra',
+				lat: 51.4546852,
+				long: -0.1112987,
+			},
+			profilePhoto: '/uploads/test/profile28.jpg',
+			photos: [
+				'/uploads/test/28a.jpg',
+				'/uploads/test/28b.jpg',
+				'/uploads/test/28c.jpg',
+				'/uploads/test/28d.jpg',
+				'/uploads/test/21e.jpg',
+				'/uploads/test/21f.jpg',
+				'/uploads/test/21g.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000044")
+			],
+			description: "Matthew Joseph is a commercial and advertising photographer, specialising in portraiture and lifestyle photography. Based in London but gladly following his work around the world, his bold and vibrant style is commissioned by various clients across the advertising, corporate, editorial and music industries. He has an obvious love for the camera and his art and is constantly seeking to push boundaries within the constraints of the brief. Striving to evoke emotion in each image, his work is honest, fun and original whilst remaining sensitive to the subject and brand. Matthew was recently awarded RICS Infrastructure of the year 2016, and his latest awareness campaign for Tideway, called 'River People', also made it to a prestigious solo exhibition in Westminster, London. His work received national press coverage on TV, radio and in the newspapers, as well as being recommended by Time Out.",
+			score: 0,
+			price: 50,
+			emergency: false
 		}
 	]
 }
