@@ -1021,6 +1021,186 @@ module.exports.freelancer = {
 			score: 0,
 			price: 70,
 			emergency: false
-		}
+		},
+		// {
+		// 	_id: ObjectId("f00000000000000000000033"),
+		// 	firstName: 'Matteo',
+		// 	lastName: 'Gecco',
+		// 	email: 'gecco@sh.sh',
+		// 	phone: '+390007362864',
+		// 	address: {
+		// 		city: 'Milano',
+		// 		lat: 45.4628327,
+		// 		long: 9.1075206,
+		// 	},
+		// 	photos: [
+		// 		'/uploads/test/32a.jpg',
+		// 		'/uploads/test/32b.jpg',
+		// 		'/uploads/test/32c.jpg',
+		// 		'/uploads/test/32d.jpg',
+		// 		'/uploads/test/32e.jpg',
+		// 		'/uploads/test/32f.jpg',
+		// 		'/uploads/test/32g.jpg'
+		// 	],
+		// 	tags: [
+		// 		ObjectId("a00000000000000000000040"),
+		// 		ObjectId("a00000000000000000000041"),
+		// 		ObjectId("a00000000000000000000044")
+		// 	],
+		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
+		// 	score: 0,
+		// 	price: 70,
+		// 	emergency: false
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000034"),
+		// 	firstName: 'Matteo',
+		// 	lastName: 'Gecco',
+		// 	email: 'gecco@sh.sh',
+		// 	phone: '+390007362864',
+		// 	address: {
+		// 		city: 'Milano',
+		// 		lat: 45.4628327,
+		// 		long: 9.1075206,
+		// 	},
+		// 	photos: [
+		// 		'/uploads/test/32a.jpg',
+		// 		'/uploads/test/32b.jpg',
+		// 		'/uploads/test/32c.jpg',
+		// 		'/uploads/test/32d.jpg',
+		// 		'/uploads/test/32e.jpg',
+		// 		'/uploads/test/32f.jpg',
+		// 		'/uploads/test/32g.jpg'
+		// 	],
+		// 	tags: [
+		// 		ObjectId("a00000000000000000000040"),
+		// 		ObjectId("a00000000000000000000041"),
+		// 		ObjectId("a00000000000000000000044")
+		// 	],
+		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
+		// 	score: 0,
+		// 	price: 70,
+		// 	emergency: false
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000035"),
+		// 	firstName: 'Matteo',
+		// 	lastName: 'Gecco',
+		// 	email: 'gecco@sh.sh',
+		// 	phone: '+390007362864',
+		// 	address: {
+		// 		city: 'Milano',
+		// 		lat: 45.4628327,
+		// 		long: 9.1075206,
+		// 	},
+		// 	photos: [
+		// 		'/uploads/test/32a.jpg',
+		// 		'/uploads/test/32b.jpg',
+		// 		'/uploads/test/32c.jpg',
+		// 		'/uploads/test/32d.jpg',
+		// 		'/uploads/test/32e.jpg',
+		// 		'/uploads/test/32f.jpg',
+		// 		'/uploads/test/32g.jpg'
+		// 	],
+		// 	tags: [
+		// 		ObjectId("a00000000000000000000040"),
+		// 		ObjectId("a00000000000000000000041"),
+		// 		ObjectId("a00000000000000000000044")
+		// 	],
+		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
+		// 	score: 0,
+		// 	price: 70,
+		// 	emergency: false
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000036"),
+		// 	firstName: 'Matteo',
+		// 	lastName: 'Gecco',
+		// 	email: 'gecco@sh.sh',
+		// 	phone: '+390007362864',
+		// 	address: {
+		// 		city: 'Milano',
+		// 		lat: 45.4628327,
+		// 		long: 9.1075206,
+		// 	},
+		// 	photos: [
+		// 		'/uploads/test/32a.jpg',
+		// 		'/uploads/test/32b.jpg',
+		// 		'/uploads/test/32c.jpg',
+		// 		'/uploads/test/32d.jpg',
+		// 		'/uploads/test/32e.jpg',
+		// 		'/uploads/test/32f.jpg',
+		// 		'/uploads/test/32g.jpg'
+		// 	],
+		// 	tags: [
+		// 		ObjectId("a00000000000000000000040"),
+		// 		ObjectId("a00000000000000000000041"),
+		// 		ObjectId("a00000000000000000000044")
+		// 	],
+		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
+		// 	score: 0,
+		// 	price: 70,
+		// 	emergency: false
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000037"),
+		// 	firstName: 'Matteo',
+		// 	lastName: 'Gecco',
+		// 	email: 'gecco@sh.sh',
+		// 	phone: '+390007362864',
+		// 	address: {
+		// 		city: 'Milano',
+		// 		lat: 45.4628327,
+		// 		long: 9.1075206,
+		// 	},
+		// 	photos: [
+		// 		'/uploads/test/32a.jpg',
+		// 		'/uploads/test/32b.jpg',
+		// 		'/uploads/test/32c.jpg',
+		// 		'/uploads/test/32d.jpg',
+		// 		'/uploads/test/32e.jpg',
+		// 		'/uploads/test/32f.jpg',
+		// 		'/uploads/test/32g.jpg'
+		// 	],
+		// 	tags: [
+		// 		ObjectId("a00000000000000000000040"),
+		// 		ObjectId("a00000000000000000000041"),
+		// 		ObjectId("a00000000000000000000044")
+		// 	],
+		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
+		// 	score: 0,
+		// 	price: 70,
+		// 	emergency: false
+		// },
+		// {
+		// 	_id: ObjectId("f00000000000000000000038"),
+		// 	firstName: 'Matteo',
+		// 	lastName: 'Gecco',
+		// 	email: 'gecco@sh.sh',
+		// 	phone: '+390007362864',
+		// 	address: {
+		// 		city: 'Milano',
+		// 		lat: 45.4628327,
+		// 		long: 9.1075206,
+		// 	},
+		// 	photos: [
+		// 		'/uploads/test/32a.jpg',
+		// 		'/uploads/test/32b.jpg',
+		// 		'/uploads/test/32c.jpg',
+		// 		'/uploads/test/32d.jpg',
+		// 		'/uploads/test/32e.jpg',
+		// 		'/uploads/test/32f.jpg',
+		// 		'/uploads/test/32g.jpg'
+		// 	],
+		// 	tags: [
+		// 		ObjectId("a00000000000000000000040"),
+		// 		ObjectId("a00000000000000000000041"),
+		// 		ObjectId("a00000000000000000000044")
+		// 	],
+		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
+		// 	score: 0,
+		// 	price: 70,
+		// 	emergency: false
+		// },
 	]
 }
