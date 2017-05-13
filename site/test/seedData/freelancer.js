@@ -125,15 +125,12 @@ module.exports.freelancer = {
 				long: 9.0151366,
 			},
 			tags: [
-				ObjectId("a00000000000000000000009"),
+				ObjectId("a00000000000000000000038"),
 				ObjectId("a00000000000000000000010")
 			],
 			description: "My experience in the field of civil and idraulic engineering is 7 years old. At the beginning i followed mainly residential and industrial tecnological systems for heating and air conditioning. Some years ago I began to collaborate with an Hydraulic Engineer, to project hydraulic solution for rivers' protections. I made some projects for heating and air conditioning system, expecially with the use of best available tecnologies, for example in the field of renovanle energy (solar, geothermal..). At the same time i collaborated for some hydraulic projects like systems of rivers' protections, hydraulic systems in the project of roads. I can use the softwares Hec-Ras, Heasted Methods.",
 			score: 0,
 			price: 10,
-			certifications: [
-				'Engineer',
-			],
 			emergency: true,
 			currentPosition: { //Milano
 				lat: 45.4654005,
