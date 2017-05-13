@@ -646,6 +646,136 @@ module.exports.freelancer = {
 			score: 0,
 			price: 34,
 			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000022"),
+			firstName: 'Nick',
+			lastName: 'Gianni',
+			workName: "Nick's Photos",
+			email: 'gianni00@ww.ot',
+			phone: '+410007362864',
+			address: {
+				city: 'Lugano',
+				lat: 46.0295779,
+				long: 8.8547208,
+			},
+			profilePhoto: '/uploads/test/profile22.jpg',
+			photos: [
+				'/uploads/test/22a.jpg',
+				'/uploads/test/22b.jpg',
+				'/uploads/test/22c.jpg',
+				'/uploads/test/18f.jpg',
+				'/uploads/test/18g.jpg',
+				'/uploads/test/18h.jpg',
+				'/uploads/test/18i.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000042"),
+			],
+			description: "I love photographing different types of weddings and telling the story of the big day in whichever form it takes. I photograph lots of Indian and other Asian weddings and am very experienced in photographing Hindu weddings and all of the events that surround the Indian weddings such as Mehndi ceremonies, Sangeet Garba and Chunni engagement events. I also work with couples from Hong Kong, Singapore and other parts of Asia who are having Chinese based wedding ceremonies and pre wedding photography sessions and love photographing the events around these types of weddings such as gatecrashing events, Chinese tea ceremonies and banquets. I have photographed many Chinese weddings in Hong Kong, Singapore and other parts of the world.",
+			score: 0,
+			price: 80,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000023"),
+			firstName: 'Giorgia',
+			lastName: 'Pavone',
+			workName: 'Corporate Photographer',
+			email: 'giorgina@tt.kk',
+			phone: '+410007362864',
+			address: {
+				road: "Via Ceresio",
+				number: 11,
+				city: 'Lugano',
+				lat: 46.0169971,
+				long: 8.9622036
+			},
+			profilePhoto: '/uploads/test/profile23.jpg',
+			photos: [
+				'/uploads/test/21a.jpg',
+				'/uploads/test/21b.jpg',
+				'/uploads/test/21c.jpg',
+				'/uploads/test/21d.jpg',
+				'/uploads/test/21e.jpg',
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000043"),
+			],
+			description: "I'M A PANORAMIC PHOTOGRAPHER, WORKING WORLDWIDE. HE IS KNOWN FOR SWEEPING CITYSCAPES THAT CAPTURE THE ESSENCE OF A SKYLINE, YET ALLOW THE VIEWER IN TO EXPERIENCE THE MINUTIAE OF THE CITY IN RAZOR-SHARP DETAIL. ONE OF HIS MAJOR PASSIONS IS TO DOCUMENT LONDON’S EVER-CHANGING SKYLINE IN ALL ITS CHAOS AND BEAUTY. WILL’S WORK COMPRISES CITYSCAPES, LANDSCAPES AND 360 PHOTOGRAPHY.",
+			score: 0,
+			price: 70,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000024"),
+			firstName: 'Flavio',
+			lastName: 'Orlea',
+			email: 'flavy@dan.dan',
+			phone: '+410007362864',
+			address: {
+				city: 'Lugano',
+				lat: 46.0295779,
+				long: 8.8547208,
+			},
+			profilePhoto: '/uploads/test/profile24.jpg',
+			photos: [
+				'/uploads/test/21e.jpg',
+				'/uploads/test/21l.jpg',
+				'/uploads/test/19c.jpg',
+				'/uploads/test/18b.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041")
+			],
+			description: "I’ve have an incredibly lucky career, I’ve been on tour with the Black Eyed Peas, I’ve been commissioned by the Times, Telegraph, New York Times, Le Figaro, Reporters and El Pias. I’ve worked at Abbey Road Studios and in Hollywood and I’ve meet and photographed many incredible people and have produced a film that was broadcast National Geographic.",
+			score: 0,
+			price: 95,
+			emergency: true,
+			currentPosition: {
+				lat: 46.012667,
+				long: 8.9559602
+			}
+		},
+		{
+			_id: ObjectId("f00000000000000000000025"),
+			firstName: 'Kirill',
+			lastName: 'Kozlov',
+			workName: 'Kirill HeadShot',
+			email: 'kirill@sh.sh',
+			phone: '+410007362864',
+			address: {
+				road: "Via Zurigo",
+				number: 50,
+				city: 'Lugano',
+				lat: 46.010079,
+				long: 8.9483113,
+			},
+			profilePhoto: '/uploads/test/profile25.jpg',
+			photos: [
+				'/uploads/test/20a.jpg',
+				'/uploads/test/20b.jpg',
+				'/uploads/test/20c.jpg',
+				'/uploads/test/20d.jpg',
+				'/uploads/test/21e.jpg',
+				'/uploads/test/21f.jpg',
+				'/uploads/test/21g.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000042"),
+				ObjectId("a00000000000000000000043")
+			],
+			description: "Hello. Let me introduce myself. My name is Kirill Kozlov and my journey into the TV and Film industry began 20 years ago when I was studying to be a Director of Photography (DOP). So beautiful TV and film lighting is my thing! Luckily for everybody I brought those skills into shooting headshots.",
+			score: 0,
+			price: 73,
+			emergency: false
 		}
 	]
 }
