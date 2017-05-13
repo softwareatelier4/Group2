@@ -969,6 +969,7 @@ module.exports.freelancer = {
 				lat: 45.4628327,
 				long: 9.1075206,
 			},
+			profilePhoto: '/uploads/test/profile31.jpg',
 			photos: [
 				'/uploads/test/31a.jpg',
 				'/uploads/test/31b.jpg',
@@ -1002,7 +1003,6 @@ module.exports.freelancer = {
 				lat: 45.4628327,
 				long: 9.1075206,
 			},
-			profilePhoto: '/uploads/test/profile32.jpg',
 			photos: [
 				'/uploads/test/32a.jpg',
 				'/uploads/test/32b.jpg',
