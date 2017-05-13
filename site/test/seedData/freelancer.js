@@ -385,6 +385,7 @@ module.exports.freelancer = {
 			_id: ObjectId("f00000000000000000000013"),
 			firstName: 'Camilla',
 			lastName: 'La Valle',
+			workName: 'Cami Nails',
 			email: 'cami99@cc.it',
 			phone: '+4107362864',
 			address: {
@@ -406,6 +407,7 @@ module.exports.freelancer = {
 			_id: ObjectId("f00000000000000000000014"),
 			firstName: 'Francesco',
 			lastName: 'Girardi',
+			workName: 'The Plumber Cisco',
 			email: 'fra.giri99@cc.it',
 			phone: '+4107362864',
 			address: {
@@ -462,6 +464,7 @@ module.exports.freelancer = {
 			_id: ObjectId("f00000000000000000000016"),
 			firstName: 'Fabio',
 			lastName: 'Putignano',
+			workName: 'Uncorker',
 			email: 'fab.putin99@gg.com',
 			phone: '+3907362864',
 			address: {
@@ -507,5 +510,142 @@ module.exports.freelancer = {
 			price: 30,
 			emergency: false
 		},
+		{
+			_id: ObjectId("f00000000000000000000018"),
+			firstName: 'David',
+			lastName: 'Woolfall',
+			workName: 'WoolPhoto',
+			email: 'dav.wolf@ww.ot',
+			phone: '+390007362864',
+			address: {
+				city: 'Roma',
+				lat: 41.9102415,
+				long: 12.3959139
+			},
+			profilePhoto: '/uploads/test/profile18.jpg',
+			photos: [
+				'/uploads/test/18a.jpg',
+				'/uploads/test/18b.jpg',
+				'/uploads/test/18c.jpg',
+				'/uploads/test/18d.jpg',
+				'/uploads/test/18e.jpg',
+				'/uploads/test/18f.jpg',
+				'/uploads/test/18g.jpg',
+				'/uploads/test/18h.jpg',
+				'/uploads/test/18i.jpg',
+				'/uploads/test/18j.jpg',
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000042"),
+			],
+			description: "David is a portrait photographer based in London. David graduated with a first class Hons Degree from The Kent Institute of Art and Design in 1998 and proceeded to assist commercial photographers and work on personal projects. David is a now an experienced award winning editorial photographer based in London, working for international magazines shooting stories and individual portraits.",
+			score: 0,
+			price: 20,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000019"),
+			firstName: 'Natasja',
+			lastName: 'Vos',
+			workName: 'Headshot',
+			email: 'nati99@vos.vos',
+			phone: '+390007362864',
+			address: {
+				road: "Via Statilia",
+				number: 32,
+				city: 'Roma',
+				lat: 41.8897275,
+				long: 12.5075873
+			},
+			profilePhoto: '/uploads/test/profile19.jpg',
+			photos: [
+				'/uploads/test/19a.jpg',
+				'/uploads/test/19b.jpg',
+				'/uploads/test/19c.jpg',
+				'/uploads/test/19d.jpg',
+				'/uploads/test/19e.jpg',
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000043"),
+			],
+			description: "Headshot London are a bunch of creative photographers and Jedi-like retouchers. The old Chinese saying: Do a job you love and you’ll never do a day’s work in your life, are the words we live by. When we are approached by clients, we like to look at their photographic projects from both sides. We don’t just turn up and shoot, we like to solve problems and offer sound, deliverable solutions that give them an edge and give us a challenge. Whether they are looking for simple, no frills portraits or a more involved shoot for their latest advertising campaign or annual report, we deliver above and beyond. It’s that service which has earned us the enviable reputation we have today, just ask our clients.",
+			score: 0,
+			price: 30,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000020"),
+			firstName: 'Dan',
+			lastName: 'Burman',
+			email: 'dan.burman@dan.dan',
+			phone: '+390007362864',
+			address: {
+				city: 'Roma',
+				lat: 41.9102415,
+				long: 12.3959139
+			},
+			profilePhoto: '/uploads/test/profile20.jpg',
+			photos: [
+				'/uploads/test/20a.jpg',
+				'/uploads/test/20b.jpg',
+				'/uploads/test/20c.jpg',
+				'/uploads/test/20d.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041")
+			],
+			description: "My name’s Dan, and I’ve been a professional photographer for over a decade. But I've been passionate about photography since I was a kid - I spent all my hard-earned pocket money and savings on a camera when I was only nine. Fast forward a few years, and I studied fine art at St Martins School of Art in London, where I specialised in photography. My artistic background has a big influence on how I create my photography today. Instead of producing standard shots, I love taking time with clients to create bold or unique images that stand out and really tell their story and reflect their character.",
+			score: 0,
+			price: 42,
+			emergency: true,
+			currentPosition: {
+				lat: 41.8896336,
+				long: 12.5073727,
+			}
+		},
+		{
+			_id: ObjectId("f00000000000000000000021"),
+			firstName: 'Shen',
+			lastName: 'Fisco',
+			email: 'shen.fisco99@sh.sh',
+			phone: '+390007362864',
+			address: {
+				road: "Via Tuscolana",
+				number: 689,
+				city: 'Roma',
+				lat: 41.8618329,
+				long: 12.5514635,
+			},
+			profilePhoto: '/uploads/test/profile21.jpg',
+			photos: [
+				'/uploads/test/21a.jpg',
+				'/uploads/test/21b.jpg',
+				'/uploads/test/21c.jpg',
+				'/uploads/test/21d.jpg',
+				'/uploads/test/21e.jpg',
+				'/uploads/test/21f.jpg',
+				'/uploads/test/21g.jpg',
+				'/uploads/test/21h.jpg',
+				'/uploads/test/21i.jpg',
+				'/uploads/test/21j.jpg',
+				'/uploads/test/21k.jpg',
+				'/uploads/test/21l.jpg',
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000042"),
+				ObjectId("a00000000000000000000043")
+			],
+			description: "I am able to cover a wide range of photography such as wedding photography, baby & family photography, maternity photography, pet photography, headshots & portfolios, event photography, fashion photography, landscape photography, wildlife photography, action photography, sports photography, real estate photography, architecture photography, concerts, macro photography, food & travel, street photography, advertising photography & even stock photography.",
+			score: 0,
+			price: 34,
+			emergency: false
+		}
 	]
 }

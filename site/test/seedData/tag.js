@@ -274,5 +274,42 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000017")
 			]
 		},
+		{
+			_id: ObjectId("a00000000000000000000040"),
+			name: 'Photographer',
+			freelancer: [
+				ObjectId("f00000000000000000000018"),
+				ObjectId("f00000000000000000000019"),
+				ObjectId("f00000000000000000000020"),
+				ObjectId("f00000000000000000000021")
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000041"),
+			name: 'Photo',
+			freelancer: [
+				ObjectId("f00000000000000000000018"),
+				ObjectId("f00000000000000000000019"),
+				ObjectId("f00000000000000000000020"),
+				ObjectId("f00000000000000000000021")
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000042"),
+			name: 'Portraits',
+			freelancer: [
+				ObjectId("f00000000000000000000018"),
+				ObjectId("f00000000000000000000021")
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000043"),
+			name: 'Landscapes',
+			freelancer: [
+				ObjectId("f00000000000000000000019"),
+				ObjectId("f00000000000000000000021")
+			]
+		},
+
 	]
 }
