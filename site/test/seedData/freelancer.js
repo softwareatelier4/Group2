@@ -251,29 +251,35 @@ module.exports.freelancer = {
 			},
 			active: false
 		},
-		// {
-		// 	_id: ObjectId("f00000000000000000000008"), ////da fare
-		// 	firstName: '',
-		// 	lastName: '',
-		// 	workName: '',
-		// 	email: '',
-		// 	address: {
-		// 		city: '',
-		// 		lat: ,
-		// 		long: ,
-		// 	},
-		// 	description: ""
-		// 	price: 0,
-		// 	tags: [
-		//
-		// 	],
-		// 	score: 0,
-		// 	emergency: true,
-		// 	currentPosition: {
-		// 		lat: 45.0119793,
-		// 		long: 13.9517463,
-		// 	},
-		// },
+		{
+			_id: ObjectId("f00000000000000000000008"),
+			firstName: 'Luca',
+			lastName: 'Rossi',
+			workName: 'Mr. Handyman',
+			profilePhoto: '/uploads/test/profile8.jpg',
+			email: 'luca.rossi@aggiustatutto.com',
+			photos: [
+				'/uploads/test/8a.jpg',
+				'/uploads/test/8b.jpg',
+				'/uploads/test/8c.JPG',
+			],
+			address: {
+				city: 'Roma',
+				lat: 41.923271,
+				long: 12.4424763,
+			},
+			description: "The sump pump is the last line of defense against basement flooding. If you’re sump pump needs replacing, don’t wait a day long. Mr. Handyman is the one-call solution to replacing your submersible or pedestal sump pump.  Mr. Handyman offers a wide range of services—big and small. Just because you didn't see a plumbing service listed doesn't mean your local Mr. Handyman can't help you out. Contact your local Mr. Handyman for more information. Whether you’re installing low-flow toilets or repairing an existing toilet, our experienced handymen have the skills to get the job done right. Yes, the job stinks. But our handymen are happy to get the job done right and on time. Our experienced handymen always repair broken or leaky fixtures in order to avoid costly replacements. Our home improvement professionals arrive ready to work with all of the tools and parts needed to complete the job. From leaky faucets to broken shower heads, no repair job is too small.",
+			price: 70,
+			tags: [ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000009")
+			],
+			score: 0,
+			emergency: true,
+			currentPosition: { //Roma
+				lat: 41.881875,
+				long: 12.5525113,
+			},
+		},
 		// {
 		// 	_id: ObjectId("f00000000000000000000009"), //da fare
 		// 	firstName: 'Costanza',

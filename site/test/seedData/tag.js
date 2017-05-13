@@ -71,13 +71,13 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000002")
 			]
 		},
-		// {
-		// 	_id: ObjectId("a00000000000000000000009"),
-		// 	name: 'Idraulic',
-		// 	freelancer: [
-		// 		ObjectId("f00000000000000000000003")
-		// 	]
-		// },
+		{
+			_id: ObjectId("a00000000000000000000009"),
+			name: 'Handyman',
+			freelancer: [
+				ObjectId("f00000000000000000000008")
+			]
+		},
 		{
 			_id: ObjectId("a00000000000000000000010"),
 			name: 'Autocad',
@@ -270,7 +270,8 @@ module.exports.tag = {
 			freelancer: [
 				ObjectId("f00000000000000000000014"),
 				ObjectId("f00000000000000000000016"),
-				ObjectId("f00000000000000000000017")
+				ObjectId("f00000000000000000000017"),
+				ObjectId("f00000000000000000000008")
 			]
 		},
 		{

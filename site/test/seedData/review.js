@@ -19,7 +19,7 @@ module.exports.review = {
 			title: 'Horrible experience',
 			date: '2016-01-13T23:58:43.122Z',
 			description: "I contacted Mr.Suzuki on September 2016, after few weeks to decide the struct of the website (weeks that I paid) he contacted me to ask an extra. He finished the website after 4 months with a horrible result. It was the worst experience of my life.",
-			score: 0,
+			score: 1,
 			photo: [
 				'/uploads/test/1ra.png',
 			],
