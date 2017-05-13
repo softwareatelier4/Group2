@@ -98,11 +98,11 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000004"),
 			]
 		},
-		{
-			_id: ObjectId("a00000000000000000000013"),
-			name: 'Pediatrician',
-			freelancer: [ObjectId("f00000000000000000000005"), ]
-		},
+		// {
+		// 	_id: ObjectId("a00000000000000000000013"),
+		// 	name: '',
+		// 	freelancer: [ObjectId("f00000000000000000000005"), ]
+		// },
 		// {
 		// 	_id: ObjectId("a00000000000000000000014"),
 		// 	name: '',
@@ -222,7 +222,9 @@ module.exports.tag = {
 			freelancer: [
 				ObjectId("f00000000000000000000011"),
 				ObjectId("f00000000000000000000012"),
-				ObjectId("f00000000000000000000013")
+				ObjectId("f00000000000000000000013"),
+				ObjectId("f00000000000000000000006"),
+				ObjectId("f00000000000000000000007")
 			]
 		},
 		{
@@ -231,7 +233,10 @@ module.exports.tag = {
 			freelancer: [
 				ObjectId("f00000000000000000000011"),
 				ObjectId("f00000000000000000000012"),
-				ObjectId("f00000000000000000000013")
+				ObjectId("f00000000000000000000013"),
+				ObjectId("f00000000000000000000005"),
+				ObjectId("f00000000000000000000006"),
+				ObjectId("f00000000000000000000007")
 			]
 		},
 		{
@@ -239,7 +244,9 @@ module.exports.tag = {
 			name: 'Beautician',
 			freelancer: [
 				ObjectId("f00000000000000000000012"),
-				ObjectId("f00000000000000000000013")
+				ObjectId("f00000000000000000000013"),
+				ObjectId("f00000000000000000000005"),
+				ObjectId("f00000000000000000000007")
 			]
 		},
 		{
@@ -253,7 +260,8 @@ module.exports.tag = {
 			_id: ObjectId("a00000000000000000000037"),
 			name: 'Hairstylist',
 			freelancer: [
-				ObjectId("f00000000000000000000015")
+				ObjectId("f00000000000000000000015"),
+				ObjectId("f00000000000000000000007")
 			]
 		},
 		{

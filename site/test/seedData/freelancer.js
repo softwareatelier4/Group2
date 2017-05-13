@@ -188,41 +188,69 @@ module.exports.freelancer = {
 			],
 			emergency: false,
 		},
-		// {
-		// 	_id: ObjectId("f00000000000000000000006"), //da fare
-		// 	firstName: 'Zeno',
-		// 	lastName: 'Treviz',
-		// 	email: 'zenos@gmail.com',
-		// 	address: {
-		// 		city: 'Mendrisio',
-		// 		lat: 45.8887047,
-		// 		long: 8.9552257,
-		// 	},
-		// 	tags: [],
-		// 	description: "Sono dimplomato come informatico presso SAMT. Terminata la scuola ho svolto il servizio militare, dopo ciò mi sono messo in proprio aprendo la mia azienda. Principalmente al momento mi occupo di assistenza ai clienti e di sviluppo di siti web. Sto studiando presso la Xamarin University e la Microsoft Virtual Accademy in maniera da continuare ad accrescermi professionalmente.",
-		// 	score: 0,
-		// 	price: 100,
-		// 	emergency: false,
-		// 	active: true,
-		// },
-		// {
-		// 	_id: ObjectId("f00000000000000000000007"), //da fare
-		// 	firstName: 'Kate',
-		// 	lastName: 'Baluba',
-		// 	email: 'balubina@hotmail.com',
-		// 	address: {
-		// 		city: 'Zurich',
-		// 		lat: 47.3775499,
-		// 		long: 8.4666754
-		// 	},
-		// 	tags: [
-		// 		ObjectId("a00000000000000000000008")
-		// 	],
-		// 	description: "I don't want to share my information with you. Believe I am the best freelancer!",
-		// 	score: 0,
-		// 	emergency: false,
-		// 	active: false
-		// },
+		{
+			_id: ObjectId("f00000000000000000000006"),
+			firstName: 'Julie',
+			lastName: 'Fariki',
+			phone: '023295873738',
+			email: 'juliette.far@hotmail.com',
+			photos: [
+				'/uploads/test/6a.jpg',
+				'/uploads/test/6b.jpeg',
+				'/uploads/test/6c.jpg'
+			],
+			address: {
+				city: 'London',
+				lat: 51.5285582,
+				long: -0.2417011,
+			},
+			tags: [ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000033")
+			],
+			description: "I am mostly self taught and later pursued nail technology with feverish passion and took a challenging nailist exam in Tokyo attaining the advanced Japanese Nailist License despite Japanese being a foreign language to her. Since then, she has gone on to collaborate with notable names in the fashion industry and is the ‘go-to’ nail artist for her nail art in Melbourne for Serena Williams. Her work has been featured by numerous online and printed publications, in editorials and is constantly talked about in the fashion blogging industry and has been mentioned in www.complex.com as one of the top 20 nail artists you should know. Her work encompasses her personal style as well as her background in fashion, she strives to create original style nail art that’s feminine and edgy. This website & blog showcases her journey in the design and fashion world, bringing you her passion to create artistic works in nail art, illustration, fashion and styling.",
+			score: 0,
+			price: 5,
+			emergency: false,
+			active: true,
+		},
+		{
+			_id: ObjectId("f00000000000000000000007"),
+			firstName: 'Susan',
+			lastName: 'Kyanel',
+			profilePhoto: '/uploads/test/profile7.jpg',
+			email: 'susi.kyanel@gmail.com',
+			address: {
+				city: 'London',
+				lat: 51.5285582,
+				long: -0.1366443
+			},
+			photos: [
+				'/uploads/test/7a.jpg',
+				'/uploads/test/7b.jpg',
+				'/uploads/test/7c.jpg',
+				'/uploads/test/7d.png',
+				'/uploads/test/7e.jpg',
+				'/uploads/test/7f.jpg',
+				'/uploads/test/6a.jpg',
+				'/uploads/test/6b.jpeg',
+				'/uploads/test/6c.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000033"),
+				ObjectId("a00000000000000000000035"),
+				ObjectId("a00000000000000000000037")
+			],
+			description: "Born in Modena. Currently living in London. I begin studying as beautician but soon changes to make-up, attending BCM in Milan. I started working as make-up assistant before finishing it, at cinema festival and tv shows, but I quickly understand that I like more working with street and modern styles. I have worked with Marie Claire, Io Donna, The Greatest Magazine, Interview Russia.",
+			score: 0,
+			emergency: true,
+			price: 90,
+			currentPosition: {
+				lat: 51.5285582,
+				long: -0.2417011,
+			},
+			active: false
+		},
 		// {
 		// 	_id: ObjectId("f00000000000000000000008"), ////da fare
 		// 	firstName: '',
