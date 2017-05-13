@@ -22,12 +22,9 @@ module.exports.freelancer = {
 				'/uploads/test/0f.jpg',
 			],
 			address: {
-				road: 'Turmstraße',
-				number: '47',
-				city: '10551',
-				cap: 69100,
-				lat: 52.5156273,
-				long: 13.3228416,
+				city: 'London',
+				lat: 51.5285582,
+				long: -0.2417011,
 			},
 			tags: [
 				ObjectId("a00000000000000000000032"),
@@ -36,13 +33,13 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000001"),
 				ObjectId("a00000000000000000000002")
 			],
-			description: 'Upwork Freelancer plus the CEO of a successful E-Commerce store in Berlin which did more than $1million revenue within an year of launching and still going strong. My core skills include HTML, CSS, Javascript, PHP, MySQL, WordPress, Shopify, BigCommerce, cPanel/WHM, JIRA/Confluence Administration plus anything related to web developement and server configuration. I will be available every weekday 3:30PM GMT to 5:30PM GMT and you can contact me by e-mail.',
+			description: 'Upwork Freelancer plus the CEO of a successful E-Commerce store in London which did more than $1million revenue within an year of launching and still going strong. My core skills include HTML, CSS, Javascript, PHP, MySQL, WordPress, Shopify, BigCommerce, cPanel/WHM, JIRA/Confluence Administration plus anything related to web developement and server configuration. I will be available every weekday 3:30PM GMT to 5:30PM GMT and you can contact me by e-mail.',
 			score: 0,
 			price: 33,
 			emergency: true,
-			currentPosition: { //Lugano
-				lat: 46.0119793,
-				long: 12.9517463,
+			currentPosition: { //London
+				lat: 51.5788582,
+				long: -0.2417011,
 			}
 		},
 		{
@@ -120,9 +117,9 @@ module.exports.freelancer = {
 			phone: '+39 3295613738',
 			profilePhoto: '/uploads/test/profile3.jpg',
 			address: {
-				city: 'Como',
-				lat: 45.8080383,
-				long: 9.0151366,
+				city: 'Milano',
+				lat: 45.4654005,
+				long: 9.1158844,
 			},
 			tags: [
 				ObjectId("a00000000000000000000038"),
@@ -133,8 +130,8 @@ module.exports.freelancer = {
 			price: 10,
 			emergency: true,
 			currentPosition: { //Milano
-				lat: 45.4654005,
-				long: 9.1158844,
+				lat: 45.549002,
+				long: 9.0550243,
 			},
 			//ownerId:
 		},
@@ -166,7 +163,8 @@ module.exports.freelancer = {
 			},
 			tags: [ObjectId("a00000000000000000000005"),
 				ObjectId("a00000000000000000000010"),
-				ObjectId("a00000000000000000000011")
+				ObjectId("a00000000000000000000011"),
+				ObjectId("a00000000000000000000012")
 			],
 			description: "I love building online communities that have heart and purpose to impact the world and create transformation and change. To be able to create pathways that connect purpose and destiny with reality. Here's what some people have said about me after we chatted....Working in the design industry for the last 10+ years Samantha has creative flair combined with sharp marketing savvy and the passion to reveal your message in an authentic way. Founding Design Reaction in 2006, she has worked with a large range of clients in the Newcastle and Sydney area including: Hunter New England Health, State Spinal, Bone Marrow Transplant Network, Hunter Development Corporation and many well known small businesses in the Newcastle region.",
 			emergency: false
@@ -183,17 +181,12 @@ module.exports.freelancer = {
 				lat: 51.5285582,
 				long: -0.2417011,
 			},
-			description: "Dr. Gyned has provided care to children and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Isabel  Gyned graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Gyned has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-			score: 0,
-			price: 200,
-			tags: [ObjectId("a00000000000000000000012"),
-				ObjectId("a00000000000000000000013")
+			description: "I have always had a keen interest in makeup artistry and skin care. I have been providing facial, waxing and makeup services to the London area since 1999, and I still love my profession. I love the combination of art and science and there is always more to learn. I love meeting new people and helping them achieve their beauty goals and providing them with personalized treatments. I have taken many advanced training courses in clinical skin care, nail art, body and facial waxing, and photography makeup.",
+			price: 80,
+			tags: [ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000035")
 			],
 			emergency: false,
-			currentPosition: { //Lugano
-				lat: 46.0293395,
-				long: 8.854721
-			},
 		},
 		// {
 		// 	_id: ObjectId("f00000000000000000000006"), //da fare

@@ -93,9 +93,9 @@ module.exports.tag = {
 		},
 		{
 			_id: ObjectId("a00000000000000000000012"),
-			name: 'Doctor',
+			name: 'Design',
 			freelancer: [
-				ObjectId("f00000000000000000000005"),
+				ObjectId("f00000000000000000000004"),
 			]
 		},
 		{
