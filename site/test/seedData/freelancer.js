@@ -900,6 +900,127 @@ module.exports.freelancer = {
 			score: 0,
 			price: 50,
 			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000029"),
+			firstName: 'Fiona',
+			lastName: 'Kelly',
+			email: 'fiona@g.g',
+			phone: '+390007362864',
+			address: {
+				road: "Via Cenisio",
+				number: 100,
+				city: 'Milano',
+				lat: 45.4879072,
+				long: 9.1562021,
+			},
+			photos: [
+				'/uploads/test/29a.jpg',
+				'/uploads/test/29b.jpg',
+				'/uploads/test/29c.jpg',
+				'/uploads/test/29d.jpg',
+				'/uploads/test/29e.jpg',
+				'/uploads/test/29f.jpg',
+				'/uploads/test/29g.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000042"),
+				ObjectId("a00000000000000000000044")
+			],
+			description: "My name is Fiona Kelly, the founder and the principal wedding photographer of the one man band that is RawSilk Photography. I grew up in rural Sweden but now live in East London with my wife Camilla and my two girls, Betty and Agnes. I became a professional photographer after years of assisting on everything from fashion shoots for British Vogue to movie franchises like Harry Potter. In recent years I have shot  commercially for global brands including L’Oréal, King of Shaves and Chivas working with A’list actors like Chiwetel Ejiofor, Idris Elba and Oscar Isaac. I started RawSilk back in 2006 because, as much as I enjoy my commercial work www.stefanlacandler.co.uk, it is a very special feeling to be entrusted with photographing someone’s wedding. I’ve shot weddings all over the place, in Scotland, Italy, France, Denmark, Sweden and Thailand and my work has been published in GQ, Men’s Health, Condé Nast Brides, London Bride and Love my Dress to mention but a few. I work in a reportage style and I think this is how it should be. I shoot almost exclusively with natural light and I do all my own editing and retouching. I don’t airbrush or play around with filters or other gimmicks. I like telling it like it is in the most beautiful way possible. Most importantly I aim to give a true depiction of what actually happened on the day,  how you remembered it. I have photographed over 200 weddings as well as numerous films and commercials but you can never afford to get complacent. Every wedding is a fresh start with new possibilities and risks. That’s what keeps me on my toes, what keeps it interesting for me and what makes me want to keep doing what I do.",
+			score: 0,
+			price: 30,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000030"),
+			firstName: 'Stefania',
+			lastName: 'Lacandler',
+			workName: 'Stephoto',
+			email: 'ste@c.t',
+			phone: '+390007362864',
+			address: {
+				road: "via Giuseppe Ripamonti",
+				number: 40,
+				city: 'Milano',
+				lat: 45.4461728,
+				long: 9.1957023,
+			},
+			profilePhoto: '/uploads/test/profile30.jpg',
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+			],
+			description: "I am a highly experienced London based family Portrait Photographer specialising in pregnancy photography, newborn and baby photography and location children's photography in London and surrounding areas. With over 12 years experience in portrait photography, I cover West London, North London, South West London, Richmond and Windsor and anywhere in between!  My studio which is used for the maternity shoots and newborn shoots, however family shoots are generally done on location.  I can recommend some amazing places to go for your location shoot.",
+			score: 0,
+			price: 25,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000031"),
+			firstName: 'Lara',
+			lastName: 'Varoni',
+			email: 'lara.varoni@gold.gold',
+			phone: '+390007362864',
+			address: {
+				city: 'Milano',
+				lat: 45.4628327,
+				long: 9.1075206,
+			},
+			photos: [
+				'/uploads/test/31a.jpg',
+				'/uploads/test/31b.jpg',
+				'/uploads/test/31c.jpg',
+				'/uploads/test/31d.jpg',
+				'/uploads/test/31e.jpg',
+				'/uploads/test/31f.jpg',
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000042")
+			],
+			description: "No event is the same.  Each type of event is different and requires not just the right style of event photography but also the right type of event photographer.  A corporate event photographer needs to be smart and efficient. Private party photographers need to capture the spirit of your party. PR event photographers need to work to tight deadlines and syndicate to press. Behind the scenes photographers need to be discrete. Children’s party photographers need to be quick and nimble.  Music and theatre photographers  need to work well in low light conditions.  We match you to the right photographer for your event to ensure you get photographs you love.",
+			score: 0,
+			price: 55,
+			emergency: true,
+			currentPosition: {
+				lat: 45.5097668,
+				long: 9.2335272
+			}
+		},
+		{
+			_id: ObjectId("f00000000000000000000032"),
+			firstName: 'Matteo',
+			lastName: 'Gecco',
+			email: 'gecco@sh.sh',
+			phone: '+390007362864',
+			address: {
+				city: 'Milano',
+				lat: 45.4628327,
+				long: 9.1075206,
+			},
+			profilePhoto: '/uploads/test/profile32.jpg',
+			photos: [
+				'/uploads/test/32a.jpg',
+				'/uploads/test/32b.jpg',
+				'/uploads/test/32c.jpg',
+				'/uploads/test/32d.jpg',
+				'/uploads/test/32e.jpg',
+				'/uploads/test/32f.jpg',
+				'/uploads/test/32g.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000040"),
+				ObjectId("a00000000000000000000041"),
+				ObjectId("a00000000000000000000044")
+			],
+			description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
+			score: 0,
+			price: 70,
+			emergency: false
 		}
 	]
 }
