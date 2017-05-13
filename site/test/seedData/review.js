@@ -7,30 +7,26 @@ module.exports.review = {
 	name: 'Review',
 	data: [{
 			_id: ObjectId("c00000000000000000000000"),
-			title: 'R1',
+			title: 'Great Designer!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Mi ha lasciato il muro imbiancato a metá!!!!!!!!!!!!!!!!!!!!!!!!!! :O",
-			score: 1,
-			photo: [
-				'/uploads/test/3.jpg'
-			],
-			user: ObjectId("b00000000000000000000000"),
-			freelancer: ObjectId("f00000000000000000000003")
+			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
+			score: 5,
+			user: ObjectId("b00000000000000000000000"), //DA SETTARE
+			freelancer: ObjectId("f00000000000000000000000")
 		},
 		{
 			_id: ObjectId("c00000000000000000000001"),
-			title: 'R2',
-			date: '1970-01-13T23:58:43.122Z',
-			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
-			score: 5,
+			title: 'Horrible experience',
+			date: '2016-01-13T23:58:43.122Z',
+			description: "I contacted Mr.Suzuki on September 2016, after few weeks to decide the struct of the website (weeks that I paid) he contacted me to ask an extra. He finished the website after 4 months with a horrible result. It was the worst experience of my life.",
+			score: 0,
 			photo: [
-				'/uploads/test/1.jpg',
-				'/uploads/test/2.jpg'
+				'/uploads/test/1ra.png',
 			],
-			user: ObjectId("b00000000000000000000001"),
-			freelancer: ObjectId("f00000000000000000000007")
+			user: ObjectId("b00000000000000000000001"), //DA SETTARE
+			freelancer: ObjectId("f00000000000000000000000")
 		},
-		{
+		{ ////fino qui
 			_id: ObjectId("c00000000000000000000002"),
 			title: 'R3',
 			description: "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).",
