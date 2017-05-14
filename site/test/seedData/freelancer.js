@@ -1107,6 +1107,97 @@ module.exports.freelancer = {
 			score: 0,
 			price: 50,
 			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000036"),
+			firstName: 'Carola',
+			lastName: 'Didena',
+			workName: 'Carol Brauty',
+			email: 'carol@sh.sh',
+			phone: '+390007362864',
+			address: {
+				road: "via Papiria",
+				number: 15,
+				city: 'Roma',
+				lat: 41.8641138,
+				long: 12.5568166
+			},
+			profilePhoto: '/uploads/test/profile36.jpg',
+			photos: [
+				'/uploads/test/36a.jpg',
+				'/uploads/test/36b.jpg',
+				'/uploads/test/36c.jpg',
+				'/uploads/test/36d.jpg',
+				'/uploads/test/36e.jpg',
+			],
+			tags: [
+				ObjectId("a00000000000000000000029"),
+				ObjectId("a00000000000000000000033"),
+				ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000035")
+			],
+			description: "We are an East End family run business with a wealth of experience in our profession and are dedicated to ensuring you receive the best possible service. We treat all skin conditions including premature aging, acne, sensitised, pigmentation, dehydrated, dry, oily and sun damaged. That is why we use only the finest ingredients available and all of our products contain no irritating artificial colours, fragrances and no S.D. alcohol. They are also cruelty free, having never been tested on animals. You are guaranteed a warm and friendly welcome from our helpful and qualified therapist and staff on every visit. So for mineral salt scrub therapy that'll leave your skin glowing and provide critical hydration and nourishment your skin need, we're only a phone call away and we look forward to hearing from you.",
+			score: 0,
+			price: 45,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000037"),
+			firstName: 'Karine',
+			lastName: 'Fiscora',
+			email: 'karine@jk.k',
+			phone: '+390007362864',
+			address: {
+				city: 'Roma',
+				lat: 41.9102411,
+				long: 12.39557
+			},
+			profilePhoto: '/uploads/test/profile37.jpg',
+			photos: [
+				'/uploads/test/37a.jpg',
+				'/uploads/test/37b.jpg',
+				'/uploads/test/37c.jpg',
+				'/uploads/test/37d.jpg',
+				'/uploads/test/37e.jpg',
+				'/uploads/test/37f.jpg',
+			],
+			tags: [
+				ObjectId("a00000000000000000000029"),
+				ObjectId("a00000000000000000000033"),
+				ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000035"),
+				ObjectId("a00000000000000000000036")
+			],
+			description: "Welcome to The Cove Spa Specialists in results driven skincare, relaxing holistic therapies and industry leading beauty treatments... Multi-award winning Cove Spa is renowned for its 'personalised' and cutting edge service where exceeding your expectations is our philosophy. A team of specialists who together have over 150 years of body, beauty and skincare experience is at hand when you visit one of our boutique [cosy, intimate and warm] spas - each one independently run to fully embrace the locality; currently spread across highly-desirable locations in London and Hertfordshire. Awarded 'Spa of the Year 2016' for the second year running, at the London Hair & Beauty Awards and 'The Most Commended Spa' at the prestigious British Beauty Awards, is testimony to the wide selection of high quality treatments and rituals we provide in a calm and relaxing ambience - open seven days a week, with late evenings midweek, just for you... ",
+			score: 0,
+			price: 34,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000038"),
+			firstName: 'Jessica',
+			lastName: 'Giacomini',
+			email: 'jess.giacomini@l.l',
+			phone: '+390007362864',
+			address: {
+				road: "via Aurelia",
+				number: 30,
+				city: 'Roma',
+				lat: 41.8999262,
+				long: 12.4507087
+			},
+			profilePhoto: '/uploads/test/profile38.jpg',
+			tags: [
+				ObjectId("a00000000000000000000029"),
+				ObjectId("a00000000000000000000033"),
+				ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000035"),
+				ObjectId("a00000000000000000000036")
+			],
+			description: "Aquarius Beauty is a beauty salon based in Finsbury Park, North London which is an extension of a family business specialising in hair and beauty, established for over 30 years. We are proud to offer outstanding customer service at all times by a highly skilled team of therapists. As well as offering a wide range of treatments we have a highly regarded reputation in our waxing department where our speciality is Brazilian waxing. Whether you are looking for a facial, manicure, therapeutic massage, waxing or microdermabrasion, Aquarius Beauty is the perfect place for a quick wax, simple pampering or an indulgence of luxury.",
+			score: 0,
+			price: 50,
+			emergency: false
 		}
 	]
 }
