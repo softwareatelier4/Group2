@@ -1229,9 +1229,9 @@ module.exports.freelancer = {
 			},
 			profilePhoto: '/uploads/test/profile0.jpg',
 			photos: [
-				'/uploads/test/8a.jpg',
-				'/uploads/test/8b.jpg',
-				'/uploads/test/8c.JPG',
+				'/uploads/test/39a.jpg',
+				'/uploads/test/39b.jpg',
+				'/uploads/test/39c.JPG',
 			],
 			tags: [
 				ObjectId("a00000000000000000000009"),
@@ -1241,6 +1241,89 @@ module.exports.freelancer = {
 			description: "Hello, my name is Marco Valsini. About me, my experience in the field of civil and plumbing engineering is 10 years old. I followed mainly residential and industrial tecnological systems for heating and air conditioning. Some years ago I began to collaborate with an plumbing Engineer, to project hydraulic solution for rivers' protections. I made some projects for heating and air conditioning system, expecially with the use of best available tecnologies, for example in the field of renovanle energy (solar, geothermal..). At the same time I collaborated for some hydraulic projects like systems of rivers' protections, hydraulic systems in the project of roads. I am available also as Handyman, or as general plumber. Contact me! Cheers, Marco!",
 			price: 150,
 			emergency: false
-		}
+		},
+		{
+			_id: ObjectId("f00000000000000000000040"),
+			firstName: 'Juliette',
+			lastName: 'Foxy',
+			profilePhoto: '/uploads/test/profile40.jpg',
+			email: 'juliette.foxy@pinkplumbers.com',
+			photos: [
+				'/uploads/test/9a.jpg',
+				'/uploads/test/9b.jpg',
+				'/uploads/test/9c.jpg',
+				'/uploads/test/9d.jpg',
+				'/uploads/test/9e.jpg',
+				'/uploads/test/9f.jpg',
+				'/uploads/test/9g.jpg',
+				'/uploads/test/9h.jpg',
+				'/uploads/test/9i.jpg',
+			],
+			address: {
+				city: 'London',
+				lat: 51.5605843,
+				long: -0.1521165,
+			},
+			description: "I work for the Pink Plumbers company. The company has been operating since 2003, delivering consistent and considerate plumbing services to our customers, and even during the recent recession has shown annual growth. Operating under a national licence structure, our female plumbers are able to meet the needs of their local market whilst you and they benefit from a nationally recognised brand. We offer a wide range of plumbing services to our customers and ensure our plumbers are qualified to carry out those services. We operate within a set of guidelines based on the Pink Plumbers values, with support where needed. We are a Plumbing business that recognises that there is currently a lack of female plumbers operating independently in their local communities, and where they do exist it's often hard for customers to find them. At Pink Plumbers we help to close the gap between female plumbers qualifying and operating as plumbers in their community. Contact me!",
+			price: 90,
+			tags: [
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000014"),
+				ObjectId("a00000000000000000000015"),
+				ObjectId("a00000000000000000000016")
+			],
+			emergency: false,
+		},
+		{
+			_id: ObjectId("f00000000000000000000041"),
+			firstName: 'Jason',
+			lastName: 'Rual',
+			profilePhoto: '/uploads/test/profile41.jpg',
+			email: 'andreas.rual@plumbers.uk',
+			address: {
+				city: 'London',
+				lat: 51.580218,
+				long: -0.1724787,
+			},
+			description: "Jason is a third generation Davis plumber. He started his career in the plumbing industry in 2001 with Herb Davis Plumbing. Jason specializes in all areas of plumbing including commercial, residential, and service. His experience in the field of civil and plumbing engineering is 16 years old. He has big knowledge about AUTOCAD and some of the most famous engineering software.",
+			price: 160,
+			tags: [
+				ObjectId("a00000000000000000000015"),
+				ObjectId("a00000000000000000000013"),
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000014"),
+				ObjectId("a00000000000000000000010")
+			],
+			emergency: true,
+			currentPosition: { //Londra
+				lat: 51.450506,
+				long: -0.0849006
+			}
+		},
+		{
+			_id: ObjectId("f00000000000000000000042"),
+			firstName: 'Richard',
+			lastName: 'Bragk',
+			email: 'richard.bragk@gmail.com',
+			profilePhoto: '/uploads/test/profile42.jpg',
+			address: {
+				city: 'London',
+				lat: 51.513366,
+				long: -0.2023167,
+			},
+			photos: [
+				'/uploads/test/8a.jpg',
+				'/uploads/test/8b.jpg',
+				'/uploads/test/8c.JPG',
+			],
+			description: "I have over 15 years of experience in the plumbing industry, specializing in plumbing for new construction, residential homes, and commercial properties. I am an expert at new copper installation and pipe fitting. I am originally from South Africa where I obtained a degree in plumbing engineering. If you are interested in it, please contact me!",
+			price: 30,
+			tags: [
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000010"),
+				ObjectId("a00000000000000000000013")
+			],
+			emergency: false,
+		},
 	]
 }

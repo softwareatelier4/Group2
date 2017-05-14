@@ -85,7 +85,9 @@ module.exports.tag = {
 			name: 'Autocad',
 			freelancer: [
 				ObjectId("f00000000000000000000003"),
-				ObjectId("f00000000000000000000004")
+				ObjectId("f00000000000000000000004"),
+				ObjectId("f00000000000000000000041"),
+				ObjectId("f00000000000000000000042")
 			]
 		},
 		{
@@ -103,23 +105,30 @@ module.exports.tag = {
 		{
 			_id: ObjectId("a00000000000000000000013"),
 			name: 'Plumbing Engineer',
-			freelancer: [ObjectId("f00000000000000000000003"), ObjectId("f00000000000000000000039")]
+			freelancer: [ObjectId("f00000000000000000000003"),
+				ObjectId("f00000000000000000000039"),
+				ObjectId("f00000000000000000000041"),
+				ObjectId("f00000000000000000000042")
+			]
 		},
-		// {
-		// 	_id: ObjectId("a00000000000000000000014"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000015"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000016"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
+		{
+			_id: ObjectId("a00000000000000000000014"),
+			name: 'sink',
+			freelancer: [ObjectId("f00000000000000000000040"),
+				ObjectId("f00000000000000000000041"),
+				ObjectId("f00000000000000000000042")
+			]
+		},
+		{
+			_id: ObjectId("a00000000000000000000015"),
+			name: 'tub',
+			freelancer: [ObjectId("f00000000000000000000040"), ObjectId("f00000000000000000000041")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000016"),
+			name: 'shower',
+			freelancer: [ObjectId("f00000000000000000000040"), ObjectId("f00000000000000000000042")]
+		},
 		// {
 		// 	_id: ObjectId("a00000000000000000000017"),
 		// 	name: '',
@@ -301,7 +310,11 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000017"),
 				ObjectId("f00000000000000000000008"),
 				ObjectId("f00000000000000000000009"),
-				ObjectId("f00000000000000000000039")
+				ObjectId("f00000000000000000000039"),
+				ObjectId("f00000000000000000000040"),
+				ObjectId("f00000000000000000000041"),
+				ObjectId("f00000000000000000000042"),
+				ObjectId("f00000000000000000000042")
 			]
 		},
 		{
