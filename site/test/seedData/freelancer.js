@@ -1325,5 +1325,97 @@ module.exports.freelancer = {
 			],
 			emergency: false,
 		},
+		{
+			_id: ObjectId("f00000000000000000000043"),
+			firstName: 'Marianice',
+			lastName: 'Porcu',
+			phone: '+39 329445678',
+			profilePhoto: '/uploads/test/profile43.jpg',
+			email: 'marianice.porcu@womanplumber.it',
+			photos: [
+				'/uploads/test/9a.jpg',
+				'/uploads/test/9b.jpg',
+				'/uploads/test/9c.jpg',
+				'/uploads/test/9d.jpg',
+				'/uploads/test/9e.jpg',
+				'/uploads/test/9f.jpg',
+				'/uploads/test/9g.jpg',
+				'/uploads/test/9h.jpg',
+				'/uploads/test/9i.jpg',
+			],
+			address: {
+				city: 'Milan',
+				lat: 45.4627124,
+				long: 9.1076924,
+			},
+			description: "I believe that plumber work is not only for man! I am attracted by this work since I was a child, now I repute that my company is one of the biggest in Italy. There are around 10 female plumbers that operate in all the country.  I operate within a set of guidelines based on the plumbers values. I recognise that there is currently a lack of female plumbers operating independently in their local communities, and where they do exist it's often hard for customers to find them. My company helps to close the gap between female plumbers qualifying and operating as plumbers in their community.I have a bachelor degree in plumber engineering. I know some of the most famous engineering software. If you retain that I am the worker perfect for you, contact me by e-mail or phone! I am available everyday from 8.00 am to 9.00 pm.",
+			price: 45,
+			tags: [
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000014"),
+				ObjectId("a00000000000000000000013"),
+				ObjectId("a00000000000000000000015"),
+				ObjectId("a00000000000000000000016"),
+				ObjectId("a00000000000000000000010")
+			],
+			emergency: false,
+		},
+		{
+			_id: ObjectId("f00000000000000000000044"),
+			firstName: 'Matteo',
+			lastName: 'Corrotti',
+			profilePhoto: '/uploads/test/profile44.jpg',
+			email: 'matteo.corrotti@gmail.com',
+			address: {
+				city: 'Milan',
+				lat: 45.441277,
+				long: 9.1010403,
+			},
+			photos: [
+				'/uploads/test/44a.jpg',
+				'/uploads/test/44b.jpg',
+				'/uploads/test/44c.jpg',
+			],
+			description: "I start my career in the plumbing industry in 2005 with Herb Davis Plumbing. I am specialized in all areas of plumbing including commercial, residential, and service. My experience in the field of civil and plumbing engineering is 12 years old. He has big knowledge about AUTOCAD and some of the most famous engineering software. I have also some basic knowledge as carpenter and electrician.",
+			price: 83,
+			tags: [
+				ObjectId("a00000000000000000000017"),
+				ObjectId("a00000000000000000000018"),
+				ObjectId("a00000000000000000000015"),
+				ObjectId("a00000000000000000000013"),
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000014"),
+				ObjectId("a00000000000000000000010")
+			],
+			emergency: true,
+			currentPosition: { //Milano
+				lat: 45.430075,
+				long: 9.2002603
+			}
+		},
+		{
+			_id: ObjectId("f00000000000000000000045"),
+			firstName: 'Cristiano',
+			lastName: 'Barba',
+			email: 'barba94@gmail.com',
+			address: {
+				city: 'Milan',
+				lat: 45.430075,
+				long: 9.1324112,
+			},
+			photos: [
+				'/uploads/test/8a.jpg',
+				'/uploads/test/8b.jpg',
+				'/uploads/test/8c.JPG',
+			],
+			description: "I have over 15 years of experience in the plumbing industry, specializing in plumbing for new construction, residential homes, and commercial properties. I am an expert at new copper installation and pipe fitting. I am originally from America where I obtained a degree, with excellent results, in plumbing engineering. I am available every work-day from 9.00 am to 7.00 pm. If you are interested in it, please contact me some days before!",
+			price: 35,
+			tags: [
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000010"),
+				ObjectId("a00000000000000000000013")
+			],
+			emergency: false,
+		},
 	]
 }
