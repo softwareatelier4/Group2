@@ -123,9 +123,10 @@ module.exports.freelancer = {
 			},
 			tags: [
 				ObjectId("a00000000000000000000038"),
-				ObjectId("a00000000000000000000010")
+				ObjectId("a00000000000000000000010"),
+				ObjectId("a00000000000000000000013")
 			],
-			description: "My experience in the field of civil and idraulic engineering is 7 years old. At the beginning i followed mainly residential and industrial tecnological systems for heating and air conditioning. Some years ago I began to collaborate with an Hydraulic Engineer, to project hydraulic solution for rivers' protections. I made some projects for heating and air conditioning system, expecially with the use of best available tecnologies, for example in the field of renovanle energy (solar, geothermal..). At the same time i collaborated for some hydraulic projects like systems of rivers' protections, hydraulic systems in the project of roads. I can use the softwares Hec-Ras, Heasted Methods.",
+			description: "My experience in the field of civil and plumbing engineering is 7 years old. At the beginning i followed mainly residential and industrial tecnological systems for heating and air conditioning. Some years ago I began to collaborate with an plumbing Engineer, to project hydraulic solution for rivers' protections. I made some projects for heating and air conditioning system, expecially with the use of best available tecnologies, for example in the field of renovanle energy (solar, geothermal..). At the same time i collaborated for some hydraulic projects like systems of rivers' protections, hydraulic systems in the project of roads. I can use the softwares Hec-Ras, Heasted Methods.",
 			score: 0,
 			price: 10,
 			emergency: true,
@@ -280,27 +281,41 @@ module.exports.freelancer = {
 				long: 12.5525113,
 			},
 		},
-		// {
-		// 	_id: ObjectId("f00000000000000000000009"), //da fare
-		// 	firstName: 'Costanza',
-		// 	lastName: 'Fox',
-		// 	workName: 'Cocco',
-		// 	email: 'cocco@gmail.com',
-		// 	address: {
-		// 		city: 'Milano',
-		// 		lat: 45.4627124,
-		// 		long: 9.1076929,
-		// 	},
-		// 	description: "Dr. Fox has provided care to children of Isabella and surrounding counties for over 10 years.  A Board Certified Pediatrician for nearly 22 years, Dr. Constanza I. Fox graduated from the Univ De Antioquia, Fac De Med, Medellin, Colombia in 1980. She provides compassionate care to patients from birth to 18 years of age. Her primary focus is to give your child the best diagnosis possible, while sharing vital health-related information with you to further improve your child's health. Dr. Fox has special interest in children with both chronic and acute Asthma. She cares about every child's well-being, which is why she takes the time to get to know each of her patients very well.",
-		// 	score: 0,
-		// 	price: 200,
-		// 	tags: [],
-		// 	emergency: true,
-		// 	currentPosition: {
-		// 		lat: 45.0119793,
-		// 		long: 13.9517463,
-		// 	},
-		// },
+		{
+			_id: ObjectId("f00000000000000000000009"),
+			firstName: 'Sarah',
+			lastName: 'Prejan',
+			workName: 'Pink Plumbers',
+			profilePhoto: '/uploads/test/profile9.jpeg',
+			email: 'sarahh.pre@pinkplumbers.com',
+			photos: [
+				'/uploads/test/9a.jpg',
+				'/uploads/test/9b.jpg',
+				'/uploads/test/9c.jpg',
+				'/uploads/test/9d.jpg',
+				'/uploads/test/9e.jpg',
+				'/uploads/test/9f.jpg',
+				'/uploads/test/9g.jpg',
+				'/uploads/test/9h.jpg',
+				'/uploads/test/9i.jpg',
+			],
+			address: {
+				city: 'Lugano',
+				lat: 46.015036,
+				long: 8.9768153,
+			},
+			description: "I am the founder of Pink Plumbers. The company has been operating since 2003, delivering consistent and considerate plumbing services to our customers, and even during the recent recession has shown annual growth. Operating under a national licence structure, our female plumbers are able to meet the needs of their local market whilst you and they benefit from a nationally recognised brand. We offer a wide range of plumbing services to our customers and ensure our plumbers are qualified to carry out those services. All our plumbers operate within a set of guidelines based on the Pink Plumbers values, with support where needed. We are a Plumbing business that recognises that there is currently a lack of female plumbers operating independently in their local communities, and where they do exist it's often hard for customers to find them. At Pink Plumbers we help to close the gap between female plumbers qualifying and operating as plumbers in their community.",
+			price: 40,
+			tags: [
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000009")
+			],
+			emergency: true,
+			currentPosition: { //Lugano
+				lat: 46.024572,
+				long: 8.9390493,
+			},
+		},
 		{
 			_id: ObjectId("f00000000000000000000010"),
 			firstName: 'Hoang ',
@@ -1197,6 +1212,34 @@ module.exports.freelancer = {
 			description: "Aquarius Beauty is a beauty salon based in Finsbury Park, North London which is an extension of a family business specialising in hair and beauty, established for over 30 years. We are proud to offer outstanding customer service at all times by a highly skilled team of therapists. As well as offering a wide range of treatments we have a highly regarded reputation in our waxing department where our speciality is Brazilian waxing. Whether you are looking for a facial, manicure, therapeutic massage, waxing or microdermabrasion, Aquarius Beauty is the perfect place for a quick wax, simple pampering or an indulgence of luxury.",
 			score: 0,
 			price: 50,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000039"),
+			firstName: 'Marco',
+			lastName: 'Valsini',
+			email: 'marco.valsini@usssi.ch',
+			phone: '+410007365864',
+			address: {
+				road: "via Zurigo",
+				number: 5,
+				city: 'Lugano',
+				lat: 46.0112796,
+				long: 8.9531329
+			},
+			profilePhoto: '/uploads/test/profile0.jpg',
+			photos: [
+				'/uploads/test/8a.jpg',
+				'/uploads/test/8b.jpg',
+				'/uploads/test/8c.JPG',
+			],
+			tags: [
+				ObjectId("a00000000000000000000009"),
+				ObjectId("a00000000000000000000038"),
+				ObjectId("a00000000000000000000013")
+			],
+			description: "Hello, my name is Marco Valsini. About me, my experience in the field of civil and plumbing engineering is 10 years old. I followed mainly residential and industrial tecnological systems for heating and air conditioning. Some years ago I began to collaborate with an plumbing Engineer, to project hydraulic solution for rivers' protections. I made some projects for heating and air conditioning system, expecially with the use of best available tecnologies, for example in the field of renovanle energy (solar, geothermal..). At the same time I collaborated for some hydraulic projects like systems of rivers' protections, hydraulic systems in the project of roads. I am available also as Handyman, or as general plumber. Contact me! Cheers, Marco!",
+			price: 150,
 			emergency: false
 		}
 	]

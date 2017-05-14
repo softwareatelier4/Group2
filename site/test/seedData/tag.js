@@ -75,7 +75,9 @@ module.exports.tag = {
 			_id: ObjectId("a00000000000000000000009"),
 			name: 'Handyman',
 			freelancer: [
-				ObjectId("f00000000000000000000008")
+				ObjectId("f00000000000000000000008"),
+				ObjectId("f00000000000000000000009"),
+				ObjectId("f00000000000000000000039")
 			]
 		},
 		{
@@ -98,11 +100,11 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000004"),
 			]
 		},
-		// {
-		// 	_id: ObjectId("a00000000000000000000013"),
-		// 	name: '',
-		// 	freelancer: [ObjectId("f00000000000000000000005"), ]
-		// },
+		{
+			_id: ObjectId("a00000000000000000000013"),
+			name: 'Plumbing Engineer',
+			freelancer: [ObjectId("f00000000000000000000003"), ObjectId("f00000000000000000000039")]
+		},
 		// {
 		// 	_id: ObjectId("a00000000000000000000014"),
 		// 	name: '',
@@ -297,7 +299,9 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000014"),
 				ObjectId("f00000000000000000000016"),
 				ObjectId("f00000000000000000000017"),
-				ObjectId("f00000000000000000000008")
+				ObjectId("f00000000000000000000008"),
+				ObjectId("f00000000000000000000009"),
+				ObjectId("f00000000000000000000039")
 			]
 		},
 		{
