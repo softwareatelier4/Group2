@@ -1420,5 +1420,115 @@ module.exports.freelancer = {
 			],
 			emergency: false,
 		},
+		{
+			_id: ObjectId("f00000000000000000000046"),
+			firstName: 'Roberta',
+			lastName: 'Souto',
+			email: 'roberta.souto@gmail.com',
+			profilePhoto: '/uploads/test/profile46.jpg',
+			address: {
+				city: 'Lugano',
+				lat: 46.01742,
+				long: 8.9860853,
+			},
+			photos: [
+				'/uploads/test/46a.jpg',
+				'/uploads/test/46b.jpg',
+				'/uploads/test/46c.jpg',
+				'/uploads/test/46d.jpg',
+				'/uploads/test/46e.jpg',
+				'/uploads/test/46f.jpg',
+				'/uploads/test/46g.jpg',
+				'/uploads/test/46h.jpg',
+				'/uploads/test/46i.png'
+			],
+			description: "About the Designer: Roberta Souto, 36, Industrial Designer graduate from ESDI/ UERJ (Rio de Janeiro, RJ - Brazil) with a 5-year BA degree. I have almost 10 years experience working with packaging and I have knowledge in both graphic design and product design. One of my designs was a finalist at the 2012 HBA International Package Design Awards in New York City. Before that I was the head designer, product developer and creative director of a manufacturer for 5 years, working with worldwide retail chains like TJ Maxx, Bath Bed & Beyond, Petsmart and Toys R Us to name a few, besides coordinating production in a equally global level. My background in Industrial Design helps me to not limit myself to just one field of design and I have worked with everything from brochures to dog toys to food packaging. I have had the great opportunity to work with large retail chains as well as small start-ups. I'm a creative person, but I'm also very interested in business topics and one of my passions is to support small businesses to take their products and services to the next level.",
+			price: 105,
+			tags: [
+				ObjectId("a00000000000000000000012"),
+				ObjectId("a00000000000000000000019"),
+				ObjectId("a00000000000000000000032"),
+				ObjectId("a00000000000000000000005"),
+				ObjectId("a00000000000000000000020"),
+				ObjectId("a00000000000000000000021"),
+				ObjectId("a00000000000000000000022")
+
+			],
+			emergency: false,
+		},
+		{
+			_id: ObjectId("f00000000000000000000047"),
+			firstName: 'Philip',
+			lastName: 'Mauros',
+			email: 'philip.mauros@gmail.com',
+			phone: '+41 0756783223',
+			profilePhoto: '/uploads/test/profile47.jpg',
+			address: {
+				city: 'Lugano',
+				lat: 46.012771,
+				long: 8.9610223,
+			},
+			description: "Hello, I'm Phil, a product / industrial designer and innovation consultant with 6 years of experience designing products for in-house design companies, creative agencies and freelance clients. I've designed over 20 products from brief to manufacture across the consumer, nursery and furniture industries. This including trips to China to work with the manufacturing supplier. I'm passionate about designing useful and beautiful products that are a joy to use.",
+			tags: [
+				ObjectId("a00000000000000000000012"),
+				ObjectId("a00000000000000000000023"),
+				ObjectId("a00000000000000000000024"),
+				ObjectId("a00000000000000000000025"),
+				ObjectId("a00000000000000000000026"),
+				ObjectId("a00000000000000000000027")
+			],
+			emergency: true,
+			price: 55,
+			currentPosition: { //Lugano
+				lat: 46.018612,
+				long: 8.950165
+			}
+		},
+		{
+			_id: ObjectId("f00000000000000000000048"),
+			firstName: 'Maria',
+			lastName: 'Gorskaya',
+			email: 'maria.gorskaya@hotmail.com',
+			profilePhoto: '/uploads/test/profile48.jpg',
+			address: {
+				city: 'Lugano',
+				lat: 46.00663,
+				long: 8.9552723,
+			},
+			price: 30,
+			photos: [
+				'/uploads/test/48a.jpg',
+				'/uploads/test/48b.jpg',
+				'/uploads/test/48c.jpg'
+			],
+			description: "Hello, I'm Maria !  Thanks for visiting my profile! Specialist -Graphic Design, Illustration,  Web Design, 3D modeling! I have extensive experience in the design of websites for different services! I am sociable, easily and quickly trained specialist. I am able to work in a team . The presence of artistic taste and creative thinking , the ability to analyze helps me solve the customer problems quickly and on time. Good skills in graphics programs - Adobe Photoshop, Adobe Illustrator, Adobe InDesign , 3ds Max, Zbrush, Adobe After Effects! High quality and terms of work, I guarantee ! Thank you for visiting my profile! Hope cooperation with you! ",
+			tags: [
+				ObjectId("a00000000000000000000012"),
+				ObjectId("a00000000000000000000007"),
+				ObjectId("a00000000000000000000026"),
+				ObjectId("a00000000000000000000028")
+			],
+			emergency: false,
+		},
+		{
+			_id: ObjectId("f00000000000000000000049"),
+			firstName: 'Carlos',
+			lastName: 'Sarusso',
+			workName: 'Carlos S.',
+			email: 'carlos.s@sarusso.com',
+			profilePhoto: '/uploads/test/profile49.jpg',
+			address: {
+				city: 'Lugano',
+				lat: 46.00663,
+				long: 8.9487063,
+			},
+			price: 95,
+			description: "I am a highly proficient and creative PowerPoint Specialist. I am savvy about your needs for developing documents, slides, images, banners, and more for compelling and high-quality visual presentations. My services are: EDITION & FORMATING: Editing existing Artwork (or creating it) and improving them by using design techniques; CREATION: Creating a new Artworks from documents (Word, PDF, websites, hand drawings, PSD, EPS, etc); GRAPHICS: Insertion of Charts and Graphs based on data; ICONOGRAPHY: Insertion of icons for pictographic representation; HD IMAGERY: HD Stock imagery used, licenced and ready to use (adobe Photoshop primary tool used); ANIMATION: Configuration, timing set up, creation of sceenes with animation or transitions; VIDEO: Creation of video from slides and edition using Adobe Premiere, Camtasia or PowerPoint.",
+			tags: [
+				ObjectId("a00000000000000000000012"),
+				ObjectId("f00000000000000000000049")
+			],
+			emergency: false,
+		},
 	]
 }

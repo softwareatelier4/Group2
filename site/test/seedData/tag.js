@@ -47,7 +47,8 @@ module.exports.tag = {
 			name: 'Adobe Photoshop',
 			freelancer: [
 				ObjectId("f00000000000000000000001"),
-				ObjectId("f00000000000000000000004")
+				ObjectId("f00000000000000000000004"),
+				ObjectId("f00000000000000000000046")
 			]
 		},
 		{
@@ -61,7 +62,8 @@ module.exports.tag = {
 			_id: ObjectId("a00000000000000000000007"),
 			name: 'Web Design',
 			freelancer: [
-				ObjectId("f00000000000000000000001")
+				ObjectId("f00000000000000000000001"),
+				ObjectId("f00000000000000000000048")
 			]
 		},
 		{
@@ -103,6 +105,9 @@ module.exports.tag = {
 			name: 'Design',
 			freelancer: [
 				ObjectId("f00000000000000000000004"),
+				ObjectId("f00000000000000000000046"),
+				ObjectId("f00000000000000000000047"),
+				ObjectId("f00000000000000000000048")
 			]
 		},
 		{
@@ -147,56 +152,56 @@ module.exports.tag = {
 			name: 'Electrician',
 			freelancer: [ObjectId("f00000000000000000000044")]
 		},
-		// {
-		// 	_id: ObjectId("a00000000000000000000019"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000020"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000021"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000022"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000023"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000024"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000025"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000026"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000027"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000028"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
+		{
+			_id: ObjectId("a00000000000000000000019"),
+			name: 'Packaging Design',
+			freelancer: [ObjectId("f00000000000000000000046")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000020"),
+			name: 'Digital Photography',
+			freelancer: [ObjectId("f00000000000000000000046")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000021"),
+			name: 'Illustration',
+			freelancer: [ObjectId("f00000000000000000000046")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000022"),
+			name: 'Branding',
+			freelancer: [ObjectId("f00000000000000000000046")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000023"),
+			name: 'Industrial Design',
+			freelancer: [ObjectId("f00000000000000000000047")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000024"),
+			name: 'Product Development',
+			freelancer: [ObjectId("f00000000000000000000047")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000025"),
+			name: 'Marketing Research',
+			freelancer: [ObjectId("f00000000000000000000047")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000026"),
+			name: '3D Rendering',
+			freelancer: [ObjectId("f00000000000000000000047"), ObjectId("f00000000000000000000048")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000027"),
+			name: 'Sketching',
+			freelancer: [ObjectId("f00000000000000000000047")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000028"),
+			name: 'Video',
+			freelancer: [ObjectId("f00000000000000000000048")]
+		},
 		// {
 		// 	_id: ObjectId("a00000000000000000000029"),
 		// 	name: '',
@@ -238,6 +243,7 @@ module.exports.tag = {
 			freelancer: [
 				ObjectId("f00000000000000000000010"),
 				ObjectId("f00000000000000000000000"),
+				ObjectId("f00000000000000000000046")
 			]
 		},
 		{
