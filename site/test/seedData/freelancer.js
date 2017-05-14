@@ -1022,185 +1022,91 @@ module.exports.freelancer = {
 			price: 70,
 			emergency: false
 		},
-		// {
-		// 	_id: ObjectId("f00000000000000000000033"),
-		// 	firstName: 'Matteo',
-		// 	lastName: 'Gecco',
-		// 	email: 'gecco@sh.sh',
-		// 	phone: '+390007362864',
-		// 	address: {
-		// 		city: 'Milano',
-		// 		lat: 45.4628327,
-		// 		long: 9.1075206,
-		// 	},
-		// 	photos: [
-		// 		'/uploads/test/32a.jpg',
-		// 		'/uploads/test/32b.jpg',
-		// 		'/uploads/test/32c.jpg',
-		// 		'/uploads/test/32d.jpg',
-		// 		'/uploads/test/32e.jpg',
-		// 		'/uploads/test/32f.jpg',
-		// 		'/uploads/test/32g.jpg'
-		// 	],
-		// 	tags: [
-		// 		ObjectId("a00000000000000000000040"),
-		// 		ObjectId("a00000000000000000000041"),
-		// 		ObjectId("a00000000000000000000044")
-		// 	],
-		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
-		// 	score: 0,
-		// 	price: 70,
-		// 	emergency: false
-		// },
-		// {
-		// 	_id: ObjectId("f00000000000000000000034"),
-		// 	firstName: 'Matteo',
-		// 	lastName: 'Gecco',
-		// 	email: 'gecco@sh.sh',
-		// 	phone: '+390007362864',
-		// 	address: {
-		// 		city: 'Milano',
-		// 		lat: 45.4628327,
-		// 		long: 9.1075206,
-		// 	},
-		// 	photos: [
-		// 		'/uploads/test/32a.jpg',
-		// 		'/uploads/test/32b.jpg',
-		// 		'/uploads/test/32c.jpg',
-		// 		'/uploads/test/32d.jpg',
-		// 		'/uploads/test/32e.jpg',
-		// 		'/uploads/test/32f.jpg',
-		// 		'/uploads/test/32g.jpg'
-		// 	],
-		// 	tags: [
-		// 		ObjectId("a00000000000000000000040"),
-		// 		ObjectId("a00000000000000000000041"),
-		// 		ObjectId("a00000000000000000000044")
-		// 	],
-		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
-		// 	score: 0,
-		// 	price: 70,
-		// 	emergency: false
-		// },
-		// {
-		// 	_id: ObjectId("f00000000000000000000035"),
-		// 	firstName: 'Matteo',
-		// 	lastName: 'Gecco',
-		// 	email: 'gecco@sh.sh',
-		// 	phone: '+390007362864',
-		// 	address: {
-		// 		city: 'Milano',
-		// 		lat: 45.4628327,
-		// 		long: 9.1075206,
-		// 	},
-		// 	photos: [
-		// 		'/uploads/test/32a.jpg',
-		// 		'/uploads/test/32b.jpg',
-		// 		'/uploads/test/32c.jpg',
-		// 		'/uploads/test/32d.jpg',
-		// 		'/uploads/test/32e.jpg',
-		// 		'/uploads/test/32f.jpg',
-		// 		'/uploads/test/32g.jpg'
-		// 	],
-		// 	tags: [
-		// 		ObjectId("a00000000000000000000040"),
-		// 		ObjectId("a00000000000000000000041"),
-		// 		ObjectId("a00000000000000000000044")
-		// 	],
-		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
-		// 	score: 0,
-		// 	price: 70,
-		// 	emergency: false
-		// },
-		// {
-		// 	_id: ObjectId("f00000000000000000000036"),
-		// 	firstName: 'Matteo',
-		// 	lastName: 'Gecco',
-		// 	email: 'gecco@sh.sh',
-		// 	phone: '+390007362864',
-		// 	address: {
-		// 		city: 'Milano',
-		// 		lat: 45.4628327,
-		// 		long: 9.1075206,
-		// 	},
-		// 	photos: [
-		// 		'/uploads/test/32a.jpg',
-		// 		'/uploads/test/32b.jpg',
-		// 		'/uploads/test/32c.jpg',
-		// 		'/uploads/test/32d.jpg',
-		// 		'/uploads/test/32e.jpg',
-		// 		'/uploads/test/32f.jpg',
-		// 		'/uploads/test/32g.jpg'
-		// 	],
-		// 	tags: [
-		// 		ObjectId("a00000000000000000000040"),
-		// 		ObjectId("a00000000000000000000041"),
-		// 		ObjectId("a00000000000000000000044")
-		// 	],
-		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
-		// 	score: 0,
-		// 	price: 70,
-		// 	emergency: false
-		// },
-		// {
-		// 	_id: ObjectId("f00000000000000000000037"),
-		// 	firstName: 'Matteo',
-		// 	lastName: 'Gecco',
-		// 	email: 'gecco@sh.sh',
-		// 	phone: '+390007362864',
-		// 	address: {
-		// 		city: 'Milano',
-		// 		lat: 45.4628327,
-		// 		long: 9.1075206,
-		// 	},
-		// 	photos: [
-		// 		'/uploads/test/32a.jpg',
-		// 		'/uploads/test/32b.jpg',
-		// 		'/uploads/test/32c.jpg',
-		// 		'/uploads/test/32d.jpg',
-		// 		'/uploads/test/32e.jpg',
-		// 		'/uploads/test/32f.jpg',
-		// 		'/uploads/test/32g.jpg'
-		// 	],
-		// 	tags: [
-		// 		ObjectId("a00000000000000000000040"),
-		// 		ObjectId("a00000000000000000000041"),
-		// 		ObjectId("a00000000000000000000044")
-		// 	],
-		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
-		// 	score: 0,
-		// 	price: 70,
-		// 	emergency: false
-		// },
-		// {
-		// 	_id: ObjectId("f00000000000000000000038"),
-		// 	firstName: 'Matteo',
-		// 	lastName: 'Gecco',
-		// 	email: 'gecco@sh.sh',
-		// 	phone: '+390007362864',
-		// 	address: {
-		// 		city: 'Milano',
-		// 		lat: 45.4628327,
-		// 		long: 9.1075206,
-		// 	},
-		// 	photos: [
-		// 		'/uploads/test/32a.jpg',
-		// 		'/uploads/test/32b.jpg',
-		// 		'/uploads/test/32c.jpg',
-		// 		'/uploads/test/32d.jpg',
-		// 		'/uploads/test/32e.jpg',
-		// 		'/uploads/test/32f.jpg',
-		// 		'/uploads/test/32g.jpg'
-		// 	],
-		// 	tags: [
-		// 		ObjectId("a00000000000000000000040"),
-		// 		ObjectId("a00000000000000000000041"),
-		// 		ObjectId("a00000000000000000000044")
-		// 	],
-		// 	description: "Hi, I'm Matteo, a wedding photographer based in Milan. I've been shooting weddings for 7 years after a career in graphic design and walking my dog. The wider world beckoned and it's safe to say the opportunities wedding photography has given me must make it one of the best jobs out there. Read on if you want to find out more about how I go about photographing a wedding and my slightly unhealthy obsession with using light creatively. My style of wedding photography is probably best described as creative documentary with contemporary portraiture. There’s lots of buzz words around in wedding photography so I’ll explain exactly what that means. When I first started wedding photography I was determined to do it in a way which exemplified everything I love about photography, and just as importantly, to avoid all the things I don’t like! The idea of being a traditional wedding photographer sent shivers down my spine. Herding people around, getting in the way and being the object of disdain wasn’t my idea of a fun Saturday!",
-		// 	score: 0,
-		// 	price: 70,
-		// 	emergency: false
-		// },
+		{
+			_id: ObjectId("f00000000000000000000033"),
+			firstName: 'Federica',
+			lastName: 'Fracco',
+			workName: 'Sole Beauty',
+			email: 'fede.fracco@cc.cc',
+			phone: '+390007362864',
+			address: {
+				road: "via Emilio Broglio",
+				number: 30,
+				city: 'Milano',
+				lat: 45.5022753,
+				long: 9.159989,
+			},
+			profilePhoto: '/uploads/test/profile33.jpg',
+			photos: [
+				'/uploads/test/33a.jpg',
+				'/uploads/test/33b.jpg',
+				'/uploads/test/33c.jpg',
+				'/uploads/test/33d.jpg',
+				'/uploads/test/33e.jpg',
+				'/uploads/test/33f.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000035"),
+				ObjectId("a00000000000000000000036"),
+				ObjectId("a00000000000000000000037"),
+				ObjectId("a00000000000000000000029"),
+				ObjectId("a00000000000000000000033")
+			],
+			description: "Our mission at Sole Beauty is to make quality waxing & stunning nails affordable and accessible by all by offering you expert beauty treatments at all our salons, which we currently have 4 in London. We offer a range of beauty treatments, including Hair Removal Waxing (both Hot and Warm wax), Threading, Manicure and Pedicure, Shellac Nail Polish, Body Massages, Eyelash Extensions, and Brow Tinting- all at great prices. Although we offer all essential beauty treatments, Waxing is our thing! We love it and our clients love us for it, and I strongly believe you will too will once you’ve tried our Brazilian or Hollywood Bikini Waxing. Our moto is ‘quality for less’, so we give you affordable waxing and beauty treatments without compromising on quality, therefore enjoy upto 30% Discount on your 1st visit to any of our beauty hubs. By renting small but neat places within established salons, we ensure that our sole focus is on providing first class waxing and nail treatments to our clients, who appreciate quality service and personal touch. So stop by one of our central London locations for your bespoke Waxing or beauty treatment, and we can assure you that once you’ve tried Sole Beauty’s waxing, you will never try another.",
+			score: 0,
+			price: 34,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000034"),
+			firstName: 'Giovannina',
+			lastName: 'Parisi',
+			workName: 'GioGio Nails',
+			email: 'gecco@sh.sh',
+			phone: '+390007362864',
+			address: {
+				city: 'Milano',
+				lat: 45.4628327,
+				long: 9.1075206,
+			},
+			photos: [
+				'/uploads/test/34a.jpg',
+				'/uploads/test/34b.jpg',
+				'/uploads/test/34c.jpg'
+			],
+			tags: [
+				ObjectId("a00000000000000000000033"),
+				ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000035")
+			],
+			description: "We are known for our wonderful beauty treatments from waxing to facials and non-surgical treatments. We’re proud of these excellent treatments and of our expertise, but that’s not all – we take your comfort seriously. When you have a treatment with us you can be sure your therapist will be lovely and approachable, making you feel at home in a relaxed atmosphere and beautiful setting. Our fantastic team of therapists are on hand to offer tips and advice, but will equally provide you with a calm environment if you so desire. A choice of refreshments will be offered to you on arrival and we offer an array of magazines if you fancy some light reading while you have your treatment.  You can even browse through our Environ and Dermalogica skin products, or our latest Bare Minerals make-up selection, all on display in the reception.",
+			score: 0,
+			price: 23,
+			emergency: false
+		},
+		{
+			_id: ObjectId("f00000000000000000000035"),
+			firstName: 'Francesca',
+			lastName: 'Lente',
+			email: 'francy@j.j',
+			phone: '+390007362864',
+			address: {
+				road: "via Mecenate",
+				number: 5,
+				city: 'Milano',
+				lat: 45.456147,
+				long: 9.2418307
+			},
+			profilePhoto: '/uploads/test/profile35.jpg',
+			tags: [
+				ObjectId("a00000000000000000000033"),
+				ObjectId("a00000000000000000000034"),
+				ObjectId("a00000000000000000000035")
+			],
+			description: "We only use the finest products for our treatments including St. Tropez, Nailtiques, Lycon Wax & Shellac & Vinylux, GHD, La La Lashes and Crystal Clear. All our 5 treatment rooms are fully air-conditioned and we have one dedicated tanning room. Chequers Leadenhall is centrally located in the city - near EC1, EC2, EC3 and EC4 with all the main stations and underground a maximum of 3-15 minutes' walk. These include; London Bridge, Liverpool Street, Canon Street, Fenchurch Street, St. Pauls, Mansion House, Bank, Tower Hill, Aldgate and Monument. Also only a 12 minute DLR train ride from Canary Wharf station to Bank station.",
+			score: 0,
+			price: 50,
+			emergency: false
+		}
 	]
 }
