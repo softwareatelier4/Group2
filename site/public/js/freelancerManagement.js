@@ -5,6 +5,8 @@ var postal_code = "";
 var lat = 0;
 var lng = 0;
 
+var deletedFiles = [];
+
 const FREELANCERMANAGEMENT = {
     data: null,
     idFreelancer : null,
@@ -198,27 +200,34 @@ const FREELANCERMANAGEMENT = {
 		};
 
             doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
+
+					//NEW FUNCTION TO SEND PHOTOS HERE
+					//Modify also the routes!!!
+
+
 					let data, xhr;
 
 					data = new FormData();
 
-					let number = [];
+					let title = [];
 
 					if($('#profilePicture')[0].files[0] != null){
 						data.append('file0', $('#profilePicture')[0].files[0]);
 						data.append('profile_check', 'true');
+					} else {
+						data.append('profile_check', 'false');
 					}
 
-					for (var i = 1; i <= 9; i++)
+					let files = $("#modal-file-management")[0].files;
+
+					for (let i = 1; i <= files.length; i++)
 					{
-						if($('#file'+i)[0].files[0] != null){
-							number.push(i);
-							data.append('file'+i, $('#file'+i)[0].files[0]);
-						}
+						data.append('file' + i, files[i - 1]);
 					}
 
-					data.append('files', number);
 					data.append('freelancerId', id);
+
+					data.append('deletedFiles', deletedFiles);
 
 					xhr = new XMLHttpRequest();
 
@@ -228,9 +237,8 @@ const FREELANCERMANAGEMENT = {
 					};
 					xhr.send(data);
 
-					// console.log(data);
-					// location.reload();
-					// window.location.href ='/#freelancer=' + res._id;
+					location.reload();
+					window.location.href ='/#freelancer=' + res._id;
 		    });
 
 
@@ -355,8 +363,12 @@ var defaultOptions = {
 $(document).ready( function () {
 
 	$(document).on('click', '.img-del .close', function(){
-		var id = $(this).closest('.img-del').find('img').data('id');
-    	alert('remove picture: ' + id);
+		let id = $(this).closest('.img-del').find('img').data('id');
+		// let fileName = id.split("/").pop();
+		// deletedFiles.push(fileName);
+		deletedFiles.push(id);
+		let elem = document.getElementById(id);
+    	elem.parentNode.removeChild(elem);
 	});
 
 });

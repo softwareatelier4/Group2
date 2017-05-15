@@ -207,11 +207,10 @@ router.put('/galleryModification/:id', function(req, res) {
 		if (err) return next(err);
 		let flag = true;
 		let profile = "";
-		let numbers = fields.files;
 		let title = [];
 
-		console.log("\n\n\n\n" + numbers + "\n\n\n\n");
-
+		console.log(files);
+		
 		for (let value in files) {
 			if (fields.profile_check == "true" && flag == true) {
 				let savePath = files[value].path;
@@ -221,7 +220,9 @@ router.put('/galleryModification/:id', function(req, res) {
 
 				profile = fileName;
 				flag = false;
+				console.log("\n\n PERCHE \n\n");
 			} else {
+				console.log("\n\n DENTRO \n\n");
 					let savePath = files[value].path;
 					let i = savePath.lastIndexOf('/');
 
@@ -240,18 +241,14 @@ router.put('/galleryModification/:id', function(req, res) {
 				if (fields.profile_check == "true") {
 					freelancer.profilePhoto = profile;
 				}
-				let z = 0;
 
-				for (let i = 1; i <= 9; i++) {
-					if (isInArray(i, numbers)) {
-						temp[i - 1] = title[z];
-						console.log("\n i:" + title[z] + "\n z: " + freelancer.photos[i] + "\n");
-						z++;
-					} else {
-						temp[i - 1] = freelancer.photos[i - 1];
-					}
-				}
-				freelancer.photos = temp;
+
+				freelancer.photos = freelancer.photos.filter( function( el ) {
+				  return !fields.deletedFiles.includes( el );
+				} );
+
+				freelancer.photos = freelancer.photos.concat(title);
+
 				freelancer.save(onModelSave(res, 200, true));
 			}
 		});
