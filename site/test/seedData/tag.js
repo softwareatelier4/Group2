@@ -48,7 +48,8 @@ module.exports.tag = {
 			freelancer: [
 				ObjectId("f00000000000000000000001"),
 				ObjectId("f00000000000000000000004"),
-				ObjectId("f00000000000000000000046")
+				ObjectId("f00000000000000000000046"),
+				ObjectId("f00000000000000000000050")
 			]
 		},
 		{
@@ -107,7 +108,10 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000004"),
 				ObjectId("f00000000000000000000046"),
 				ObjectId("f00000000000000000000047"),
-				ObjectId("f00000000000000000000048")
+				ObjectId("f00000000000000000000048"),
+				ObjectId("f00000000000000000000050"),
+				ObjectId("f00000000000000000000002"),
+				ObjectId("f00000000000000000000051")
 			]
 		},
 		{
@@ -202,16 +206,16 @@ module.exports.tag = {
 			name: 'Video',
 			freelancer: [ObjectId("f00000000000000000000048")]
 		},
-		// {
-		// 	_id: ObjectId("a00000000000000000000029"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
-		// {
-		// 	_id: ObjectId("a00000000000000000000030"),
-		// 	name: '',
-		// 	freelancer: []
-		// },
+		{
+			_id: ObjectId("a00000000000000000000029"),
+			name: 'Magazine Layout',
+			freelancer: [ObjectId("f00000000000000000000050")]
+		},
+		{
+			_id: ObjectId("a00000000000000000000030"),
+			name: 'Brochure Design',
+			freelancer: [ObjectId("f00000000000000000000050")]
+		},
 		{
 			_id: ObjectId("a00000000000000000000029"),
 			name: 'Hair',
@@ -243,7 +247,8 @@ module.exports.tag = {
 			freelancer: [
 				ObjectId("f00000000000000000000010"),
 				ObjectId("f00000000000000000000000"),
-				ObjectId("f00000000000000000000046")
+				ObjectId("f00000000000000000000046"),
+				ObjectId("f00000000000000000000051")
 			]
 		},
 		{
