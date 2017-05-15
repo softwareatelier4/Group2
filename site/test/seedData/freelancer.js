@@ -1554,9 +1554,7 @@ module.exports.freelancer = {
 			description: "Let me tell you a little about myself. I have been a graphic designer for over twenty years. For the past fifteen years, I have been a freelance graphic designer. I am a creative, reliable, hard-working designer who has helped businesses and individuals sell their products, their services, and their ideas. I have designed a variety of brochures, annual reports, logos, posters, packaging, magazine/book layout, ads, and other marketing pieces. I am proficient with industry-standard design software including InDesign, Photoshop, and Illustrator. I also have a thorough knowledge of preflighting files, prepress and offset printing process. My work has appeared in such television programs as 60 Minutes©, The Mentalist© and in print such as USA Today®. I take great pride in the design work I create and always strive to deliver an effective, focused, and on-target product that fits my clients needs and goals.",
 			tags: [
 				ObjectId("a00000000000000000000005"),
-				ObjectId("a00000000000000000000012"),
-				ObjectId("a00000000000000000000029"),
-				ObjectId("a00000000000000000000030")
+				ObjectId("a00000000000000000000012")
 			],
 			emergency: true,
 			currentPosition: { //Roma
@@ -1582,6 +1580,27 @@ module.exports.freelancer = {
 			tags: [
 				ObjectId("a00000000000000000000032"),
 				ObjectId("a00000000000000000000012")
+			],
+			emergency: false,
+		},
+		{
+			_id: ObjectId("f00000000000000000000052"),
+			firstName: 'Daniele',
+			lastName: 'Rossi',
+			email: 'dani@grace.it',
+			workName: 'Susi',
+			phone: '+39 3267832329',
+			profilePhoto: '/uploads/test/profile51.jpg',
+			address: {
+				city: 'Roma',
+				lat: 41.845439,
+				long: 12.4496863,
+			},
+			price: 85,
+			description: "I am a graphic designer based in New York. I have served businesses and individuals in over eight countries and in countless industries. My specialties include designing marketing material such as brochures, catalogs, banners and flyers; as well as pdfs, social media graphics, white papers etc. My favorite projects to work on are print design but I also enjoy working on graphics and banners for the web and custom illustration. I love what I do and truly take pride in producing the high quality work as well as great customer service to my clients.",
+			tags: [
+				// ObjectId("a00000000000000000000032"),
+				// ObjectId("a00000000000000000000012")
 			],
 			emergency: false,
 		},

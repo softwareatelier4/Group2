@@ -208,16 +208,6 @@ module.exports.tag = {
 		},
 		{
 			_id: ObjectId("a00000000000000000000029"),
-			name: 'Magazine Layout',
-			freelancer: [ObjectId("f00000000000000000000050")]
-		},
-		{
-			_id: ObjectId("a00000000000000000000030"),
-			name: 'Brochure Design',
-			freelancer: [ObjectId("f00000000000000000000050")]
-		},
-		{
-			_id: ObjectId("a00000000000000000000029"),
 			name: 'Hair',
 			freelancer: [
 				ObjectId("f00000000000000000000033"),
