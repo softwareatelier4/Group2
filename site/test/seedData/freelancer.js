@@ -398,7 +398,7 @@ module.exports.freelancer = {
 			firstName: 'Francesca',
 			lastName: 'Carozzi',
 			email: 'fra.caroz@jaja.com',
-			phone: '23234234234',
+			phone: '+41 076542673',
 			profilePhoto: '/uploads/test/profile12.jpg',
 			photos: [
 				'/uploads/test/12a.jpg',
@@ -1630,7 +1630,7 @@ module.exports.freelancer = {
 				'/uploads/test/53c.jpg',
 				'/uploads/test/53d.jpg',
 				'/uploads/test/53e.jpg',
-				'/uploads/test/53f.jpg',
+				'/uploads/test/50e.jpg',
 			],
 			price: 30,
 			description: "I am qualified, talented and self-motivated graphic designer with 7 years of experience working on various projects. I create design and illustration either for books, magazines, flyers, business cards, greeting cards, posters, websites, iPhone/iPad Apps, etc. If you hire me I guarantee high-quality work meeting deadline. I am always open to interesting projects and looking forward to cooperate with you!",
