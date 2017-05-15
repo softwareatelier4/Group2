@@ -334,12 +334,11 @@ module.exports.freelancer = {
 				'/uploads/test/10f.jpg'
 			],
 			address: {
-				road: 'Via Zurigo',
-				number: 10,
-				city: 'Lugano',
-				cap: 69100,
-				lat: 46.0119793,
-				long: 8.9517463,
+				road: 'Arlington Way',
+				number: 5,
+				city: 'Londra',
+				lat: 51.5299282,
+				long: -0.1074558
 			},
 			tags: [
 				ObjectId("a00000000000000000000030"),
@@ -351,8 +350,8 @@ module.exports.freelancer = {
 			price: 16,
 			emergency: true,
 			currentPosition: {
-				lat: 46.0119793,
-				long: 12.9517463,
+				lat: 51.5299282,
+				long: -0.1074558
 			}
 		},
 		{
@@ -923,6 +922,7 @@ module.exports.freelancer = {
 			lastName: 'Kelly',
 			email: 'fiona@g.g',
 			phone: '+390007362864',
+			profilePhoto: '/uploads/test/profile29.jpg',
 			address: {
 				road: "Via Cenisio",
 				number: 100,
@@ -1141,7 +1141,7 @@ module.exports.freelancer = {
 			profilePhoto: '/uploads/test/profile36.jpg',
 			photos: [
 				'/uploads/test/36a.jpg',
-				'/uploads/test/36b.jpg',
+				'/uploads/test/36b.jpeg',
 				'/uploads/test/36c.jpg',
 				'/uploads/test/36d.jpg',
 				'/uploads/test/36e.jpg',
@@ -1228,7 +1228,7 @@ module.exports.freelancer = {
 				lat: 46.0112796,
 				long: 8.9531329
 			},
-			profilePhoto: '/uploads/test/profile0.jpg',
+			profilePhoto: '/uploads/test/profile39.jpg',
 			photos: [
 				'/uploads/test/39a.jpg',
 				'/uploads/test/39b.jpg',
@@ -1588,21 +1588,91 @@ module.exports.freelancer = {
 			firstName: 'Daniele',
 			lastName: 'Rossi',
 			email: 'dani@grace.it',
-			workName: 'Susi',
-			phone: '+39 3267832329',
-			profilePhoto: '/uploads/test/profile51.jpg',
+			phone: '+39 3296386439',
+			profilePhoto: '/uploads/test/profile52.jpg',
 			address: {
 				city: 'Roma',
-				lat: 41.845439,
-				long: 12.4496863,
+				lat: 41.959848,
+				long: 12.5484063,
 			},
-			price: 85,
-			description: "I am a graphic designer based in New York. I have served businesses and individuals in over eight countries and in countless industries. My specialties include designing marketing material such as brochures, catalogs, banners and flyers; as well as pdfs, social media graphics, white papers etc. My favorite projects to work on are print design but I also enjoy working on graphics and banners for the web and custom illustration. I love what I do and truly take pride in producing the high quality work as well as great customer service to my clients.",
+			photos: [
+				'/uploads/test/0a.jpg',
+				'/uploads/test/0b.jpg',
+				'/uploads/test/0c.jpg',
+				'/uploads/test/0d.jpg',
+				'/uploads/test/0e.png',
+				'/uploads/test/0f.jpg',
+			],
+			price: 60,
+			description: "10+ yrs as an UI/UX Designer, working for Coursera, Faber Castell, Skoda, GoGetFunding, oDesk, various agencies and 50+ startups. Over the years I had many titles: Graphic Designer, Web Designer, Mobile & App Designer, and, in the past 5 years, as the market became more aware of UX: UX Consultant. I can guide your project through the entire design process: from analysis, to wireframes, to interactive prototypes and finally to user-friendly interfaces that are both beautiful and efficient. Here are the services that I offer: UX Consultant: UX Expert Review (UX Audit), Wire-framing, Prototyping, Conversion Rate Optimisation, A/B Testing User Interface Designer: Website Design, Landing Page Design for conversion, Mobile Website and Mobile App design, Desktop Software design. I am friendly, easy-going and passionate about what I do, so if you are in need of UI or UX design help or just want to say 'Hi', don't hesitate to contact me.",
 			tags: [
-				// ObjectId("a00000000000000000000032"),
-				// ObjectId("a00000000000000000000012")
+				ObjectId("a00000000000000000000006"),
+				ObjectId("a00000000000000000000012"),
+				ObjectId("a00000000000000000000007")
 			],
 			emergency: false,
+		},
+		{
+			_id: ObjectId("f00000000000000000000053"),
+			firstName: 'Giulia',
+			lastName: 'Bellati',
+			email: 'giulia.bellati@gmail.com',
+			phone: '+39 35237293',
+			profilePhoto: '/uploads/test/profile53.jpg',
+			address: {
+				city: 'Milan',
+				lat: 45.523361,
+				long: 9.1594053,
+			},
+			photos: [
+				'/uploads/test/53a.jpg',
+				'/uploads/test/53b.jpg',
+				'/uploads/test/53c.jpg',
+				'/uploads/test/53d.jpg',
+				'/uploads/test/53e.jpg',
+				'/uploads/test/53f.jpg',
+			],
+			price: 30,
+			description: "I am qualified, talented and self-motivated graphic designer with 7 years of experience working on various projects. I create design and illustration either for books, magazines, flyers, business cards, greeting cards, posters, websites, iPhone/iPad Apps, etc. If you hire me I guarantee high-quality work meeting deadline. I am always open to interesting projects and looking forward to cooperate with you!",
+			tags: [
+				ObjectId("a00000000000000000000012"),
+				ObjectId("a00000000000000000000005"),
+				ObjectId("a00000000000000000000007")
+			],
+			emergency: false,
+		},
+		{
+			_id: ObjectId("f00000000000000000000054"),
+			firstName: 'Jacopo',
+			lastName: 'Jacopini',
+			email: 'j.jacopini@gmail.com',
+			phone: '+39 32673293',
+			profilePhoto: '/uploads/test/profile54.jpg',
+			address: {
+				city: 'Milan',
+				lat: 45.4458543,
+				long: 9.1515518,
+			},
+			photos: [
+				'/uploads/test/54a.jpg',
+				'/uploads/test/54b.jpg',
+				'/uploads/test/54c.jpg',
+				'/uploads/test/54d.jpg',
+				'/uploads/test/54e.jpg',
+				'/uploads/test/54f.jpg',
+			],
+			price: 95,
+			description: "Norman collaborates with startups and established enterprises alike, creating, developing and improving design concepts for electronic devices, wearable technology, consumer and household products. As a professional and versatile product designer, Norman offers services such as concept design sketching, product development, and 3D modelling, editing and rendering for product presentations and marketing purposes. What he provides, and what you actually pay for is valuable output -- results that can propel a business forward or gain your business the much needed attention, clients, customers and potentially a good share of the market. Norman studied both Industrial Design and Business Management in reputable universities in the Philippines and the UK, and have gained about 8 years of professional experience as a designer in the advertising media and electronics industries. He is both a designer and a marketer, although he preferred to focus more on nurturing his creative career. His tools include Solidworks and Keyshot for 3D modelling and rendering, Adobe Photoshop and Illustrator for graphic design. He is known to actually conduct research and engage with his clients, prior to designing, in order to gather as much information as necessary to educate and familiarize himself on each project. Understanding the product, its purpose, target market and users, are some of the factors he consider crucial when working with design. 'Each component and element has to have a purpose. As a professional designer, I strive to achieve design harmony with form, purpose and product functionality, increasing the chances of getting people to love the product. If the product works as well as it looks, people will want it, customers will get it, and users will talk good about it.'",
+			tags: [
+				ObjectId("a00000000000000000000012"),
+				ObjectId("a00000000000000000000023"),
+				ObjectId("a00000000000000000000026")
+			],
+			emergency: true,
+			currentPosition: { //Milan
+				lat: 45.475233,
+				long: 9.1902183
+			}
 		},
 	]
 }

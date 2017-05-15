@@ -49,14 +49,16 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000001"),
 				ObjectId("f00000000000000000000004"),
 				ObjectId("f00000000000000000000046"),
-				ObjectId("f00000000000000000000050")
+				ObjectId("f00000000000000000000050"),
+				ObjectId("f00000000000000000000053")
 			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000006"),
 			name: 'UI Design',
 			freelancer: [
-				ObjectId("f00000000000000000000001")
+				ObjectId("f00000000000000000000001"),
+				ObjectId("f00000000000000000000052")
 			]
 		},
 		{
@@ -64,7 +66,9 @@ module.exports.tag = {
 			name: 'Web Design',
 			freelancer: [
 				ObjectId("f00000000000000000000001"),
-				ObjectId("f00000000000000000000048")
+				ObjectId("f00000000000000000000048"),
+				ObjectId("f00000000000000000000052"),
+				ObjectId("f00000000000000000000053")
 			]
 		},
 		{
@@ -111,7 +115,10 @@ module.exports.tag = {
 				ObjectId("f00000000000000000000048"),
 				ObjectId("f00000000000000000000050"),
 				ObjectId("f00000000000000000000002"),
-				ObjectId("f00000000000000000000051")
+				ObjectId("f00000000000000000000051"),
+				ObjectId("f00000000000000000000052"),
+				ObjectId("f00000000000000000000053"),
+				ObjectId("f00000000000000000000054")
 			]
 		},
 		{
@@ -179,7 +186,10 @@ module.exports.tag = {
 		{
 			_id: ObjectId("a00000000000000000000023"),
 			name: 'Industrial Design',
-			freelancer: [ObjectId("f00000000000000000000047")]
+			freelancer: [
+				ObjectId("f00000000000000000000047"),
+				ObjectId("f00000000000000000000054")
+			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000024"),
@@ -194,7 +204,11 @@ module.exports.tag = {
 		{
 			_id: ObjectId("a00000000000000000000026"),
 			name: '3D Rendering',
-			freelancer: [ObjectId("f00000000000000000000047"), ObjectId("f00000000000000000000048")]
+			freelancer: [
+				ObjectId("f00000000000000000000047"),
+				ObjectId("f00000000000000000000048"),
+				ObjectId("f00000000000000000000054")
+			]
 		},
 		{
 			_id: ObjectId("a00000000000000000000027"),
