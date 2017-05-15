@@ -6,7 +6,7 @@
 			<div id="info-name">
 				<div class="info-name-top">
 					<span class="ml-15" id="profile-name">{freelancer.firstName} {freelancer.lastName}</span> {?freelancer.ownerId}
-					<span class="ml-15 light-blue" id="city-freelancer">{?freelancer.address.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a> {/freelancer.address.city}</span>
+					<span class="ml-15 light-blue" id="city-freelancer"><i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a></span>
 					<span class="ml-15"><i class="fa fa-check-circle light-blue" style="font-size: 22px" id="verified-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="This freelancer is verified"></i></span>{/freelancer.ownerId} {?freelancer.emergency}
 					<span class="ml-15"><i class="fa fa-bell blink light-blue" style="font-size: 22px;" id="emergency-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Available for emergency"></i></span>{/freelancer.emergency} {^freelancer.emergency}
 					<span class="ml-15 light-blue" id="disabled-emergency-sign" style="font-size: 22px;" data-toggle="tooltip" data-placement="top" title="Not available for emergency">
@@ -34,9 +34,6 @@
 				{?freelancer.price}€{freelancer.price} price/hour{/freelancer.price}
 			</div>
 			<div id="contact-info-top" class="ml-15">
-				<div id="chat" class="contact-info-element blue">
-					<i class="fa fa-comment " aria-hidden="true"></i> chat
-				</div>
 				<div id="email" class="contact-info-element blue">
 					<i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{freelancer.email}">{freelancer.email}</a>
 				</div>
