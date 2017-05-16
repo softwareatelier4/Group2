@@ -60,6 +60,11 @@ const FREELANCER = {
 
 						//display photos of work, if more than 9, display only in the lightbox
 						res.photosThumbnail = [];
+
+						res.photos = res.photos.sort(function(a, b) {
+							return 0.5 - Math.random()
+						});
+
 						for (var i in res.photos) {
 							if (i == 9) {
 								break;
