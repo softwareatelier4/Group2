@@ -173,7 +173,7 @@ module.exports.review = {
 			freelancer: ObjectId("f00000000000000000000025")
 		},
 		{
-			_id: ObjectId("c00000000000000000000014"), ////
+			_id: ObjectId("c00000000000000000000014"),
 			title: 'Great Designer!',
 			date: '2017-01-22T23:58:43.122Z',
 			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
@@ -228,73 +228,70 @@ module.exports.review = {
 		},
 		{
 			_id: ObjectId("c00000000000000000000020"),
-			title: 'Great Designer!',
+			title: 'Great Experience!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			description: "Great experience. Turned up perfectly on time and sorted out the new boiler with no problems. Would definitely call her again",
+			score: 4,
 			user: ObjectId("b00000000000000000000008"),
 			freelancer: ObjectId("f00000000000000000000040")
 		},
 		{
 			_id: ObjectId("c00000000000000000000021"),
-			title: 'Great Designer!',
+			title: 'Had my boiler service!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
+			description: "Had my boiler serviced, came the next day on time and the guy couldn't have been more helpful. No mess she cleared up after her - in fact I was going to call Juliette to say how good she was, but they beat me to it by calling me and asking me how the service was - Excellent !",
 			score: 5,
 			user: ObjectId("b00000000000000000000009"),
 			freelancer: ObjectId("f00000000000000000000040")
 		},
 		{
 			_id: ObjectId("c00000000000000000000022"),
-			title: 'Great Designer!',
+			title: 'Great Service...',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
+			description: "Having tried a local plumbing firm who were truly awful, I decided to spend a bit more and go with JobAdvisor. The plumber, Marianice Porcu, was brilliant. She knew exactly what she was doing, and was helpful and professional. She may be expensive, but just like the difference between a supermarket Rich Tea biscuit, and the real deal, you really do get what you pay for. I'd happily recommend. Also JobAdvisor guarantee you can get the same plumber back on a repeat visit, which means you don't have to spend an hour going through the same problem again, which can get very expensive with so called cheaper companies. A+ for JobAdvisor.",
 			score: 5,
 			user: ObjectId("b00000000000000000000010"),
 			freelancer: ObjectId("f00000000000000000000043")
 		},
 		{
 			_id: ObjectId("c00000000000000000000023"),
-			title: 'Great Designer!',
+			title: 'Some work on the drains!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			description: "I needed a small job doing on some drains and decided to search on JobAdvisor. Booking an engineer was quick and easy with the operator taking full details of the problem. Engineer turned up first thing as arranged and was very helpful and understood the problem right away. She is not cheap, but you get what you pay for - all round, really good service.",
+			score: 4,
 			user: ObjectId("b00000000000000000000011"),
 			freelancer: ObjectId("f00000000000000000000043")
 		},
 		{
 			_id: ObjectId("c00000000000000000000024"),
-			title: 'Great Designer!',
+			title: 'Best designer ever!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
+			description: "What a great experience. We received some extremely creative and original packaging designs from a talented designer. She was great to work with and all of their work was first class. I would recommend her to anyone looking for top notch designers.",
 			score: 5,
 			user: ObjectId("b00000000000000000000012"),
 			freelancer: ObjectId("f00000000000000000000046")
 		},
 		{
 			_id: ObjectId("c00000000000000000000025"),
-			title: 'Great Designer!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			score: 4,
 			user: ObjectId("b00000000000000000000013"),
 			freelancer: ObjectId("f00000000000000000000046")
 		},
 		{
 			_id: ObjectId("c00000000000000000000026"),
-			title: 'Great Designer!',
+			title: 'Great Man and Designer!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			description: "Perfect worker! Nice design made in few days. He is very kind!",
+			score: 4,
 			user: ObjectId("b00000000000000000000014"),
 			freelancer: ObjectId("f00000000000000000000052")
 		},
 		{
 			_id: ObjectId("c00000000000000000000027"),
-			title: 'Great Designer!',
+			title: 'Good experience',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			score: 3,
 			user: ObjectId("b00000000000000000000015"),
 			freelancer: ObjectId("f00000000000000000000052")
 		},
