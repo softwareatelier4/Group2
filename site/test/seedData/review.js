@@ -40,7 +40,7 @@ module.exports.review = {
 				'/uploads/test/4re.jpg',
 				'/uploads/test/4rf.jpg'
 			],
-			user: ObjectId("b00000000000000000000010"),
+			user: ObjectId("b00000000000000000000017"),
 			freelancer: ObjectId("f00000000000000000000004")
 		},
 		{
@@ -141,42 +141,39 @@ module.exports.review = {
 		},
 		{
 			_id: ObjectId("c00000000000000000000010"),
-			title: 'Great Designer!',
+			title: 'Perfect experience!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
+			description: "Once you meet Shen, the decision to choose her is easy. She is so much fun and keep your ideas in mind while bringing her own amazing creativity to the table. Everyone who saw our pictures loved them and said she has never seen wedding pictures so full of life. She is very easy to work with and to communicate with. Choosing Shen was one of the best decisions for the wedding I made and one of the funnest!",
 			score: 5,
 			user: ObjectId("b00000000000000000000008"),
 			freelancer: ObjectId("f00000000000000000000021")
 		},
 		{
 			_id: ObjectId("c00000000000000000000011"),
-			title: 'Great Designer!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			score: 4,
+			description: "Shen is as badass as her photography! She captured every right moment in every right way. Looking at the photos she did for us makes us want to do it all over again! Shen was professional, fun and kept the entire day super organized. She's amazing!",
 			user: ObjectId("b00000000000000000000009"),
 			freelancer: ObjectId("f00000000000000000000021")
 		},
 		{
 			_id: ObjectId("c00000000000000000000012"),
-			title: 'Great Designer!',
+			title: 'Great Photographer!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
 			score: 5,
 			user: ObjectId("b00000000000000000000010"),
 			freelancer: ObjectId("f00000000000000000000025")
 		},
 		{
 			_id: ObjectId("c00000000000000000000013"),
-			title: 'Great Designer!',
+			title: 'Nice experience',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			score: 4,
 			user: ObjectId("b00000000000000000000011"),
 			freelancer: ObjectId("f00000000000000000000025")
 		},
 		{
-			_id: ObjectId("c00000000000000000000014"),
+			_id: ObjectId("c00000000000000000000014"), ////
 			title: 'Great Designer!',
 			date: '2017-01-22T23:58:43.122Z',
 			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
