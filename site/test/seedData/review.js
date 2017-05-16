@@ -71,7 +71,7 @@ module.exports.review = {
 			freelancer: ObjectId("f00000000000000000000007")
 		},
 		{
-			_id: ObjectId("c00000000000000000000005"),
+			_id: ObjectId("c00000000000000000000031"),
 			title: 'Good experience',
 			date: '2017-01-22T23:58:43.122Z',
 			description: "I had a wonderful experience with Susan and will definitely be back. Though the services/products are somewhat pricey, everything is extremely good quality (She has a great selection of hair pieces and styling products) and I had a fun experience that left me feeling beautiful; there's no price I wouldn't pay for the confidence I felt when I left. She was fun, personable and helpful when it came to my style request, plus I immediately felt like I was getting my hair done and chatting with friends; they are non-judgmental about what your hair looks like and strive to make you feel like a celebrity when you leave.",
@@ -80,7 +80,7 @@ module.exports.review = {
 			freelancer: ObjectId("f00000000000000000000007")
 		},
 		{
-			_id: ObjectId("c00000000000000000000005"),
+			_id: ObjectId("c00000000000000000000032"),
 			title: 'Worst experience',
 			date: '2017-01-22T23:58:43.122Z',
 			description: "Susan destroyed my hand!!!!!",
@@ -110,20 +110,32 @@ module.exports.review = {
 			freelancer: ObjectId("f00000000000000000000009")
 		},
 		{
+			_id: ObjectId("c00000000000000000000028"),
+			date: '2017-01-22T23:58:43.122Z',
+			score: 2,
+			user: ObjectId("b00000000000000000000009"),
+			freelancer: ObjectId("f00000000000000000000011")
+		},
+		{
+			_id: ObjectId("c00000000000000000000029"),
+			date: '2017-01-22T23:58:43.122Z',
+			score: 1,
+			user: ObjectId("b00000000000000000000008"),
+			freelancer: ObjectId("f00000000000000000000011")
+		},
+		{
 			_id: ObjectId("c00000000000000000000008"),
 			title: 'My nails seem to be witches',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "", //fare da qua!
+			description: "I have no words! Horrible experience!!!",
 			score: 1,
 			user: ObjectId("b00000000000000000000016"),
 			freelancer: ObjectId("f00000000000000000000011")
 		},
 		{
-			_id: ObjectId("c00000000000000000000009"),
-			title: 'Great Designer!',
+			_id: ObjectId("c00000000000000000000030"),
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			score: 3,
 			user: ObjectId("b00000000000000000000017"),
 			freelancer: ObjectId("f00000000000000000000011")
 		},
