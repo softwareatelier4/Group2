@@ -34,7 +34,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000002")
 			],
 			description: 'Upwork Freelancer plus the CEO of a successful E-Commerce store in London which did more than $1million revenue within an year of launching and still going strong. My core skills include HTML, CSS, Javascript, PHP, MySQL, WordPress, Shopify, BigCommerce, cPanel/WHM, JIRA/Confluence Administration plus anything related to web developement and server configuration. I will be available every weekday 3:30PM GMT to 5:30PM GMT and you can contact me by e-mail.',
-			score: 0,
+			score: 3.5,
 			price: 33,
 			emergency: true,
 			currentPosition: { //London
@@ -155,7 +155,7 @@ module.exports.freelancer = {
 				'/uploads/test/4h.jpg',
 				'/uploads/test/4i.jpg'
 			],
-			score: 0,
+			score: 3,
 			price: 80,
 			address: {
 				city: 'Berlin',
@@ -244,7 +244,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000037")
 			],
 			description: "Born in Modena. Currently living in London. I begin studying as beautician but soon changes to make-up, attending BCM in Milan. I started working as make-up assistant before finishing it, at cinema festival and tv shows, but I quickly understand that I like more working with street and modern styles. I have worked with Marie Claire, Io Donna, The Greatest Magazine, Interview Russia.",
-			score: 0,
+			score: 3.75,
 			emergency: true,
 			price: 90,
 			currentPosition: {
@@ -305,6 +305,7 @@ module.exports.freelancer = {
 				lat: 46.015036,
 				long: 8.9768153,
 			},
+			score: 3.5,
 			description: "I am the founder of Pink Plumbers. The company has been operating since 2003, delivering consistent and considerate plumbing services to our customers, and even during the recent recession has shown annual growth. Operating under a national licence structure, our female plumbers are able to meet the needs of their local market whilst you and they benefit from a nationally recognised brand. We offer a wide range of plumbing services to our customers and ensure our plumbers are qualified to carry out those services. All our plumbers operate within a set of guidelines based on the Pink Plumbers values, with support where needed. We are a Plumbing business that recognises that there is currently a lack of female plumbers operating independently in their local communities, and where they do exist it's often hard for customers to find them. At Pink Plumbers we help to close the gap between female plumbers qualifying and operating as plumbers in their community.",
 			price: 40,
 			tags: [
@@ -389,7 +390,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000034")
 			],
 			description: "I am a CIDESCO trained therapist with meticulous high standards. I have experience as a personal beauty therapist, in 5* spas on land and at sea, working for luxury skin care brands and also management and training experience. My experiences have meant that I have been able to travel around the world and work with people of all ages, cultures, nationalities and religions. This has allowed me to improve my people skills and enabled me to have the confidence and ability to work with people from different backgrounds. As a therapist I am extremely passionate, hard-working, professional and I love to make people feel and look their best. I am a very empathetic and understanding person and give 100% at all times in my work",
-			score: 0,
+			score: 1.75,
 			price: 30,
 			emergency: false
 		},
@@ -682,7 +683,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000043")
 			],
 			description: "I am able to cover a wide range of photography such as wedding photography, baby & family photography, maternity photography, pet photography, headshots & portfolios, event photography, fashion photography, landscape photography, wildlife photography, action photography, sports photography, real estate photography, architecture photography, concerts, macro photography, food & travel, street photography, advertising photography & even stock photography.",
-			score: 0,
+			score: 4.5,
 			price: 34,
 			emergency: false
 		},
@@ -812,7 +813,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000043")
 			],
 			description: "Hello. Let me introduce myself. My name is Kirill Kozlov and my journey into the TV and Film industry began 20 years ago when I was studying to be a Director of Photography (DOP). So beautiful TV and film lighting is my thing! Luckily for everybody I brought those skills into shooting headshots.",
-			score: 0,
+			score: 4.5,
 			price: 73,
 			emergency: false,
 			ownerId: ObjectId("b00000000000000000000015"),
@@ -847,7 +848,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000043"),
 			],
 			description: "My name's Nico, I'm a professional London photographer specialised in creating exciting visual content for global brands, including FTSE100 companies. A key thing is to stay up to date with the latest marketing and photography trends to then get these two to meet in a happy place. For that reason I offer a catalogue of new ideas and techniques often the result of late night experiments in my studio.",
-			score: 0,
+			score: 3,
 			price: 46,
 			emergency: false
 		},
@@ -947,7 +948,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000044")
 			],
 			description: "My name is Fiona Kelly, the founder and the principal wedding photographer of the one man band that is RawSilk Photography. I grew up in rural Sweden but now live in East London with my wife Camilla and my two girls, Betty and Agnes. I became a professional photographer after years of assisting on everything from fashion shoots for British Vogue to movie franchises like Harry Potter. In recent years I have shot  commercially for global brands including L’Oréal, King of Shaves and Chivas working with A’list actors like Chiwetel Ejiofor, Idris Elba and Oscar Isaac. I started RawSilk back in 2006 because, as much as I enjoy my commercial work www.stefanlacandler.co.uk, it is a very special feeling to be entrusted with photographing someone’s wedding. I’ve shot weddings all over the place, in Scotland, Italy, France, Denmark, Sweden and Thailand and my work has been published in GQ, Men’s Health, Condé Nast Brides, London Bride and Love my Dress to mention but a few. I work in a reportage style and I think this is how it should be. I shoot almost exclusively with natural light and I do all my own editing and retouching. I don’t airbrush or play around with filters or other gimmicks. I like telling it like it is in the most beautiful way possible. Most importantly I aim to give a true depiction of what actually happened on the day,  how you remembered it. I have photographed over 200 weddings as well as numerous films and commercials but you can never afford to get complacent. Every wedding is a fresh start with new possibilities and risks. That’s what keeps me on my toes, what keeps it interesting for me and what makes me want to keep doing what I do.",
-			score: 0,
+			score: 4,
 			price: 30,
 			emergency: false
 		},
@@ -1186,7 +1187,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000036")
 			],
 			description: "Welcome to The Cove Spa Specialists in results driven skincare, relaxing holistic therapies and industry leading beauty treatments... Multi-award winning Cove Spa is renowned for its 'personalised' and cutting edge service where exceeding your expectations is our philosophy. A team of specialists who together have over 150 years of body, beauty and skincare experience is at hand when you visit one of our boutique [cosy, intimate and warm] spas - each one independently run to fully embrace the locality; currently spread across highly-desirable locations in London and Hertfordshire. Awarded 'Spa of the Year 2016' for the second year running, at the London Hair & Beauty Awards and 'The Most Commended Spa' at the prestigious British Beauty Awards, is testimony to the wide selection of high quality treatments and rituals we provide in a calm and relaxing ambience - open seven days a week, with late evenings midweek, just for you... ",
-			score: 0,
+			score: 2,
 			price: 34,
 			emergency: false
 		},
@@ -1275,6 +1276,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000016")
 			],
 			emergency: false,
+			score: 4.5,
 			ownerId: ObjectId("b00000000000000000000017"),
 		},
 		{
@@ -1353,6 +1355,7 @@ module.exports.freelancer = {
 			},
 			description: "I believe that plumber work is not only for man! I am attracted by this work since I was a child, now I repute that my company is one of the biggest in Italy. There are around 10 female plumbers that operate in all the country.  I operate within a set of guidelines based on the plumbers values. I recognise that there is currently a lack of female plumbers operating independently in their local communities, and where they do exist it's often hard for customers to find them. My company helps to close the gap between female plumbers qualifying and operating as plumbers in their community.I have a bachelor degree in plumber engineering. I know some of the most famous engineering software. If you retain that I am the worker perfect for you, contact me by e-mail or phone! I am available everyday from 8.00 am to 9.00 pm.",
 			price: 45,
+			score: 4.5,
 			tags: [
 				ObjectId("a00000000000000000000038"),
 				ObjectId("a00000000000000000000014"),
@@ -1447,6 +1450,7 @@ module.exports.freelancer = {
 			],
 			description: "About the Designer: Roberta Souto, 36, Industrial Designer graduate from ESDI/ UERJ (Rio de Janeiro, RJ - Brazil) with a 5-year BA degree. I have almost 10 years experience working with packaging and I have knowledge in both graphic design and product design. One of my designs was a finalist at the 2012 HBA International Package Design Awards in New York City. Before that I was the head designer, product developer and creative director of a manufacturer for 5 years, working with worldwide retail chains like TJ Maxx, Bath Bed & Beyond, Petsmart and Toys R Us to name a few, besides coordinating production in a equally global level. My background in Industrial Design helps me to not limit myself to just one field of design and I have worked with everything from brochures to dog toys to food packaging. I have had the great opportunity to work with large retail chains as well as small start-ups. I'm a creative person, but I'm also very interested in business topics and one of my passions is to support small businesses to take their products and services to the next level.",
 			price: 105,
+			score: 4.5,
 			tags: [
 				ObjectId("a00000000000000000000012"),
 				ObjectId("a00000000000000000000019"),
@@ -1606,6 +1610,7 @@ module.exports.freelancer = {
 				'/uploads/test/0f.jpg',
 			],
 			price: 60,
+			score: 3.5,
 			description: "10+ yrs as an UI/UX Designer, working for Coursera, Faber Castell, Skoda, GoGetFunding, oDesk, various agencies and 50+ startups. Over the years I had many titles: Graphic Designer, Web Designer, Mobile & App Designer, and, in the past 5 years, as the market became more aware of UX: UX Consultant. I can guide your project through the entire design process: from analysis, to wireframes, to interactive prototypes and finally to user-friendly interfaces that are both beautiful and efficient. Here are the services that I offer: UX Consultant: UX Expert Review (UX Audit), Wire-framing, Prototyping, Conversion Rate Optimisation, A/B Testing User Interface Designer: Website Design, Landing Page Design for conversion, Mobile Website and Mobile App design, Desktop Software design. I am friendly, easy-going and passionate about what I do, so if you are in need of UI or UX design help or just want to say 'Hi', don't hesitate to contact me.",
 			tags: [
 				ObjectId("a00000000000000000000006"),
