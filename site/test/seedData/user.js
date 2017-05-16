@@ -125,10 +125,10 @@ module.exports.user = {
 		},
 		{
 			_id: ObjectId("b00000000000000000000013"),
-			firstName: 'Federica',
-			lastName: 'Rossetti',
+			firstName: 'Nicholas',
+			lastName: 'Gerard',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
-			email: 'f.r@usi.ch',
+			email: 'n.g@usi.ch',
 			level: 1,
 			active: false
 		},
