@@ -174,55 +174,49 @@ module.exports.review = {
 		},
 		{
 			_id: ObjectId("c00000000000000000000014"),
-			title: 'Great Designer!',
+			title: 'The best wedding decision!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
+			description: "Fiona was fantastic! My husband and i discussed after the wedding that having her as our photographer was one of our best wedding decisions! We have not seen all of the pictures yet, but as we were going along he was briefly showing us what he had taken and they looked amazing! He was great to work with and gave us a lot of direction which we needed! It's so important to make sure your wedding photographer is top notch and that is exactly what we got!",
 			score: 5,
 			user: ObjectId("b00000000000000000000012"),
-			freelancer: ObjectId("f00000000000000000000026")
-		},
-		{
+			freelancer: ObjectId("f00000000000000000000029")
+		}, {
 			_id: ObjectId("c00000000000000000000015"),
-			title: 'Great Designer!',
+			title: 'Good Fiona!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			description: "Fiona was terrific to work with. She does great work with color & lighting. She got back to me within 24 hour every single time I contacted her which I cannot say for any of my other wedding vendors. We also got a package where we could have the disk which was perfect. Fiona spent a lot of time getting perfect lighting and background for shots, so we didn't get as many unstaged pics as we would have liked. I'm sure he'd do more if you asked though.",
+			score: 3,
 			user: ObjectId("b00000000000000000000013"),
-			freelancer: ObjectId("f00000000000000000000026")
-		},
-		{
+			freelancer: ObjectId("f00000000000000000000029")
+		}, {
 			_id: ObjectId("c00000000000000000000016"),
-			title: 'Great Designer!',
+			title: 'Great Photographer!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			description: "We LOVE our photos! Nico captured exactly what we hoped for - we have a great mix of formals and candids. He was also very professional and he got along great with everyone. Our guests were very fond of him as well - we received a lot of positive feedback regarding our photographer and our photos. One thing we really liked was how willing he was to show us our photos throughout the day. We knew exactly what we were getting and we are very pleased! We highly recommend Jadon Good Photography!",
 			user: ObjectId("b00000000000000000000014"),
-			freelancer: ObjectId("f00000000000000000000029")
-		},
-		{
+			score: 4,
+			freelancer: ObjectId("f00000000000000000000026")
+		}, {
 			_id: ObjectId("c00000000000000000000017"),
-			title: 'Great Designer!',
+			title: 'Not bad, not good',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			description: "Nico is not a talented Photographer, particularly when it comes to capturing the subtleties & natural moments. We were really impressed with the coverage of the day, and the beautiful finish to the shots.",
+			score: 2,
 			user: ObjectId("b00000000000000000000015"),
-			freelancer: ObjectId("f00000000000000000000029")
-		},
-		{
+			freelancer: ObjectId("f00000000000000000000026")
+		}, {
 			_id: ObjectId("c00000000000000000000018"),
-			title: 'Great Designer!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			description: "I get my nails done here often and they turn out really nice.. but if you end up with anyone other than Emily or the owner, you will be unhappy with the final product. So it is best to make your appointment and request who you would like.. Emily is my favorite, she is sweet.",
+			score: 3,
 			user: ObjectId("b00000000000000000000016"),
 			freelancer: ObjectId("f00000000000000000000037")
-		},
-		{
+		}, {
 			_id: ObjectId("c00000000000000000000019"),
-			title: 'Great Designer!',
+			title: 'Hating my nails!',
 			date: '2017-01-22T23:58:43.122Z',
-			description: "Perfect worker! Nice design made in few weeks. I really recommend him to everyone that wants a modern site paying the right!",
-			score: 5,
+			description: "I am still in shock...I use to go to this salon for years before moving away. I went back for my first time after 5 years for a gel manicure. Everyone remembered me it was nice. 2 days later my my nails started chipping. On day 4 after a 14 hr work shift I went in for a color change...they said it wasn't necessary. Instead Emily fixed the 3 chipped nails. I tipped her $20 as she was not the one who did the manicure when I walked out the 3 nails were a different color!!!!! When I went back in to complain they laughed and said come back anytime and they would fix them. NO effort to rectify the situation at that moment, not even an apology. 2 visits and $55 later, I have NEVER been so upset about a manicure in my life!!",
+			score: 1,
 			user: ObjectId("b00000000000000000000017"),
 			freelancer: ObjectId("f00000000000000000000037")
 		},
