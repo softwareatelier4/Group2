@@ -7,7 +7,6 @@ module.exports.user = {
 	name: 'User',
 	data: [{
 			_id: ObjectId("b00000000000000000000001"),
-			freeLancerId: ObjectId("f00000000000000000000005"),
 			firstName: 'Costanza',
 			lastName: 'Volpini',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
@@ -17,7 +16,6 @@ module.exports.user = {
 		},
 		{
 			_id: ObjectId("b00000000000000000000000"),
-			freeLancerId: ObjectId("f00000000000000000000000"),
 			firstName: 'Marco',
 			lastName: 'Tollini',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
@@ -27,7 +25,6 @@ module.exports.user = {
 		},
 		{
 			_id: ObjectId("b00000000000000000000002"),
-			freeLancerId: ObjectId("f00000000000000000000003"),
 			firstName: 'Daniele',
 			lastName: 'Lo Preiato',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
@@ -55,7 +52,6 @@ module.exports.user = {
 		},
 		{
 			_id: ObjectId("b00000000000000000000005"),
-			freeLancerId: ObjectId("f00000000000000000000006"),
 			firstName: 'Zeno',
 			lastName: 'Trevisan',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
@@ -74,7 +70,6 @@ module.exports.user = {
 		},
 		{
 			_id: ObjectId("b00000000000000000000007"),
-			freeLancerId: ObjectId("f00000000000000000000001"),
 			firstName: 'Nevio',
 			lastName: 'Valsangiacomo',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
@@ -102,10 +97,11 @@ module.exports.user = {
 		},
 		{
 			_id: ObjectId("b00000000000000000000010"),
-			firstName: 'Jessica',
-			lastName: 'Urbino',
+			firstName: 'Samantha',
+			lastName: 'Scotti',
+			freeLancerId: ObjectId("f00000000000000000000004"),
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
-			email: 'j.u@usi.ch',
+			email: 's.s@usi.ch',
 			level: 1,
 			active: true
 		},
@@ -147,8 +143,9 @@ module.exports.user = {
 		},
 		{
 			_id: ObjectId("b00000000000000000000015"),
-			firstName: 'Oliver',
-			lastName: 'Giramondo',
+			firstName: 'Kirill',
+			lastName: 'Kozlov',
+			freeLancerId: ObjectId("f00000000000000000000025"),
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
 			email: 'o.g@usi.ch',
 			level: 1,
@@ -165,15 +162,16 @@ module.exports.user = {
 		},
 		{
 			_id: ObjectId("b00000000000000000000017"),
-			firstName: 'Umberto',
-			lastName: 'Fiozzi',
+			firstName: 'Juliette',
+			lastName: 'Foxy',
+			freeLancerId: ObjectId("f00000000000000000000040"),
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
-			email: 'u.f@usi.ch',
+			email: 'j.f@usi.ch',
 			level: 1,
 			active: true
 		},
 		{
-			_id: ObjectId("b00000000000000000000017"),
+			_id: ObjectId("b00000000000000000000018"),
 			firstName: 'Riccardo',
 			lastName: 'Waslo',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',

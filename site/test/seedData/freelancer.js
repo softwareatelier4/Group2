@@ -135,7 +135,6 @@ module.exports.freelancer = {
 				lat: 45.549002,
 				long: 9.0550243,
 			},
-			//ownerId:
 		},
 		{
 			_id: ObjectId("f00000000000000000000004"),
@@ -169,7 +168,8 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000012")
 			],
 			description: "I love building online communities that have heart and purpose to impact the world and create transformation and change. To be able to create pathways that connect purpose and destiny with reality. Here's what some people have said about me after we chatted....Working in the design industry for the last 10+ years Samantha has creative flair combined with sharp marketing savvy and the passion to reveal your message in an authentic way. Founding Design Reaction in 2006, she has worked with a large range of clients in the Newcastle and Sydney area including: Hunter New England Health, State Spinal, Bone Marrow Transplant Network, Hunter Development Corporation and many well known small businesses in the Newcastle region.",
-			emergency: false
+			emergency: false,
+			ownerId: ObjectId("b00000000000000000000010"),
 		},
 		{
 			_id: ObjectId("f00000000000000000000005"),
@@ -814,7 +814,8 @@ module.exports.freelancer = {
 			description: "Hello. Let me introduce myself. My name is Kirill Kozlov and my journey into the TV and Film industry began 20 years ago when I was studying to be a Director of Photography (DOP). So beautiful TV and film lighting is my thing! Luckily for everybody I brought those skills into shooting headshots.",
 			score: 0,
 			price: 73,
-			emergency: false
+			emergency: false,
+			ownerId: ObjectId("b00000000000000000000015"),
 		},
 		{
 			_id: ObjectId("f00000000000000000000026"),
@@ -1274,6 +1275,7 @@ module.exports.freelancer = {
 				ObjectId("a00000000000000000000016")
 			],
 			emergency: false,
+			ownerId: ObjectId("b00000000000000000000017"),
 		},
 		{
 			_id: ObjectId("f00000000000000000000041"),
