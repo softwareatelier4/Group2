@@ -84,28 +84,46 @@ module.exports.user = {
 		},
 		{
 			_id: ObjectId("b00000000000000000000008"),
-			firstName: 'User',
-			lastName: 'Test',
+			firstName: 'Francesca',
+			lastName: 'Rossi',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
-			email: 'u.t@usi.ch',
+			email: 'f.r@usi.ch',
 			level: 1,
 			active: false
 		},
 		{
 			_id: ObjectId("b00000000000000000000009"),
-			firstName: '2User',
-			lastName: 'Test',
+			firstName: 'Marco',
+			lastName: 'Bersagli',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
-			email: '2.t@usi.ch',
+			email: 'm.b@usi.ch',
 			level: 1,
 			active: true
 		},
 		{
 			_id: ObjectId("b00000000000000000000010"),
-			firstName: '3User',
-			lastName: 'Test',
+			firstName: 'Jessica',
+			lastName: 'Urbino',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
-			email: '3.t@usi.ch',
+			email: 'j.u@usi.ch',
+			level: 1,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000010"),
+			firstName: 'Katia',
+			lastName: 'Gianfrancesco',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'j.u@usi.ch',
+			level: 1,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000010"),
+			firstName: 'Lorenzo',
+			lastName: 'Didone',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'j.u@usi.ch',
 			level: 1,
 			active: true
 		}
