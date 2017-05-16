@@ -554,6 +554,30 @@ const FREELANCER = {
 					}
 
 					let request = new XMLHttpRequest();
+
+					request.onreadystatechange = function() {
+						//correctly handle the errors based on the HTTP status returned by the called API
+						if (request.readyState == 4 && request.status == 202) {
+							let newReview = JSON.parse(request.responseText);
+
+							console.log(newReview);
+
+							$.get("/html/review.html", function(reviewHtml) {
+
+								newReview.user = user;
+
+								newReview.score = FREELANCER.getHtmlRankStar({
+									full: newReview.score,
+									empty: 5 - newReview.score
+								});
+								dust.renderSource(reviewHtml, [newReview], function(err, out) {
+									$('#cardReviews').append(out);
+									$('#writeReviews').slideUp(800);
+								})
+							});
+						}
+					}
+
 					request.open("PUT", "/api/review/" + idFreelancer);
 					request.send(data);
 				}

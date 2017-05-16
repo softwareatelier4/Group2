@@ -117,7 +117,7 @@ router.put('/:idFreelancer', function(req, res, next) {
 
 		review.user = fields.user;
 
-		review.save(function(err) {
+		review.save(function(err, newReview) {
 			if (err) {
 				return res.sendStatus(400);
 			}
@@ -140,7 +140,8 @@ router.put('/:idFreelancer', function(req, res, next) {
 					if (err) {
 						return res.sendStatus(400);
 					}
-					res.sendStatus(202);
+					console.log(newReview);
+					res.status(202).send(newReview);
 				});
 			});
 		})
