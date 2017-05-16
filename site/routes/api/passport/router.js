@@ -142,6 +142,49 @@ router.post('/login', function(req, res, next) {
 	})(req, res, next);
 });
 
+router.get('/newpassword/:email', function(req, res, next) {
+	const email = req.params.email;
+
+	const search = {
+		email
+	}
+	User.find(search).exec(function(err, user) {
+
+		if (err) return res.send(err);
+
+		if (user.length == 0) {
+			// no user found
+			res.sendStatus(404);
+		} else {
+
+			user = user[0];
+
+			let newPassword = randomString(8);
+			user.password = user.generateHash(newPassword);
+
+			user.save(function(err, updatedUser) {
+				if (err) return res.send(err);
+
+				const link = rootUrl + '/api/active/user/' + user._id;
+				const content = {
+					title: `Your new password`,
+					body: `
+					<p>Hello ${user.firstName},</p>
+					<p>As you requestd, your password has been changed succesfully!</p>
+					<p>Your new password is the following:</p>
+					<p style="text-align: center">${newPassword}</p>`
+				}
+
+				require('./../mail').sendMail(user.email, 'JobAdvisor: new password', content, function(err, info) {
+					return res.send(newPassword);
+				});
+			});
+		}
+	})
+});
+
+
+
 router.post('/signup', function(req, res, next) {
 	passport.authenticate('local-signup', function(err, user, info) {
 		if (err) {
@@ -188,5 +231,17 @@ router.get('/logout', function(req, res) {
 		result: 'logout'
 	});
 });
+
+
+function randomString(len) {
+	var text = "";
+	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	for (var i = 0; i < len; i++)
+		text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	return text;
+}
+
 
 module.exports = router;
