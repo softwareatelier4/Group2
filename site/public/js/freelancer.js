@@ -44,71 +44,73 @@ const FREELANCER = {
 		var url = window.location.href;
 		var idFreelancer = url.split('=')[1];
 
-		doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
-			let owner = res.ownerId;
-			if (res.error) {
-				console.log("error");
-			} else {
-				$.get("/html/freelancer.html", function(html) {
-					res.score = FREELANCER.getHtmlRankStar({
-						full: res.score,
-						empty: 5 - res.score
-					});
+		isLogged(function(loggedUser) {
+			userLogged = loggedUser.result;
 
-					//display photos of work, if more than 9, display only in the lightbox
-					res.photosThumbnail = [];
-					for (var i in res.photos) {
+			doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
+				let owner = res.ownerId;
+				if (res.error) {
+					console.log("error");
+				} else {
+					$.get("/html/freelancer.html", function(html) {
+						res.score = FREELANCER.getHtmlRankStar({
+							full: res.score,
+							empty: 5 - res.score
+						});
+
+						//display photos of work, if more than 9, display only in the lightbox
+						res.photosThumbnail = [];
+						for (var i in res.photos) {
+							if (i == 9) {
+								break;
+							}
+
+							res.photosThumbnail.push(res.photos[i]);
+						}
 						if (i == 9) {
-							break;
+							res.photos = res.photos.splice(i, res.photos.length);
+						} else {
+							res.photos = [];
 						}
 
-						res.photosThumbnail.push(res.photos[i]);
-					}
-					if (i == 9) {
-						res.photos = res.photos.splice(i, res.photos.length);
-					} else {
-						res.photos = [];
-					}
-					let data = {
-						freelancer: res
-					};
+						let data = {
+							freelancer: res
+						};
 
-					dust.renderSource(html, data, function(err, out) {
-						MAIN_JS.innerHTML = out;
-						$('#verified-sign').tooltip();
-						$('#emergency-sign').tooltip();
-						$('#disabled-emergency-sign').tooltip();
+						dust.renderSource(html, data, function(err, out) {
+							MAIN_JS.innerHTML = out;
+							$('#verified-sign').tooltip();
+							$('#emergency-sign').tooltip();
+							$('#disabled-emergency-sign').tooltip();
 
-						FREELANCER.uploadImageZone();
+							FREELANCER.renderReview(idFreelancer, userLogged);
+							FREELANCER.reviewBox(idFreelancer, userLogged)
+						});
 
-						FREELANCER.renderReview(idFreelancer);
-					});
-					isLogged(function(ress) {
-						userId = ress.result;
 						doJSONRequest("GET", "/api/claimrequest", null, null, function(response) {
 							let hasReqPending = false;
 							let userHasFreelancer = false;
-							if (userId.freeLancerId != undefined) {
+							if (userLogged.freeLancerId != undefined) {
 								userHasFreelancer = true;
 							}
 							for (let r of response) {
-								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
+								if (r.user._id === userLogged._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
 									hasReqPending = true;
 								}
 							}
-							if (owner === undefined && userId !== false && hasReqPending === false && userHasFreelancer === false) {
+							if (owner === undefined && userLogged !== false && hasReqPending === false && userHasFreelancer === false) {
 								$(document.getElementById("claim-button")).show();
 							}
 							if (hasReqPending === true) {
 								$(document.getElementById("pending-claim-button")).show();
 							}
-							if (owner && owner._id === userId._id) {
+							if (owner && owner._id === userLogged._id) {
 								$(document.getElementById("modify-button")).show();
 							}
 						})
 					});
-				});
-			}
+				}
+			});
 		});
 	},
 
@@ -118,7 +120,7 @@ const FREELANCER = {
 	 * @param {idFreelancer} - id of the Freelancer
 	 * @return {void}
 	 */
-	renderReview: function(idFreelancer) {
+	renderReview: function(idFreelancer, userLogged) {
 		doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
 			$.get("/html/review.html", function(reviewHtml) {
 
@@ -129,38 +131,49 @@ const FREELANCER = {
 					});
 				}
 
-				isLogged(function(loginRes) {
-					loginRes = loginRes.result;
-					if (loginRes && loginRes.freeLancerId == idFreelancer) {
-						// the user has the current profile
-						result.ableReply = true;
+				if (userLogged && userLogged.freeLancerId == idFreelancer) {
+					// the user has the current profile
+					result.ableReply = true;
 
-						for (res of result) {
-							res.ableReply = true;
-						}
+					for (res of result) {
+						res.ableReply = true;
 					}
+				}
 
-					dust.renderSource(reviewHtml, result, function(err, out) {
-						document.getElementById('cardReviews').innerHTML = out;
-						const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
+				dust.renderSource(reviewHtml, result, function(err, out) {
+					document.getElementById('cardReviews').innerHTML = out;
+					const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
 
-						for (let i = 0; i < replyNum; i++) {
-							$('.reply button[name=freelancer-reply-edit]')[i].addEventListener('click', FREELANCER.editReview);
-							$('.reply button[name=freelancer-reply-save]')[i].addEventListener('click', FREELANCER.saveReview);
-							$('.reply button[name=freelancer-reply-delete]')[i].addEventListener('click', FREELANCER.deleteReview);
-							$('.reply button[name=freelancer-reply-eraser]')[i].addEventListener('click', FREELANCER.eraserReview);
-							$('.reply button[name=freelancer-reply-times]')[i].addEventListener('click', FREELANCER.timesReview);
-							$('.reply button[name=freelancer-reply-delete-no]')[i].addEventListener('click', FREELANCER.deleteConfirm);
-							$('.reply button[name=freelancer-reply-delete-yes]')[i].addEventListener('click', FREELANCER.deleteConfirm);
-							const replyButton = $('button[name=freelancer-reply]')[i];
-							if (replyButton)
-								replyButton.addEventListener('click', FREELANCER.showReplyReview);
-						}
-					});
-				})
+					for (let i = 0; i < replyNum; i++) {
+						$('.reply button[name=freelancer-reply-edit]')[i].addEventListener('click', FREELANCER.editReview);
+						$('.reply button[name=freelancer-reply-save]')[i].addEventListener('click', FREELANCER.saveReview);
+						$('.reply button[name=freelancer-reply-delete]')[i].addEventListener('click', FREELANCER.deleteReview);
+						$('.reply button[name=freelancer-reply-eraser]')[i].addEventListener('click', FREELANCER.eraserReview);
+						$('.reply button[name=freelancer-reply-times]')[i].addEventListener('click', FREELANCER.timesReview);
+						$('.reply button[name=freelancer-reply-delete-no]')[i].addEventListener('click', FREELANCER.deleteConfirm);
+						$('.reply button[name=freelancer-reply-delete-yes]')[i].addEventListener('click', FREELANCER.deleteConfirm);
+						const replyButton = $('button[name=freelancer-reply]')[i];
+						if (replyButton)
+							replyButton.addEventListener('click', FREELANCER.showReplyReview);
+					}
+				});
 			});
 		});
 
+	},
+
+	reviewBox: function(idFreelancer, userLogged) {
+		console.log(idFreelancer, userLogged);
+
+		if (userLogged && userLogged.freeLancerId != idFreelancer) {
+			// check if the user already commented
+			doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer + '/user/' + userLogged._id, null, null, function(result) {
+				if (result.length == 0) {
+					$('#writeReviews').show();
+					FREELANCER.uploadImageZone();
+				}
+			});
+		}
 	},
 
 	editReview: function(e) {

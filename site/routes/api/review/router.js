@@ -150,6 +150,21 @@ router.put('/:idFreelancer', function(req, res, next) {
 });
 
 
+router.get('/freelancer/:idFreelancer/user/:idUser', function(req, res, next) {
+	const idFreelancer = req.params.idFreelancer;
+	const idUser = req.params.idUser;
+
+	const findData = {
+		freelancer: idFreelancer,
+		user: idUser
+	}
+
+	Review.find(findData).exec(function(err, reviews) {
+		res.status(200).send(reviews);
+	});
+})
+
+
 
 function newScoreAverage(reviews) {
 	let sumScore = 0;
