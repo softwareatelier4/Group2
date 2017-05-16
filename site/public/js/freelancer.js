@@ -61,6 +61,7 @@ const FREELANCER = {
 						//display photos of work, if more than 9, display only in the lightbox
 						res.photosThumbnail = [];
 
+						// shuffle the images
 						res.photos = res.photos.sort(function(a, b) {
 							return 0.5 - Math.random()
 						});
