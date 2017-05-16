@@ -110,7 +110,7 @@ module.exports.user = {
 			active: true
 		},
 		{
-			_id: ObjectId("b00000000000000000000010"),
+			_id: ObjectId("b00000000000000000000011"),
 			firstName: 'Katia',
 			lastName: 'Gianfrancesco',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
@@ -119,13 +119,67 @@ module.exports.user = {
 			active: true
 		},
 		{
-			_id: ObjectId("b00000000000000000000010"),
+			_id: ObjectId("b00000000000000000000012"),
 			firstName: 'Lorenzo',
 			lastName: 'Didone',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
 			email: 'j.u@usi.ch',
 			level: 1,
 			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000013"),
+			firstName: 'Federica',
+			lastName: 'Rossetti',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'f.r@usi.ch',
+			level: 1,
+			active: false
+		},
+		{
+			_id: ObjectId("b00000000000000000000014"),
+			firstName: 'Pierino',
+			lastName: 'Balucchi',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'p.b@usi.ch',
+			level: 1,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000015"),
+			firstName: 'Oliver',
+			lastName: 'Giramondo',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'o.g@usi.ch',
+			level: 1,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000016"),
+			firstName: 'Tommaso',
+			lastName: 'Tommasini',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 't.t@usi.ch',
+			level: 1,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000017"),
+			firstName: 'Umberto',
+			lastName: 'Fiozzi',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'u.f@usi.ch',
+			level: 1,
+			active: true
+		},
+		{
+			_id: ObjectId("b00000000000000000000017"),
+			firstName: 'Riccardo',
+			lastName: 'Waslo',
+			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
+			email: 'r.w@usi.ch',
+			level: 1,
+			active: false
 		}
 	]
 }
