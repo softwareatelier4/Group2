@@ -12,6 +12,7 @@ const formidable = require('formidable');
 const Tag = mongoose.model('Tag');
 const util = require('util');
 
+
 //supported methods
 router.all('/', middleware.supportedMethods('GET, PUT, OPTIONS'));
 
@@ -80,7 +81,7 @@ router.post('/location/:freelancerid', function(req, res, next) {
 			freelancer.currentPosition.lat = data[0].latitude;
 			freelancer.currentPosition.long = data[0].longitude;
 			freelancer.save(function(err, saved) {
-				if(err) res.send(err);
+				if (err) res.send(err);
 				res.sendStatus(200);
 			});
 		} else {
@@ -197,11 +198,11 @@ router.put('/galleryModification/:id', function(req, res) {
 				profile = fileName;
 				flag = false;
 			} else {
-					let savePath = files[value].path;
-					let i = savePath.lastIndexOf('/');
+				let savePath = files[value].path;
+				let i = savePath.lastIndexOf('/');
 
-					let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
-					title.push(fileName);
+				let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+				title.push(fileName);
 			}
 		}
 
@@ -217,9 +218,9 @@ router.put('/galleryModification/:id', function(req, res) {
 				}
 
 
-				freelancer.photos = freelancer.photos.filter( function( el ) {
-				  return !fields.deletedFiles.includes( el );
-				} );
+				freelancer.photos = freelancer.photos.filter(function(el) {
+					return !fields.deletedFiles.includes(el);
+				});
 
 				freelancer.photos = freelancer.photos.concat(title);
 
@@ -260,21 +261,23 @@ router.put('/:freelancerid', function(req, res) {
 					Tag.findOne({
 						name: tag
 					}, function(err, docs) {
-							if (docs) {
-								updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
-								updatedFreelancer.save(function() {});
-								console.log(updatedFreelancer.tags);
-							} else{
-								let newTag = new Tag();
-								newTag._id = mongoose.Types.ObjectId();
-								newTag.name = tag;
+						if (docs) {
+							updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
+							updatedFreelancer.save(function() {});
+							console.log(updatedFreelancer.tags);
+						} else {
+							let newTag = new Tag();
+							newTag._id = mongoose.Types.ObjectId();
+							newTag.name = tag;
 
-								newTag.save(function(err, newTagRes) {
-									updatedFreelancer.tags.push(newTagRes._id);
-									console.log(updatedFreelancer.tags);
-									updatedFreelancer.save(function() {console.log(tag);});
+							newTag.save(function(err, newTagRes) {
+								updatedFreelancer.tags.push(newTagRes._id);
+								console.log(updatedFreelancer.tags);
+								updatedFreelancer.save(function() {
+									console.log(tag);
 								});
-							}
+							});
+						}
 					});
 				});
 			}
@@ -284,18 +287,18 @@ router.put('/:freelancerid', function(req, res) {
 
 
 /**
-* Returns a distance from a freelancer and a user's coordinates
-* @param {object} freelancer - A freelancer
-* @param {number} lat - User's latitude
-* @param {number} long - User's longitude
-* @return {number} - Distance
-*/
+ * Returns a distance from a freelancer and a user's coordinates
+ * @param {object} freelancer - A freelancer
+ * @param {number} lat - User's latitude
+ * @param {number} long - User's longitude
+ * @return {number} - Distance
+ */
 let distanceCalculation = function(freelancer, lat, long, emergency) {
 	if (!freelancer || !lat || !long)
-	return undefined;
+		return undefined;
 
 	if (emergency != 0 && (!freelancer.currentPosition || !freelancer.currentPosition.lat || !freelancer.currentPosition.long))
-	return undefined;
+		return undefined;
 
 	let R = 6371;
 	let pigreco = Math.PI;
@@ -326,11 +329,11 @@ let distanceCalculation = function(freelancer, lat, long, emergency) {
 }
 
 /**
-* Returns an array of Freelancers based on a given string
-* @param {array} freelancers - List of freelancer to filter
-* @param {string} string - Search criteria
-* @return {array} - Array of filtered freelancers
-*/
+ * Returns an array of Freelancers based on a given string
+ * @param {array} freelancers - List of freelancer to filter
+ * @param {string} string - Search criteria
+ * @return {array} - Array of filtered freelancers
+ */
 let searchEngine = function(freelancers, string) {
 	let result = [];
 	let params = string.split("|");
@@ -387,7 +390,7 @@ let searchEngine = function(freelancers, string) {
 			eDist = eDist.toFixed(1);
 			timex = eDist / 60;
 		}
-		if (dist < 1000) {
+		if (dist < 100) {
 			let freelancer = {
 				_id: f._id,
 				firstName: f.firstName,
@@ -435,46 +438,46 @@ let searchEngine = function(freelancers, string) {
 
 
 /**
-* Returns an array without duplicates freelancers
-* @param {array} array - List of freelancers
-* @return {array} - Array of unique freelancers
-*/
+ * Returns an array without duplicates freelancers
+ * @param {array} array - List of freelancers
+ * @return {array} - Array of unique freelancers
+ */
 let removeDuplicatesFreelancers = function(array) {
 	let temp = [];
 	let found = false;
 	for (let f of array) {
 		for (let x of temp) {
 			if (f._id === x._id)
-			found = true;
+				found = true;
 		}
 		if (!found)
-		temp.push(f);
+			temp.push(f);
 		found = false;
 	}
 	return temp;
 }
 
 /**
-* Returns an array of Strings based on a given string and array of Strings
-* @param {array} array - List to iterate on (tags, cities, ...)
-* @param {string} string - Search criteria
-* @return {array} - Array of filtered stuff
-*/
+ * Returns an array of Strings based on a given string and array of Strings
+ * @param {array} array - List to iterate on (tags, cities, ...)
+ * @param {string} string - Search criteria
+ * @return {array} - Array of filtered stuff
+ */
 let searchForTag = function(array, string) {
 	let result = [];
 	for (let s of array) {
 		if (s && string && s.toLowerCase().includes(string.toLowerCase()))
-		result.push(s);
+			result.push(s);
 	}
 	return result;
 }
 
 /**
-* Returns the number of occurencies of an element in an array
-* @param {array} array - List to iterate on (tags, cities, ...)
-* @param {string} what - The element
-* @return {number} - Occurencies of that element in the array
-*/
+ * Returns the number of occurencies of an element in an array
+ * @param {array} array - List to iterate on (tags, cities, ...)
+ * @param {string} what - The element
+ * @return {number} - Occurencies of that element in the array
+ */
 function countInArray(array, what) {
 	var count = 0;
 	for (var i = 0; i < array.length; i++) {
@@ -544,7 +547,7 @@ function onModelSave(res, status, sendItAsResponse) {
 	return function(err, saved) {
 		if (err) {
 			if (err.name === 'ValidationError' ||
-			err.name === 'TypeError') {
+				err.name === 'TypeError') {
 				res.status(400)
 				return res.json({
 					statusCode: 400,

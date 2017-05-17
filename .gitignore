@@ -19,9 +19,6 @@ site/selenium-server-standalone-2\.48\.2\.jar
 
 site/chromedriver
 
-site/public/uploads/claimRequests/*
-!site/public/uploads/claimRequests/.gitkeep
-
 npm-debug\.log
 
 node_modules/
@@ -57,8 +54,3 @@ application/JobAdvisor/$RECYCLE.BIN/
 application/JobAdvisor/.DS_Store
 application/JobAdvisor/Thumbs.db
 application/JobAdvisor/UserInterfaceState.xcuserstate
-
-
-*.png
-
-*.jpg
