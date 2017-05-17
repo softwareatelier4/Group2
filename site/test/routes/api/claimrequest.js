@@ -16,7 +16,7 @@ describe('Testing Read for api/claimrequest', function() {
 		before(seed);
 		after(utils.dropDb);
 
-		it('Should return the empty json', function(done) {
+		it('Should return json of length 3', function(done) {
 			request(app)
 				.get('/api/claimrequest')
 				.set('Accept', 'application/json')
@@ -24,7 +24,7 @@ describe('Testing Read for api/claimrequest', function() {
 				.expect(200)
 				.end(function(err, res) {
 					var reqClaim = JSON.parse(res.text);
-					reqClaim.should.have.length(2);
+					reqClaim.should.have.length(3);
 					done();
 				});
 		});
@@ -52,14 +52,14 @@ describe('Testing POST for localhost:3000/api/claimrequest', function() {
 				.end(function(err, res) {
 					if (err) done(err);
 					let reqClaim = JSON.parse(res.text);
-					reqClaim.should.have.length(2);
+					reqClaim.should.have.length(3);
 					done();
 				});
 		});
 	});
 });
 
-describe('Testing put for claimrequest', function() {
+describe('Testing put for claimrequest with accept', function() {
 	describe('PUT /api/claimrequest/claimId', function() {
 		before(seed);
 		after(utils.dropDb);
@@ -91,7 +91,7 @@ describe('Testing put for claimrequest', function() {
 	});
 });
 
-describe('Testing put for claimrequest', function() {
+describe('Testing put for claimrequest with refused', function() {
 	describe('PUT /api/claimrequest/claimId', function() {
 		before(seed);
 		after(utils.dropDb);
