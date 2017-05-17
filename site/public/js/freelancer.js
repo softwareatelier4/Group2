@@ -146,6 +146,12 @@ const FREELANCER = {
 					}
 				}
 
+				for (let rev of result) {
+					if (rev.user._id == userLogged._id) {
+						rev.ableToModify = true;
+					}
+				}
+
 				dust.renderSource(reviewHtml, result, function(err, out) {
 					document.getElementById('cardReviews').innerHTML = out;
 					const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
@@ -602,7 +608,89 @@ const FREELANCER = {
 				}
 			})
 		}
+	},
+
+	modifyButtonClick: function(e) {
+		$('#writeReviews').show();
+
+		$('html, body').animate({
+			scrollTop: $("#writeReviews").offset().top
+		}, 500);
+
+		FREELANCER.uploadImageZone();
+
+		let main_card = e.target.parentNode;
+		let title = $(main_card).find('#score-name h5')[0].innerHTML;
+		let description = $(main_card).find('#review-description')[0].innerHTML;
+		let idReview = main_card.parentNode.getAttribute('name');
+
+		$('.title-author-review h5')[0].innerHTML = 'Modify your review!';
+		$('#new-review-title').val(title);
+		$('#new-review-description').val(description);
+
+		$('#writeReviews').attr('name', idReview);
+
+		let numberOfStar = $(main_card).find('.fa-star').length;
+
+		for (let i = 1; i <= 5; i++) {
+			$('#star' + i).removeClass('fa-star').removeClass('fa-star-o');
+			if (i <= numberOfStar) {
+				$('#star' + i).addClass('fa-star');
+			} else {
+				$('#star' + i).addClass('fa-star-o');
+			}
+		}
+
+		let form = $('#writeReviews form')[0];
+
+		form.removeAttribute('onSubmit');
+
+		$(form).submit(FREELANCER.modifyFormSubmit);
+	},
+
+	modifyFormSubmit: function(e) {
+		e.preventDefault();
+
+
+		let form = e.target;
+		$('#writeReviewError').remove();
+		const numberStar = form.getElementsByClassName('fa-star').length;
+
+		const idReview = $('#writeReviews').attr('name');
+
+		if (numberStar <= 0) {
+			// error
+			const error = `<div id="writeReviewError" style="margin-top: 10px" class="alert alert-danger" role="alert">
+  <strong>Oh snap!</strong> Please, select a score.
+</div>`;
+
+			$(form).before(error);
+		} else {
+			//if ok, do an ajax request
+			data = new FormData();
+
+			data.append('title', $("#new-review-title").val());
+			data.append('description', $("#new-review-description").val());
+			data.append('score', numberStar);
+
+			for (let i = 0; i < Object.keys(finalFiles).length; i++) {
+				data.append('file' + i + 1, finalFiles[i]);
+			}
+
+			let request = new XMLHttpRequest();
+
+			request.onreadystatechange = function() {
+				//correctly handle the errors based on the HTTP status returned by the called API
+				if (request.readyState == 4 && request.status == 202) {
+					location.reload();
+				}
+			}
+
+			request.open("POST", "/api/review/edit/" + idReview);
+			request.send(data);
+		}
 	}
+
 }
 
 

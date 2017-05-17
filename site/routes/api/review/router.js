@@ -120,6 +120,7 @@ router.post('/edit/:reviewid', function(req, res, next) {
 			}
 
 			review.save(function(err, newReview) {
+				let idFreelancer = newReview.freelancer;
 				if (err) {
 					return res.sendStatus(400);
 				}
