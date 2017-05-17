@@ -91,8 +91,9 @@ const SEARCH = {
 		if (parent.dataset.value.toString() == 'true') {
 			parent.dataset.value = false;
 			//tooltip
-			parent.setAttribute('data-original-title', 'Not Available for emergency');
-			parent.title = "Not Available for emergency";
+			parent.setAttribute('data-original-title', 'No emergency');
+			parent.title = "Not emergency";
+			$('#emergency-btn').tooltip('hide');
 
 			SEARCH.filters.emergency = false;
 			bell.classList.remove('fa-bell');
@@ -152,8 +153,10 @@ const SEARCH = {
 			bell.classList.remove('fa-bell-slash');
 			bell.classList.add('fa-bell');
 			bell.classList.add('blink');
-			document.getElementById('emergency-btn').setAttribute('data-original-title', 'Available for emergency');
-			document.getElementById('emergency-btn').title = "Available for emergency";
+
+			document.getElementById('emergency-btn').setAttribute('data-original-title', 'Emergency');
+			document.getElementById('emergency-btn').title = "Emergency";
+			$('#emergency-btn').tooltip('hide');
 			SEARCH.preEmergencyStatus.oldDistance = distanceInput.value;
 			SEARCH.preEmergencyStatus.oldButton = SEARCH.filters.sort.idBtn;
 			SEARCH.preEmergencyStatus.oldType = SEARCH.filters.sort.type;
@@ -1074,8 +1077,9 @@ const SEARCH = {
 				document.getElementById('emergency-btn').dataset.value = hashObj.emergency;
 				if (hashObj.emergency.toString() == 'true') {
 					//add fa-bell and remove fa-bell-slash
-					document.getElementById('emergency-btn').setAttribute('data-original-title', 'Available for emergency');
-					document.getElementById('emergency-btn').title = "Available for emergency";
+					document.getElementById('emergency-btn').setAttribute('data-original-title', 'Emergency');
+					document.getElementById('emergency-btn').title = "Emergency";
+					$('#emergency-btn').tooltip('hide');
 					let bell = document.getElementById('emergency-btn').childNodes[0];
 					bell.classList.remove('fa-bell-slash');
 					bell.classList.add('fa-bell');

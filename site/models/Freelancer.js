@@ -94,10 +94,6 @@ var FreelancerSchema = new mongoose.Schema({
 	price: {
 		type: Number
 	},
-	certifications: {
-		type: Array,
-		default: []
-	},
 	emergency: {
 		type: Boolean,
 		required: true

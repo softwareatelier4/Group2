@@ -46,6 +46,7 @@ const FREELANCER = {
 
 		isLogged(function(loggedUser) {
 			userLogged = loggedUser.result;
+						
 
 			doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
 				let owner = res.ownerId;
@@ -55,7 +56,8 @@ const FREELANCER = {
 					$.get("/html/freelancer.html", function(html) {
 						res.score = FREELANCER.getHtmlRankStar({
 							full: res.score,
-							empty: 5 - res.score
+							half: Math.ceil(res.score - Math.floor(res.score)),
+					    	empty: 5 - Math.ceil(res.score)
 						});
 
 						//display photos of work, if more than 9, display only in the lightbox
