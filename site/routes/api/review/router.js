@@ -124,18 +124,28 @@ router.post('/edit/:reviewid', function(req, res, next) {
 					return res.sendStatus(400);
 				}
 
-				let freelancer = review.freelancer;
-
-				freelancer.score = newScoreAverage(reviews);
-
-
-				freelancer.save(function(err) {
+				Review.find({
+					freelancer: idFreelancer
+				}).populate('freelancer').exec(function(err, reviews) {
 					if (err) {
-						return res.sendStatus(400);
+						return res.status(400).send(err);
 					}
-					res.status(202).send(newReview);
-				});
 
+					let freelancer = reviews[0].freelancer;
+
+
+
+					freelancer.score = newScoreAverage(reviews);
+
+
+					freelancer.save(function(err) {
+						if (err) {
+							return res.sendStatus(400);
+						}
+						console.log(newReview);
+						res.status(202).send(newReview);
+					});
+				});
 			});
 		});
 	});
