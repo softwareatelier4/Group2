@@ -19,13 +19,13 @@ module.exports = {
 			.assert.visible('input[id=search-text]')
 			.assert.visible('span[id=basic-addon1]')
 			.clearValue('input[id=search-text]')
-			.setValue('input[id=search-text]', 'Marco Tollini')
+			.setValue('input[id=search-text]', 'Design')
 			.pause(100)
 			.waitForElementVisible('main[id=main-content]', 1000)
-			.waitForElementVisible('div[id=f00000000000000000000000]', 1000)
-			.waitForElementVisible('#f00000000000000000000000', 1000)
+			.waitForElementVisible('div[id=f00000000000000000000046]', 1000)
+			.waitForElementVisible('#f00000000000000000000046', 1000)
 			.pause(200)
-			.click('#f00000000000000000000000 .card-block button')
+			.click('#f00000000000000000000046 .card-block button')
 			.waitForElementVisible('#profile-freelancer', 1000)
 			.pause(100)
 			.waitForElementVisible('#main-info', 2000)
@@ -34,31 +34,22 @@ module.exports = {
 			.assert.visible('#info-name')
 			.assert.visible('.info-name-top')
 			.getText("div[class=info-name-top] span", function(result) {
-				this.assert.equal(result.value, "Marco Tollini");
+				this.assert.equal(result.value, "Roberta Souto");
 			})
 			.assert.visible('span[id=city-freelancer]')
 			.getText("div[class=info-name-top] span a", function(result) {
 				this.assert.equal(result.value, "Lugano");
 			})
-			.assert.visible('div[id=info-name-bottom]')
-			.getText("div[id=info-name-bottom]", function(result) {
-				this.assert.equal(result.value, "Il Tollo");
-			})
+			.assert.hidden('div[id=info-name-bottom]')
 			.assert.visible('div[id=rank]')
+
 			//contact
 			.assert.visible('div[id=contact-info-top]')
-			.assert.visible('div[id=contact-info-top] #chat')
-			.getText("div[id=contact-info-top] #chat", function(result) {
-				this.assert.equal(result.value, "chat");
-			})
 			.assert.visible('div[id=contact-info-top] #email')
 			.getText("div[id=contact-info-top] #email", function(result) {
-				this.assert.equal(result.value, "tollim@usi.ch");
+				this.assert.equal(result.value, "roberta.souto@gmail.com");
 			})
-			.assert.visible('div[id=contact-info-top] #phone')
-			.getText("div[id=contact-info-top] #phone", function(result) {
-				this.assert.equal(result.value, "+39 380474747");
-			})
+			.assert.hidden('div[id=contact-info-top] #phone')
 
 			//main info bottom
 			.assert.visible('div[id=main-info-bottom]')
@@ -69,19 +60,35 @@ module.exports = {
 			})
 			.assert.visible('div[id=tag]')
 			.getText("div[id=tag] span:nth-child(1)", function(result) {
-				this.assert.equal(result.value, "Developer");
+				this.assert.equal(result.value, "Design");
 			})
 			.getText("div[id=tag] span:nth-child(2)", function(result) {
-				this.assert.equal(result.value, "Informatico");
+				this.assert.equal(result.value, "Packaging Design");
 			})
 			.getText("div[id=tag] span:nth-child(3)", function(result) {
-				this.assert.equal(result.value, "Tecnico");
+				this.assert.equal(result.value, "Graphic Designer");
+			})
+			.getText("div[id=tag] span:nth-child(4)", function(result) {
+				this.assert.equal(result.value, "Adobe Photoshop");
+			})
+			.getText("div[id=tag] span:nth-child(5)", function(result) {
+				this.assert.equal(result.value, "Digital Photography");
+			})
+			.getText("div[id=tag] span:nth-child(6)", function(result) {
+				this.assert.equal(result.value, "Illustration");
+			})
+			.getText("div[id=tag] span:nth-child(7)", function(result) {
+				this.assert.equal(result.value, "Branding");
+			})
+
+			.getText("div[id=price]", function(result) {
+				this.assert.equal(result.value, "€105 price/hour");
 			})
 
 			//description
 			.assert.visible('div[id=info] span')
 			.getText("span[id=description]", function(result) {
-				this.assert.equal(result.value, "Hello guys! I am an amazing developer.");
+				this.assert.equal(result.value, "About the Designer: Roberta Souto, 36, Industrial Designer graduate from ESDI/ UERJ (Rio de Janeiro, RJ - Brazil) with a 5-year BA degree. I have almost 10 years experience working with packaging and I have knowledge in both graphic design and product design. One of my designs was a finalist at the 2012 HBA International Package Design Awards in New York City. Before that I was the head designer, product developer and creative director of a manufacturer for 5 years, working with worldwide retail chains like TJ Maxx, Bath Bed & Beyond, Petsmart and Toys R Us to name a few, besides coordinating production in a equally global level. My background in Industrial Design helps me to not limit myself to just one field of design and I have worked with everything from brochures to dog toys to food packaging. I have had the great opportunity to work with large retail chains as well as small start-ups. I'm a creative person, but I'm also very interested in business topics and one of my passions is to support small businesses to take their products and services to the next level.");
 			})
 
 			//review
@@ -93,20 +100,27 @@ module.exports = {
 			.assert.visible('div[id=cardReviews]')
 			.assert.visible('div[class=title-author-review]')
 			.assert.visible('div[id=score-name]')
-			.getText("div[id=score-name] h5", function(result) {
-				this.assert.equal(result.value, "R7");
+			.getText("div[name=c00000000000000000000025] div[id=score-name] h5", function(result) {
+				this.assert.equal(result.value, "");
 			})
-			.getText("h6[id=review-user]", function(result) {
-				this.assert.equal(result.value, "Costanza Volpini");
+			.getText("div[name=c00000000000000000000025] h6[id=review-user]", function(result) {
+				this.assert.equal(result.value, "Nicholas Gerard");
 			})
-			.assert.visible('p[id=review-description]')
-			.getText("p[id=review-description]", function(result) {
-				this.assert.equal(result.value, "In questa rubrica giornaliera vi proponiamo la meditazione del Vangelo del giorno preparata da un fratello o una sorella di Bose. Il nostro desiderio è di spezzare il pane quotidiano della parola di Dio, condividendo la lectio divina fatta nella solitudine della cella monastica. Per tutti il fine è quello indicato da Ignazio d’Antiochia, “rifugiarmi nel Vangelo come nella carne di Gesù” (Lettera ai Filadelfiesi).");
+			.assert.hidden('div[name=c00000000000000000000025] p[id=review-description]')
+
+			.assert.hidden('div[name=c00000000000000000000024] div[id=photo-review]')
+
+			.getText("div[name=c00000000000000000000024] div[id=score-name] h5", function(result) {
+				this.assert.equal(result.value, "Best designer ever!");
 			})
-			.getText("div[id=price]", function(result) {
-				this.assert.equal(result.value, "€20 price/hour");
+			.getText("div[name=c00000000000000000000024] h6[id=review-user]", function(result) {
+				this.assert.equal(result.value, "Lorenzo Didone");
 			})
-			.assert.hidden('div[id=photo-review]')
+			.assert.visible('div[name=c00000000000000000000024] p[id=review-description]')
+			.getText("div[name=c00000000000000000000024] p[id=review-description]", function(result) {
+				this.assert.equal(result.value, "What a great experience. We received some extremely creative and original packaging designs from a talented designer. She was great to work with and all of their work was first class. I would recommend her to anyone looking for top notch designers.");
+			})
+			.assert.hidden('div[name=c00000000000000000000024] div[id=photo-review]')
 
 			//works
 			.assert.visible('div[id=img-freelancer]')
@@ -118,14 +132,11 @@ module.exports = {
 
 
 			//test if there is an emergency
-			.assert.visible('i[id=emergency-sign]')
-
-			//test validification claim
-			.assert.visible('i[id=verified-sign]')
+			.assert.visible('span[id=disabled-emergency-sign]')
 			.end();
 	},
 
-	'Freelancer profile test-2': function(client) {
+	'Freelancer profile test-2': function(client) { //da qui
 		client
 			.url('http://localhost:3000/')
 			.waitForElementVisible('body', 1000)
