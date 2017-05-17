@@ -278,7 +278,7 @@ const FREELANCERMANAGEMENT = {
 			});
 		}
 		if(tagText.value.length > 0 && event.key == "Enter" && !FREELANCERMANAGEMENT.addedTags.includes(tagText.value)){
-			let badge = `<span class="badge badge-primary">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERMANAGEMENT.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
+			let badge = `<span class="badge badge-primary hint">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERMANAGEMENT.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
 			FREELANCERMANAGEMENT.addedTags.push(tagText.value);
 			tagText.value = '';
 			tagsList.innerHTML += badge;
