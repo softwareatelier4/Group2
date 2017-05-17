@@ -16,7 +16,7 @@ module.exports = {
 			.url('http://localhost:3000/')
 			.waitForElementVisible('body', 1000)
 			.pause(100)
-			.assert.visible('input[id=search-text]')
+			.assert.visible('input[id=search-text]') //city: Lugano
 			.assert.visible('span[id=basic-addon1]')
 			.clearValue('input[id=search-text]')
 			.setValue('input[id=search-text]', 'Design')
@@ -136,21 +136,22 @@ module.exports = {
 			.end();
 	},
 
-	'Freelancer profile test-2': function(client) { //da qui
+
+	'Freelancer profile test-2': function(client) {
 		client
 			.url('http://localhost:3000/')
 			.waitForElementVisible('body', 1000)
 			.pause(100)
-			.assert.visible('input[id=search-text]')
+			.assert.visible('input[id=search-text]') //city: Lugano
 			.assert.visible('span[id=basic-addon1]')
 			.clearValue('input[id=search-text]')
-			.setValue('input[id=search-text]', 'da')
+			.setValue('input[id=search-text]', 'plumber')
 			.pause(100)
 			.waitForElementVisible('main[id=main-content]', 1000)
-			.waitForElementVisible('div[id=f00000000000000000000003]', 1000)
-			.waitForElementVisible('#f00000000000000000000003', 1000)
+			.waitForElementVisible('div[id=f00000000000000000000009]', 1000)
+			.waitForElementVisible('#f00000000000000000000009', 1000)
 			.pause(200)
-			.click('#f00000000000000000000003 .card-block button')
+			.click('#f00000000000000000000009 .card-block button')
 			.pause(200)
 			.waitForElementVisible('#main-info', 2000)
 			.assert.visible('#main-info')
@@ -158,25 +159,24 @@ module.exports = {
 			.assert.visible('#info-name')
 			.assert.visible('.info-name-top')
 			.getText("div[class=info-name-top] span", function(result) {
-				this.assert.equal(result.value, "Daniele LoPred");
+				this.assert.equal(result.value, "Sarah Prejan");
 			})
 			.assert.visible('span[id=city-freelancer]')
-			.assert.hidden('div[id=info-name-bottom]')
+			.getText("div[class=info-name-top] span a", function(result) {
+				this.assert.equal(result.value, "Lugano");
+			})
+			.assert.visible('div[id=info-name-bottom]')
+			.getText("div[id=info-name-bottom]", function(result) {
+				this.assert.equal(result.value, "Pink Plumbers");
+			})
 			.assert.visible('div[id=rank]')
 			//contact
 			.assert.visible('div[id=contact-info-top]')
-			.assert.visible('div[id=contact-info-top] #chat')
-			.getText("div[id=contact-info-top] #chat", function(result) {
-				this.assert.equal(result.value, "chat");
-			})
 			.assert.visible('div[id=contact-info-top] #email')
 			.getText("div[id=contact-info-top] #email", function(result) {
-				this.assert.equal(result.value, "lopred@usi.ch");
+				this.assert.equal(result.value, "sarahh.pre@pinkplumbers.com");
 			})
-			.assert.visible('div[id=contact-info-top] #phone')
-			.getText("div[id=contact-info-top] #phone", function(result) {
-				this.assert.equal(result.value, "+4107362864");
-			})
+			.assert.hidden('div[id=contact-info-top] #phone')
 
 			//main info bottom
 			.assert.visible('div[id=main-info-bottom]')
@@ -187,18 +187,22 @@ module.exports = {
 			})
 			.assert.visible('div[id=tag]')
 			.getText("div[id=tag] span:nth-child(1)", function(result) {
-				this.assert.equal(result.value, "House Painter");
+				this.assert.equal(result.value, "Plumber");
 			})
 			.getText("div[id=tag] span:nth-child(2)", function(result) {
-				this.assert.equal(result.value, "Vetraio");
-			})
-			.getText("div[id=tag] span:nth-child(3)", function(result) {
-				this.assert.equal(result.value, "Carpentiere");
+				this.assert.equal(result.value, "Handyman");
 			})
 
 			//description
 			.assert.visible('div[id=info] span')
 			.assert.visible("span[id=description]")
+			.getText("span[id=description]", function(result) {
+				this.assert.equal(result.value, "I am the founder of Pink Plumbers. The company has been operating since 2003, delivering consistent and considerate plumbing services to our customers, and even during the recent recession has shown annual growth. Operating under a national licence structure, our female plumbers are able to meet the needs of their local market whilst you and they benefit from a nationally recognised brand. We offer a wide range of plumbing services to our customers and ensure our plumbers are qualified to carry out those services. All our plumbers operate within a set of guidelines based on the Pink Plumbers values, with support where needed. We are a Plumbing business that recognises that there is currently a lack of female plumbers operating independently in their local communities, and where they do exist it's often hard for customers to find them. At Pink Plumbers we help to close the gap between female plumbers qualifying and operating as plumbers in their community.");
+			})
+
+			.getText("div[id=price]", function(result) {
+				this.assert.equal(result.value, "€40 price/hour");
+			})
 
 			//review
 			.assert.visible('div[id=reviews]')
@@ -208,27 +212,18 @@ module.exports = {
 
 			.assert.visible('div[id=cardReviews]')
 			.assert.visible('div[class=title-author-review]')
-			.assert.visible('div[id=score-name]')
-			.getText("div[id=score-name] h5", function(result) {
-				this.assert.equal(result.value, "R1");
+			.assert.visible('div[name=c00000000000000000000007] div[id=score-name]')
+			.getText("div[name=c00000000000000000000007] div[id=score-name] h5", function(result) {
+				this.assert.equal(result.value, "Nothing Special");
 			})
-			.getText("h6[id=review-user]", function(result) {
-				this.assert.equal(result.value, "Marco Tollini");
+			.getText("div[name=c00000000000000000000007] h6[id=review-user]", function(result) {
+				this.assert.equal(result.value, "Kirill Kozlov");
 			})
-			.assert.visible('p[id=review-description]')
-			.getText("p[id=review-description]", function(result) {
-				this.assert.equal(result.value, "Mi ha lasciato il muro imbiancato a metá!!!!!!!!!!!!!!!!!!!!!!!!!! :O");
-			})
-			.getText("div[id=price]", function(result) {
-				this.assert.equal(result.value, "€10 price/hour");
-			})
+			.assert.visible('div[name=c00000000000000000000007] p[id=review-description]')
 			.assert.hidden('div[id=photo-review]')
 
 			//test if there is an emergency
-			.assert.visible('span[id=disabled-emergency-sign]')
-
-			//test validification claim
-			.assert.visible('i[id=verified-sign]')
+			.assert.visible('i[id=emergency-sign]')
 			.end();
 	}
 };
