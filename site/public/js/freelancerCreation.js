@@ -58,13 +58,10 @@ const FREELANCERCREATION = {
 		};
 
 			doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
-				// console.log(freelancer);
 				if (!res.errors) {
-					// console.log(res.result._id)
+
 					freelancerId = res._id;
 					let data, xhr;
-
-					// console.log(freelancerId);
 
 					data = new FormData();
 
@@ -96,11 +93,9 @@ const FREELANCERCREATION = {
 							'id': freelancerId,
 							'work': workName.value
 						};
-						// console.log(mail.value);
+
 						doJSONRequest("POST", "/api/freelancer/sendEmailFreelancer/" + mail.value, null, verification, function(res) {
-							// if(!res.errors){
-							// 	console.log("YEBOI");
-							// }
+
 							window.location.href = "http://127.0.0.1:3000/#freelancer="+freelancerId;
 						});
 					}
@@ -108,12 +103,6 @@ const FREELANCERCREATION = {
 					console.log("Error: " + res.errors[0]);
 				}
 			});
-
-		/*
-			Send later the photos to be added, profile photo and also gallery photos
-		*/
-
-
 	},
 
 	result: {},
@@ -173,7 +162,6 @@ const FREELANCERCREATION = {
 }
 
 $(document).ready(function() {
-	console.log($('#position'));
 	$("#position")
 		.geocomplete()
 		.bind("geocode:result", function(event, result) {
@@ -317,9 +305,5 @@ function removeLine(obj) {
 	container.remove();
 
 	delete finalFiles[index];
-	// console.log(finalFiles);
+
 }
-
-
-/*******/
-//position

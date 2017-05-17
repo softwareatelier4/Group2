@@ -12,27 +12,6 @@ const formidable = require('formidable');
 const Tag = mongoose.model('Tag');
 const util = require('util');
 
-let rmDir = function(dirPath, removeSelf) {
-	if (removeSelf === undefined)
-	removeSelf = true;
-	try {
-		var files = fs.readdirSync(dirPath);
-	} catch (e) {
-		return;
-	}
-	if (files.length > 0)
-	for (var i = 0; i < files.length; i++) {
-		var filePath = dirPath + '/' + files[i];
-		if (fs.statSync(filePath).isFile())
-		fs.unlinkSync(filePath);
-		else
-		rmDir(filePath);
-	}
-	if (removeSelf)
-	fs.rmdirSync(dirPath);
-};
-
-
 //supported methods
 router.all('/', middleware.supportedMethods('GET, PUT, OPTIONS'));
 
@@ -136,7 +115,6 @@ router.post('/sendEmailFreelancer/:email', function(req, res) {
 router.put('/galleryUpload/:id', function(req, res, next) {
 	const id = req.params.id;
 	let dir = __dirname + '/../../../public/uploads/' + id;
-	rmDir(__dirname + '/../../../public/uploads/' + id, false);
 	let title = [];
 	if (!fs.existsSync(dir)) {
 		fs.mkdirSync(dir);
@@ -179,7 +157,6 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 				freelancer.photos = title;
 				freelancer.profilePhoto = profile;
 				freelancer.save(onModelSave(res, 200, true));
-				// console.log("SAVED\n");
 			}
 		});
 	});
@@ -192,7 +169,6 @@ function isInArray(value, array) {
 router.put('/galleryModification/:id', function(req, res) {
 	const id = req.params.id;
 	let dir = __dirname + '/../../../public/uploads/' + id;
-	// rmDir(__dirname + '/../../../public/uploads/' + id, false);
 	let number = [];
 	if (!fs.existsSync(dir)) {
 		fs.mkdirSync(dir);
@@ -210,7 +186,7 @@ router.put('/galleryModification/:id', function(req, res) {
 		let title = [];
 
 		console.log(files);
-		
+
 		for (let value in files) {
 			if (fields.profile_check == "true" && flag == true) {
 				let savePath = files[value].path;
@@ -220,9 +196,7 @@ router.put('/galleryModification/:id', function(req, res) {
 
 				profile = fileName;
 				flag = false;
-				console.log("\n\n PERCHE \n\n");
 			} else {
-				console.log("\n\n DENTRO \n\n");
 					let savePath = files[value].path;
 					let i = savePath.lastIndexOf('/');
 

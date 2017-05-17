@@ -164,7 +164,7 @@ const FREELANCERMANAGEMENT = {
     submitFreelancer: function(){
 		//  eventFire(document.getElementById('modify_position'), 'click');
 		//  simulate(document.getElementById('modify_position'), 'click');
-       let id = idFreelancer;
+      let id = idFreelancer;
 		let workName = document.getElementById('modal-workName');
 		let phoneNumber = document.getElementById('modal-phone');
 
@@ -361,11 +361,8 @@ var defaultOptions = {
 }
 
 $(document).ready( function () {
-
 	$(document).on('click', '.img-del .close', function(){
 		let id = $(this).closest('.img-del').find('img').data('id');
-		// let fileName = id.split("/").pop();
-		// deletedFiles.push(fileName);
 		deletedFiles.push(id);
 		let elem = document.getElementById(id);
     	elem.parentNode.removeChild(elem);
