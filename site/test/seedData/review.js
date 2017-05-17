@@ -24,7 +24,8 @@ module.exports.review = {
 				'/uploads/test/1ra.png',
 			],
 			user: ObjectId("b00000000000000000000009"),
-			freelancer: ObjectId("f00000000000000000000000")
+			freelancer: ObjectId("f00000000000000000000000"),
+			answer: "I am sorry you had a bad experience. Please give me another try."
 		},
 		{
 			_id: ObjectId("c00000000000000000000002"),
@@ -50,7 +51,8 @@ module.exports.review = {
 			description: "This is my first time writing a review, but feel it is important to help those thinking of contacting Miss Scotti. We had a very negative experience with Samantha.  The whole process took way longer than anticipated (3 months for 2 rooms - really one large room), and required us to provide extensive, daily. The process is truly laborious, overly expensive, and ultimately added very little value (I sent in tons of inspiration photos and found myself instructing the designer and finding and picking out my own items anyway. She didn't even make recommendations on what looked good together.  I really just did it all myself). It really delayed us instead of sped us up.  We felt we had bad customer service, and got very little to no value from the work. Complete waste of money!",
 			score: 1,
 			user: ObjectId("b00000000000000000000011"),
-			freelancer: ObjectId("f00000000000000000000004")
+			freelancer: ObjectId("f00000000000000000000004"),
+			answer: "Dear Katia, I am very sorry to hear that you had a bad experience. I would like to inform you that I am taking action on the matter to get it resolved (I have also sent you a private message). I appreciate your feedback and I always take feedback on board as it is the only way to ensure we are delivering an excellent service to customers. Again,deepest apologies for what happened and I thank you for your feedback. Best Regards, Samantha "
 		},
 		{
 			_id: ObjectId("c00000000000000000000004"),
@@ -68,7 +70,8 @@ module.exports.review = {
 			description: "She is very smart and easy to talk to. She takes directions very well. I had a smoothing treatment done with my ends trimmed & am totally satisfied. She didn't 'whack' off all of my hair because it's easier to deal with like most stylists have done in the past. I highly recommend Susan for all of your hair needs!!",
 			score: 5,
 			user: ObjectId("b00000000000000000000013"),
-			freelancer: ObjectId("f00000000000000000000007")
+			freelancer: ObjectId("f00000000000000000000007"),
+			answer: "Than you for your review. I hope to see you again! XXX"
 		},
 		{
 			_id: ObjectId("c00000000000000000000031"),
@@ -218,7 +221,8 @@ module.exports.review = {
 			description: "I am still in shock...I use to go to this salon for years before moving away. I went back for my first time after 5 years for a gel manicure. Everyone remembered me it was nice. 2 days later my my nails started chipping. On day 4 after a 14 hr work shift I went in for a color change...they said it wasn't necessary. Instead Emily fixed the 3 chipped nails. I tipped her $20 as she was not the one who did the manicure when I walked out the 3 nails were a different color!!!!! When I went back in to complain they laughed and said come back anytime and they would fix them. NO effort to rectify the situation at that moment, not even an apology. 2 visits and $55 later, I have NEVER been so upset about a manicure in my life!!",
 			score: 1,
 			user: ObjectId("b00000000000000000000017"),
-			freelancer: ObjectId("f00000000000000000000037")
+			freelancer: ObjectId("f00000000000000000000037"),
+			answer: "I am sorry for your experience."
 		},
 		{
 			_id: ObjectId("c00000000000000000000020"),
@@ -279,7 +283,8 @@ module.exports.review = {
 			description: "Perfect worker! Nice design made in few days. He is very kind!",
 			score: 4,
 			user: ObjectId("b00000000000000000000014"),
-			freelancer: ObjectId("f00000000000000000000052")
+			freelancer: ObjectId("f00000000000000000000052"),
+			answer: "Thank you ;-)"
 		},
 		{
 			_id: ObjectId("c00000000000000000000027"),
