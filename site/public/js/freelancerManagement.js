@@ -77,7 +77,10 @@ const FREELANCERMANAGEMENT = {
 						  }
 
 						  if(data.freelancer.address.city){
-							  pos += ", " + data.freelancer.address.city;
+							  if(data.freelancer.address.road){
+								  pos += ", "
+							  }
+							  pos += data.freelancer.address.city;
 							  city = data.freelancer.address.city;
 							//   console.
 						  }
