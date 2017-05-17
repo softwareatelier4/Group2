@@ -78,6 +78,69 @@ router.post('/:reviewid', function(req, res, next) {
 	});
 });
 
+router.post('/edit/:reviewid', function(req, res, next) {
+	const reviewId = req.params.reviewid;
+
+	Review.findById(reviewId).populate('freelancer').exec(function(err, review) {
+		if (err) {
+			res.status(400).send(err);
+			return;
+		}
+
+		let form = new formidable.IncomingForm({
+			uploadDir: __dirname + '/../../../public/uploads/review/',
+			keepExtensions: true
+		});
+
+		form.parse(req, function(err, fields, files) {
+			if (err) return next(err);
+			let fileNames = [];
+
+			for (let file of Object.values(files)) {
+				let savePath = file.path;
+				let i = savePath.lastIndexOf('/');
+
+				fileNames.push('/uploads/review/' + savePath.substring(i + 1, savePath.length));
+			}
+
+			for (let f of fileNames) {
+				review.photo.push(f);
+			}
+
+			if (fields.title) {
+				review.title = fields.title
+			}
+
+			if (fields.description) {
+				review.description = fields.description
+			}
+
+			if (fields.score) {
+				review.score = fields.score;
+			}
+
+			review.save(function(err, newReview) {
+				if (err) {
+					return res.sendStatus(400);
+				}
+
+				let freelancer = review.freelancer;
+
+				freelancer.score = newScoreAverage(reviews);
+
+
+				freelancer.save(function(err) {
+					if (err) {
+						return res.sendStatus(400);
+					}
+					res.status(202).send(newReview);
+				});
+
+			});
+		});
+	});
+});
+
 router.put('/:idFreelancer', function(req, res, next) {
 	// add a review to a freelancer
 
