@@ -624,6 +624,33 @@ router.post('/favorite/:freelancerid', function(req,res){
 	});
 });
 
+router.all('/userfavorites/:userid', middleware.supportedMethods('GET, OPTIONS'));
+router.get('/userfavorites/:userid', function(req,res){
+	let userId = req.params.userid;
+	let lat = req.query.lat;
+	let lng = req.query.lng;
+	// console.log(req);
+	console.log(lat);
+	console.log(lng);
+
+	User.findById(userId,function(err,user) {
+		if(err) res.send(err);
+		if(user){
+			let favoritelist = [];
+			for(let f of user.favorites){
+				Freelancer.findById(f,function(err, frlnc) {
+					let data = {id: f, distance: distanceCalculation(frlnc,lat,lng,0).toFixed(2)};
+					console.log(data);
+					favoritelist.push(data);
+					if(favoritelist.length == user.favorites.length){
+						res.send({favorites: favoritelist});
+					}
+				});
+			}
+		}
+	});
+});
+
 function onModelSave(res, status, sendItAsResponse) {
 	const statusCode = status || 204;
 	sendItAsResponse = sendItAsResponse || false;
