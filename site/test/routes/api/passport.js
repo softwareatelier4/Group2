@@ -107,6 +107,22 @@ describe('Testing Post for localhost:3000/api/passport/login', function() {
 				});
 		});
 
+		it('should respond with error if the user is not active', function(done) {
+			request(app)
+				.post('/api/passport/login')
+				.send({
+					"email": "f.r@usi.ch",
+					password: 'test'
+				})
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.should.have.property('result', 'failed');
+					res.body.should.have.property('motivation', 'inactive');
+					done();
+				});
+		});
+
 		it('should respond with success', function(done) {
 			request(app)
 				.post('/api/passport/login')
@@ -157,6 +173,70 @@ describe('Testing GET for localhost:3000/api/passport/logout', function() {
 					done();
 				});
 		});
+	});
+});
+
+
+describe('Testing GET for localhost:3000/api/passport/newpassword/:email', function() {
+	describe('GET /api/passport/newpassword/:email', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('should respond with error if the email is not present in the DB', function(done) {
+			request(app)
+				.get('/api/passport/newpassword/bho@bho.bho')
+				.expect(404, done);
+		});
+
+		it('should respond with redirect', function(done) {
+			request(app)
+				.get('/api/passport/newpassword/m.t@usi.ch')
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					res.text.should.be.eql('{}');
+					done();
+				});
+		});
+	});
+});
+
+describe('Testing POST for localhost:3000/api/passport/changepassword/:email', function() {
+	describe('POST /api/passport/changepassword/:email', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('should respond with error if the email is not present in the DB (old password)', function(done) {
+			request(app)
+				.post('/api/passport/changepassword/wef.wef@wefd.com')
+				.send({
+					"password": "ciao",
+					"oldPassword": "test",
+				})
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.should.have.property('error', 'No user found with the email insert.');
+					done();
+				});
+		});
+
+		it('should respond with error if the email is not present in the DB (token)', function(done) {
+			request(app)
+				.post('/api/passport/changepassword/m.t@usi.ch')
+				.send({
+					"password": "ciao",
+					"token": "test",
+				})
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.should.have.property('error', 'Token is not correct. Try to open again the link in the email.');
+					done();
+				});
+		});
+
+
 	});
 });
 
