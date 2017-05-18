@@ -114,8 +114,6 @@ describe('Testing put for claimrequest with accept', function() {
 			Freelancer.remove({
 				"_id": ObjectId("f00000000000000000000026")
 			}, function(err, removed) {
-				console.log("ERROR " + err);
-				console.log("REMOVED " + removed);
 				request(app)
 					.put('/api/claimrequest/d00000000000000000000000')
 					.send(temp)
@@ -148,8 +146,6 @@ describe('Testing put for claimrequest with accept', function() {
 			Freelancer.remove({
 				"_id": ObjectId("f00000000000000000000026")
 			}, function(err, removed) {
-				console.log("ERROR " + err);
-				console.log("REMOVED " + removed);
 				request(app)
 					.put('/api/claimrequest/d00000000000000000000000')
 					.send(temp)
@@ -182,8 +178,6 @@ describe('Testing put for claimrequest with accept', function() {
 			User.remove({
 				"_id": ObjectId("b00000000000000000000012"),
 			}, function(err, removed) {
-				console.log("ERROR " + err);
-				console.log("REMOVED " + removed);
 				request(app)
 					.put('/api/claimrequest/d00000000000000000000000')
 					.send(temp)
@@ -216,8 +210,6 @@ describe('Testing put for claimrequest with accept', function() {
 			User.remove({
 				"_id": ObjectId("b00000000000000000000012"),
 			}, function(err, removed) {
-				console.log("ERROR " + err);
-				console.log("REMOVED " + removed);
 				request(app)
 					.put('/api/claimrequest/d00000000000000000000000')
 					.send(temp)
