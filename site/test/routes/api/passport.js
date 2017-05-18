@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
+const User = mongoose.model('User');
 var ObjectId = mongoose.Types.ObjectId;
 
 var should = require('should');
@@ -222,6 +223,39 @@ describe('Testing POST for localhost:3000/api/passport/changepassword/:email', f
 
 		it('should respond with error if the email is not present in the DB (token)', function(done) {
 			request(app)
+				.post('/api/passport/changepassword/wef.wef@wefd.com')
+				.send({
+					"password": "ciao",
+					"token": "test",
+				})
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.should.have.property('error', 'Token is not correct. Try to open again the link in the email.');
+					done();
+				});
+		});
+
+		it('should respond with error if the old password is not correct', function(done) {
+			request(app)
+				.post('/api/passport/changepassword/m.t@usi.ch')
+				.send({
+					"password": "ciao",
+					"oldPassword": "wefwefwefewfwe",
+				})
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.should.have.property('error', 'Old password is not correct.');
+					done();
+				});
+		});
+
+
+		it('should respond with error if the token is not correct', function(done) {
+			request(app)
 				.post('/api/passport/changepassword/m.t@usi.ch')
 				.send({
 					"password": "ciao",
@@ -236,7 +270,31 @@ describe('Testing POST for localhost:3000/api/passport/changepassword/:email', f
 				});
 		});
 
-
+		it('should change the password', function(done) {
+			request(app)
+				.post('/api/passport/changepassword/m.t@usi.ch')
+				.send({
+					"password": "ciao123",
+					"oldPassword": "test",
+				})
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					request(app)
+						.post('/api/passport/login')
+						.send({
+							"email": "m.t@usi.ch",
+							"password": "ciao123"
+						})
+						.expect(200)
+						.expect('Content-Type', /json/)
+						.end(function(err, res) {
+							if (err) done(err);
+							res.body.should.have.property('result', 'success');
+							done();
+						});
+				});
+		});
 	});
 });
 
