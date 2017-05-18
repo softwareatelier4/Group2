@@ -8,6 +8,8 @@ var utils = require('../../utils');
 var app = require('../../../app');
 var seedDb = require('../../seedDb');
 var request = require('supertest');
+const Freelancer = mongoose.model('Freelancer');
+const User = mongoose.model('User');
 var user;
 var freelancer;
 
@@ -91,6 +93,142 @@ describe('Testing put for claimrequest with accept', function() {
 	});
 });
 
+describe('Testing put for claimrequest with accept', function() {
+	describe('PUT /api/claimrequest/claimId', function() {
+		before(seed);
+		after(utils.dropDb);
+		var put_claimRequest = {
+			_id: ObjectId("d00000000000000000000000"),
+			user: ObjectId("b00000000000000000000002"),
+			freelancer: ObjectId("f00000000000000000000026"),
+			identitycard: "../public/uploads/claimRequests/upload_claim.png",
+			notes: 'This is my profile',
+			status: 'Pending'
+		}
+
+		let temp = put_claimRequest;
+		temp.status = "Accepted";
+
+
+		it('Should return error if freelancer doesn t exists(Accepted)', function(done) {
+			Freelancer.remove({
+				"_id": ObjectId("f00000000000000000000026")
+			}, function(err, removed) {
+				console.log("ERROR " + err);
+				console.log("REMOVED " + removed);
+				request(app)
+					.put('/api/claimrequest/d00000000000000000000000')
+					.send(temp)
+					.set('Accept', 'application/json')
+					.expect('Content-Type', /json/, 'it should respond with json')
+					.expect(404, done);
+			})
+		});
+	});
+});
+
+describe('Testing put for claimrequest with accept', function() {
+	describe('PUT /api/claimrequest/claimId', function() {
+		before(seed);
+		after(utils.dropDb);
+		var put_claimRequest = {
+			_id: ObjectId("d00000000000000000000000"),
+			user: ObjectId("b00000000000000000000002"),
+			freelancer: ObjectId("f00000000000000000000026"),
+			identitycard: "../public/uploads/claimRequests/upload_claim.png",
+			notes: 'This is my profile',
+			status: 'Pending'
+		}
+
+		let temp = put_claimRequest;
+		temp.status = "Refused";
+
+
+		it('Should return error if freelancer doesn t exists (refused)', function(done) {
+			Freelancer.remove({
+				"_id": ObjectId("f00000000000000000000026")
+			}, function(err, removed) {
+				console.log("ERROR " + err);
+				console.log("REMOVED " + removed);
+				request(app)
+					.put('/api/claimrequest/d00000000000000000000000')
+					.send(temp)
+					.set('Accept', 'application/json')
+					.expect('Content-Type', /json/, 'it should respond with json')
+					.expect(404, done);
+			})
+		});
+	});
+});
+
+describe('Testing put for claimrequest with accept', function() {
+	describe('PUT /api/claimrequest/claimId', function() {
+		before(seed);
+		after(utils.dropDb);
+		var put_claimRequest = {
+			_id: ObjectId("d00000000000000000000000"),
+			user: ObjectId("b00000000000000000000012"),
+			freelancer: ObjectId("f00000000000000000000026"),
+			identitycard: "../public/uploads/claimRequests/upload_claim.png",
+			notes: 'This is my profile',
+			status: 'Pending'
+		}
+
+		let temp = put_claimRequest;
+		temp.status = "Accepted";
+
+
+		it('Should return error if user doesn t exists (accepted)', function(done) {
+			User.remove({
+				"_id": ObjectId("b00000000000000000000012"),
+			}, function(err, removed) {
+				console.log("ERROR " + err);
+				console.log("REMOVED " + removed);
+				request(app)
+					.put('/api/claimrequest/d00000000000000000000000')
+					.send(temp)
+					.set('Accept', 'application/json')
+					.expect('Content-Type', /json/, 'it should respond with json')
+					.expect(404, done);
+			})
+		});
+	});
+});
+
+describe('Testing put for claimrequest with accept', function() {
+	describe('PUT /api/claimrequest/claimId', function() {
+		before(seed);
+		after(utils.dropDb);
+		var put_claimRequest = {
+			_id: ObjectId("d00000000000000000000000"),
+			user: ObjectId("b00000000000000000000012"),
+			freelancer: ObjectId("f00000000000000000000026"),
+			identitycard: "../public/uploads/claimRequests/upload_claim.png",
+			notes: 'This is my profile',
+			status: 'Pending'
+		}
+
+		let temp = put_claimRequest;
+		temp.status = "Refused";
+
+
+		it('Should return error if user doesn t exists (refused)', function(done) {
+			User.remove({
+				"_id": ObjectId("b00000000000000000000012"),
+			}, function(err, removed) {
+				console.log("ERROR " + err);
+				console.log("REMOVED " + removed);
+				request(app)
+					.put('/api/claimrequest/d00000000000000000000000')
+					.send(temp)
+					.set('Accept', 'application/json')
+					.expect('Content-Type', /json/, 'it should respond with json')
+					.expect(404, done);
+			})
+		});
+	});
+});
+
 describe('Testing put for claimrequest with refused', function() {
 	describe('PUT /api/claimrequest/claimId', function() {
 		before(seed);
@@ -122,70 +260,6 @@ describe('Testing put for claimrequest with refused', function() {
 		});
 	});
 });
-
-// describe('Testing put for claimrequest with refused', function() {
-// 	describe('PUT /api/claimrequest/claimId', function() {
-// 		before(seed);
-// 		after(utils.dropDb);
-// 		var put_claimRequest = {
-// 			_id: ObjectId("d00000000000000000000000"),
-// 			user: ObjectId("b00000000000000000000002"),
-// 			freelancer: ObjectId("f00000000b00000000000002"),
-// 			identitycard: "../public/uploads/claimRequests/upload_claim.png",
-// 			notes: 'This is my profile',
-// 			status: 'Accepted'
-// 		}
-//
-// 		let temp = put_claimRequest;
-// 		temp.status = "Refused";
-//
-// 		it('Should not find the freelancer', function(done) {
-// 			request(app)
-// 				.put('/api/claimrequest/d00000000000000000000001')
-// 				.send(temp)
-// 				.set('Accept', 'application/json')
-// 				.expect('Content-Type', /json/, 'it should respond with json')
-// 				.expect(200)
-// 				.end(function(err, res) {
-// 					let resJson = JSON.parse(res.text);
-// 					resJson.status.should.not.equal("Accepted");
-// 					done();
-// 				});
-// 		});
-// 	});
-// });
-//
-// describe('Testing put for claimrequest with refused', function() {
-// 	describe('PUT /api/claimrequest/claimId', function() {
-// 		before(seed);
-// 		after(utils.dropDb);
-// 		var put_claimRequest = {
-// 			_id: ObjectId("d00000000000000000000000"),
-// 			user: ObjectId("b00000000000000a00000002"),
-// 			freelancer: ObjectId("f00000000000000000000002"),
-// 			identitycard: "../public/uploads/claimRequests/upload_claim.png",
-// 			notes: 'This is my profile',
-// 			status: 'Accepted'
-// 		}
-//
-// 		let temp = put_claimRequest;
-// 		temp.status = "Refused";
-//
-// 		it('Should not find the user', function(done) {
-// 			request(app)
-// 				.put('/api/claimrequest/d00000000000000000000001')
-// 				.send(temp)
-// 				.set('Accept', 'application/json')
-// 				.expect('Content-Type', /json/, 'it should respond with json')
-// 				.expect(200)
-// 				.end(function(err, res) {
-// 					let resJson = JSON.parse(res.text);
-// 					resJson.status.should.not.equal("Accepted");
-// 					done();
-// 				});
-// 		});
-// 	});
-// });
 
 describe('Testing put for claimrequest with refused', function() {
 	describe('PUT /api/claimrequest/claimId', function() {
