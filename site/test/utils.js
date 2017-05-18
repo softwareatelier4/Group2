@@ -191,8 +191,10 @@ module.exports.matchReviewInfoInText = function matchArtistInfoInText(text, revi
 	text.indexOf(review.title).should.be.greaterThan(-1, "title should be there");
 	text.indexOf(review.description).should.be.greaterThan(-1, "description should be there");
 	text.indexOf(review.score).should.be.greaterThan(-1, "score should be there");
-	for (var p of review.photo) {
-		text.indexOf(p).should.be.greaterThan(-1, "photo should be there");
+	if (review.photo) {
+		for (var p of review.photo) {
+			text.indexOf(p).should.be.greaterThan(-1, "photo should be there");
+		}
 	}
 	text.indexOf(review.user).should.be.greaterThan(-1, "user id should be there");
 	text.indexOf(review.freelancer).should.be.greaterThan(-1, "freelancer should be there");

@@ -57,8 +57,6 @@ describe('Testing Read for /api/review/freelancer/', function() {
 				.expect(200)
 				.end(function(err, res) {
 					var review = res.text;
-					console.log("queSTAAAAA", review);
-					console.log("questa BBB", reviews[0]);
 					utils.matchReviewInfoInText(review, reviews[0]);
 					done();
 				});
