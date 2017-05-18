@@ -123,7 +123,7 @@ describe('Testing put for claimrequest with refused', function() {
 	});
 });
 
-describe('Testing put for claimrequest', function() {
+describe('Testing put for claimrequest with wrong status', function() {
 	describe('PUT /api/claimrequest/claimId', function() {
 		before(seed);
 		after(utils.dropDb);
@@ -155,7 +155,7 @@ describe('Testing put for claimrequest', function() {
 	});
 });
 
-describe('Testing put for claimrequest', function() {
+describe('Testing put for claimrequest with wrong id', function() {
 	describe('PUT /api/claimrequest/claimId', function() {
 		before(seed);
 		after(utils.dropDb);
@@ -175,6 +175,32 @@ describe('Testing put for claimrequest', function() {
 			request(app)
 				.put('/api/claimrequest/abc' + put_claimRequest._id)
 				.send()
+				.set('Accept', 'application/json')
+				.expect(500, done);
+		});
+	});
+});
+
+describe('Testing put for claimrequest with wrong freelancer', function() {
+	describe('PUT /api/claimrequest/claimId', function() {
+		before(seed);
+		after(utils.dropDb);
+		var put_claimRequest = {
+			_id: ObjectId("d00000000000000000000010"),
+			user: ObjectId("b00000000000000000000002"),
+			freelancer: ObjectId("f00000000000000000000102"),
+			identitycard: "../public/uploads/claimRequests/upload_claim.png",
+			notes: 'This is my profile',
+			status: 'Accepted'
+		}
+
+		let temp = put_claimRequest;
+		temp.status = "Accepted";
+
+		it('Should give an error if the claimrequest id is wrong', function(done) {
+			request(app)
+				.put('/api/claimrequest/abc' + put_claimRequest._id)
+				.send(temp)
 				.set('Accept', 'application/json')
 				.expect(500, done);
 		});

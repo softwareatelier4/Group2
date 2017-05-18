@@ -16,7 +16,7 @@ describe('Testing get for api/tag/search', function() {
 
 		it('Should return the correct tag', function(done) {
 			request(app)
-				.get('/api/tag/search/Idraulic')
+				.get('/api/tag/search/Plumber')
 				.set('Accept', 'application/json')
 				.expect('Content-Type', /json/, 'it should respond with json')
 				.expect(200)

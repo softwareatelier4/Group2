@@ -111,7 +111,7 @@ describe('Testing Post for localhost:3000/api/passport/login', function() {
 			request(app)
 				.post('/api/passport/login')
 				.send({
-					"email": "2.t@usi.ch",
+					"email": "m.b@usi.ch",
 					"password": "test"
 				})
 				.expect(200)
