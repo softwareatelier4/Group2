@@ -14,6 +14,7 @@
       </div>
       {?ableReply}
       <button type="button" class="btn btn-primary pull-right" name="freelancer-reply" {?answer} style="display:none;" {/answer}>Reply Now</button> {/ableReply}
+      <button type="button" class="btn btn-primary pull-right" name="modify-rev" onclick="FREELANCER.modifyButtonClick(event)" {?answer} style="display:none;" {:else} {^ableToModify} style="display:none;" {/ableToModify} {/answer}>Modify</button>
       <div class="reply">
          <div class="card-block" {^answer} style="display:none;" {/answer}>
             <h6 class="card-subtitle mb-2 text-muted">Reply:</h6>

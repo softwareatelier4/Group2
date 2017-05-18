@@ -17,11 +17,10 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var reviewSchema = new mongoose.Schema({
 	title: {
-		type: String,
+		type: String
 	},
 	description: {
-		type: String,
-		default: ""
+		type: String
 	},
 	score: {
 		type: Number,
