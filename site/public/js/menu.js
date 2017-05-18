@@ -57,6 +57,11 @@ let drawLoginMenu = function() {
 				};
 			}
 
+			menuEl.changePassword = {
+				name: 'Change Password',
+				link: '/password.html'
+			};
+
 			menuEl.logout = {
 				name: 'Logout',
 				fnOnClick: 'LOGIN.logout()',
