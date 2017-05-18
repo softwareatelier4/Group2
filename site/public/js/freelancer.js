@@ -1,3 +1,12 @@
+var dropZoneId = "drop-zone";
+var buttonId = "clickHere";
+var mouseOverClass = "mouse-over";
+var dropZone;
+var inputFile;
+var finalFiles = {};
+
+
+
 const FREELANCER = {
 
 	name: 'freelancer',
@@ -19,7 +28,6 @@ const FREELANCER = {
 		SORTING_OPTIONS.style.visibility = 'hidden';
 
 		FREELANCER.renderProfile();
-
 	},
 
 	remover: function() {
@@ -48,57 +56,76 @@ const FREELANCER = {
 						empty: 5 - Math.ceil(res.score)
 					});
 
-					//display photos of work, if more than 9, display only in the lightbox
-					res.photosThumbnail = [];
-					for (var i in res.photos) {
+			doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
+				let owner = res.ownerId;
+				if (res.error) {
+					console.log("error");
+				} else {
+					$.get("/html/freelancer.html", function(html) {
+						res.score = FREELANCER.getHtmlRankStar({
+							full: res.score,
+							empty: 5 - res.score
+						});
+
+						//display photos of work, if more than 9, display only in the lightbox
+						res.photosThumbnail = [];
+
+						// shuffle the images
+						res.photos = res.photos.sort(function(a, b) {
+							return 0.5 - Math.random()
+						});
+
+						for (var i in res.photos) {
+							if (i == 9) {
+								break;
+							}
+
+							res.photosThumbnail.push(res.photos[i]);
+						}
 						if (i == 9) {
-							break;
+							res.photos = res.photos.splice(i, res.photos.length);
+						} else {
+							res.photos = [];
 						}
 
-						res.photosThumbnail.push(res.photos[i]);
-					}
-					if (i == 9) {
-						res.photos = res.photos.splice(i, res.photos.length);
-					} else {
-						res.photos = [];
-					}
-					let data = {
-						freelancer: res
-					};
+						let data = {
+							freelancer: res
+						};
 
-					dust.renderSource(html, data, function(err, out) {
-						MAIN_JS.innerHTML = out;
-						$('#verified-sign').tooltip();
-						$('#emergency-sign').tooltip();
-						$('#disabled-emergency-sign').tooltip();
-						FREELANCER.renderReview(idFreelancer);
-					});
-					isLogged(function(ress) {
-						userId = ress.result;
+						dust.renderSource(html, data, function(err, out) {
+							MAIN_JS.innerHTML = out;
+							$('#verified-sign').tooltip();
+							$('#emergency-sign').tooltip();
+							$('#disabled-emergency-sign').tooltip();
+
+							FREELANCER.renderReview(idFreelancer, userLogged);
+							FREELANCER.reviewBox(idFreelancer, userLogged)
+						});
+
 						doJSONRequest("GET", "/api/claimrequest", null, null, function(response) {
 							let hasReqPending = false;
 							let userHasFreelancer = false;
-							if (userId.freeLancerId != undefined) {
+							if (userLogged.freeLancerId != undefined) {
 								userHasFreelancer = true;
 							}
 							for (let r of response) {
-								if (r.user._id === userId._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
+								if (r.user._id === userLogged._id && r.freelancer._id === idFreelancer && r.status === 'Pending') {
 									hasReqPending = true;
 								}
 							}
-							if (owner === undefined && userId !== false && hasReqPending === false && userHasFreelancer === false) {
+							if (owner === undefined && userLogged !== false && hasReqPending === false && userHasFreelancer === false) {
 								$(document.getElementById("claim-button")).show();
 							}
 							if (hasReqPending === true) {
 								$(document.getElementById("pending-claim-button")).show();
 							}
-							if (owner && owner._id === userId._id) {
+							if (owner && owner._id === userLogged._id) {
 								$(document.getElementById("modify-button")).show();
 							}
 						})
 					});
-				});
-			}
+				}
+			});
 		});
 	},
 
@@ -108,7 +135,7 @@ const FREELANCER = {
 	 * @param {idFreelancer} - id of the Freelancer
 	 * @return {void}
 	 */
-	renderReview: function(idFreelancer) {
+	renderReview: function(idFreelancer, userLogged) {
 		doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer, null, null, function(result) {
 			$.get("/html/review.html", function(reviewHtml) {
 
@@ -119,38 +146,49 @@ const FREELANCER = {
 					});
 				}
 
-				isLogged(function(loginRes) {
-					loginRes = loginRes.result;
-					if (loginRes && loginRes.freeLancerId == idFreelancer) {
-						// the user has the current profile
-						result.ableReply = true;
+				if (userLogged && userLogged.freeLancerId == idFreelancer) {
+					// the user has the current profile
+					result.ableReply = true;
 
-						for (res of result) {
-							res.ableReply = true;
-						}
+					for (res of result) {
+						res.ableReply = true;
 					}
+				}
 
-					dust.renderSource(reviewHtml, result, function(err, out) {
-						document.getElementById('cardReviews').innerHTML = out;
-						const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
+				dust.renderSource(reviewHtml, result, function(err, out) {
+					document.getElementById('cardReviews').innerHTML = out;
+					const replyNum = $('.reply button[name=freelancer-reply-edit]').length;
 
-						for (let i = 0; i < replyNum; i++) {
-							$('.reply button[name=freelancer-reply-edit]')[i].addEventListener('click', FREELANCER.editReview);
-							$('.reply button[name=freelancer-reply-save]')[i].addEventListener('click', FREELANCER.saveReview);
-							$('.reply button[name=freelancer-reply-delete]')[i].addEventListener('click', FREELANCER.deleteReview);
-							$('.reply button[name=freelancer-reply-eraser]')[i].addEventListener('click', FREELANCER.eraserReview);
-							$('.reply button[name=freelancer-reply-times]')[i].addEventListener('click', FREELANCER.timesReview);
-							$('.reply button[name=freelancer-reply-delete-no]')[i].addEventListener('click', FREELANCER.deleteConfirm);
-							$('.reply button[name=freelancer-reply-delete-yes]')[i].addEventListener('click', FREELANCER.deleteConfirm);
-							const replyButton = $('button[name=freelancer-reply]')[i];
-							if (replyButton)
-								replyButton.addEventListener('click', FREELANCER.showReplyReview);
-						}
-					});
-				})
+					for (let i = 0; i < replyNum; i++) {
+						$('.reply button[name=freelancer-reply-edit]')[i].addEventListener('click', FREELANCER.editReview);
+						$('.reply button[name=freelancer-reply-save]')[i].addEventListener('click', FREELANCER.saveReview);
+						$('.reply button[name=freelancer-reply-delete]')[i].addEventListener('click', FREELANCER.deleteReview);
+						$('.reply button[name=freelancer-reply-eraser]')[i].addEventListener('click', FREELANCER.eraserReview);
+						$('.reply button[name=freelancer-reply-times]')[i].addEventListener('click', FREELANCER.timesReview);
+						$('.reply button[name=freelancer-reply-delete-no]')[i].addEventListener('click', FREELANCER.deleteConfirm);
+						$('.reply button[name=freelancer-reply-delete-yes]')[i].addEventListener('click', FREELANCER.deleteConfirm);
+						const replyButton = $('button[name=freelancer-reply]')[i];
+						if (replyButton)
+							replyButton.addEventListener('click', FREELANCER.showReplyReview);
+					}
+				});
 			});
 		});
 
+	},
+
+	reviewBox: function(idFreelancer, userLogged) {
+		console.log(idFreelancer, userLogged);
+
+		if (userLogged && userLogged.freeLancerId != idFreelancer) {
+			// check if the user already commented
+			doJSONRequest("GET", "/api/review/freelancer/" + idFreelancer + '/user/' + userLogged._id, null, null, function(result) {
+				if (result.length == 0) {
+					$('#writeReviews').show();
+					FREELANCER.uploadImageZone();
+				}
+			});
+		}
 	},
 
 	editReview: function(e) {
@@ -379,4 +417,211 @@ const FREELANCER = {
 
 
 	},
+
+	uploadImageZone: function() {
+		dropZone = $("#" + dropZoneId);
+		inputFile = dropZone.find("input");
+
+
+		if (window.File && window.FileList && window.FileReader) {
+			$("#gallery-upload").on("change", function(e) {
+				var files = e.target.files,
+					filesLength = files.length;
+				for (var i = 0; i < filesLength; i++) {
+					var f = files[i]
+					var fileReader = new FileReader();
+					fileReader.onload = (function(e) {
+						var file = e.target;
+						$("<span class=\"pip\">" +
+							"<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+							"<br/><span class=\"remove\">Remove image</span>" +
+							"</span>").insertAfter("#gallery-upload");
+						$(".remove").click(function() {
+							$(this).parent(".pip").remove();
+						});
+
+					});
+					fileReader.readAsDataURL(f);
+				}
+			});
+		} else {
+			alert("Your browser doesn't support to File API")
+		}
+
+
+		var ooleft = dropZone.offset().left;
+		var ooright = dropZone.outerWidth() + ooleft;
+		var ootop = dropZone.offset().top;
+		var oobottom = dropZone.outerHeight() + ootop;
+
+		document.getElementById(dropZoneId).addEventListener("dragover", function(e) {
+			e.preventDefault();
+			e.stopPropagation();
+			dropZone.addClass(mouseOverClass);
+			var x = e.pageX;
+			var y = e.pageY;
+
+			if (!(x < ooleft || x > ooright || y < ootop || y > oobottom)) {
+				inputFile.offset({
+					top: y - 15,
+					left: x - 100
+				});
+			} else {
+				inputFile.offset({
+					top: -400,
+					left: -400
+				});
+			}
+
+		}, true);
+
+		if (buttonId != "") {
+			var clickZone = $("#" + buttonId);
+
+			var oleft = clickZone.offset().left;
+			var oright = clickZone.outerWidth() + oleft;
+			var otop = clickZone.offset().top;
+			var obottom = clickZone.outerHeight() + otop;
+
+			$("#" + buttonId).mousemove(function(e) {
+				var x = e.pageX;
+				var y = e.pageY;
+				if (!(x < oleft || x > oright || y < otop || y > obottom)) {
+					inputFile.offset({
+						top: y - 15,
+						left: x - 160
+					});
+				} else {
+					inputFile.offset({
+						top: -400,
+						left: -400
+					});
+				}
+			});
+		}
+
+		document.getElementById(dropZoneId).addEventListener("drop", function(e) {
+			$("#" + dropZoneId).removeClass(mouseOverClass);
+		}, true);
+
+
+		inputFile.on('change', function(e) {
+			finalFiles = {};
+			$('#filename').html("");
+			var fileNum = this.files.length,
+				initial = 0,
+				counter = 0;
+
+			$.each(this.files, function(idx, elm) {
+				finalFiles[idx] = elm;
+			});
+
+			for (initial; initial < fileNum; initial++) {
+				counter = counter + 1;
+				$('#filename').append('<div id="file_' + initial + '"><span class="fa-stack fa-lg"><i class="fa fa-file fa-stack-1x "></i><strong class="fa-stack-1x" style="color:#FFF; font-size:12px; margin-top:2px;">' + counter + '</strong></span> ' + this.files[initial].name + '&nbsp;&nbsp;<span class="fa fa-times-circle fa-lg closeBtn" onclick="removeLine(this)" title="remove"></span></div>');
+			}
+		});
+	},
+
+	writeReviewHoverStar: function(e, number) {
+
+		for (let i = 1; i <= 5; i++) {
+			$('#star' + i).removeClass('fa-star').removeClass('fa-star-o');
+			if (i <= number) {
+				$('#star' + i).addClass('fa-star');
+			} else {
+				$('#star' + i).addClass('fa-star-o');
+			}
+		}
+
+	},
+
+	writeReviewClickStar: function(e, number) {
+		for (let i = 1; i <= 5; i++) {
+			$('#star' + i).removeClass('fa-star').removeClass('fa-star-o');
+			if (i <= number) {
+				$('#star' + i).addClass('fa-star');
+			} else {
+				$('#star' + i).addClass('fa-star-o');
+			}
+		}
+	},
+
+	writeReviewSubmit: function(e) {
+		e.preventDefault();
+
+		let form = e.target;
+		$('#writeReviewError').remove();
+		const numberStar = form.getElementsByClassName('fa-star').length;
+
+		const idFreelancer = window.location.href.split("=")[1];
+
+		if (numberStar <= 0) {
+			// error
+			const error = `<div id="writeReviewError" style="margin-top: 10px" class="alert alert-danger" role="alert">
+  <strong>Oh snap!</strong> Please, select a score.
+</div>`;
+
+			$(form).before(error);
+		} else {
+
+			isLogged(function(user) {
+				user = user.result;
+				if (user) {
+					console.log(user);
+					//if ok, do an ajax request
+					data = new FormData();
+
+					data.append('title', $("#new-review-title").val());
+					data.append('description', $("#new-review-description").val());
+					data.append('score', numberStar);
+					data.append('user', user._id);
+
+					for (let i = 0; i < Object.keys(finalFiles).length; i++) {
+						data.append('file' + i + 1, finalFiles[i]);
+					}
+
+					let request = new XMLHttpRequest();
+
+					request.onreadystatechange = function() {
+						//correctly handle the errors based on the HTTP status returned by the called API
+						if (request.readyState == 4 && request.status == 202) {
+							let newReview = JSON.parse(request.responseText);
+
+							console.log(newReview);
+
+							$.get("/html/review.html", function(reviewHtml) {
+
+								newReview.user = user;
+
+								newReview.score = FREELANCER.getHtmlRankStar({
+									full: newReview.score,
+									empty: 5 - newReview.score
+								});
+								dust.renderSource(reviewHtml, [newReview], function(err, out) {
+									$('#cardReviews').append(out);
+									$('#writeReviews').slideUp(800);
+								})
+							});
+						}
+					}
+
+					request.open("PUT", "/api/review/" + idFreelancer);
+					request.send(data);
+				}
+			})
+		}
+	}
+}
+
+
+function removeLine(obj) {
+	inputFile.val('');
+	var jqObj = $(obj);
+	var container = jqObj.closest('div');
+	var index = container.attr("id").split('_')[1];
+	container.remove();
+
+	delete finalFiles[index];
+	// console.log(finalFiles);
 }
