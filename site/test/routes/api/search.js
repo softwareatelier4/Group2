@@ -169,137 +169,109 @@ describe('Testing the search algorithm', function() {
 					done();
 				});
 		});
-		// it('should list all the freelancer that have valsan@.usi.it as email', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/valsan@usi.it|46.0072623,8.955711299999999|Lugano')
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson.should.have.length(0);
-		//
-		// 			done();
-		// 		});
-		// });
-		// it('should return a 400 error when called with no search parameters', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/')
-		// 		.set('Accept', 'application/json')
-		// 		.expect(400)
-		// 		.end(function(err, res) {
-		// 			done();
-		// 		});
-		// });
-		// it('should return the correct tags', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/Tollini|46.0072623,8.955711299999999|Lugano')
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson[0].tags[0].name.should.equal('Developer');
-		// 			resJson[0].tags[1].name.should.equal('Informatico');
-		// 			resJson[0].tags[2].name.should.equal('Tecnico');
-		//
-		// 			done();
-		// 		});
-		// });
-		// it('should return the correct Score', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/Tollini|46.0072623,8.955711299999999|Lugano')
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson[0].score.should.equal(5);
-		//
-		// 			done();
-		// 		});
-		// });
-		// it('should return the correct Price', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/Tollini|46.0072623,8.955711299999999|Lugano')
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson[0].price.should.equal(20);
-		//
-		// 			done();
-		// 		});
-		// });
-		// it('should return the correct Price', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/Tollini|46.0072623,8.955711299999999|Lugano')
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson[0].price.should.equal(20);
-		//
-		// 			done();
-		// 		});
-		// });
-		// it('should return the correct Distance', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/Developer|46.006923099999995,8.9555978|Lugano')
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson[0].distance.should.equal('0.6');
-		// 			resJson[1].distance.should.equal('13.1');
-		//
-		// 			done();
-		// 		});
-		// });
-		// it('should not return the Distance', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/Tollini')
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson.should.have.length(0);
-		//
-		// 			done();
-		// 		});
-		// });
-		// it('should return the correct Coordinates', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/Tollini|46.006923099999995,8.9555978|Lugano')
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson[0].latitude.should.equal(46.0119793);
-		// 			resJson[0].longitude.should.equal(8.9517463);
-		//
-		// 			done();
-		// 		});
-		// });
-		// it('should return the correct Time', function(done) {
-		// 	request(app)
-		// 		.get('/api/freelancer/search/Developer|46.006923099999995,8.9555978|Lugano')
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson[0].time.should.equal(0.01);
-		// 			resJson[1].time.should.equal(0.21833333333333332);
-		//
-		// 			done();
-		// 		});
-		// });
+		it('should list all the freelancer that have valsan@.usi.it as email', function(done) {
+			request(app)
+				.get('/api/freelancer/search/valsan@usi.it|46.0072623,8.955711299999999|Lugano')
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson.should.have.length(0);
+
+					done();
+				});
+		});
+		it('should return a 400 error when called with no search parameters', function(done) {
+			request(app)
+				.get('/api/freelancer/search/')
+				.set('Accept', 'application/json')
+				.expect(400)
+				.end(function(err, res) {
+					done();
+				});
+		});
+		it('should return the correct tags', function(done) {
+			request(app)
+				.get('/api/freelancer/search/fra.giri99@cc.it|46.0072623,8.955711299999999|Lugano')
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson[0].tags[0].name.should.equal('Plumber');
+					resJson[0].tags[1].name.should.equal('Arts & Crafts');
+					done();
+				});
+		});
+		it('should return the correct Score', function(done) {
+			request(app)
+				.get('/api/freelancer/search/Marianice|46.0072623,8.955711299999999|Lugano')
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson[0].score.should.equal(4.5);
+
+					done();
+				});
+		});
+		it('should return the correct Price', function(done) {
+			request(app)
+				.get('/api/freelancer/search/Marianice|46.0072623,8.955711299999999|Lugano')
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson[0].price.should.equal(45);
+
+					done();
+				});
+		});
+		it('should return the correct Distance', function(done) {
+			request(app)
+				.get('/api/freelancer/search/Plumber|46.006923099999995,8.9555978|Lugano')
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson[0].distance.should.equal('1.9');
+					resJson[1].distance.should.equal('0.5');
+
+					done();
+				});
+		});
+		it('should return the correct Coordinates', function(done) {
+			request(app)
+				.get('/api/freelancer/search/Sarah|46.006923099999995,8.9555978|Lugano')
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson[0].latitude.should.equal(46.015036);
+					resJson[0].longitude.should.equal(8.9768153);
+
+					done();
+				});
+		});
+		it('should return the correct Time', function(done) {
+			request(app)
+				.get('/api/freelancer/search/Plumber|46.006923099999995,8.9555978|Lugano')
+				.set('Accept', 'application/json')
+				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect(200)
+				.end(function(err, res) {
+					let resJson = JSON.parse(res.text);
+					resJson[0].time.should.equal(0.03166666666666666);
+					resJson[1].time.should.equal(0.008333333333333333);
+
+					done();
+				});
+		});
 	});
 });
 
