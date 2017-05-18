@@ -181,31 +181,33 @@ describe('Testing put for claimrequest with wrong id', function() {
 	});
 });
 
-describe('Testing put for claimrequest with wrong freelancer', function() {
+describe('Testing put for claimrequest with wrong freelancer id', function() {
 	describe('PUT /api/claimrequest/claimId', function() {
 		before(seed);
 		after(utils.dropDb);
 		var put_claimRequest = {
-			_id: ObjectId("d00000000000000000000010"),
+			_id: ObjectId("d00000000000000000000000"),
 			user: ObjectId("b00000000000000000000002"),
-			freelancer: ObjectId("f00000000000000000000102"),
+			freelancer: ObjectId("f000000000000a0000000026"),
 			identitycard: "../public/uploads/claimRequests/upload_claim.png",
 			notes: 'This is my profile',
 			status: 'Accepted'
 		}
 
 		let temp = put_claimRequest;
-		temp.status = "Accepted";
+		temp.status = "Refused";
 
-		it('Should give an error if the claimrequest id is wrong', function(done) {
+		it('Should not modify the claim if the id is wrong', function(done) {
 			request(app)
-				.put('/api/claimrequest/abc' + put_claimRequest._id)
+				.put('/api/claimrequest/d00000000000000000000004')
 				.send(temp)
 				.set('Accept', 'application/json')
-				.expect(500, done);
+				.expect(404, done);
 		});
 	});
 });
+
+
 
 function seed(done) {
 	//seed the db

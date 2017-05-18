@@ -143,6 +143,8 @@ router.put('/:id', function(req, res, next) {
 				console.log(saved);
 				res.send(saved);
 			});
+		} else {
+			return next(err);
 		}
 	});
 });
