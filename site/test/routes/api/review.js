@@ -71,6 +71,73 @@ describe('Testing Read for api/review/', function() {
 	});
 });
 
+
+describe('Testing POST api/review/edit/:reviewid', function() {
+	describe('POST api/review/edit/:reviewid', function() {
+		before(seed);
+		after(utils.dropDb);
+
+		it('Should respond with a 400 if the review', function(done) {
+			request(app)
+				.post('/api/review/edit/ciao00000')
+				.expect(400, done)
+		});
+
+		it('Should respond with a 404 if the review does not exist', function(done) {
+			request(app)
+				.post('/api/review/edit/c00000000012340000000000')
+				.send({
+					"title": "ciao",
+				})
+				.expect(404, done);
+		});
+
+		it('Should modify the title', function(done) {
+			request(app)
+				.post('/api/review/edit/c00000000000000000000000')
+				.type('form')
+				.field('title', 'ciiiao')
+				.expect(202)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.title.should.be.eql('ciiiao');
+					done();
+				});
+		});
+
+		it('Should modify the description', function(done) {
+
+			request(app)
+				.post('/api/review/edit/c00000000000000000000000')
+				.type('form')
+				.field('description', 'this is a test')
+				.expect(202)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.description.should.be.eql('this is a test');
+					done();
+				});
+		});
+
+		it('Should modify the score', function(done) {
+
+			request(app)
+				.post('/api/review/edit/c00000000000000000000000')
+				.type('form')
+				.field('score', 2)
+				.expect(202)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.score.should.be.eql(2);
+					done();
+				});
+		});
+	});
+});
+
 function seed(done) {
 	//seed the db
 	seedDb.seed(function(err, seedData) {

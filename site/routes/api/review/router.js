@@ -87,13 +87,17 @@ router.post('/edit/:reviewid', function(req, res, next) {
 			return;
 		}
 
+		if (!review) {
+			res.sendStatus(404);
+		}
+
 		let form = new formidable.IncomingForm({
 			uploadDir: __dirname + '/../../../public/uploads/review/',
 			keepExtensions: true
 		});
 
 		form.parse(req, function(err, fields, files) {
-			if (err) return next(err);
+			if (err) res.status(400).send(err);
 			let fileNames = [];
 
 			for (let file of Object.values(files)) {
@@ -134,16 +138,12 @@ router.post('/edit/:reviewid', function(req, res, next) {
 
 					let freelancer = reviews[0].freelancer;
 
-
-
 					freelancer.score = newScoreAverage(reviews);
-
 
 					freelancer.save(function(err) {
 						if (err) {
 							return res.sendStatus(400);
 						}
-						console.log(newReview);
 						res.status(202).send(newReview);
 					});
 				});
