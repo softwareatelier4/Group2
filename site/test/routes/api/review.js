@@ -156,6 +156,99 @@ describe('Testing POST api/review/edit/:reviewid', function() {
 	});
 });
 
+
+
+
+describe('Testing PUT api/review/:idFreelancer', function() {
+	describe('PUT api/review/:idFreelancer', function() {
+		before(seed);
+		after(utils.dropDb);
+
+		it('Should respond with a 400 if nothing is sent', function(done) {
+			request(app)
+				.put('/api/review/f00000000000000000000000')
+				.expect(400, done)
+		});
+
+		it('Should respond be ok if sent only score', function(done) {
+			request(app)
+				.put('/api/review/f00000000000000000000000')
+				.type('form')
+				.field('score', 2)
+				.field('user', 'b00000000000000000000001')
+				.expect(202)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.score.should.be.eql(2);
+					done();
+				});
+		});
+
+		it('Should respond be ok if sent', function(done) {
+			request(app)
+				.put('/api/review/f00000000000000000000000')
+				.type('form')
+				.field('title', 'ciao')
+				.field('description', 'blah')
+				.field('score', 2)
+				.field('user', 'b00000000000000000000001')
+				.expect(202)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.score.should.be.eql(2);
+					res.body.title.should.be.eql('ciao');
+					res.body.description.should.be.eql('blah');
+					done();
+				});
+		});
+
+		it('Should respond be ok if sent 1 photo', function(done) {
+			request(app)
+				.put('/api/review/f00000000000000000000000')
+				.type('form')
+				.field('title', 'ciao')
+				.field('description', 'blah')
+				.field('score', 2)
+				.field('user', 'b00000000000000000000001')
+				.attach('file1', path.join(__dirname, "/../../test.jpg"))
+				.expect(202)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.score.should.be.eql(2);
+					res.body.title.should.be.eql('ciao');
+					res.body.description.should.be.eql('blah');
+					res.body.photo.length.should.be.eql(1);
+					done();
+				});
+		});
+
+		it('Should respond be ok if sent 1 photo', function(done) {
+			request(app)
+				.put('/api/review/f00000000000000000000000')
+				.type('form')
+				.field('title', 'ciao')
+				.field('description', 'blah')
+				.field('score', 2)
+				.field('user', 'b00000000000000000000001')
+				.attach('file1', path.join(__dirname, "/../../test.jpg"))
+				.attach('file2', path.join(__dirname, "/../../test.jpg"))
+				.expect(202)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.score.should.be.eql(2);
+					res.body.title.should.be.eql('ciao');
+					res.body.description.should.be.eql('blah');
+					res.body.photo.length.should.be.eql(2);
+					done();
+				});
+		});
+	});
+});
+
 function seed(done) {
 	//seed the db
 	seedDb.seed(function(err, seedData) {
