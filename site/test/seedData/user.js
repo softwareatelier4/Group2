@@ -103,7 +103,19 @@ module.exports.user = {
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
 			email: 's.s@usi.ch',
 			level: 1,
-			active: true
+			active: true,
+			favorites: [
+				ObjectId('f00000000000000000000002'),
+				ObjectId('f00000000000000000000050'),
+				ObjectId('f00000000000000000000012'),
+				ObjectId('f00000000000000000000022'),
+				ObjectId('f00000000000000000000001'),
+				ObjectId('f00000000000000000000032'),
+				ObjectId('f00000000000000000000042'),
+				ObjectId('f00000000000000000000018'),
+				ObjectId('f00000000000000000000043'),
+				ObjectId('f00000000000000000000021'),
+			]
 		},
 		{
 			_id: ObjectId("b00000000000000000000011"),
@@ -149,7 +161,25 @@ module.exports.user = {
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
 			email: 'o.g@usi.ch',
 			level: 1,
-			active: true
+			active: true,
+			favorites: [
+				ObjectId('f00000000000000000000032'),
+				ObjectId('f00000000000000000000051'),
+				ObjectId('f00000000000000000000013'),
+				ObjectId('f00000000000000000000024'),
+				ObjectId('f00000000000000000000011'),
+				ObjectId('f00000000000000000000033'),
+				ObjectId('f00000000000000000000043'),
+				ObjectId('f00000000000000000000019'),
+				ObjectId('f00000000000000000000044'),
+				ObjectId('f00000000000000000000022'),
+				ObjectId('f00000000000000000000039'),
+				ObjectId('f00000000000000000000014'),
+				ObjectId('f00000000000000000000027'),
+				ObjectId('f00000000000000000000012'),
+				ObjectId('f00000000000000000000049'),
+				ObjectId('f00000000000000000000052'),
+			]
 		},
 		{
 			_id: ObjectId("b00000000000000000000016"),
@@ -168,7 +198,29 @@ module.exports.user = {
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
 			email: 'j.f@usi.ch',
 			level: 1,
-			active: true
+			active: true,
+			favorites: [
+				ObjectId('f00000000000000000000042'),
+				ObjectId('f00000000000000000000054'),
+				ObjectId('f00000000000000000000032'),
+				ObjectId('f00000000000000000000023'),
+				ObjectId('f00000000000000000000011'),
+				ObjectId('f00000000000000000000033'),
+				ObjectId('f00000000000000000000048'),
+				ObjectId('f00000000000000000000028'),
+				ObjectId('f00000000000000000000049'),
+				ObjectId('f00000000000000000000002'),
+				ObjectId('f00000000000000000000048'),
+				ObjectId('f00000000000000000000004'),
+				ObjectId('f00000000000000000000039'),
+				ObjectId('f00000000000000000000003'),
+				ObjectId('f00000000000000000000001'),
+				ObjectId('f00000000000000000000005'),
+				ObjectId('f00000000000000000000008'),
+				ObjectId('f00000000000000000000021'),
+				ObjectId('f00000000000000000000052'),
+				ObjectId('f00000000000000000000050'),
+			]
 		},
 		{
 			_id: ObjectId("b00000000000000000000018"),
