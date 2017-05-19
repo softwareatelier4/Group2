@@ -3,6 +3,8 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Types.ObjectId;
 
+var path = require("path");
+
 var should = require('should');
 var utils = require('../../utils');
 var app = require('../../../app');
@@ -131,7 +133,23 @@ describe('Testing POST api/review/edit/:reviewid', function() {
 				.expect('Content-Type', /json/)
 				.end(function(err, res) {
 					if (err) done(err);
+					console.log(path.join(__dirname, "../../test.jpg"));
 					res.body.score.should.be.eql(2);
+					done();
+				});
+		});
+
+		it('Should upload the photo', function(done) {
+
+			request(app)
+				.post('/api/review/edit/c00000000000000000000000')
+				.type('form')
+				.attach('file1', path.join(__dirname, "../../test.jpg"))
+				.expect(202)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.body.photo.length.should.be.eql(1);
 					done();
 				});
 		});
