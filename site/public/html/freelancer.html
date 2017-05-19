@@ -5,8 +5,8 @@
 		<div id="main-info-vertical">
 			<div id="info-name">
 				<div class="info-name-top">
-					<span class="ml-15" id="profile-name">{freelancer.firstName} {freelancer.lastName}</span> {?freelancer.ownerId}
-					<span class="ml-15 light-blue" id="city-freelancer">{?freelancer.address.city}<i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a> {/freelancer.address.city}</span>
+					<span class="ml-15" id="profile-name">{freelancer.firstName} {freelancer.lastName}</span>
+					<span class="ml-15 light-blue" id="city-freelancer"><i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a></span> {?freelancer.ownerId}
 					<span class="ml-15"><i class="fa fa-check-circle light-blue" style="font-size: 22px" id="verified-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="This freelancer is verified"></i></span>{/freelancer.ownerId} {?freelancer.emergency}
 					<span class="ml-15"><i class="fa fa-bell blink light-blue" style="font-size: 22px;" id="emergency-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Available for emergency"></i></span>{/freelancer.emergency} {^freelancer.emergency}
 					<span class="ml-15 light-blue" id="disabled-emergency-sign" style="font-size: 22px;" data-toggle="tooltip" data-placement="top" title="Not available for emergency">
@@ -35,9 +35,6 @@
 				{?freelancer.price}€{freelancer.price} price/hour{/freelancer.price}
 			</div>
 			<div id="contact-info-top" class="ml-15">
-				<div id="chat" class="contact-info-element blue">
-					<i class="fa fa-comment " aria-hidden="true"></i> chat
-				</div>
 				<div id="email" class="contact-info-element blue">
 					<i class="fa fa-envelope" aria-hidden="true"></i> <a href="mailto:{freelancer.email}">{freelancer.email}</a>
 				</div>
@@ -130,35 +127,35 @@
 						  <div id='filename'></div>
 						</div> -->
 
-					<div class="form-group">
-						<label for="tags">Tags: </label>
-						<input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags" onkeypress="return event.keyCode != 13;" onkeyup="FREELANCERMANAGEMENT.tagHinter()" autocomplete="off">
-						<div id="tags-list">
+						<div class="form-group">
+							<label for="tags">Tags: </label>
+							<input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags" onkeypress="return event.keyCode != 13;" onkeyup="FREELANCERMANAGEMENT.tagHinter()" autocomplete="off">
+							<div id="tags-list">
+							</div>
 						</div>
-					</div>
-					<!-- <div class="form-group">
+						<!-- <div class="form-group">
 						<label for="modal-email" id="modal-email-label">Email address: </label>
 						<input type="email" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
 					</div> -->
-					<div class="form-group">
-						<label for="modal-description">Description</label>
-						<textarea class="form-control" id="modal-description" rows="3"></textarea>
-					</div>
-					<div class="form-group">
-					  <label class="form-check-label">
+						<div class="form-group">
+							<label for="modal-description">Description</label>
+							<textarea class="form-control" id="modal-description" rows="3"></textarea>
+						</div>
+						<div class="form-group">
+							<label class="form-check-label">
 					    <input class="form-check-input" type="checkbox" value="" id="modal-emergency">
 					    Available for emergency
 					  </label>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
-					</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<button type="button" id="save-button" class="btn btn-primary" onclick="FREELANCERMANAGEMENT.checkData()">Save changes</button>
+						</div>
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="claim-freelancer-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
