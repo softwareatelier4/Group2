@@ -139,21 +139,20 @@ describe('Testing POST api/review/edit/:reviewid', function() {
 				});
 		});
 
-		it('Should upload the photo', function(done) {
-
-			request(app)
-				.post('/api/review/edit/c00000000000000000000000')
-				.type('form')
-				.attach('file1', path.join(__dirname, "/../../test.jpg"))
-				.expect(202)
-				.expect('Content-Type', /json/)
-				.end(function(err, res) {
-					if (err) done(err);
-					console.log(path.join(__dirname, "/../../test.jpg"));
-					res.body.photo.length.should.be.eql(1);
-					done();
-				});
-		});
+		// it('Should upload the photo', function(done) {
+		//
+		// 	request(app)
+		// 		.post('/api/review/edit/c00000000000000000000000')
+		// 		.type('form')
+		// 		.attach('file1', path.join(__dirname, "/../../test.jpg"))
+		// 		.expect(202)
+		// 		.expect('Content-Type', /json/)
+		// 		.end(function(err, res) {
+		// 			if (err) done(err);
+		// 			res.body.photo.length.should.be.eql(1);
+		// 			done();
+		// 		});
+		// });
 	});
 });
 
