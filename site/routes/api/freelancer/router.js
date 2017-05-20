@@ -215,10 +215,11 @@ router.put('/galleryModification/:id', function(req, res) {
 					freelancer.profilePhoto = profile;
 				}
 
-
-				freelancer.photos = freelancer.photos.filter(function(el) {
-					return !fields.deletedFiles.includes(el);
-				});
+				if(fields.deletedFiles != undefined){
+					freelancer.photos = freelancer.photos.filter(function(el) {
+						return !fields.deletedFiles.includes(el);
+					});
+				}
 
 				freelancer.photos = freelancer.photos.concat(title);
 
