@@ -968,7 +968,8 @@ const SEARCH = {
 				'tags': freelancer.tags,
 				'score': FREELANCER.getHtmlRankStar({
 					full: freelancer.score,
-					empty: 5 - freelancer.score
+					half: Math.ceil(freelancer.score - Math.floor(freelancer.score)),
+					empty: 5 - Math.ceil(freelancer.score)
 				}),
 				'googleMaps': freelancer.googleMaps
 			}

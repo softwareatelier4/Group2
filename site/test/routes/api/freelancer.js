@@ -57,7 +57,7 @@ describe('Testing Read for /api/review/freelancer/', function() {
 				.expect(200)
 				.end(function(err, res) {
 					var review = res.text;
-					utils.matchReviewInfoInText(review, reviews[6]);
+					utils.matchReviewInfoInText(review, reviews[0]);
 					done();
 				});
 		});
@@ -356,20 +356,20 @@ describe('Testing ROUTE for localhost:3000/api/freelancer/emergency/:freelanceri
 
 		it('should respond with 404 if the id doesn\'t exist', function(done) {
 			request(app)
-			.put('/api/freelancer/emergency/3625fc2bd82b84d23d8c7bd1')
-			.send({
-				emergency: false
-			})
-			.expect(404, done)
+				.put('/api/freelancer/emergency/3625fc2bd82b84d23d8c7bd1')
+				.send({
+					emergency: false
+				})
+				.expect(404, done)
 		});
 
 		it('should respond with 500 if the id is invalid', function(done) {
 			request(app)
-			.put('/api/freelancer/emergency/b100500000001')
-			.send({
-				emergency: false
-			})
-			.expect(500, done)
+				.put('/api/freelancer/emergency/b100500000001')
+				.send({
+					emergency: false
+				})
+				.expect(500, done)
 		});
 	});
 	describe('GET /api/freelancer/emergency/:freelancerid', function() {
@@ -388,7 +388,7 @@ describe('Testing ROUTE for localhost:3000/api/freelancer/emergency/:freelanceri
 		});
 		it('should respond with false', function(done) {
 			request(app)
-				.get('/api/freelancer/emergency/f00000000000000000000003')
+				.get('/api/freelancer/emergency/f00000000000000000000039')
 				.expect(200)
 				.expect('Content-Type', /json/)
 				.end(function(err, res) {
@@ -399,15 +399,15 @@ describe('Testing ROUTE for localhost:3000/api/freelancer/emergency/:freelanceri
 		});
 		it('should respond with a 404 if the freelancer does not exist', function(done) {
 			request(app)
-			.get('/api/freelancer/emergency/3625fc2bd82b84d23d8c7bd1')
-			.set('Accept', 'application/json')
-			.expect(404, done);
+				.get('/api/freelancer/emergency/3625fc2bd82b84d23d8c7bd1')
+				.set('Accept', 'application/json')
+				.expect(404, done);
 		});
 		it('should respond with a 500 if the id is invalid', function(done) {
 			request(app)
-			.get('/api/freelancer/emergency/b100500000001')
-			.set('Accept', 'application/json')
-			.expect(500, done);
+				.get('/api/freelancer/emergency/b100500000001')
+				.set('Accept', 'application/json')
+				.expect(500, done);
 		});
 	});
 });
@@ -445,22 +445,22 @@ describe('Testing /api/freelancer/sendEmailFreelancer/:email', function() {
 
 		it('should respond with 404 if the freelancer doesn\'t exists', function(done) {
 			request(app)
-			.post('/api/freelancer/location/3625fc2bd82b84d23d8c7bd1')
-			.send([{
-				longitude: 0,
-				latitude: 0
-			}])
-			.expect(404, done)
+				.post('/api/freelancer/location/3625fc2bd82b84d23d8c7bd1')
+				.send([{
+					longitude: 0,
+					latitude: 0
+				}])
+				.expect(404, done)
 		});
 
 		it('should respond with 500 if the id is invalid', function(done) {
 			request(app)
-			.post('/api/freelancer/location/b100500000001')
-			.send([{
-				longitude: 0,
-				latitude: 0
-			}])
-			.expect(500, done)
+				.post('/api/freelancer/location/b100500000001')
+				.send([{
+					longitude: 0,
+					latitude: 0
+				}])
+				.expect(500, done)
 		});
 	});
 });

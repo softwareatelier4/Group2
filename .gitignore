@@ -54,3 +54,7 @@ application/JobAdvisor/$RECYCLE.BIN/
 application/JobAdvisor/.DS_Store
 application/JobAdvisor/Thumbs.db
 application/JobAdvisor/UserInterfaceState.xcuserstate
+
+
+site/public/uploads/
+!site/public/uploads/test

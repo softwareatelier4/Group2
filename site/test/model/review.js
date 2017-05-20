@@ -135,7 +135,7 @@ describe('Model: Review', function(done) {
 			});
 		});
 
-		it('should fail if title is empty, null, or undefined', function(done) {
+		it('should not fail if title is empty, null, or undefined', function(done) {
 			var review = new Review();
 			review.description = 'This is a description';
 			review.score = '3';
@@ -143,7 +143,11 @@ describe('Model: Review', function(done) {
 			review.user = user._id;
 			review.answer = 'This is an answer';
 			review.freelancer = freelancer._id;
-			utils.errorIfNullUndefinedOrEmpty(review, 'title', done);
+			review.save(function(err, saved) {
+				should.not.exist(err, 'No error should occur');
+				saved.should.eql(review);
+				done();
+			});
 		});
 
 		it('should fail if score is empty, null, or undefined', function(done) {
@@ -189,7 +193,7 @@ describe('Model: Review', function(done) {
 				});
 			});
 
-		it('score schould be within values 1 and 5 ',
+		it('score should be within values 1 and 5 ',
 			function(done) {
 				var review = new Review();
 				review.title = 'Good service';
@@ -206,7 +210,7 @@ describe('Model: Review', function(done) {
 			});
 
 
-		it('score schould be not be out of values 1 and 5',
+		it('score should be not be out of values 1 and 5',
 			function(done) {
 				var review = new Review();
 				review.title = 'Good service';

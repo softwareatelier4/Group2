@@ -130,6 +130,7 @@ module.exports.sendMail = function(to, subject, content, callback) {
 		subject, // Subject line
 		'html': templateInline, // html body
 	}, (err, info) => {
+		console.log(info);
 		if (callback)
 			callback(err, info);
 	});
