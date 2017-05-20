@@ -50,6 +50,7 @@ describe('Testing Read for /api/review/freelancer/', function() {
 		before(seed);
 		after(utils.dropDb);
 		it('Should return the correct review', function(done) {
+			console.log("THIS TEST SHOULD FAIL");
 			request(app)
 				.get('/api/review/freelancer/f00000000000000000000000')
 				.set('Accept', 'application/json')
