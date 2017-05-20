@@ -203,11 +203,6 @@ const FREELANCERMANAGEMENT = {
 		};
 
             doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
-
-					//NEW FUNCTION TO SEND PHOTOS HERE
-					//Modify also the routes!!!
-
-
 					let data, xhr;
 
 					data = new FormData();

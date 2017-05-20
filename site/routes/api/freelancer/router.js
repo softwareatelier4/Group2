@@ -186,8 +186,6 @@ router.put('/galleryModification/:id', function(req, res) {
 		let profile = "";
 		let title = [];
 
-		console.log(files);
-
 		for (let value in files) {
 			if (fields.profile_check == "true" && flag == true) {
 				let savePath = files[value].path;
