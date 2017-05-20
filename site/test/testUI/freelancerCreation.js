@@ -12,7 +12,7 @@ module.exports = {
 	},
 
 	'Freelancer Creation': function(page) {
-		page
+		client
 			.url('http://localhost:3000/freelancerCreation.html')
 			.waitForElementVisible('body', 1000)
 			.assert.visible('div[id=freelancerCreation]')
