@@ -30,7 +30,7 @@ module.exports = {
 			.clearValue('input[id=phone]')
 			.setValue('input[id=phone]', '123123')
 
-		utils.setPositionBox(page,'Milan, Metropolitan City of Milan, Italy');
+		utils.setPositionBox(page, 'Milan, Metropolitan City of Milan, Italy');
 
 		page
 			.pause(1000)
@@ -40,14 +40,14 @@ module.exports = {
 			.sendKeys('input[id=tags]', page.Keys.ENTER)
 			.assert.visible('input[id=email]')
 			.clearValue('input[id=email]')
-			.setValue('input[id=email]', 'vincenzo.ehiyvirgilio.it')
+			.setValue('input[id=email]', 'vincenzo.ehiy@virgilio.it')
 			.assert.visible('textarea[id=description]')
 			.clearValue('textarea[id=description]')
 			.setValue('textarea[id=description]', 'descripttion')
 
-			.click('button[id=submit]')
+		.click('button[id=submit]')
 
-			.pause(1000)
+		.pause(1000)
 			.waitForElementVisible('main[id=main-content]', 1000)
 			.end();
 	}
