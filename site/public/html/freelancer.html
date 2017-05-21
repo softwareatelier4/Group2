@@ -15,11 +15,12 @@
 				</div>
 				<div class="ml-15 light-blue" id="info-name-bottom">
 					{freelancer.workName}
+					<i class="fa fa-heart-o" id="favorite" style="margin-left: 30px; color: #b71c1c; cursor: pointer; display: none" onclick="FREELANCER.favorite()" aria-hidden="true"></i>
 				</div>
 				<div class="ml-15 light-blue" id="info-name-button">
 					<button type="button" id="modify-button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" style="display: none;" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
                         Modify
-                    </button>
+                   </button>
 					<button type="button" id="claim-button" class="btn btn-primary" data-toggle="modal" data-target="#claim-freelancer-modal" style="margin-left: 5px; display: none;">
                	Claim this profile
                </button>

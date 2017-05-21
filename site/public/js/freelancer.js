@@ -46,7 +46,7 @@ const FREELANCER = {
 
 		isLogged(function(loggedUser) {
 			userLogged = loggedUser.result;
-						
+			userFavorites = loggedUser.result.favorites;
 
 			doJSONRequest("GET", "/api/freelancer/" + idFreelancer, null, null, function(res) {
 				let owner = res.ownerId;
@@ -115,7 +115,15 @@ const FREELANCER = {
 							if (owner && owner._id === userLogged._id) {
 								$(document.getElementById("modify-button")).show();
 							}
-						})
+						});
+						if(loggedUser.result){
+							$(document.getElementById("favorite")).show();
+							if(userFavorites.indexOf(idFreelancer) == -1){
+								document.getElementById("favorite").className = "fa fa-heart-o";
+							} else {
+								document.getElementById("favorite").className = "fa fa-heart";
+							}
+						}
 					});
 				}
 			});
@@ -691,6 +699,24 @@ const FREELANCER = {
 			request.open("POST", "/api/review/edit/" + idReview);
 			request.send(data);
 		}
+	},
+
+	favorite: function() {
+		isLogged(function(res) {
+			var url = window.location.href;
+			var idFreelancer = url.split('=')[1];
+			let user = res.result._id;
+			if(user){
+				doJSONRequest("POST", "/api/freelancer/favorite/" + idFreelancer, null, {userId: user}, function(result) {
+					console.log(result);
+					if(result.status == false){
+						document.getElementById("favorite").className = "fa fa-heart-o";
+					} else {
+						document.getElementById("favorite").className = "fa fa-heart";
+					}
+				});
+			}
+		});
 	}
 
 }

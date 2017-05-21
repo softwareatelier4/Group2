@@ -489,6 +489,25 @@ describe('Testing /api/freelancer/galleryModification/:id', function() {
 	});
 });
 
+describe('Testing /api/freelancer/userfavorites/:userid', function() {
+	describe('GET /api/freelancer/userfavorites/:userid', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('Should get the favorites for that user and respond with a list of favorites', function(done) {
+			request(app)
+			.get('/api/freelancer/userfavorites/b00000000000000000000010')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function(err, res) {
+				if (err) done(err);
+				res.body.favorites.length.should.be.eql(10);
+				done();
+			});
+		});
+	});
+});
+
+
 function seed(done) {
 	//seed the db
 	seedDb.seed(function(err, seedData) {

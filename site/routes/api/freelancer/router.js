@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const Freelancer = mongoose.model('Freelancer');
 const formidable = require('formidable');
 const Tag = mongoose.model('Tag');
+const User = mongoose.model('User');
 const util = require('util');
 
 
@@ -74,6 +75,7 @@ router.get('/emergency/:freelancerid', function(req, res, next) {
 
 router.post('/location/:freelancerid', function(req, res, next) {
 	const data = req.body;
+	console.log(data);
 	Freelancer.findById(req.params.freelancerid, function(err, freelancer) {
 		if (err) return next(err);
 
@@ -536,6 +538,66 @@ router.post('/create/freelancer', function(req, res) {
 			}
 			res.json(newfreelancer);
 			// res.send(newfreelancer._id);
+		}
+	});
+});
+
+router.all('/favorite/:freelancerid', middleware.supportedMethods('POST, OPTIONS'));
+router.post('/favorite/:freelancerid', function(req,res){
+	let freelancerId = req.params.freelancerid;
+	let userId = req.body.userId;
+	Freelancer.findById(freelancerId,function(err,freelancer) {
+		if(err) res.send(err);
+		if(freelancer){
+			User.findById(userId,function(err,user) {
+				if(err) res.send(err);
+				if(user){
+					let index = user.favorites.indexOf(freelancerId);
+					if( index == -1){
+						user.favorites.push(freelancerId);
+						user.save(function(err, newuser) {
+							res.send({status: true });
+						})
+					} else {
+						user.favorites.splice(index,1);
+						user.save(function(err, newuser) {
+							res.send({status: false });
+						})
+					}
+				} else{
+					res.sendStatus(404);
+				}
+			});
+		} else {
+			res.sendStatus(404);
+		}
+	});
+});
+
+router.all('/userfavorites/:userid', middleware.supportedMethods('GET, OPTIONS'));
+router.get('/userfavorites/:userid', function(req,res){
+	let userId = req.params.userid;
+	let lat = req.query.lat;
+	let lng = req.query.lng;
+	User.findById(userId,function(err,user) {
+		if(err) res.send(err);
+		if(user){
+			let favoritelist = [];
+			for(let f of user.favorites){
+				Freelancer.findById(f,function(err, frlnc) {
+					let dist;
+					if(lat){
+						dist = distanceCalculation(frlnc,lat,lng,0).toFixed(2);
+					} else {
+						dist = "--";
+					}
+					let data = {id: f, distance: dist};
+					favoritelist.push(data);
+					if(favoritelist.length == user.favorites.length){
+						res.send({favorites: favoritelist});
+					}
+				});
+			}
 		}
 	});
 });

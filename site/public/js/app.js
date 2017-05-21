@@ -15,7 +15,8 @@ let userPosition = {
 	latitude: null,
 	time: null,
 	onChangeCall: [
-		SEARCH.setPosition
+		SEARCH.setPosition,
+		FAVORITE.setPosition
 	]
 }
 
@@ -61,6 +62,10 @@ let hashchanged = function hashchanged() {
 
 		case 'freelancer':
 			currentPage = FREELANCER;
+			break;
+
+		case 'favorite':
+			currentPage = FAVORITE;
 			break;
 
 		default:
