@@ -579,6 +579,24 @@ describe('Testing /api/freelancer/favorite/:freelancerid', function() {
 			})
 			.expect(400, done);
 		});
+
+		it('Should return 404 if user is not present', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00000000000000000000002')
+			.send({
+				userId: 'b00000000110000000000000'
+			})
+			.expect(404, done);
+		});
+
+		it('Should return 404 if freelancer is not present', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00001100000000000000002')
+			.send({
+				userId: 'b00000000000000000000000'
+			})
+			.expect(404, done);
+		});
 	});
 });
 
