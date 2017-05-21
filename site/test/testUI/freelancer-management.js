@@ -32,7 +32,7 @@ module.exports = {
 
 		.assert.visible('div[id=info-name-button]')
 			.pause(1000)
-			.assert.visible('button[id=modify-button]')
+			.waitForElementVisible('button[id=modify-button]', 2000)
 			.assert.visible('div[id=info-name-bottom]')
 			.assert.visible('div[id=info]')
 			.assert.visible('div[id=email]')
