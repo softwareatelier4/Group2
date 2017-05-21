@@ -526,6 +526,61 @@ describe('Testing /api/freelancer/userfavorites/:userid', function() {
 	});
 });
 
+describe('Testing /api/freelancer/favorite/:freelancerid', function() {
+	describe('GET /api/freelancer/favorite/:freelancerid', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('Should add a freelancer to favourites', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00000000000000000000000')
+			.send({
+				userId: 'b00000000000000000000010'
+			})
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function(err, res) {
+				if (err) done(err);
+				res.body.status.should.be.eql(true);
+				done();
+			});
+		});
+
+
+		it('Should not add a freelancer to favourites', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00000000000000000000002')
+			.send({
+				userId: 'b00000000000000000000010'
+			})
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function(err, res) {
+				if (err) done(err);
+				res.body.status.should.be.eql(false);
+				done();
+			});
+		});
+
+
+		it('Should return 400 if not valid freelancer', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/ciao')
+			.send({
+				userId: 'b00000000000000000000010'
+			})
+			.expect(400, done);
+		});
+
+		it('Should return 400 if not valid user', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00000000000000000000002')
+			.send({
+				userId: 'ciao'
+			})
+			.expect(400, done);
+		});
+	});
+});
 
 function seed(done) {
 	//seed the db
