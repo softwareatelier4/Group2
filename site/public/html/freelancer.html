@@ -9,7 +9,7 @@
 					<span class="ml-15 light-blue" id="city-freelancer"><i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a></span> {?freelancer.ownerId}
 					<span class="ml-15"><i class="fa fa-check-circle light-blue" style="font-size: 22px" id="verified-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="This freelancer is verified"></i></span>{/freelancer.ownerId} {?freelancer.emergency}
 					<span class="ml-15"><i class="fa fa-bell blink light-blue" style="font-size: 22px;" id="emergency-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Available for emergency"></i></span>{/freelancer.emergency} {^freelancer.emergency}
-					<span class="ml-15 light-blue" id="disabled-emergency-sign" style="font-size: 22px;" data-toggle="tooltip" data-placement="top" title="Not available for emergency">
+					<span class="ml-15 light-blue" id="disabled-emergency-sign" style="font-size: 22px;" data-toggle="tooltip" data-placement="top" title="No emergency">
 						<i class="fa fa-bell-slash"></i>
 					</span>{/freelancer.emergency}
 				</div>
@@ -56,6 +56,54 @@
 
 			<div id="reviews">
 				<h5 class="blue">REVIEW</h5>
+				<div id="writeReviews" style="display: none;">
+					<div class="card review" name="{._id}">
+						<div class="card-block">
+							<div class="title-author-review">
+								<h5>Write a review!</h5>
+							</div>
+							<form style="padding-top:20px;" onsubmit="FREELANCER.writeReviewSubmit(event)">
+								<div class="form-group row">
+									<label for="new-review-title" class="col-2 col-form-label">Score</label>
+									<div class="col-10 col-form-label">
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 1)" onclick="FREELANCER.writeReviewClickStar(this, 1)" id="star1"></i>&nbsp;
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 2)" onclick="FREELANCER.writeReviewClickStar(this, 2)" id="star2"></i>&nbsp;
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 3)" onclick="FREELANCER.writeReviewClickStar(this, 3)" id="star3"></i>&nbsp;
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 4)" onclick="FREELANCER.writeReviewClickStar(this, 4)" id="star4"></i>&nbsp;
+										<i class="fa fa-star-o blue" aria-hidden="true" onmouseover="FREELANCER.writeReviewHoverStar(this, 5)" onclick="FREELANCER.writeReviewClickStar(this, 5)" id="star5"></i>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="new-review-title" class="col-2 col-form-label">Title</label>
+									<div class="col-10">
+										<input class="form-control" type="text" placeholder="Insert title" id="new-review-title">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label for="new-review-description" class="col-2 col-form-label">Description</label>
+									<div class="col-10">
+										<textarea class="form-control" id="new-review-description" placeholder="Insert description" rows="5"></textarea>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-10 offset-sm-2">
+										<div id="drop-zone">
+											<p>Drop gallery images</p>
+											<div id="clickHere">or click here <i class="fa fa-upload"></i>
+												<input type="file" name="file" id="file" multiple />
+											</div>
+											<div id="filename"></div>
+										</div>
+									</div>
+								</div>
+
+
+								<button type="submit" class="btn btn-primary pull-right">Save your review</button>
+							</form>
+						</div>
+					</div>
+				</div>
 				<div id="cardReviews">
 				</div>
 			</div>
@@ -82,7 +130,7 @@
 	<div class="modal-dialog" role="document" id="modal-ext">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Modify this freelancer</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -91,10 +139,6 @@
 				<form enctype="multipart/form-data" action="javascript:FREELANCERMANAGEMENT.submitFreelancer()" id="form-freelancer-management">
 
 					<div class="form-group">
-						<!-- <label for="modal-firstName" id="modal-firstName-label">First name: </label>
-						<input type="text" class="form-control" id="modal-firstName" aria-describedby="firstName" placeholder="Enter first name">
-						<label for="modal-lastName" id="modal-lastName-label">Last name: </label>
-						<input type="text" class="form-control" id="modal-lastName" aria-describedby="lastName" placeholder="Enter last name"> -->
 						<label for="modal-workName" id="modal-workName-label">Work name: </label>
 						<input type="text" class="form-control" id="modal-workName" aria-describedby="workName" placeholder="Enter work name">
 						<label for="modal-phoneName" id="modal-phone-label">Phone number: </label>
@@ -107,25 +151,12 @@
 							<label for="profilePicture">Upload a new profile picture to change it</label>
 							<input type="file" class="form-control-file" id="profilePicture" aria-describedby="profilePicture">
 						</div>
-						<div class="form-group">
-							<label for="profilePicture">Choose which photo gallery to modify (from right to left)</label>
-							<input type="file" class="form-control-file" id="file1" aria-describedby="file1">
-							<input type="file" class="form-control-file" id="file2" aria-describedby="file2">
-							<input type="file" class="form-control-file" id="file3" aria-describedby="file3">
-							<input type="file" class="form-control-file" id="file4" aria-describedby="file4">
-							<input type="file" class="form-control-file" id="file5" aria-describedby="file5">
-							<input type="file" class="form-control-file" id="file6" aria-describedby="file6">
-							<input type="file" class="form-control-file" id="file7" aria-describedby="file7">
-							<input type="file" class="form-control-file" id="file8" aria-describedby="file8">
-							<input type="file" class="form-control-file" id="file9" aria-describedby="file9">
+						<label for="delete_gallery">Choose image to delete</label>
+						<div class="form-group" id="delete_gallery">
+
 						</div>
-						<!-- <div id="drop-zone">
-						  <p>Drop gallery images</p>
-						  <div id="clickHere">or click here <i class="fa fa-upload"></i>
-							 <input type="file" name="file" id="file" multiple />
-						  </div>
-						  <div id='filename'></div>
-						</div> -->
+						<label for="modal-file-management" id="modal-file-label">Upload new photos: </label> </br>
+						<input type="file" name="img" id ="modal-file-management" multiple>
 
 						<div class="form-group">
 							<label for="tags">Tags: </label>
@@ -133,16 +164,12 @@
 							<div id="tags-list">
 							</div>
 						</div>
-						<!-- <div class="form-group">
-						<label for="modal-email" id="modal-email-label">Email address: </label>
-						<input type="email" class="form-control" id="modal-email" aria-describedby="email" placeholder="Enter email">
-					</div> -->
-						<div class="form-group">
-							<label for="modal-description">Description</label>
-							<textarea class="form-control" id="modal-description" rows="3"></textarea>
-						</div>
-						<div class="form-group">
-							<label class="form-check-label">
+					<div class="form-group">
+						<label for="modal-description">Description</label>
+						<textarea class="form-control" id="modal-description" rows="3"></textarea>
+					</div>
+					<div class="form-group">
+					  <label class="form-check-label">
 					    <input class="form-check-input" type="checkbox" value="" id="modal-emergency">
 					    Available for emergency
 					  </label>

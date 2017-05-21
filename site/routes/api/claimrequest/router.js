@@ -81,41 +81,47 @@ router.put('/:id', function(req, res, next) {
 				let uId = claim.user;
 
 				Freelancer.findById(fId, function(err, freelancer) {
-					if (err) return next(err);
-
-					if (freelancer) {
-						freelancer.ownerId = uId;
-
-						freelancer.save();
+					if (err || freelancer == null || !freelancer) {
+						res.status(404);
+						return next(err);
 					}
+
+					freelancer.ownerId = uId;
+
+					freelancer.save();
+
 				});
 
 				User.findById(uId, function(err, user) {
-					if (err) return next(err);
-
-					if (user) {
-						user.freeLancerId = fId;
-
-						user.save();
-
-						let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
-						const content = {
-							title: 'You are a freelancer now!',
-							body: 'You request for the ' + fHtml + ' has been accepted.\nGood luck with your job!'
-						}
-						if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch') {
-							require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
-						}
+					if (err || user == null || !user) {
+						res.status(404);
+						return next(err);
 					}
+					user.freeLancerId = fId;
+
+					user.save();
+
+					let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
+					const content = {
+						title: 'You are a freelancer now!',
+						body: 'You request for the ' + fHtml + ' has been accepted.\nGood luck with your job!'
+					}
+					if (user.email != 'l.f@usi.ch' && user.email != 'm.t@usi.ch') {
+						require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
+					}
+
 				});
 			} else if (newStatus == 'Refused') {
 				let fId = claim.freelancer;
 				let uId = claim.user;
 
 				Freelancer.findById(fId).exec(function(err, freelancer) {
-					if (err) return next(err);
+					if (err || freelancer == null || !freelancer) {
+						res.status(404);
+						return next(err);
+					}
 
-					if (freelancer && freelancer.ownerId) {
+					if (freelancer.ownerId) {
 						if (freelancer.ownerId.toString() == uId) {
 							freelancer.ownerId = undefined;
 						}
@@ -124,16 +130,19 @@ router.put('/:id', function(req, res, next) {
 				});
 
 				User.findById(uId, function(err, user) {
-					if (err) return next(err);
-
-					if (user) {
-						let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
-						const content = {
-							title: 'Request Refused!',
-							body: 'You request for the ' + fHtml + ' has not been accepted.\nFor further informations contact us!'
-						}
-						require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
+					if (err || user == null || !user) {
+						res.status(404);
+						return next(err);
 					}
+
+
+					let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
+					const content = {
+						title: 'Request Refused!',
+						body: 'You request for the ' + fHtml + ' has not been accepted.\nFor further informations contact us!'
+					}
+					require('./../mail').sendMail(user.email, 'JobAdvisor: Your Freelancer Request', content, function(err, info) {});
+
 				});
 			}
 
@@ -143,6 +152,8 @@ router.put('/:id', function(req, res, next) {
 				console.log(saved);
 				res.send(saved);
 			});
+		} else {
+			return next(err);
 		}
 	});
 });

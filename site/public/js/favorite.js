@@ -1,8 +1,8 @@
 const FAVORITE = {
 
 	name: 'favorite',
-	flag: 0,
 	init: function() {
+		FAVORITE.displayFavorite();
 		FAVORITE.flag = 0;
 		SEARCH.searchHeader();
 		SEARCH.addon_init();
@@ -20,6 +20,7 @@ const FAVORITE = {
 					let favorites = result.favorites;
 					console.log(favorites);
 					$.get("/html/searchCard.html", function(card) {
+						$(MAIN_JS).innerHTML = "";
 						for(let f of favorites){
 							doJSONRequest("GET", "/api/freelancer/" + f.id, null, null, function(res) {
 								res.score = FREELANCER.getHtmlRankStar({
@@ -54,13 +55,5 @@ const FAVORITE = {
 
 	remover: function() {
 
-	},
-
-	setPosition: function() {
-		FAVORITE.flag++;
-		if(FAVORITE.flag == 1){
-			FAVORITE.displayFavorite();
-		}
-		console.log("diocane");
 	}
 }

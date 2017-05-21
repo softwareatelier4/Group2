@@ -21,16 +21,16 @@
 	<div id="freelancerCreation" style="width: 500px; padding: 30px; margin-left:auto; margin-right:auto;">
 		<form enctype="multipart/form-data" action="javascript:FREELANCERCREATION.submitFreelancer()">
 			<div class="form-group">
-				<label for="firstName">First name: </label>
-				<input type="text" class="form-control" id="firstName-complex" aria-describedby="firstName" placeholder="Enter first name">
-				<label for="lastName">Last name: </label>
-				<input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name">
+				<label for="firstName">First name*: </label>
+				<input type="text" class="form-control" id="firstName-complex" aria-describedby="firstName" placeholder="Enter first name" required>
+				<label for="lastName">Last name*: </label>
+				<input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name" required>
 				<label for="workName">Work name: </label>
 				<input type="text" class="form-control" id="workName" aria-describedby="workName" placeholder="Enter work name">
-				<label for="phoneName">Phone number: </label>
+				<label for="phoneName">Phone number*: </label>
 				<input type="text" class="form-control" id="phone" aria-describedby="phone" placeholder="Enter phone number" required>
-				<label for="phoneName">Address: (city is required)</label>
-				<input type="text" class="form-control" aria-describedby="basic-addon1" id="position" placeholder="Loading position..." required>
+				<label for="phoneName">Address*: (city is required)</label>
+				<input type="text" class="form-control" aria-describedby="basic-addon1" id="position" placeholder="Insert an address" required>
 			</div>
 			<div class="form-group">
 				<label for="tags">Tags: </label>
@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="email">Email address: </label>
+				<label for="email">Email address*: </label>
 				<input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email" required>
 			</div>
 			<div class="form-group">
