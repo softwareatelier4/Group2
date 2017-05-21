@@ -27,21 +27,22 @@ module.exports = {
 			.pause(1000)
 			.assert.visible('button[id=login-button]')
 			.click('button[id=login-button]')
-			.pause(2000)
+			.pause(500)
 			.assert.visible('button[id=claim-button]')
 			.click("#claim-button")
 			.waitForElementVisible('button[id=submit-button]', 2000)
 			.pause(100)
-			.setValue('input#uploadPictureClaim', require('path').resolve(__dirname + '/test-image.jpg'))
+			.setValue('input#uploadPictureClaim', require('path').resolve(__dirname + '/../test.jpg'))
 			.setValue('textarea#modal-descriptionClaim', 'I <3 cats')
 			.click('button#submit-button')
-			.pause(2000)
+			.pause(300)
 			.assert.visible("div#pending-claim-button")
 			.end()
 	},
 
 	'Check claim request table and a put request': function(client) {
 		client
+			.resizeWindow(1500, 800)
 			.url('http://localhost:3000')
 			.waitForElementVisible('body', 1000)
 			.assert.elementPresent('a[name=login-link]')
