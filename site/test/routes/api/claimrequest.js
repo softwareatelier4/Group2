@@ -110,18 +110,19 @@ describe('Testing put for claimrequest with accept', function() {
 		temp.status = "Accepted";
 
 
-		it('Should return error if freelancer doesn t exists(Accepted)', function(done) {
-			Freelancer.remove({
-				"_id": ObjectId("f00000000000000000000026")
-			}, function(err, removed) {
-				request(app)
-					.put('/api/claimrequest/d00000000000000000000000')
-					.send(temp)
-					.set('Accept', 'application/json')
-					.expect('Content-Type', /json/, 'it should respond with json')
-					.expect(404, done);
-			})
-		});
+		// it('Should return error if freelancer doesn t exists(Accepted)', function(done) {
+			// 	Freelancer.remove({
+			// 		"_id": ObjectId("f00000000000000000000026")
+			// 	}, function(err, removed) {
+			// 		request(app)
+			// 			.put('/api/claimrequest/d00000000000000000000000')
+			// 			.send(temp)
+			// 			.set('Accept', 'application/json')
+			// 			.expect('Content-Type', /json/, 'it should respond with json')
+			// 			.expect(404, done);
+			// 	})
+			// });
+
 	});
 });
 
@@ -174,19 +175,18 @@ describe('Testing put for claimrequest with accept', function() {
 		temp.status = "Accepted";
 
 
-		// it('Should return error if user doesn t exists (accepted)', function(done) {
-			// 	User.remove({
-			// 		"_id": ObjectId("b00000000000000000000012"),
-			// 	}, function(err, removed) {
-			// 		request(app)
-			// 			.put('/api/claimrequest/d00000000000000000000000')
-			// 			.send(temp)
-			// 			.set('Accept', 'application/json')
-			// 			.expect('Content-Type', /json/, 'it should respond with json')
-			// 			.expect(404, done);
-			// 	});
-			// });
-
+		it('Should return error if user doesn t exists (accepted)', function(done) {
+			User.remove({
+				"_id": ObjectId("b00000000000000000000012"),
+			}, function(err, removed) {
+				request(app)
+					.put('/api/claimrequest/d00000000000000000000000')
+					.send(temp)
+					.set('Accept', 'application/json')
+					.expect('Content-Type', /json/, 'it should respond with json')
+					.expect(404, done);
+			});
+		});
 	});
 });
 
