@@ -8,6 +8,7 @@ var utils = require('../../utils');
 var app = require('../../../app');
 var seedDb = require('../../seedDb');
 var request = require('supertest');
+var path = require("path");
 const Freelancer = mongoose.model('Freelancer');
 const User = mongoose.model('User');
 var user;
@@ -40,21 +41,18 @@ describe('Testing POST for localhost:3000/api/claimrequest', function() {
 		it('should respond with redirect on post', function(done) {
 			request(app)
 				.post('/api/claimrequest')
-				.send({
-					"user": "b00000000000000000000002",
-					"freelancer": "f00000000000000000000002",
-					"status": "Pending",
-					"notes": "test post"
-				}).end()
-			request(app)
-				.get('/api/claimrequest')
-				.set('Accept', 'application/json')
+				.type('form')
+				.field('userid', 'b00000000000000000000002')
+				.field('freelancerid', 'f00000000000000000000002')
+				.field('status', 'Pending')
+				.field('description', 'Ciao')
+				.attach('file', path.join(__dirname, "/../../testclaim.jpg"))
 				.expect(200)
-				.expect('Content-Type', /json/, 'it should respond with json')
+				.expect('Content-Type', /json/)
 				.end(function(err, res) {
 					if (err) done(err);
-					let reqClaim = JSON.parse(res.text);
-					reqClaim.should.have.length(3);
+					res.body.notes.should.be.eql('Ciao');
+					res.body.status.should.be.eql('Pending');
 					done();
 				});
 		});
