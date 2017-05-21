@@ -18,7 +18,6 @@ const FAVORITE = {
 			if(user.result){
 				doJSONRequest("GET","/api/freelancer/userfavorites/"+user.result._id+"?lat="+userPosition.latitude+"&"+"lng="+userPosition.longitude, null, null,function(result) {
 					let favorites = result.favorites;
-					console.log(favorites);
 					$.get("/html/searchCard.html", function(card) {
 						$(MAIN_JS).innerHTML = "";
 						for(let f of favorites){
@@ -38,7 +37,6 @@ const FAVORITE = {
 										distance: f.distance + " km"
 									}
 								}
-								console.log(data);
 								dust.renderSource(card, data, function(err, out) {
 									$(MAIN_JS).append(out);
 									$('#' + data.freelancer.id).click(function(){

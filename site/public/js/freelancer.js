@@ -119,10 +119,8 @@ const FREELANCER = {
 						if(loggedUser.result){
 							$(document.getElementById("favorite")).show();
 							if(userFavorites.indexOf(idFreelancer) == -1){
-								console.log("none");
 								document.getElementById("favorite").className = "fa fa-heart-o";
 							} else {
-								console.log("yessa");
 								document.getElementById("favorite").className = "fa fa-heart";
 							}
 						}
