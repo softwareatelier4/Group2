@@ -249,6 +249,46 @@ describe('Testing PUT api/review/:idFreelancer', function() {
 	});
 });
 
+
+
+describe('Testing api/review/freelancer/:idFreelancer/user/:idUser', function() {
+	describe('GET api/review/freelancer/:idFreelancer/user/:idUser', function() {
+		before(seed);
+		after(utils.dropDb);
+
+		it('should respond with the right review', function(done) {
+			request(app)
+				.get('/api/review/freelancer/f00000000000000000000000/user/b00000000000000000000008')
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					utils.matchReviewInfoInText(res.text, reviews[0]);
+					done();
+				});
+		});
+
+		it('should respond with 400', function(done) {
+			request(app)
+				.get('/api/review/freelancer/ciao/user/ciao')
+				.expect(400, done);
+		});
+
+
+		it('should respond with and empty array if freelancer has no review with that user', function(done) {
+			request(app)
+				.get('/api/review/freelancer/f00000000000000000000000/user/b00000000000000000000001')
+				.expect(200)
+				.expect('Content-Type', /json/)
+				.end(function(err, res) {
+					if (err) done(err);
+					res.text.should.be.eql('[]');
+					done();
+				});
+		});
+	});
+});
+
 function seed(done) {
 	//seed the db
 	seedDb.seed(function(err, seedData) {

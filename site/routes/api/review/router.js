@@ -234,6 +234,7 @@ router.get('/freelancer/:idFreelancer/user/:idUser', function(req, res, next) {
 	}
 
 	Review.find(findData).exec(function(err, reviews) {
+		if (err) return res.status(400).send(err);
 		res.status(200).send(reviews);
 	});
 })
