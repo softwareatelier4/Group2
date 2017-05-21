@@ -12,26 +12,6 @@ const formidable = require('formidable');
 const Tag = mongoose.model('Tag');
 const util = require('util');
 
-let rmDir = function(dirPath, removeSelf) {
-	if (removeSelf === undefined)
-		removeSelf = true;
-	try {
-		var files = fs.readdirSync(dirPath);
-	} catch (e) {
-		return;
-	}
-	if (files.length > 0)
-		for (var i = 0; i < files.length; i++) {
-			var filePath = dirPath + '/' + files[i];
-			if (fs.statSync(filePath).isFile())
-				fs.unlinkSync(filePath);
-			else
-				rmDir(filePath);
-		}
-	if (removeSelf)
-		fs.rmdirSync(dirPath);
-};
-
 
 //supported methods
 router.all('/', middleware.supportedMethods('GET, PUT, OPTIONS'));
@@ -136,7 +116,6 @@ router.post('/sendEmailFreelancer/:email', function(req, res) {
 router.put('/galleryUpload/:id', function(req, res, next) {
 	const id = req.params.id;
 	let dir = __dirname + '/../../../public/uploads/' + id;
-	rmDir(__dirname + '/../../../public/uploads/' + id, false);
 	let title = [];
 	if (!fs.existsSync(dir)) {
 		fs.mkdirSync(dir);
@@ -151,7 +130,6 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 		if (err) return next(err);
 		let flag = true;
 		let profile = "";
-		let j = 1;
 		for (let value in files) {
 			if (flag) {
 				let savePath = files[value].path;
@@ -161,19 +139,11 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 
 				flag = false;
 			} else {
-				if (j <= 9) {
-					let savePath = files[value].path;
-					let i = savePath.lastIndexOf('/');
+				let savePath = files[value].path;
+				let i = savePath.lastIndexOf('/');
+				let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
 
-					let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
-
-					title.push(fileName);
-				} else {
-					break;
-				}
-
-				j++;
-				// console.log(fileName + "\n");
+				title.push(fileName);
 			}
 
 		}
@@ -188,7 +158,6 @@ router.put('/galleryUpload/:id', function(req, res, next) {
 				freelancer.photos = title;
 				freelancer.profilePhoto = profile;
 				freelancer.save(onModelSave(res, 200, true));
-				// console.log("SAVED\n");
 			}
 		});
 	});
@@ -201,7 +170,6 @@ function isInArray(value, array) {
 router.put('/galleryModification/:id', function(req, res) {
 	const id = req.params.id;
 	let dir = __dirname + '/../../../public/uploads/' + id;
-	// rmDir(__dirname + '/../../../public/uploads/' + id, false);
 	let number = [];
 	if (!fs.existsSync(dir)) {
 		fs.mkdirSync(dir);
@@ -216,9 +184,7 @@ router.put('/galleryModification/:id', function(req, res) {
 		if (err) return next(err);
 		let flag = true;
 		let profile = "";
-		let numbers = fields.files;
 		let title = [];
-		let j = 1;
 
 		for (let value in files) {
 			if (fields.profile_check == "true" && flag == true) {
@@ -230,17 +196,11 @@ router.put('/galleryModification/:id', function(req, res) {
 				profile = fileName;
 				flag = false;
 			} else {
-				if (j <= 12) {
-					let savePath = files[value].path;
-					let i = savePath.lastIndexOf('/');
+				let savePath = files[value].path;
+				let i = savePath.lastIndexOf('/');
 
-					let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
-					title.push(fileName);
-				} else {
-					break;
-				}
-
-				j++;
+				let fileName = "uploads/" + id + "/" + savePath.substring(i + 1, savePath.length);
+				title.push(fileName);
 			}
 		}
 
@@ -254,20 +214,15 @@ router.put('/galleryModification/:id', function(req, res) {
 				if (fields.profile_check == "true") {
 					freelancer.profilePhoto = profile;
 				}
-				let z = 0;
 
-				for (let i = 1; i <= 9; i++) {
-					if (isInArray(i, numbers)) {
-						// freelancer.photos[i] = title[z];
-						temp[i - 1] = title[z];
-						console.log("\n i:" + title[z] + "\n z: " + freelancer.photos[i] + "\n");
-						z++;
-					} else {
-						temp[i - 1] = freelancer.photos[i - 1];
-					}
+				if(fields.deletedFiles != undefined){
+					freelancer.photos = freelancer.photos.filter(function(el) {
+						return !fields.deletedFiles.includes(el);
+					});
 				}
-				freelancer.photos = temp;
-				console.log(temp);
+
+				freelancer.photos = freelancer.photos.concat(title);
+
 				freelancer.save(onModelSave(res, 200, true));
 			}
 		});
@@ -284,18 +239,13 @@ router.put('/:freelancerid', function(req, res) {
 		}
 
 		if (freelancer) {
-			// freelancer.firstName = freelancer.firstName;
-			// freelancer.lastName = freelancer.lastName;
 			freelancer.workName = data.workName;
-
-			// freelancer.email = freelancer.email;
 			freelancer.phone = data.phone;
 			freelancer.profilePhoto = data.profilePhoto;
 			freelancer.photos = data.photos;
 			freelancer.address = data.address;
-			freelancer.tags = null;
+			freelancer.tags = [];
 			freelancer.description = data.description;
-			// freelancer.ownerId = data.ownerId;
 			freelancer.price = data.price;
 
 			if (data.score != null) {
@@ -305,26 +255,26 @@ router.put('/:freelancerid', function(req, res) {
 			freelancer.save(onModelSave(res, 200, true));
 
 			let tags = req.body.tags;
-			//console.log("\n\n\n\n\n\n" + tags + "\n\n\n\n\n\n");
 			for (let tag of tags) {
 				Freelancer.findById(req.params.freelancerid, function(err, updatedFreelancer) {
-					//console.log("\n\n\n\n"+tag+"\n\n\n");
-					updatedFreelancer.tags = [];
 					Tag.findOne({
 						name: tag
 					}, function(err, docs) {
 						if (docs) {
 							updatedFreelancer.tags.push(mongoose.Types.ObjectId(docs._id));
 							updatedFreelancer.save(function() {});
-							console.log(docs.name);
+							console.log(updatedFreelancer.tags);
 						} else {
 							let newTag = new Tag();
 							newTag._id = mongoose.Types.ObjectId();
 							newTag.name = tag;
+
 							newTag.save(function(err, newTagRes) {
 								updatedFreelancer.tags.push(newTagRes._id);
-								updatedFreelancer.save(function() {});
-								console.log(tag);
+								console.log(updatedFreelancer.tags);
+								updatedFreelancer.save(function() {
+									console.log(tag);
+								});
 							});
 						}
 					});

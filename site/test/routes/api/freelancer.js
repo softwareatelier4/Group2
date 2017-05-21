@@ -8,6 +8,7 @@ var utils = require('../../utils');
 var app = require('../../../app');
 var seedDb = require('../../seedDb');
 var request = require('supertest');
+var path = require("path");
 var freelancers;
 var reviews;
 
@@ -229,22 +230,6 @@ describe('Testing put for freelancer', function() {
 		});
 
 		temp = put_freelancer;
-		// temp.tags = ["Tecnico", "Developer", "Informatico", "NEW", "TAGS"];
-		// it('Should modify the tags of the freelancer', function(done) {
-		// 	request(app)
-		// 		.put('/api/freelancer/f00000000000000000000000')
-		// 		.send(
-		// 			temp
-		// 		)
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson.tags.should.not.equal(["Tecnico", "Developer", "Informatico"]);
-		// 			done();
-		// 		});
-		// });
 	});
 });
 
@@ -461,6 +446,45 @@ describe('Testing /api/freelancer/sendEmailFreelancer/:email', function() {
 					latitude: 0
 				}])
 				.expect(500, done)
+		});
+	});
+});
+
+describe('Testing /api/freelancer/galleryUpload/:id', function() {
+	describe('PUT /api/freelancer/galleryUpload/:id', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('Should upload the photo and respond with 200', function(done) {
+			request(app)
+				.put('/api/freelancer/galleryUpload/f00000000000000000000000')
+				.type('form')
+				.attach('file0', path.join(__dirname, "/../../test.jpg"))
+				.attach('file1', path.join(__dirname, "/../../test.jpg"))
+				.send({
+					title: ["test.jpg"],
+					freelancerId: "f00000000000000000000000"
+				})
+				.expect(200, done)
+		});
+	});
+});
+
+describe('Testing /api/freelancer/galleryModification/:id', function() {
+	describe('PUT /api/freelancer/galleryModification/:id', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('Should upload the photos and respond with 200', function(done) {
+			request(app)
+				.put('/api/freelancer/galleryModification/f00000000000000000000000')
+				.type('form')
+				.attach('file0', path.join(__dirname, "/../../test.jpg"))
+				.attach('file1', path.join(__dirname, "/../../test.jpg"))
+				.send({
+					profile_check: 'true',
+					deletedFiles: ["/uploads/test/0a.jpg"],
+					freelancerId: "f00000000000000000000000"
+				})
+				.expect(200, done)
 		});
 	});
 });
