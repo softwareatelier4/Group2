@@ -14,10 +14,8 @@ module.exports = {
 	'Test modify freelancer': function(client) {
 		client
 			.resizeWindow(1500, 800)
-			.url('http://127.0.0.1:3000/#freelancer=f00000000000000000000004')
+			.url('http://localhost:3000/#freelancer=f00000000000000000000004')
 			.waitForElementVisible('body', 1000)
-
-		.pause(500)
 
 		.assert.elementPresent('a[name=login-link]')
 			.assert.visible('#navbar-top-desktop a[name="login-link"]')
@@ -30,9 +28,9 @@ module.exports = {
 			.click('button[id=login-button]')
 			.pause(500)
 
-		.assert.visible('div[id=info-name-button]')
-			.pause(1000)
+		.url('http://localhost:3000/#freelancer=f00000000000000000000004')
 			.waitForElementVisible('button[id=modify-button]', 2000)
+			.assert.visible('div[id=info-name-button]')
 			.assert.visible('div[id=info-name-bottom]')
 			.assert.visible('div[id=info]')
 			.assert.visible('div[id=email]')
