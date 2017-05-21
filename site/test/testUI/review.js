@@ -14,43 +14,37 @@ module.exports = {
 	'Review from homepage': function(client) {
 		client
 			.resizeWindow(1500, 800)
-			.url('http://localhost:3000')
-			.waitForElementVisible('body', 1000)
-
-			.assert.visible('div[id=navbarSupportedContent]')
+			.url('http://localhost:3000/')
 			.assert.elementPresent('a[name=login-link]')
 
-			.assert.visible('#navbar-top-desktop a[name="login-link"]')
+		.assert.visible('#navbar-top-desktop a[name="login-link"]')
 
-			.assert.hidden('div[id=modal-login]')
+		.assert.hidden('div[id=modal-login]')
 
-			.click('#navbar-top-desktop a[name="login-link"]')
+		.click('#navbar-top-desktop a[name="login-link"]')
 
-			.pause(500)
+		.pause(500)
 
-			.waitForElementVisible('div[id=modal-login]', 1000)
+		.waitForElementVisible('div[id=modal-login]', 1000)
 
-			.assert.visible('input[id=login-email]')
+		.assert.visible('input[id=login-email]')
 			.assert.visible('input[id=modal-password]')
 
-			.clearValue('input[id=login-email]')
+		.clearValue('input[id=login-email]')
 			.clearValue('input[id=modal-password]')
 
-
-			.setValue('input[id=login-email]', 's.s@usi.ch')
+		.setValue('input[id=login-email]', 's.s@usi.ch')
 			.setValue('input[id=modal-password]', 'test')
 
-			.assert.valueContains('input[id=login-email]', 's.s@usi.ch')
+		.assert.valueContains('input[id=login-email]', 's.s@usi.ch')
 			.assert.valueContains('input[id=modal-password]', 'test')
 
-			.assert.visible('button[id="login-button"]')
+		.assert.visible('button[id="login-button"]')
 
-			.click('button[id="login-button"]')
+		.click('button[id="login-button"]')
 
-			.pause(200)
-
+		.pause(200)
 			.assert.visible('#navbar-top-desktop a[name="logout-link"]')
-
 			.waitForElementVisible('body', 1000)
 			.assert.visible('input[id=search-text]')
 			.assert.visible('span[id=basic-addon1]')
@@ -106,8 +100,40 @@ module.exports = {
 			.getText("[name=c00000000000000000000002] .card-block .reply .card-block p", function(result) {
 				this.assert.equal(result.value, "This is a nightwatch test");
 			})
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-edit]')
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-delete]')
+			.click('[name=c00000000000000000000002] button[name=freelancer-reply-edit]')
 			.pause(500)
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-save]')
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-delete]')
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-eraser]')
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-times]')
+			.click('[name=c00000000000000000000002] button[name=freelancer-reply-times]')
+			.pause(500)
+			.waitForElementVisible('[name=c00000000000000000000002] .card-block .reply .card-block p', 1000)
+			.getText("[name=c00000000000000000000002] .card-block .reply .card-block p", function(result) {
+				this.assert.equal(result.value, "This is a nightwatch test");
+			})
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-edit]')
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-delete]')
+			.click('[name=c00000000000000000000002] button[name=freelancer-reply-edit]')
+			.pause(500)
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-save]')
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-delete]')
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-eraser]')
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-times]')
+			.clearValue('[name=c00000000000000000000002] .reply textarea')
+			.setValue('[name=c00000000000000000000002] .reply textarea', 'This is a nightwatch test modify')
+			.click('[name=c00000000000000000000002] button[name=freelancer-reply-save]')
+			.pause(500)
+			.waitForElementVisible('[name=c00000000000000000000002] .card-block .reply .card-block p', 1000)
+			.getText("[name=c00000000000000000000002] .card-block .reply .card-block p", function(result) {
+				this.assert.equal(result.value, "This is a nightwatch test modify");
+			})
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-edit]')
+			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-delete]')
 			.click('[name=c00000000000000000000002] button[name=freelancer-reply-delete]')
+			.pause(500)
 			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-delete-yes]')
 			.assert.visible('[name=c00000000000000000000002] button[name=freelancer-reply-delete-no]')
 			.click('[name=c00000000000000000000002] button[name=freelancer-reply-delete-no]')
@@ -121,7 +147,45 @@ module.exports = {
 			.click('[name=c00000000000000000000002] button[name=freelancer-reply-delete-yes]')
 			.pause(500)
 			.assert.hidden('[name=c00000000000000000000002] .reply .card-block')
-
 			.end();
+	},
+
+	'Write new review': function(client) {
+		client
+			.resizeWindow(1500, 800)
+			.url('http://localhost:3000/#freelancer=f00000000000000000000013')
+			.waitForElementVisible('body', 1000)
+
+		.assert.elementPresent('a[name=login-link]')
+			.assert.visible('#navbar-top-desktop a[name="login-link"]')
+			.assert.hidden('div[id=modal-login]')
+			.click('#navbar-top-desktop a[name="login-link"]')
+			.pause(1000)
+			.assert.visible('input#modal-password')
+			.setValue('input[id=login-email]', 'm.b@usi.ch')
+			.setValue('input#modal-password', 'test')
+			.pause(500)
+			.assert.visible('button[id=login-button]')
+			.click('button[id=login-button]')
+			.pause(500)
+			.assert.visible('#writeReviews div[class=title-author-review]')
+			.click('#writeReviews #star2')
+			.setValue('#writeReviews input[id=new-review-title]', 'Nightwatch test')
+			.setValue('#writeReviews textarea[id=new-review-description]', 'The best test ever')
+			.pause(200)
+			.click('#writeReviews button[type="submit"]')
+			.pause(500)
+
+		.waitForElementVisible('#cardReviews', 2000)
+			.getText("#cardReviews div[class=title-author-review] h5", function(result) {
+				this.assert.equal(result.value, "Nightwatch test");
+			})
+			.getText("#cardReviews #review-description", function(result) {
+				this.assert.equal(result.value, "The best test ever");
+			});
+
+
 	}
+
+
 };
