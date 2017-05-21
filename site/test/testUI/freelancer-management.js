@@ -17,9 +17,9 @@ module.exports = {
 			.url('http://127.0.0.1:3000/#freelancer=f00000000000000000000004')
 			.waitForElementVisible('body', 1000)
 
-			.pause(500)
+		.pause(500)
 
-			.assert.elementPresent('a[name=login-link]')
+		.assert.elementPresent('a[name=login-link]')
 			.assert.visible('#navbar-top-desktop a[name="login-link"]')
 			.click('#navbar-top-desktop a[name="login-link"]')
 			.pause(200)
@@ -30,7 +30,7 @@ module.exports = {
 			.click('button[id=login-button]')
 			.pause(500)
 
-			.assert.visible('div[id=info-name-button]')
+		.assert.visible('div[id=info-name-button]')
 			.pause(1000)
 			.assert.visible('button[id=modify-button]')
 			.assert.visible('div[id=info-name-bottom]')
@@ -39,26 +39,26 @@ module.exports = {
 			.assert.visible('div[id=phone]')
 
 
-			.click('button[id=modify-button]')
+		.click('button[id=modify-button]')
 			.pause(500)
 
-			.clearValue('input[id=modal-workName]')
+		.clearValue('input[id=modal-workName]')
 			.clearValue('input[id=modal-phone]')
 			.clearValue('textarea[id=modal-description]')
 
-			.setValue('input[id=modal-workName]', "Sample Name")
+		.setValue('input[id=modal-workName]', "Sample Name")
 			.setValue('input[id=modal-phone]', "+41 24 2222222")
 			.setValue('textarea[id=modal-description]', "New Description")
 
-			.pause(300)
+		.pause(500)
 
-			.click('button[id=save-button]')
-			.pause(1000)
-			
+		.click('button[id=save-button]')
+			.pause(100)
+			.url('http://127.0.0.1:3000/#freelancer=f00000000000000000000004')
+			.waitForElementVisible('body', 2000)
 			.assert.containsText('div[id=info-name-bottom]', "Sample Name")
 			.assert.containsText('div[id=phone]', "+41 24 2222222")
 			.assert.containsText('span[id=description]', "New Description")
 			.end();
 	}
 };
-
