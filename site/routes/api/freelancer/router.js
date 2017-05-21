@@ -585,7 +585,13 @@ router.get('/userfavorites/:userid', function(req,res){
 			let favoritelist = [];
 			for(let f of user.favorites){
 				Freelancer.findById(f,function(err, frlnc) {
-					let data = {id: f, distance: distanceCalculation(frlnc,lat,lng,0).toFixed(2)};
+					let dist;
+					if(lat){
+						dist = distanceCalculation(frlnc,lat,lng,0).toFixed(2);
+					} else {
+						dist = "--";
+					}
+					let data = {id: f, distance: dist};
 					favoritelist.push(data);
 					if(favoritelist.length == user.favorites.length){
 						res.send({favorites: favoritelist});
