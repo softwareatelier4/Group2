@@ -1,5 +1,5 @@
 module.exports = {
-	"src_folders": ['./test/testUI'],
+	"src_folders": ['./test/testUITEMP'],
 	"output_folder": "./test/nightwatch-reports",
 	"custom_commands_path": "",
 	"custom_assertions_path": "",
