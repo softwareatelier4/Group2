@@ -580,7 +580,7 @@ router.get('/userfavorites/:userid', function(req,res){
 	let lat = req.query.lat;
 	let lng = req.query.lng;
 	User.findById(userId,function(err,user) {
-		if(err) res.send(err);
+		if(err) res.status(400).send(err);
 		if(user){
 			let favoritelist = [];
 			for(let f of user.favorites){
