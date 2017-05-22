@@ -217,7 +217,7 @@ router.put('/galleryModification/:id', function(req, res) {
 					freelancer.profilePhoto = profile;
 				}
 
-				if(fields.deletedFiles != undefined){
+				if (fields.deletedFiles != undefined) {
 					freelancer.photos = freelancer.photos.filter(function(el) {
 						return !fields.deletedFiles.includes(el);
 					});
@@ -226,6 +226,8 @@ router.put('/galleryModification/:id', function(req, res) {
 				freelancer.photos = freelancer.photos.concat(title);
 
 				freelancer.save(onModelSave(res, 200, true));
+			} else {
+				res.sendStatus(404);
 			}
 		});
 	});
@@ -543,28 +545,28 @@ router.post('/create/freelancer', function(req, res) {
 });
 
 router.all('/favorite/:freelancerid', middleware.supportedMethods('POST, OPTIONS'));
-router.post('/favorite/:freelancerid', function(req,res){
+router.post('/favorite/:freelancerid', function(req, res) {
 	let freelancerId = req.params.freelancerid;
 	let userId = req.body.userId;
-	Freelancer.findById(freelancerId,function(err,freelancer) {
-		if(err) return res.status(400).send(err);
-		if(freelancer){
-			User.findById(userId,function(err,user) {
-				if(err) return res.status(400).send(err);
-				if(user){
+	Freelancer.findById(freelancerId, function(err, freelancer) {
+		if (err) return res.status(400).send(err);
+		if (freelancer) {
+			User.findById(userId, function(err, user) {
+				if (err) return res.status(400).send(err);
+				if (user) {
 					let index = user.favorites.indexOf(freelancerId);
-					if( index == -1){
+					if (index == -1) {
 						user.favorites.push(freelancerId);
 						user.save(function(err, newuser) {
-							res.send({status: true });
+							res.send({ status: true });
 						})
 					} else {
-						user.favorites.splice(index,1);
+						user.favorites.splice(index, 1);
 						user.save(function(err, newuser) {
-							res.send({status: false });
+							res.send({ status: false });
 						})
 					}
-				} else{
+				} else {
 					res.sendStatus(404);
 				}
 			});
@@ -575,26 +577,26 @@ router.post('/favorite/:freelancerid', function(req,res){
 });
 
 router.all('/userfavorites/:userid', middleware.supportedMethods('GET, OPTIONS'));
-router.get('/userfavorites/:userid', function(req,res){
+router.get('/userfavorites/:userid', function(req, res) {
 	let userId = req.params.userid;
 	let lat = req.query.lat;
 	let lng = req.query.lng;
-	User.findById(userId,function(err,user) {
-		if(err) return res.status(400).send(err);
+	User.findById(userId, function(err, user) {
+		if (err) return res.status(400).send(err);
 
 		let favoritelist = [];
-		for(let f of user.favorites){
-			Freelancer.findById(f,function(err, frlnc) {
+		for (let f of user.favorites) {
+			Freelancer.findById(f, function(err, frlnc) {
 				let dist;
-				if(lat){
-					dist = distanceCalculation(frlnc,lat,lng,0).toFixed(2);
+				if (lat) {
+					dist = distanceCalculation(frlnc, lat, lng, 0).toFixed(2);
 				} else {
 					dist = "--";
 				}
-				let data = {id: f, distance: dist};
+				let data = { id: f, distance: dist };
 				favoritelist.push(data);
-				if(favoritelist.length == user.favorites.length){
-					res.send({favorites: favoritelist});
+				if (favoritelist.length == user.favorites.length) {
+					res.send({ favorites: favoritelist });
 				}
 			});
 		}
