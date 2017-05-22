@@ -5,6 +5,8 @@ var postal_code = "";
 var lat = 0;
 var lng = 0;
 
+var deletedFiles = [];
+
 const FREELANCERMANAGEMENT = {
     data: null,
     idFreelancer : null,
@@ -13,7 +15,7 @@ const FREELANCERMANAGEMENT = {
     addedTags : [],
     getFreelancerInfo: function() {
 		//  console.log(document.getElementById("modify_position"));
-
+		document.getElementById('delete_gallery').innerHTML = "";
 		 $("#modify_position")
 		   .geocomplete()
 		   .bind("geocode:result", function(event, result) {
@@ -29,7 +31,6 @@ const FREELANCERMANAGEMENT = {
 			   }
 
 			   if(stree_number){
-					console.log(stree_number);
 					stree_number = stree_number.long_name;
 			   }
 
@@ -61,8 +62,6 @@ const FREELANCERMANAGEMENT = {
                         freelancer: res
                     };
 
-						  console.log(data.freelancer.photos);
-
                     $("#modal-workName").val(data.freelancer.workName);
                     $("#modal-phone").val(data.freelancer.phone);
 
@@ -78,7 +77,10 @@ const FREELANCERMANAGEMENT = {
 						  }
 
 						  if(data.freelancer.address.city){
-							  pos += ", " + data.freelancer.address.city;
+							  if(data.freelancer.address.road){
+								  pos += ", "
+							  }
+							  pos += data.freelancer.address.city;
 							  city = data.freelancer.address.city;
 							//   console.
 						  }
@@ -92,7 +94,7 @@ const FREELANCERMANAGEMENT = {
 						  if(data.freelancer.emergency){
 							  $("#modal-emergency").prop("checked", true);
 						  }
-						  console.log("Emergency: " + data.freelancer.emergency);
+
                     tagsTemp = [];
 
                     if(data.freelancer.tags != null){
@@ -110,6 +112,12 @@ const FREELANCERMANAGEMENT = {
 						FREELANCERMANAGEMENT.addedTags.push(tagsTemp[i]);
                         tagsList.innerHTML += badge;
                     }
+
+						  let gallery = document.getElementById('delete_gallery');
+						  for(let i = 0; i < data.freelancer.photos.length; i++){
+							  let temp = '<div class="img-del" id = "'+data.freelancer.photos[i]+'"> <span class="close">&times;</span> <img height = "50px" src="'+data.freelancer.photos[i]+'" data-id="'+data.freelancer.photos[i]+'"></div>';
+								gallery.innerHTML += temp;
+						  }
 				});
 			}
 		});
@@ -159,11 +167,11 @@ const FREELANCERMANAGEMENT = {
     submitFreelancer: function(){
 		//  eventFire(document.getElementById('modify_position'), 'click');
 		//  simulate(document.getElementById('modify_position'), 'click');
-       let id = idFreelancer;
+      let id = idFreelancer;
 		let workName = document.getElementById('modal-workName');
 		let phoneNumber = document.getElementById('modal-phone');
 
-		console.log(workName.value);
+		// console.log(workName.value);
 		let profilePic = data.freelancer.profilePhoto;
        let photos = data.freelancer.photos;
 
@@ -194,40 +202,36 @@ const FREELANCERMANAGEMENT = {
 				'emergency' : emergency
 		};
 
-		console.log(FREELANCERMANAGEMENT.addedTags);
-		console.log(freelancer_update);
             doJSONRequest("PUT", "/api/freelancer/"+id, null, freelancer_update, function(res) {
-               //  location.reload();
 					let data, xhr;
-
-					// console.log(freelancerId);
 
 					data = new FormData();
 
-					let number = [];
+					let title = [];
 
 					if($('#profilePicture')[0].files[0] != null){
 						data.append('file0', $('#profilePicture')[0].files[0]);
 						data.append('profile_check', 'true');
+					} else {
+						data.append('profile_check', 'false');
 					}
 
-					for (var i = 1; i <= 9; i++)
+					let files = $("#modal-file-management")[0].files;
+
+					for (let i = 1; i <= files.length; i++)
 					{
-						if($('#file'+i)[0].files[0] != null){
-							number.push(i);
-							data.append('file'+i, $('#file'+i)[0].files[0]);
-						}
+						data.append('file' + i, files[i - 1]);
 					}
 
-					//
-					data.append('files', number);
 					data.append('freelancerId', id);
+
+					data.append('deletedFiles', deletedFiles);
 
 					xhr = new XMLHttpRequest();
 
 					xhr.open('PUT', '/api/freelancer/galleryModification/' + id, true);
 					xhr.onreadystatechange = function(response) {
-						console.log(response);
+						// console.log(response);
 					};
 					xhr.send(data);
 
@@ -272,7 +276,7 @@ const FREELANCERMANAGEMENT = {
 			});
 		}
 		if(tagText.value.length > 0 && event.key == "Enter" && !FREELANCERMANAGEMENT.addedTags.includes(tagText.value)){
-			let badge = `<span class="badge badge-primary">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERMANAGEMENT.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
+			let badge = `<span class="badge badge-primary hint">`+ tagText.value +`  <span style="cursor: pointer;" onclick="FREELANCERMANAGEMENT.removeTag(this)" data-tag="`+ tagText.value +`" aria-hidden="true">&times;</span></span>  `;
 			FREELANCERMANAGEMENT.addedTags.push(tagText.value);
 			tagText.value = '';
 			tagsList.innerHTML += badge;
@@ -353,3 +357,13 @@ var defaultOptions = {
     bubbles: true,
     cancelable: true
 }
+
+$(document).ready( function () {
+	$(document).on('click', '.img-del .close', function(){
+		let id = $(this).closest('.img-del').find('img').data('id');
+		deletedFiles.push(id);
+		let elem = document.getElementById(id);
+    	elem.parentNode.removeChild(elem);
+	});
+
+});

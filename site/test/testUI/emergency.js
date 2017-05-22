@@ -18,34 +18,42 @@ module.exports = {
 			.assert.visible('input[id=search-text]')
 			.assert.visible('span[id=basic-addon1]')
 
-		utils.setPositionBox(client, 'Udine');
+		utils.setPositionBox(client, 'Lugano');
 
 		client
 			.clearValue('input[id=search-text]')
-			.setValue('input[id=search-text]', 'Developer')
+			.setValue('input[id=search-text]', 'Plumber')
 			.click('span[id=basic-addon1]')
 			.pause(500)
-			.assert.urlContains('search=Developer')
+			.assert.urlContains('search=Plumber')
 			.pause(500)
-			.assert.visible('div[id=f00000000000000000000000]')
-			.assert.visible('div[id=f00000000000000000000006]')
+			.assert.visible('div[id=f00000000000000000000003]')
+			.assert.visible('div[id=f00000000000000000000009]')
+			.assert.visible('div[id=f00000000000000000000039]')
+			.assert.visible('div[id=f00000000000000000000044]')
 			.assert.visible('span[id=emergency-btn]')
-			.click('span[id=emergency-btn]')
-			.pause(500)
-			.assert.attributeContains('#btn-distance', 'data-sorttype', 'asc')
-			.assert.visible('div[id=f00000000000000000000000]')
-			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000000');
+			.pause(200)
+			.execute(function() {
+				document.getElementById('emergency-btn').click();
 			})
-			.click('span[id=emergency-btn]')
-			.pause(500)
-			.assert.attributeContains('#btn-distance', 'data-sorttype', 'neutral')
+			.assert.attributeContains('#btn-distance', 'data-sorttype', 'asc')
+			.assert.visible('div[id=f00000000000000000000014]')
+			.assert.visible('div[id=f00000000000000000000009]')
 			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000000');
+				this.assert.equal(result.value, 'f00000000000000000000014');
 			})
 			.getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000006');
+				this.assert.equal(result.value, 'f00000000000000000000009');
 			})
+			.execute(function() {
+				document.getElementById('emergency-btn').click();
+			})
+			.pause(500)
+			.assert.attributeContains('#btn-distance', 'data-sorttype', 'neutral')
+			.assert.visible('div[id=f00000000000000000000003]')
+			.assert.visible('div[id=f00000000000000000000009]')
+			.assert.visible('div[id=f00000000000000000000039]')
+			.assert.visible('div[id=f00000000000000000000044]')
 			.end();
 	},
 	'Search for emergency with filter and sort test': function(client) {
@@ -56,58 +64,50 @@ module.exports = {
 			.assert.visible('span[id=basic-addon1]')
 
 
-		utils.setPositionBox(client, 'Udine');
+		utils.setPositionBox(client, 'Lugano');
 
 		client
 			.clearValue('input[id=search-text]')
-			.setValue('input[id=search-text]', 'Tecnico')
+			.setValue('input[id=search-text]', 'Plumber')
 			.click('span[id=basic-addon1]')
+			.pause(200)
+			.assert.urlContains('search=Plumber')
 			.pause(500)
-			.assert.urlContains('search=Tecnico')
-			.pause(500)
-			.assert.visible('div[id=f00000000000000000000000]')
-			.assert.visible('div[id=f00000000000000000000004]')
-			.assert.visible('div[id=f00000000000000000000005]')
-			.assert.visible('div[id=f00000000000000000000006]')
+			.assert.visible('div[id=f00000000000000000000003]')
+			.assert.visible('div[id=f00000000000000000000009]')
+			.assert.visible('div[id=f00000000000000000000039]')
+			.assert.visible('div[id=f00000000000000000000044]')
 			.assert.visible('input[id=price-input]')
 			.clearValue('input[id=price-input]')
 			.setValue('input[id=price-input]', '100')
 			.pause(500)
-			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000000');
-			})
-			.getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000006');
-			})
+			.assert.visible('div[id=f00000000000000000000043]')
+			.assert.visible('div[id=f00000000000000000000009]')
 			.assert.visible('span[id=btn-price]')
 			.click('span[id=btn-price]')
 			.pause(500)
 			.click('span[id=btn-price]')
 			.pause(500)
-			.assert.attributeContains('#btn-price', 'data-sorttype', 'desc')
-			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000006');
+			.assert.visible('div[id=f00000000000000000000043]')
+			.assert.visible('div[id=f00000000000000000000003]')
+			.assert.visible('span[id=emergency-btn]')
+			.pause(200)
+			.execute(function() {
+				document.getElementById('emergency-btn').click();
 			})
-			.getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000000');
-			})
-			.click('span[id=emergency-btn]')
-			.pause(500)
+			.pause(200)
 			.assert.attributeContains('#btn-distance', 'data-sorttype', 'asc')
 			.assert.attributeContains('#btn-price', 'data-sorttype', 'neutral')
-			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000000');
+			.assert.visible('div[id=f00000000000000000000014]')
+			.assert.visible('div[id=f00000000000000000000009]')
+			.execute(function() {
+				document.getElementById('emergency-btn').click();
 			})
-			.click('span[id=emergency-btn]')
 			.pause(500)
 			.assert.attributeContains('#btn-distance', 'data-sorttype', 'neutral')
 			.assert.attributeContains('#btn-price', 'data-sorttype', 'desc')
-			.getAttribute("#main-content .result-card:nth-child(1)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000006');
-			})
-			.getAttribute("#main-content .result-card:nth-child(2)", "id", function(result) {
-				this.assert.equal(result.value, 'f00000000000000000000000');
-			})
+			.assert.visible('div[id=f00000000000000000000043]')
+			.assert.visible('div[id=f00000000000000000000003]')
 			.end();
 	}
 };

@@ -8,6 +8,7 @@ var utils = require('../../utils');
 var app = require('../../../app');
 var seedDb = require('../../seedDb');
 var request = require('supertest');
+var path = require("path");
 var freelancers;
 var reviews;
 
@@ -57,7 +58,7 @@ describe('Testing Read for /api/review/freelancer/', function() {
 				.expect(200)
 				.end(function(err, res) {
 					var review = res.text;
-					utils.matchReviewInfoInText(review, reviews[6]);
+					utils.matchReviewInfoInText(review, reviews[0]);
 					done();
 				});
 		});
@@ -229,22 +230,6 @@ describe('Testing put for freelancer', function() {
 		});
 
 		temp = put_freelancer;
-		// temp.tags = ["Tecnico", "Developer", "Informatico", "NEW", "TAGS"];
-		// it('Should modify the tags of the freelancer', function(done) {
-		// 	request(app)
-		// 		.put('/api/freelancer/f00000000000000000000000')
-		// 		.send(
-		// 			temp
-		// 		)
-		// 		.set('Accept', 'application/json')
-		// 		.expect('Content-Type', /json/, 'it should respond with json')
-		// 		.expect(200)
-		// 		.end(function(err, res) {
-		// 			let resJson = JSON.parse(res.text);
-		// 			resJson.tags.should.not.equal(["Tecnico", "Developer", "Informatico"]);
-		// 			done();
-		// 		});
-		// });
 	});
 });
 
@@ -356,20 +341,20 @@ describe('Testing ROUTE for localhost:3000/api/freelancer/emergency/:freelanceri
 
 		it('should respond with 404 if the id doesn\'t exist', function(done) {
 			request(app)
-			.put('/api/freelancer/emergency/3625fc2bd82b84d23d8c7bd1')
-			.send({
-				emergency: false
-			})
-			.expect(404, done)
+				.put('/api/freelancer/emergency/3625fc2bd82b84d23d8c7bd1')
+				.send({
+					emergency: false
+				})
+				.expect(404, done)
 		});
 
 		it('should respond with 500 if the id is invalid', function(done) {
 			request(app)
-			.put('/api/freelancer/emergency/b100500000001')
-			.send({
-				emergency: false
-			})
-			.expect(500, done)
+				.put('/api/freelancer/emergency/b100500000001')
+				.send({
+					emergency: false
+				})
+				.expect(500, done)
 		});
 	});
 	describe('GET /api/freelancer/emergency/:freelancerid', function() {
@@ -388,7 +373,7 @@ describe('Testing ROUTE for localhost:3000/api/freelancer/emergency/:freelanceri
 		});
 		it('should respond with false', function(done) {
 			request(app)
-				.get('/api/freelancer/emergency/f00000000000000000000003')
+				.get('/api/freelancer/emergency/f00000000000000000000039')
 				.expect(200)
 				.expect('Content-Type', /json/)
 				.end(function(err, res) {
@@ -399,15 +384,15 @@ describe('Testing ROUTE for localhost:3000/api/freelancer/emergency/:freelanceri
 		});
 		it('should respond with a 404 if the freelancer does not exist', function(done) {
 			request(app)
-			.get('/api/freelancer/emergency/3625fc2bd82b84d23d8c7bd1')
-			.set('Accept', 'application/json')
-			.expect(404, done);
+				.get('/api/freelancer/emergency/3625fc2bd82b84d23d8c7bd1')
+				.set('Accept', 'application/json')
+				.expect(404, done);
 		});
 		it('should respond with a 500 if the id is invalid', function(done) {
 			request(app)
-			.get('/api/freelancer/emergency/b100500000001')
-			.set('Accept', 'application/json')
-			.expect(500, done);
+				.get('/api/freelancer/emergency/b100500000001')
+				.set('Accept', 'application/json')
+				.expect(500, done);
 		});
 	});
 });
@@ -445,22 +430,172 @@ describe('Testing /api/freelancer/sendEmailFreelancer/:email', function() {
 
 		it('should respond with 404 if the freelancer doesn\'t exists', function(done) {
 			request(app)
-			.post('/api/freelancer/location/3625fc2bd82b84d23d8c7bd1')
-			.send([{
-				longitude: 0,
-				latitude: 0
-			}])
-			.expect(404, done)
+				.post('/api/freelancer/location/3625fc2bd82b84d23d8c7bd1')
+				.send([{
+					longitude: 0,
+					latitude: 0
+				}])
+				.expect(404, done)
 		});
 
 		it('should respond with 500 if the id is invalid', function(done) {
 			request(app)
-			.post('/api/freelancer/location/b100500000001')
-			.send([{
-				longitude: 0,
-				latitude: 0
-			}])
-			.expect(500, done)
+				.post('/api/freelancer/location/b100500000001')
+				.send([{
+					longitude: 0,
+					latitude: 0
+				}])
+				.expect(500, done)
+		});
+	});
+});
+
+describe('Testing /api/freelancer/galleryUpload/:id', function() {
+	describe('PUT /api/freelancer/galleryUpload/:id', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('Should upload the photo and respond with 200', function(done) {
+			request(app)
+				.put('/api/freelancer/galleryUpload/f00000000000000000000000')
+				.type('form')
+				.attach('file0', path.join(__dirname, "/../../test.jpg"))
+				.attach('file1', path.join(__dirname, "/../../test.jpg"))
+				.send({
+					title: ["test.jpg"],
+					freelancerId: "f00000000000000000000000"
+				})
+				.expect(200, done)
+		});
+	});
+});
+
+describe('Testing /api/freelancer/galleryModification/:id', function() {
+	describe('PUT /api/freelancer/galleryModification/:id', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('Should upload the photos and respond with 200', function(done) {
+			request(app)
+				.put('/api/freelancer/galleryModification/f00000000000000000000000')
+				.type('form')
+				.attach('file0', path.join(__dirname, "/../../test.jpg"))
+				.attach('file1', path.join(__dirname, "/../../test.jpg"))
+				.send({
+					profile_check: 'true',
+					deletedFiles: ["/uploads/test/0a.jpg"],
+					freelancerId: "f00000000000000000000000"
+				})
+				.expect(200, done)
+		});
+	});
+});
+
+describe('Testing /api/freelancer/userfavorites/:userid', function() {
+	describe('GET /api/freelancer/userfavorites/:userid', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('Should get the favorites for that user and respond with a list of favorites', function(done) {
+			request(app)
+			.get('/api/freelancer/userfavorites/b00000000000000000000010')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function(err, res) {
+				if (err) done(err);
+				res.body.favorites.length.should.be.eql(10);
+				done();
+			});
+		});
+
+
+		it('Should return 400 if the user id is wrong', function(done) {
+			request(app)
+			.get('/api/freelancer/userfavorites/ciao')
+			.expect(400, done);
+		});
+
+		it('Should get the favorites for that user and respond with a list of favorites', function(done) {
+			request(app)
+			.get('/api/freelancer/userfavorites/b00000000000000000000010?lat=0.0&lng=10.0')
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function(err, res) {
+				if (err) done(err);
+				res.body.favorites.length.should.be.eql(10);
+				done();
+			});
+		});
+	});
+});
+
+describe('Testing /api/freelancer/favorite/:freelancerid', function() {
+	describe('GET /api/freelancer/favorite/:freelancerid', function() {
+		before(seed);
+		after(utils.dropDb);
+		it('Should add a freelancer to favourites', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00000000000000000000000')
+			.send({
+				userId: 'b00000000000000000000010'
+			})
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function(err, res) {
+				if (err) done(err);
+				res.body.status.should.be.eql(true);
+				done();
+			});
+		});
+
+
+		it('Should not add a freelancer to favourites', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00000000000000000000002')
+			.send({
+				userId: 'b00000000000000000000010'
+			})
+			.expect(200)
+			.expect('Content-Type', /json/)
+			.end(function(err, res) {
+				if (err) done(err);
+				res.body.status.should.be.eql(false);
+				done();
+			});
+		});
+
+
+		it('Should return 400 if not valid freelancer', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/ciao')
+			.send({
+				userId: 'b00000000000000000000010'
+			})
+			.expect(400, done);
+		});
+
+		it('Should return 400 if not valid user', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00000000000000000000002')
+			.send({
+				userId: 'ciao'
+			})
+			.expect(400, done);
+		});
+
+		it('Should return 404 if user is not present', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00000000000000000000002')
+			.send({
+				userId: 'b00000000110000000000000'
+			})
+			.expect(404, done);
+		});
+
+		it('Should return 404 if freelancer is not present', function(done) {
+			request(app)
+			.post('/api/freelancer/favorite/f00001100000000000000002')
+			.send({
+				userId: 'b00000000000000000000000'
+			})
+			.expect(404, done);
 		});
 	});
 });

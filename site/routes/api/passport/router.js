@@ -142,6 +142,94 @@ router.post('/login', function(req, res, next) {
 	})(req, res, next);
 });
 
+router.get('/newpassword/:email', function(req, res, next) {
+	const email = req.params.email;
+
+	const search = {
+		email
+	}
+	User.find(search).exec(function(err, user) {
+
+		if (err) return res.send(err);
+
+		if (user.length == 0) {
+			// no user found
+			res.sendStatus(404);
+		} else {
+			user = user[0];
+
+			const link = rootUrl + '/password.html#token=' + user.password + '&email=' + user.email;
+			const content = {
+				title: `Forgot your password?`,
+				body: `
+				<p>Hello ${user.firstName},</p>
+				<p>Forgot your password, huh? No big deal.</p>
+				<p>To create a new password, just follow this link:</p>
+				<div style="text-align: center">
+				<a href="${link}" class="confirmBtn" style="display: inline-block; margin-top: 20px;">Create new password</a>
+				<p>Link doesn't work? Copy the following link to your browser address bar:</p>
+				<p>${link}</p>
+				<br />
+				<p>If you DID NOT request a new password then please ignore this email and your password will remain the same.</p>
+				</div>`
+			}
+
+			console.log('email sent', content);
+
+			require('./../mail').sendMail(user.email, 'JobAdvisor: new password', content, function(err, info) {
+				return res.send({});
+			});
+
+
+		}
+	})
+});
+
+
+router.post('/changepassword/:email', function(req, res, next) {
+	const email = req.params.email;
+	const newPassword = req.body.password;
+
+	const token = req.body.token;
+	const oldPassword = req.body.oldPassword;
+
+	// reset the password given the token
+	const search = {
+		email
+	}
+
+	User.findOne(search).exec(function(err, user) {
+		if (err) return res.send(err);
+
+		if (!user) {
+			// no user found
+			return res.send({
+				error: (oldPassword) ? 'No user found with the email insert.' : 'Token is not correct. Try to open again the link in the email.'
+			});
+		}
+
+		if (oldPassword && !user.validPassword(oldPassword)) {
+			return res.send({
+				error: 'Old password is not correct.'
+			});
+		} else if (token && user.password != token) {
+			return res.send({
+				error: 'Token is not correct. Try to open again the link in the email.'
+			});
+		}
+
+		user.password = user.generateHash(newPassword);
+
+		user.save(function(err, user) {
+			if (err) return res.send(err);
+
+			res.send(user);
+		});
+
+	});
+})
+
+
 router.post('/signup', function(req, res, next) {
 	passport.authenticate('local-signup', function(err, user, info) {
 		if (err) {
@@ -188,5 +276,7 @@ router.get('/logout', function(req, res) {
 		result: 'logout'
 	});
 });
+
+
 
 module.exports = router;
