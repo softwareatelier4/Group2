@@ -15,6 +15,7 @@ module.exports = {
 		client
 			.url('http://localhost:3000/')
 			.waitForElementVisible('body', 1000)
+			.resizeWindow(1500, 800)
 			.pause(100)
 			.assert.elementPresent('a[name=login-link]')
 			.assert.visible('#navbar-top-desktop a[name="login-link"]')
