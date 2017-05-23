@@ -31,7 +31,6 @@ let drawMenu = function() {
 
 let drawLoginMenu = function() {
 	isLogged(function(loginRes) {
-		console.log(loginRes);
 		let menuEl = {};
 		const logged = loginRes.result;
 
@@ -61,12 +60,19 @@ let drawLoginMenu = function() {
 				name: 'Favorites',
 				link: '/#favorite',
 				dom_name: 'favorites-link'
-			},
+			};
 
 			menuEl.changePassword = {
 				name: 'Change Password',
 				link: '/password.html'
-			},
+			};
+
+			if (logged.freeLancerId) {
+				menuEl.myprofile = {
+					name: 'My Profile',
+					link: '/#freelancer=' + logged.freeLancerId
+				};
+			}
 
 			menuEl.logout = {
 				name: 'Logout',
