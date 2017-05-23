@@ -122,7 +122,7 @@ module.exports.user = {
 			firstName: 'Katia',
 			lastName: 'Gianfrancesco',
 			password: '$2a$08$f5U8b6fwQ6Uiagx4pwFW7eg0ZuU7de/ZZRt1bSRzFkj1iaBBIhxrK',
-			email: 'j.u@usi.ch',
+			email: 'k.g@usi.ch',
 			level: 1,
 			active: true
 		},

@@ -50,15 +50,12 @@ const FREELANCERCLAIMADMIN = {
 		let claimId = e.target.value;
 		let row = document.getElementById(claimId).childNodes[2];
 		let flId = row.getElementsByTagName('a')[0].href.split('=')[1];
-		console.log(flId);
 		doJSONRequest("PUT", "/api/claimrequest/" + claimId, null, {
 			status: "Accepted"
 		}, function(res) {
 			doJSONRequest("GET", "/api/claimrequest/", null, null, function(res) {
 				for (let req of res) {
-					console.log(req.freelancer);
-					console.log(flId);
-					if (req.freelancer._id.toString() == flId && req._id != claimId) {
+					if (req.freelancer._id.toString() == flId && req._id != claimId && (req.user._id).toString() != user) {
 						doJSONRequest("PUT", "/api/claimrequest/" + req._id, null, {
 							status: "Refused"
 						}, function(res) {});
