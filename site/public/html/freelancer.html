@@ -6,20 +6,20 @@
 			<div id="info-name">
 				<div class="info-name-top">
 					<span class="ml-15" id="profile-name">{freelancer.firstName} {freelancer.lastName}</span>
-					<span class="ml-15 light-blue" id="city-freelancer"><i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a></span> {?freelancer.ownerId}
+					<span class="ml-15 light-blue" id="city-freelancer"><i class="fa fa-map-marker" aria-hidden="true"></i> <a target="_blank" href="https://www.google.com/maps/place/{freelancer.address.city}">{freelancer.address.city}</a></span>{?freelancer.ownerId}
 					<span class="ml-15"><i class="fa fa-check-circle light-blue" style="font-size: 22px" id="verified-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="This freelancer is verified"></i></span>{/freelancer.ownerId} {?freelancer.emergency}
 					<span class="ml-15"><i class="fa fa-bell blink light-blue" style="font-size: 22px;" id="emergency-sign" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Available for emergency"></i></span>{/freelancer.emergency} {^freelancer.emergency}
 					<span class="ml-15 light-blue" id="disabled-emergency-sign" style="font-size: 22px;" data-toggle="tooltip" data-placement="top" title="No emergency">
 						<i class="fa fa-bell-slash"></i>
 					</span>{/freelancer.emergency}
+					<span class="ml-15" style="font-size: 22px;"><i class="fa fa-heart-o" id="favorite" style="color: #b71c1c; cursor: pointer; display: none" onclick="FREELANCER.favorite()" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Add to your favourite list"></i></span>
 				</div>
 				<div class="ml-15 light-blue" id="info-name-bottom">
 					{freelancer.workName}
-					<i class="fa fa-heart-o" id="favorite" style="margin-left: 30px; color: #b71c1c; cursor: pointer; display: none" onclick="FREELANCER.favorite()" aria-hidden="true"></i>
 				</div>
 				<div class="ml-15 light-blue" id="info-name-button">
 					<button type="button" id="modify-button" class="btn btn-primary" data-toggle="modal" data-target="#update-freelancer-modal" style="display: none;" onclick="FREELANCERMANAGEMENT.getFreelancerInfo()">
-                        Modify
+                        <i class="fa fa-pencil" aria-hidden="true"></i> Modify
                    </button>
 					<button type="button" id="claim-button" class="btn btn-primary" data-toggle="modal" data-target="#claim-freelancer-modal" style="margin-left: 5px; display: none;">
                	Claim this profile
@@ -156,23 +156,25 @@
 
 						</div>
 						<label for="modal-file-management" id="modal-file-label">Upload new photos: </label> </br>
-						<input type="file" name="img" id ="modal-file-management" multiple>
+						<input type="file" name="img" id="modal-file-management" multiple>
 						<div class="alert alert-danger" role="alert" id="tagerror" style="display:none"> Insert at least one tag </div>
+
 						<div class="form-group">
 							<label for="tags">Tags: </label>
 							<input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags" onkeypress="return event.keyCode != 13;" onkeyup="FREELANCERMANAGEMENT.tagHinter()" autocomplete="off">
 							<div id="tags-list">
 							</div>
 						</div>
-					<div class="form-group">
-						<label for="modal-description">Description</label>
-						<textarea class="form-control" id="modal-description" rows="3"></textarea>
-					</div>
-					<div class="form-group">
-					  <label class="form-check-label">
+						<div class="form-group">
+							<label for="modal-description">Description</label>
+							<textarea class="form-control" id="modal-description" rows="3"></textarea>
+						</div>
+						<div class="form-group">
+							<label class="form-check-label">
 					    <input class="form-check-input" type="checkbox" value="" id="modal-emergency">
 					    Available for emergency
 					  </label>
+
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -135,6 +135,12 @@ router.put('/:id', function(req, res, next) {
 						return next(err);
 					}
 
+					if (user.freeLancerId) {
+						if (user.freeLancerId.toString() == fId) {
+							user.freeLancerId = undefined;
+						}
+						user.save();
+					}
 
 					let fHtml = "<a href='http://localhost:3000/#freelancer=" + fId + "'>freelancer</a>";
 					const content = {
