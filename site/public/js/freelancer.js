@@ -400,12 +400,14 @@ const FREELANCER = {
 			xhr = new XMLHttpRequest();
 
 			xhr.open('POST', '/api/claimrequest/', true);
-			xhr.onreadystatechange = function(response) {
-				console.log(response);
-			};
-			xhr.send(data);
 
-			location.reload();
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					location.reload();
+				}
+			};
+
+			xhr.send(data);
 		});
 	},
 	checkData: function() {
