@@ -41,7 +41,9 @@ const UTILS = {
          }
 
          for (let cb of userPosition.onChangeCall) {
-            cb('geolocation_automatic');
+            if (cb) {
+               cb('geolocation_automatic');
+            }
          }
       }
    },

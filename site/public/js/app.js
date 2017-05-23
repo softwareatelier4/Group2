@@ -15,8 +15,7 @@ let userPosition = {
 	latitude: null,
 	time: null,
 	onChangeCall: [
-		SEARCH.setPosition,
-		FAVORITE.setPosition
+		SEARCH.setPosition
 	]
 }
 
