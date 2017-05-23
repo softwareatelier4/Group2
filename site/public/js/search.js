@@ -392,7 +392,7 @@ const SEARCH = {
 						return a.distance - b.distance;
 					});
 					let distResult = [];
-					for (let i = 0; i < 10; i++) {
+					for (let i = 0; i < 20; i++) {
 
 						if (SEARCH.freelancerForMarco[i] === undefined)
 							continue;
