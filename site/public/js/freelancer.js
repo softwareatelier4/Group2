@@ -27,6 +27,8 @@ const FREELANCER = {
 
 		SORTING_OPTIONS.style.visibility = 'hidden';
 
+		$('#emergency-btn').hide();
+
 		FREELANCER.renderProfile();
 	},
 
@@ -57,7 +59,7 @@ const FREELANCER = {
 						res.score = FREELANCER.getHtmlRankStar({
 							full: res.score,
 							half: Math.ceil(res.score - Math.floor(res.score)),
-					    	empty: 5 - Math.ceil(res.score)
+							empty: 5 - Math.ceil(res.score)
 						});
 
 						//display photos of work, if more than 9, display only in the lightbox
@@ -116,9 +118,9 @@ const FREELANCER = {
 								$(document.getElementById("modify-button")).show();
 							}
 						});
-						if(loggedUser.result){
+						if (loggedUser.result) {
 							$(document.getElementById("favorite")).show();
-							if(userFavorites.indexOf(idFreelancer) == -1){
+							if (userFavorites.indexOf(idFreelancer) == -1) {
 								document.getElementById("favorite").className = "fa fa-heart-o";
 							} else {
 								document.getElementById("favorite").className = "fa fa-heart";
@@ -706,10 +708,10 @@ const FREELANCER = {
 			var url = window.location.href;
 			var idFreelancer = url.split('=')[1];
 			let user = res.result._id;
-			if(user){
-				doJSONRequest("POST", "/api/freelancer/favorite/" + idFreelancer, null, {userId: user}, function(result) {
+			if (user) {
+				doJSONRequest("POST", "/api/freelancer/favorite/" + idFreelancer, null, { userId: user }, function(result) {
 					console.log(result);
-					if(result.status == false){
+					if (result.status == false) {
 						document.getElementById("favorite").className = "fa fa-heart-o";
 					} else {
 						document.getElementById("favorite").className = "fa fa-heart";
