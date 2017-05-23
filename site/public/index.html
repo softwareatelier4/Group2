@@ -14,17 +14,15 @@
 	<link rel="stylesheet" href="css/selectize.css">
 	<link rel="stylesheet" href="css/uploadPhoto.css">
 	<link rel="stylesheet" href="css/deleteGallery.css">
-
 	<title>JobAdvisor</title>
 </head>
 
 <body>
 	<nav class="navbar navbar-toggleable-md navbar-light bg-faded" id="navbar-top-mobile">
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-top-m-elements" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
-  		</button>
+			<span class="navbar-toggler-icon"></span>
+		</button>
 		<!-- <a class="navbar-brand" href="#">JobAdvisor</a> -->
-
 		<div class="collapse navbar-collapse" id="navbar-top-m-elements">
 			<ul class="navbar-nav ml-auto hidden-lg-up">
 			</ul>
@@ -68,10 +66,8 @@
 			</div>
 		</div>
 		<main id="main-content">
-
 		</main>
 	</div>
-
 	<!-- jQuery first, then Tether, then Bootstrap JS. -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -79,20 +75,16 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 	<script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
 	<script src="js/jquery.geocomplete.min.js"></script>
-
 	<script>
-		jQuery.expr[':'].focus = function(elem) {
-			return elem === document.activeElement && (elem.type || elem.href);
-		};
+	jQuery.expr[':'].focus = function(elem) {
+		return elem === document.activeElement && (elem.type || elem.href);
+	};
 	</script>
-
 	<script src="js/dust-full.min.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/lightbox.min.js"></script>
-
 	<script src="js/menu.js"></script>
-
 	<script src="js/favorite.js"></script>
 	<script src="js/login.js"></script>
 	<script src="js/homepage.js"></script>
@@ -104,7 +96,6 @@
 </body>
 
 </html>
-
 <!-- Modal Login -->
 <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document" id="modal-ext">
@@ -112,8 +103,8 @@
 			<div class="modal-header">
 				<h5 class="modal-title" id="modal-title">Login</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div class="modal-body">
 				<form enctype="multipart/form-data" action="javascript:LOGIN.submitLogin()" id="form-login">
@@ -129,7 +120,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="/forgot-password.html" class="mr-auto">Forgot?</a>
+				<a href="/password.html" class="mr-auto">Forgot?</a>
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				<button type="button" id="login-button" class="btn btn-primary" onclick="LOGIN.checkData()">Login</button>
 			</div>
