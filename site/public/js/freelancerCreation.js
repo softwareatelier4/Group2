@@ -56,7 +56,8 @@ const FREELANCERCREATION = {
 			'emergency': emergency,
 			'tags': FREELANCERCREATION.addedTags
 		};
-
+		console.log(FREELANCERCREATION.addedTags.length);
+		if(FREELANCERCREATION.addedTags.length > 0){
 			doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
 				if (!res.errors) {
 
@@ -103,6 +104,11 @@ const FREELANCERCREATION = {
 					console.log("Error: " + res.errors[0]);
 				}
 			});
+		}
+		else {
+			let tagerror = document.getElementById('tagerror');
+        	tagerror.style.display = "block";
+		}
 	},
 
 	result: {},
@@ -131,6 +137,8 @@ const FREELANCERCREATION = {
 		if (tagText.value.length > 0 && event.key == "Enter" && !FREELANCERCREATION.addedTags.includes(tagText.value)) {
 			let badge = `<span class="badge badge-primary">` + tagText.value + `  <span style="cursor: pointer;" onclick="FREELANCERCREATION.removeTag(this)" data-tag="` + tagText.value + `" aria-hidden="true">&times;</span></span>  `;
 			FREELANCERCREATION.addedTags.push(tagText.value);
+			let tagerror = document.getElementById('tagerror');
+        	tagerror.style.display = "none";
 			tagText.value = '';
 			tagsList.innerHTML += badge;
 		}

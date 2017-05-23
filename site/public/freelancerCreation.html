@@ -34,6 +34,7 @@
 			</div>
 			<div class="form-group">
 				<label for="tags">Tags: </label>
+				<div class="alert alert-danger" role="alert" id="tagerror" style="display:none"> Insert at least one tag </div>
 				<input type="text" class="form-control" id="tags" aria-describedby="tags" placeholder="Enter tags" onkeypress="return event.keyCode != 13;" onkeyup="FREELANCERCREATION.tagHinter()" autocomplete="off">
 				<div id="tags-list">
 				</div>
