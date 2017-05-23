@@ -45,6 +45,10 @@ input#search-text, input#position {
    background-color: rgb(46, 78, 92);
 }
 
+#freelancerCreation {
+   background-color: rgb(46, 78, 92);
+}
+
 #footer {
    position: absolute;
    right: 0;
