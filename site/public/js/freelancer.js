@@ -120,6 +120,7 @@ const FREELANCER = {
 						});
 						if (loggedUser.result) {
 							$(document.getElementById("favorite")).show();
+							$(document.getElementById("favorite")).tooltip();
 							if (userFavorites.indexOf(idFreelancer) == -1) {
 								document.getElementById("favorite").className = "fa fa-heart-o";
 							} else {
@@ -709,7 +710,9 @@ const FREELANCER = {
 			var idFreelancer = url.split('=')[1];
 			let user = res.result._id;
 			if (user) {
-				doJSONRequest("POST", "/api/freelancer/favorite/" + idFreelancer, null, { userId: user }, function(result) {
+				doJSONRequest("POST", "/api/freelancer/favorite/" + idFreelancer, null, {
+					userId: user
+				}, function(result) {
 					console.log(result);
 					if (result.status == false) {
 						document.getElementById("favorite").className = "fa fa-heart-o";
