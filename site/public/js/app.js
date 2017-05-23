@@ -47,7 +47,7 @@ let hashchanged = function hashchanged() {
 	let hash = (window.location.hash != '') ? window.location.hash.split('#')[1].split('=')[0] : '';
 
 	if (currentPage) {
-		if (currentPage.name == hash) {
+		if (currentPage.name == hash && hash != 'freelancer') {
 			return;
 		}
 		currentPage.remover();
