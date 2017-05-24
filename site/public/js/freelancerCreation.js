@@ -56,7 +56,6 @@ const FREELANCERCREATION = {
 			'emergency': emergency,
 			'tags': FREELANCERCREATION.addedTags
 		};
-		console.log(FREELANCERCREATION.addedTags.length);
 		if(FREELANCERCREATION.addedTags.length > 0){
 			doJSONRequest("POST", "/api/freelancer/create/freelancer", null, freelancer, function(res) {
 				if (!res.errors) {
@@ -96,9 +95,12 @@ const FREELANCERCREATION = {
 						};
 
 						doJSONRequest("POST", "/api/freelancer/sendEmailFreelancer/" + mail.value, null, verification, function(res) {
-
+							console.log("CIAONE");
 							window.location.href = "http://127.0.0.1:3000/#freelancer="+freelancerId;
+
 						});
+					} else {
+						window.location.href = "http://127.0.0.1:3000/#freelancer="+freelancerId;
 					}
 				} else {
 					console.log("Error: " + res.errors[0]);

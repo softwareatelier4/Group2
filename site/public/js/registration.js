@@ -1,5 +1,5 @@
 const REGISTRATION = {
-	name: 'registration',
+	name: 'REGISTRATION',
 
 	clearForm: function() {
 		let password = document.getElementById('password');
@@ -56,6 +56,7 @@ const REGISTRATION = {
 		} else {
 			lastNameErrorLength.style.display = "none";
 		}
+
 		if (!flag) {
 			REGISTRATION.clearForm();
 		}
@@ -82,10 +83,6 @@ const REGISTRATION = {
 				email.value = "";
 				password.value = "";
 				repeatPassword.value = "";
-			} else if (res.success) {
-				window.location.href = '/';
-			} else if (res.success) {
-				window.location.href = '/';
 			} else if (res.success) {
 				if (flag_2) {
 					console.log(email.value);
