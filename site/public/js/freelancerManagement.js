@@ -14,7 +14,16 @@ const FREELANCERMANAGEMENT = {
 	name: 'FREELANCERMANAGEMENT',
 	addedTags : [],
 	getFreelancerInfo: function() {
-		//  console.log(document.getElementById("modify_position"));
+
+		let tagText = document.getElementById('tags');
+		let tagsList = document.getElementById('tags-list');
+
+		tagText.value = '';
+		tagsList.value = '';
+		tagsList.innerHTML = '';
+		tagText.innerHTML = '';
+		FREELANCERMANAGEMENT.addedTags = [];
+
 		document.getElementById('delete_gallery').innerHTML = "";
 		$("#modify_position")
 		.geocomplete()
@@ -82,7 +91,8 @@ const FREELANCERMANAGEMENT = {
 						}
 						pos += data.freelancer.address.city;
 						city = data.freelancer.address.city;
-						//   console.
+						lat = data.freelancer.address.lat;
+						lng = data.freelancer.address.long;
 					}
 
 					$("#modify_position").val(pos);
@@ -235,8 +245,9 @@ const FREELANCERMANAGEMENT = {
 				};
 				xhr.send(data);
 
-				location.reload();
-				window.location.href ='/#freelancer=' + res._id;
+				// location.reload();
+				// window.location.href ='/#freelancer=' + res._id;
+				console.log(freelancer_update.address.lat);
 			});
 		} else {
 			let tagerror = document.getElementById('tagerror');
@@ -371,4 +382,9 @@ function simulate(element, eventName)
 			elem.parentNode.removeChild(elem);
 		});
 
+		$("#modify-button" ).click(function() {
+
+
+			console.log("closed");
+		});
 	});
