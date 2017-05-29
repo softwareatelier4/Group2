@@ -245,8 +245,8 @@ const FREELANCERMANAGEMENT = {
 				};
 				xhr.send(data);
 
-				// location.reload();
-				// window.location.href ='/#freelancer=' + res._id;
+				location.reload();
+				window.location.href ='/#freelancer=' + res._id;
 				console.log(freelancer_update.address.lat);
 			});
 		} else {
