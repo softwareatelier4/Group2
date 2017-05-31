@@ -70,9 +70,9 @@ module.exports.user = {
 		level: 1,
 		active: true,
 		favorites: [
-			ObjectId('f00000000000000000000005'),
-			ObjectId('f00000000000000000000050'),
-			ObjectId('f00000000000000000000012'),
+			ObjectId('f00000000000000000000046'),
+			ObjectId('f00000000000000000000047'),
+			ObjectId('f00000000000000000000029'),
 		]
 	}, {
 		_id: ObjectId("b00000000000000000000008"),
