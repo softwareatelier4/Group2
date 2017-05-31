@@ -952,7 +952,7 @@ const SEARCH = {
 		}
 		let price;
 		if (freelancer.price) {
-			price = freelancer.price + "CHF";
+			price = freelancer.price + " CHF";
 		} else {
 			price = "";
 		}
