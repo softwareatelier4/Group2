@@ -277,6 +277,7 @@ module.exports.freelancer = {
 		firstName: 'Simon',
 		lastName: 'Reding',
 		workName: 'Bob The Builder boss',
+		phone: '+41567232732',
 		profilePhoto: '/uploads/test/profile9.jpg',
 		email: 'simon.reding@usi.ch',
 		photos: [
