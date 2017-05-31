@@ -126,7 +126,7 @@ module.exports.freelancer = {
 		],
 		description: "My experience in the field of civil and plumbing engineering is 7 years old. At the beginning i followed mainly residential and industrial tecnological systems for heating and air conditioning. Some years ago I began to collaborate with an plumbing Engineer, to project hydraulic solution for rivers' protections. I made some projects for heating and air conditioning system, expecially with the use of best available tecnologies, for example in the field of renovanle energy (solar, geothermal..). At the same time i collaborated for some hydraulic projects like systems of rivers' protections, hydraulic systems in the project of roads. I can use the softwares Hec-Ras, Heasted Methods.",
 		score: 0,
-		price: 10,
+		price: 240,
 		emergency: true,
 		currentPosition: { //Milano
 			lat: 45.549002,
@@ -292,9 +292,9 @@ module.exports.freelancer = {
 			'/uploads/test/9i.jpg',
 		],
 		address: {
-			city: 'Milano',
-			lat: 45.4654,
-			long: 9.1859,
+			city: 'Mendrisio',
+			lat: 45.8887644,
+			long: 8.9552257,
 		},
 		score: 3.5,
 		description: "I am the founder of Bob The Builder Plumbers. The company has been operating since 2003, delivering consistent and considerate plumbing services to our customers, and even during the recent recession has shown annual growth. Operating under a national licence structure, our male plumbers are able to meet the needs of their local market whilst you and they benefit from a nationally recognised brand. We offer a wide range of plumbing services to our customers and ensure our plumbers are qualified to carry out those services. All our plumbers operate within a set of guidelines based on the Pink Plumbers values, with support where needed. We are a Plumbing business that recognises that there is currently a lack of female plumbers operating independently in their local communities, and where they do exist it's often hard for customers to find them. At Pink Plumbers we help to close the gap between female plumbers qualifying and operating as plumbers in their community.",
@@ -1204,7 +1204,7 @@ module.exports.freelancer = {
 			ObjectId("a00000000000000000000013")
 		],
 		description: "Hello, my name is Marco Valsini. About me, my experience in the field of civil and plumbing engineering is 10 years old. I followed mainly residential and industrial tecnological systems for heating and air conditioning. Some years ago I began to collaborate with an plumbing Engineer, to project hydraulic solution for rivers' protections. I made some projects for heating and air conditioning system, expecially with the use of best available tecnologies, for example in the field of renovanle energy (solar, geothermal..). At the same time I collaborated for some hydraulic projects like systems of rivers' protections, hydraulic systems in the project of roads. I am available also as Handyman, or as general plumber. Contact me! Cheers, Marco!",
-		price: 150,
+		price: 300,
 		emergency: false
 	}, {
 		_id: ObjectId("f00000000000000000000040"),
@@ -1312,7 +1312,7 @@ module.exports.freelancer = {
 			long: 9.1076924,
 		},
 		description: "I believe that plumber work is not only for man! I am attracted by this work since I was a child, now I repute that my company is one of the biggest in Italy. There are around 10 female plumbers that operate in all the country.  I operate within a set of guidelines based on the plumbers values. I recognise that there is currently a lack of female plumbers operating independently in their local communities, and where they do exist it's often hard for customers to find them. My company helps to close the gap between female plumbers qualifying and operating as plumbers in their community.I have a bachelor degree in plumber engineering. I know some of the most famous engineering software. If you retain that I am the worker perfect for you, contact me by e-mail or phone! I am available everyday from 8.00 am to 9.00 pm.",
-		price: 45,
+		price: 85,
 		score: 4.5,
 		tags: [
 			ObjectId("a00000000000000000000038"),
@@ -1340,7 +1340,7 @@ module.exports.freelancer = {
 			'/uploads/test/44c.jpg',
 		],
 		description: "I start my career in the plumbing industry in 2005 with Herb Davis Plumbing. I am specialized in all areas of plumbing including commercial, residential, and service. My experience in the field of civil and plumbing engineering is 12 years old. He has big knowledge about AUTOCAD and some of the most famous engineering software. I have also some basic knowledge as carpenter and electrician.",
-		price: 83,
+		price: 100,
 		tags: [
 			ObjectId("a00000000000000000000017"),
 			ObjectId("a00000000000000000000018"),
@@ -1374,7 +1374,7 @@ module.exports.freelancer = {
 			'/uploads/test/45c.jpg',
 		],
 		description: "I have over 15 years of experience in the plumbing industry, specializing in plumbing for new construction, residential homes, and commercial properties. I am an expert at new copper installation and pipe fitting. I am originally from America where I obtained a degree, with excellent results, in plumbing engineering. I am available every work-day from 9.00 am to 7.00 pm. If you are interested in it, please contact me some days before!",
-		price: 35,
+		price: 69,
 		tags: [
 			ObjectId("a00000000000000000000038"),
 			ObjectId("a00000000000000000000010"),
