@@ -164,8 +164,7 @@ module.exports.freelancer = {
 			ObjectId("a00000000000000000000012")
 		],
 		description: "I love building online communities that have heart and purpose to impact the world and create transformation and change. To be able to create pathways that connect purpose and destiny with reality. Here's what some people have said about me after we chatted....Working in the design industry for the last 10+ years Samantha has creative flair combined with sharp marketing savvy and the passion to reveal your message in an authentic way. Founding Design Reaction in 2006, she has worked with a large range of clients in the Newcastle and Sydney area including: Hunter New England Health, State Spinal, Bone Marrow Transplant Network, Hunter Development Corporation and many well known small businesses in the Newcastle region.",
-		emergency: false,
-		ownerId: ObjectId("b00000000000000000000010"),
+		emergency: false
 	}, {
 		_id: ObjectId("f00000000000000000000005"),
 		firstName: 'Isabel',
@@ -308,6 +307,7 @@ module.exports.freelancer = {
 			lat: 46.0110101,
 			long: 8.9555166,
 		},
+		ownerId: ObjectId("b00000000000000000000010"),
 	}, {
 		_id: ObjectId("f00000000000000000000010"),
 		firstName: 'Hoang ',
