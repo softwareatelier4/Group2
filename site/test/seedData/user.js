@@ -71,7 +71,7 @@ module.exports.user = {
 		active: true,
 		favorites: [
 			ObjectId('f00000000000000000000046'),
-			ObjectId('f00000000000000000000047'),
+			ObjectId('f00000000000000000000003'),
 			ObjectId('f00000000000000000000029'),
 		]
 	}, {
