@@ -12,7 +12,7 @@
         </div>
         <p class='card-text'>{#freelancer.tags} <span class="badge badge-default"> {name} </span>{/freelancer.tags}</p>
         <img src="/html/moneyicon.png" width="24px"></img>
-        <span class='price'>{?freelancer.price}{freelancer.price} CHF{:else} -- CHF{/freelancer.price}/h</span>
+        <span class='price'>{?freelancer.price}{freelancer.price}{:else} -- CHF{/freelancer.price}/h</span>
         <button type="button" class="align-right btn btn-primary">More info</button>
     </div>
 </div>
